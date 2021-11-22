@@ -1,10 +1,19 @@
 import React from "react";
 import { Form, Input, Button, Checkbox } from "antd";
+import { useDispatch } from "react-redux";
+import { switchAuthStatus, getUserNameValue } from "../../app/store/authSlice";
+import { useSelector } from "react-redux";
 import "./Form.scss";
 
 const FormList = () => {
-  const onFinish = (values) => {
+  const dispatch = useDispatch();
+
+  const { AuthStatus} = useSelector((state) => state.authReducer);
+
+  const testAuth = (values) => {
     console.log("Success:", values);
+    dispatch(switchAuthStatus(!AuthStatus));
+    dispatch(getUserNameValue(values))
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -24,7 +33,7 @@ const FormList = () => {
       initialValues={{
         remember: true,
       }}
-      onFinish={onFinish}
+      onFinish={testAuth}
       onFinishFailed={onFinishFailed}
       autoComplete="off"
     >
