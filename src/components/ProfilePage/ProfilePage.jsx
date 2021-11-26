@@ -13,6 +13,8 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { switchAuthStatus } from "../../app/store/authSlice";
 import SvgTemplate from "../Common/SvgTemplate";
+import ChannelList from "../Channel/ChannelList";
+import FriendList from "../Friend/FriendList";
 import "./ProfilePage.scss";
 
 const ProfilePage = () => {
@@ -26,6 +28,12 @@ const ProfilePage = () => {
 
   const { AuthStatus, userInformation } = useSelector(
     (state) => state.authReducer
+  );
+  const { channels } = useSelector(
+    (state) => state.ProfileReducer
+  );
+  const { friends } = useSelector(
+    (state) => state.ProfileReducer
   );
 
   const dispatch = useDispatch();
@@ -120,18 +128,22 @@ const ProfilePage = () => {
                   <Col style={{ width: "100%" }}>
                     <div className="content__preview">
                       <h2 className="content__title">Nomad List</h2>
-                      <span className="content__icon">
-                        <SvgTemplate id="settings" />
-                      </span>
+                      <button className="content__button">
+                        <span className="content__icon">
+                          <SvgTemplate id="settings" />
+                        </span>
+                      </button>
                     </div>
                   </Col>
                 </Row>
                 <Row>
                   <Col style={{ width: "100%" }}>
                     <div className="content__preview content__preview--treads">
-                      <span className="content__icon">
-                        <SvgTemplate id="dialog" />
-                      </span>
+                      <button className="content__button">
+                        <span className="content__icon">
+                          <SvgTemplate id="dialog" />
+                        </span>
+                      </button>
                       <h2 className="content__title content__title--small">
                         All treads
                       </h2>
@@ -143,70 +155,9 @@ const ProfilePage = () => {
                   <Col style={{ width: "100%" }}>
                     <div className="content__preview">
                       <h2 className="content__title">Channels</h2>
-                      <span className="content__counter">11</span>
+                      <span className="content__counter">{channels.length}</span>
                     </div>
-                    <ul className="channels">
-                      <li className="channels__item">
-                        <a className="channels__link" href="">
-                          # general1
-                        </a>
-                      </li>
-                      <li className="channels__item">
-                        <a className="channels__link" href="">
-                          # general2
-                        </a>
-                      </li>
-                      <li className="channels__item">
-                        <a className="channels__link" href="">
-                          # general3
-                        </a>
-                      </li>
-                      <li className="channels__item">
-                        <a className="channels__link" href="">
-                          # general4
-                        </a>
-                      </li>
-                      <li className="channels__item">
-                        <a className="channels__link" href="">
-                          # general5
-                        </a>
-                      </li>
-                      <li className="channels__item">
-                        <a className="channels__link" href="">
-                          # general6
-                        </a>
-                      </li>
-                      <li className="channels__item">
-                        <a className="channels__link" href="">
-                          # general7
-                        </a>
-                      </li>
-                      <li className="channels__item">
-                        <a className="channels__link" href="">
-                          # general8
-                        </a>
-                      </li>
-                      <li className="channels__item">
-                        <a className="channels__link" href="">
-                          # general9
-                        </a>
-                      </li>
-                      <li className="channels__item">
-                        <a className="channels__link" href="">
-                          # general10
-                        </a>
-                      </li>
-                      <li className="channels__item">
-                        <a className="channels__link" href="">
-                          # general11
-                        </a>
-                      </li>
-                      <li className="channels__item">
-                        <a className="channels__link" href="">
-                          # general12
-                        </a>
-                      </li>
-                    </ul>
+                  <ChannelList/>
                   </Col>
                 </Row>
                 {/*  */}
@@ -214,74 +165,9 @@ const ProfilePage = () => {
                   <Col style={{ width: "100%" }}>
                     <div className="content__preview">
                       <h2 className="content__title">Friends</h2>
-                      <span className="content__counter">82</span>
+                      <span className="content__counter">{friends.length}</span>
                     </div>
-                    <ul className="friends">
-                      <li className="friends__item">
-                        <img
-                          className="friends__image"
-                          src="https://via.placeholder.com/40x40"
-                          alt="img"
-                        />
-                        <span className="friends__name">Orlando Diggs</span>
-                      </li>
-                      <li className="friends__item">
-                        <img
-                          className="friends__image"
-                          src="https://via.placeholder.com/40x40"
-                          alt="img"
-                        />
-                        <span className="friends__name">Carmen Velasco</span>
-                      </li>
-                      <li className="friends__item">
-                        <img
-                          className="friends__image"
-                          src="https://via.placeholder.com/40x40"
-                          alt="img"
-                        />
-                        <span className="friends__name">Marie Jensen</span>
-                      </li>
-                      <li className="friends__item">
-                        <img
-                          className="friends__image"
-                          src="https://via.placeholder.com/40x40"
-                          alt="img"
-                        />
-                        <span className="friends__name">Alex Lee</span>
-                      </li>
-                      <li className="friends__item">
-                        <img
-                          className="friends__image"
-                          src="https://via.placeholder.com/40x40"
-                          alt="img"
-                        />
-                        <span className="friends__name">Leo Gill</span>
-                      </li>
-                      <li className="friends__item">
-                        <img
-                          className="friends__image"
-                          src="https://via.placeholder.com/40x40"
-                          alt="img"
-                        />
-                        <span className="friends__name">Britney Cooper</span>
-                      </li>
-                      <li className="friends__item">
-                        <img
-                          className="friends__image"
-                          src="https://via.placeholder.com/40x40"
-                          alt="img"
-                        />
-                        <span className="friends__name">Orlando Diggs</span>
-                      </li>
-                      <li className="friends__item">
-                        <img
-                          className="friends__image"
-                          src="https://via.placeholder.com/40x40"
-                          alt="img"
-                        />
-                        <span className="friends__name">Carmen Velasco</span>
-                      </li>
-                    </ul>
+                    <FriendList/>
                   </Col>
                 </Row>
               </Col>

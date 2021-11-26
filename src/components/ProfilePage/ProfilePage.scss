@@ -40,6 +40,7 @@
         align-items: center;
         justify-content: space-between;
         margin: 0 0 15px 0;
+        padding: 0 20px 0 0;
     }
     &__preview--treads {
         justify-content: flex-start;
@@ -79,73 +80,12 @@
         color: #b5b5b5;
         font-size: 12px;
     }
-}
-
-.friends {
-    margin: 0;
-    max-height: 250px;
-    overflow-y: scroll;
-    /* полоса прокрутки (скроллбар) */
-    &::-webkit-scrollbar {
-        width: 0;
+    &__button {
         background-color: transparent;
-    }
-    /* ползунок скроллбара */
-    &::-webkit-scrollbar-thumb {
-        background-color: transparent;
-        border-radius: 10px;
-    }
-    &__item {
-        display: flex;
-        align-items: center;
-        position: relative;
-        overflow: hidden;
-        :not(:last-child) {
-            margin: 0 15px 0 0;
-        }
-        &:not(:last-child) {
-            margin: 0 0 20px 0;
-        }
-        &::before {
-            content: "";
-            position: absolute;
-            top: 40%;
-            left: -10%;
-            width: 10px;
-            height: 10px;
-            border-radius: 100%;
-            background-color: rgb(81, 243, 59);
-            z-index: 5;
-        }
-    }
-    &__image {
-        border-radius: 5px;
-        object-fit: cover;
-        width: 40px;
-        height: 40px;
-    }
-    &__name {
-        @include text-left;
+        padding: 0;
     }
 }
 
-.channels {
-    max-height: 300px;
-    overflow-y: scroll;
-    /* полоса прокрутки (скроллбар) */
-    &::-webkit-scrollbar {
-        width: 10px;
-        background-color: transparent;
-    }
-    /* ползунок скроллбара */
-    &::-webkit-scrollbar-thumb {
-        background-color: #b5b5b5;
-        border-radius: 10px;
-    }
-    &__link {
-        @include text-left;
-    }
-    :not(:last-child) {
-        margin: 0 0 12px 0;
-    }
-}
+
+
+

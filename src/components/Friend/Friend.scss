@@ -1,0 +1,48 @@
+.friends {
+    margin: 0;
+    max-height: 250px;
+    overflow-y: scroll;
+    /* полоса прокрутки (скроллбар) */
+    &::-webkit-scrollbar {
+        width: 0;
+        background-color: transparent;
+    }
+    /* ползунок скроллбара */
+    &::-webkit-scrollbar-thumb {
+        background-color: transparent;
+    }
+    &__item {
+        display: flex;
+        align-items: center;
+        position: relative;
+        &::before {
+            content: "";
+            position: absolute;
+            top: 40%;
+            left: -10%;
+            width: 10px;
+            height: 10px;
+            border-radius: 100%;
+            background-color: rgb(81, 243, 59);
+            z-index: 5;
+        }
+        :not(:last-child) {
+            margin: 0 15px 0 0;
+        }
+        &:not(:last-child) {
+            margin: 0 0 20px 0;
+        }
+    }
+    &__image {
+        border-radius: 5px;
+        object-fit: cover;
+        width: 40px;
+        height: 40px;
+    }
+    &__name {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 16.8px;
+        color: #b5b5b5;
+    }
+}
