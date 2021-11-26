@@ -8,6 +8,10 @@ import {
   UploadOutlined,
   LogoutOutlined,
 } from "@ant-design/icons";
+import { Modal } from "antd";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { switchAuthStatus } from "../../app/store/authSlice";
 import "./ProfilePage.scss";
 
 const ProfilePage = () => {
@@ -17,6 +21,27 @@ const ProfilePage = () => {
 
   const toggle = () => {
     setCollapsedStatus(!collapsed);
+  };
+
+  const { AuthStatus, userInformation } = useSelector(
+    (state) => state.authReducer
+  );
+
+  const dispatch = useDispatch();
+
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const handleConfirm = () => {
+    setIsModalVisible(false);
+    dispatch(switchAuthStatus(!AuthStatus));
+  };
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+  const logOut = () => {
+    setIsModalVisible(true);
+    setIsModalVisible(!isModalVisible);
+    console.log(isModalVisible);
   };
 
   return (
@@ -29,7 +54,7 @@ const ProfilePage = () => {
         <div className="logo" />
         <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
           <Menu.Item key="1" icon={<UserOutlined />}>
-            name
+            {userInformation.username}
           </Menu.Item>
           <Menu.Item key="2" icon={<VideoCameraOutlined />}>
             meeting
@@ -37,9 +62,25 @@ const ProfilePage = () => {
           <Menu.Item key="3" icon={<UploadOutlined />}>
             upload
           </Menu.Item>
-          <Menu.Item key="4" icon={<LogoutOutlined />}>
-            Log Out
-          </Menu.Item>
+          <>
+            <Menu.Item key="4" icon={<LogoutOutlined />} onClick={logOut}>
+              Log Out
+            </Menu.Item>
+            {isModalVisible ? (
+              <>
+                <Modal
+                  title="Exit"
+                  visible={isModalVisible}
+                  onOk={handleConfirm}
+                  onCancel={handleCancel}
+                >
+                  <p>Are you sure?</p>
+                </Modal>
+              </>
+            ) : (
+              <></>
+            )}
+          </>
         </Menu>
       </Sider>
       <Layout className="site-layout">
@@ -60,7 +101,7 @@ const ProfilePage = () => {
             minHeight: 280,
           }}
         >
-          Content
+          {`Hello, ${userInformation.username}!`}
         </Content>
       </Layout>
     </Layout>

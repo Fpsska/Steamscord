@@ -8,11 +8,9 @@ const authSlice = createSlice({
     },
     reducers: {
         getUserNameValue(state, action) {
-            console.log("Slicer:", action.payload);
             state.userInformation = action.payload
         },
         switchAuthStatus(state, action) {
-            console.log("Slicer:", action.payload);
             state.AuthStatus = action.payload
         }
     }

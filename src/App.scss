@@ -1,7 +1,5 @@
 .App {
     height: 100%;
-    // display: flex;
-    // flex-direction: column;
 }
 
 #root {
@@ -10,7 +8,8 @@
 
 body {
     font-size: 14px;
-    line-height: 1;
+    background-color: rgba(0, 0 , 0,  0.15);
+    // background-color: rgba(0, 0 , 0,  0.15) !important;
 }
 
 .header {

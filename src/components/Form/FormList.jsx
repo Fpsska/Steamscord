@@ -8,12 +8,12 @@ import "./Form.scss";
 const FormList = () => {
   const dispatch = useDispatch();
 
-  const { AuthStatus} = useSelector((state) => state.authReducer);
+  const { AuthStatus } = useSelector((state) => state.authReducer);
 
   const testAuth = (values) => {
     console.log("Success:", values);
     dispatch(switchAuthStatus(!AuthStatus));
-    dispatch(getUserNameValue(values))
+    dispatch(getUserNameValue(values));
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -24,6 +24,10 @@ const FormList = () => {
     <Form
       className="form"
       name="basic"
+      style={{
+        maxWidth: "350px",
+        width: "100%",
+      }}
       labelCol={{
         span: 8,
       }}
@@ -80,7 +84,14 @@ const FormList = () => {
           span: 16,
         }}
       >
-        <Button className="form__button" type="primary" htmlType="submit">
+        <Button
+          className="form__button"
+          type="primary"
+          htmlType="submit"
+          style={{
+            width: "100%",
+          }}
+        >
           Submit
         </Button>
       </Form.Item>
