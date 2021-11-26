@@ -1,4 +1,4 @@
-#components-layout-demo-custom-trigger .trigger {
+.trigger {
     padding: 0 24px;
     font-size: 18px;
     line-height: 64px;
@@ -6,11 +6,11 @@
     transition: color 0.3s;
 }
 
-#components-layout-demo-custom-trigger .trigger:hover {
+.trigger:hover {
     color: #1890ff;
 }
 
-#components-layout-demo-custom-trigger .logo {
+.logo {
     height: 32px;
     margin: 16px;
     background: rgba(255, 255, 255, 0.3);
@@ -18,4 +18,134 @@
 
 .site-layout .site-layout-background {
     background: #fff;
+}
+
+// /.ant
+@mixin text-left {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16.8px;
+    color: #b5b5b5;
+}
+
+.content {
+    height: 100%;
+    &__wrapper {
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+    &__preview {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 0 0 15px 0;
+    }
+    &__preview--treads {
+        justify-content: flex-start;
+        :not(:last-child) {
+            margin: 0 10px 0 0;
+        }
+    }
+    &__section {
+        height: 100%;
+    }
+    &__section--left {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 40px 10px 20px 40px;
+        background-color: rgba($color: #25272a, $alpha: 0.75);
+    }
+    &__section--main {
+        background-color: rgba(59, 48, 48, 0.3);
+    }
+    &__section--right {
+        background-color: rgba(160, 122, 122, 0.3);
+    }
+    &__title {
+        text-transform: uppercase;
+        color: #b5b5b5;
+        font-size: 12px;
+        line-height: 14.4px;
+        font-weight: 700;
+        margin: 0;
+    }
+    &__title--small {
+        text-transform: none;
+        @include text-left;
+    }
+    &__counter {
+        color: #b5b5b5;
+        font-size: 12px;
+    }
+}
+
+.friends {
+    margin: 0;
+    max-height: 250px;
+    overflow-y: scroll;
+    /* полоса прокрутки (скроллбар) */
+    &::-webkit-scrollbar {
+        width: 0;
+        background-color: transparent;
+    }
+    /* ползунок скроллбара */
+    &::-webkit-scrollbar-thumb {
+        background-color: transparent;
+        border-radius: 10px;
+    }
+    &__item {
+        display: flex;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+        :not(:last-child) {
+            margin: 0 15px 0 0;
+        }
+        &:not(:last-child) {
+            margin: 0 0 20px 0;
+        }
+        &::before {
+            content: "";
+            position: absolute;
+            top: 40%;
+            left: -10%;
+            width: 10px;
+            height: 10px;
+            border-radius: 100%;
+            background-color: rgb(81, 243, 59);
+            z-index: 5;
+        }
+    }
+    &__image {
+        border-radius: 5px;
+        object-fit: cover;
+        width: 40px;
+        height: 40px;
+    }
+    &__name {
+        @include text-left;
+    }
+}
+
+.channels {
+    max-height: 300px;
+    overflow-y: scroll;
+    /* полоса прокрутки (скроллбар) */
+    &::-webkit-scrollbar {
+        width: 10px;
+        background-color: transparent;
+    }
+    /* ползунок скроллбара */
+    &::-webkit-scrollbar-thumb {
+        background-color: #b5b5b5;
+        border-radius: 10px;
+    }
+    &__link {
+        @include text-left;
+    }
+    :not(:last-child) {
+        margin: 0 0 12px 0;
+    }
 }
