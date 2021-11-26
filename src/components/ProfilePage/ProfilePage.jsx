@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Layout, Menu, Row, Col } from "antd";
+import { Layout, Menu, Row, Col, Comment, Tooltip, Avatar } from "antd";
 import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
@@ -7,7 +7,12 @@ import {
   VideoCameraOutlined,
   UploadOutlined,
   LogoutOutlined,
+  DislikeOutlined,
+  LikeOutlined,
+  DislikeFilled,
+  LikeFilled,
 } from "@ant-design/icons";
+import moment from "moment";
 import { Modal } from "antd";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -16,6 +21,9 @@ import SvgTemplate from "../Common/SvgTemplate";
 import ChannelList from "../Channel/ChannelList";
 import FriendList from "../Friend/FriendList";
 import "./ProfilePage.scss";
+
+import "antd/dist/antd.css";
+// import "./index.css";
 
 const ProfilePage = () => {
   const { Header, Sider, Content } = Layout;
@@ -29,16 +37,44 @@ const ProfilePage = () => {
   const { AuthStatus, userInformation } = useSelector(
     (state) => state.authReducer
   );
-  const { channels } = useSelector(
-    (state) => state.ProfileReducer
-  );
-  const { friends } = useSelector(
-    (state) => state.ProfileReducer
-  );
+  const { channels } = useSelector((state) => state.ProfileReducer);
+  const { friends } = useSelector((state) => state.ProfileReducer);
 
   const dispatch = useDispatch();
 
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [likes, setLikes] = useState(0);
+  const [dislikes, setDislikes] = useState(0);
+  const [action, setAction] = useState(null);
+
+  const like = () => {
+    setLikes(1);
+    setDislikes(0);
+    setAction("liked");
+  };
+  const dislike = () => {
+    setLikes(0);
+    setDislikes(1);
+    setAction("disliked");
+  };
+
+  const actions = [
+    <Tooltip key="comment-basic-like" title="Like">
+      <span onClick={like}>
+        {React.createElement(action === "liked" ? LikeFilled : LikeOutlined)}
+        <span className="comment-action">{likes}</span>
+      </span>
+    </Tooltip>,
+    <Tooltip key="comment-basic-dislike" title="Dislike">
+      <span onClick={dislike}>
+        {React.createElement(
+          action === "disliked" ? DislikeFilled : DislikeOutlined
+        )}
+        <span className="comment-action">{dislikes}</span>
+      </span>
+    </Tooltip>,
+    <span key="comment-basic-reply-to">Reply to</span>,
+  ];
 
   const handleConfirm = () => {
     setIsModalVisible(false);
@@ -155,9 +191,11 @@ const ProfilePage = () => {
                   <Col style={{ width: "100%" }}>
                     <div className="content__preview">
                       <h2 className="content__title">Channels</h2>
-                      <span className="content__counter">{channels.length}</span>
+                      <span className="content__counter">
+                        {channels.length}
+                      </span>
                     </div>
-                  <ChannelList/>
+                    <ChannelList />
                   </Col>
                 </Row>
                 {/*  */}
@@ -167,7 +205,7 @@ const ProfilePage = () => {
                       <h2 className="content__title">Friends</h2>
                       <span className="content__counter">{friends.length}</span>
                     </div>
-                    <FriendList/>
+                    <FriendList />
                   </Col>
                 </Row>
               </Col>
@@ -175,7 +213,84 @@ const ProfilePage = () => {
               <Col
                 span={17}
                 className="content__section content__section--main"
-              ></Col>
+              >
+                <Row className="chat">
+                  <Col style={{ width: "100%" }}>
+                    <Row className="chat__section chat__section--top">
+                      <div className="chat__column chat__column--name">
+                        <span className="chat__name">#general</span>
+                        <button className="chat__button">
+                          <span className="chat__icon">
+                            <SvgTemplate id="star" />
+                          </span>
+                        </button>
+                      </div>
+                      <div className="chat__column">
+                        <span className="chat__icon">
+                          <SvgTemplate id="user" />
+                        </span>
+                        <span className="chat__users">1,903</span>
+                      </div>
+                      <form className="chat__form" action="#">
+                        <input
+                          className="chat__input"
+                          type="text"
+                          placeholder="Search.."
+                        />
+                        <button className="chat__button chat__button--form">
+                          <span className="chat__icon">
+                            <SvgTemplate id="search" />
+                          </span>
+                        </button>
+                      </form>
+                      <div className="chat__column">
+                        <button className="chat__button">
+                          <span className="chat__icon">
+                            <SvgTemplate id="notification" />
+                          </span>
+                        </button>
+                      </div>
+                      <div className="chat__column chat__column--settings">
+                        <button className="chat__button">
+                          <span className="chat__icon">
+                            <SvgTemplate id="chat-settings" />
+                          </span>
+                        </button>
+                      </div>
+                    </Row>
+                    <Row className="chat__section chat__section--main">
+                      <div>
+                        <Comment
+                          actions={actions}
+                          author={<a>Han Solo</a>}
+                          avatar={
+                            <Avatar
+                              src="https://joeschmoe.io/api/v1/random"
+                              alt="Han Solo"
+                            />
+                          }
+                          content={
+                            <p>
+                              We supply a series of design principles, practical
+                              patterns and high quality design resources (Sketch
+                              and Axure), to help people create their product
+                              prototypes beautifully and efficiently.
+                            </p>
+                          }
+                          datetime={
+                            <Tooltip
+                              title={moment().format("YYYY-MM-DD HH:mm:ss")}
+                            >
+                              <span>{moment().fromNow()}</span>
+                            </Tooltip>
+                          }
+                        />
+                      </div>
+                    </Row>
+                    <Row>{/* input */}</Row>
+                  </Col>
+                </Row>
+              </Col>
               {/* /. COL MIDDLE */}
               <Col
                 span={3}
@@ -183,8 +298,6 @@ const ProfilePage = () => {
               ></Col>
             </Row>
           </div>
-
-          {/* {`Hello, ${userInformation.username}!`} */}
         </Content>
       </Layout>
     </Layout>

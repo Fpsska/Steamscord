@@ -86,6 +86,59 @@
     }
 }
 
-
-
-
+.chat {
+    background-color: #fff;
+    height: 100%;
+    &__section--top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 30px 20px 25px 20px;
+        border-bottom: 1px solid rgba($color: #000, $alpha: 0.25);
+    }
+    &__section--main {
+        padding: 0 20px 0 20px;
+    }
+    &__column {
+        display: flex;
+        align-items: center;
+        :not(:last-child) {
+            margin: 0 5px 0 0;
+        }
+    }
+    &__column--name {
+        flex: 1;
+    }
+    &__column--settings {
+        margin: 0 0 0 20px;
+    }
+    &__button {
+        background-color: transparent;
+        padding: 0;
+    }
+    &__name {
+        font-size: 20px;
+        font-weight: 700;
+        color: #000;
+    }
+    &__form {
+        position: relative;
+        margin: 0 20px 0 20px;
+    }
+    &__input {
+        padding: 6px 16px;
+        border-radius: 5px;
+        border: 0.5px solid rgba(0, 0, 0, 0.24);
+        &::placeholder {
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 16.8px;
+            color: #8d8d8d;
+        }
+    }
+    &__button--form {
+        position: absolute;
+        top: 14%;
+        left: 82%;
+    }
+}
