@@ -7,6 +7,7 @@ import {
   VideoCameraOutlined,
   UploadOutlined,
   LogoutOutlined,
+  SmileOutlined,
 } from "@ant-design/icons";
 import { Modal } from "antd";
 import { useSelector } from "react-redux";
@@ -17,14 +18,12 @@ import ChannelList from "../Channel/ChannelList";
 import FriendList from "../Friend/FriendList";
 import CommentsList from "../Comment/CommentList";
 import "./ProfilePage.scss";
-
 import "antd/dist/antd.css";
-// import "./index.css";
 
 const ProfilePage = () => {
   const { Header, Sider, Content } = Layout;
 
-  const [collapsed, setCollapsedStatus] = useState(false);
+  const [collapsed, setCollapsedStatus] = useState(true);
 
   const toggle = () => {
     setCollapsedStatus(!collapsed);
@@ -33,8 +32,7 @@ const ProfilePage = () => {
   const { AuthStatus, userInformation } = useSelector(
     (state) => state.authReducer
   );
-  const { channels } = useSelector((state) => state.ProfileReducer);
-  const { friends } = useSelector((state) => state.ProfileReducer);
+  const { channels, friends } = useSelector((state) => state.ProfileReducer);
 
   const dispatch = useDispatch();
 
@@ -180,7 +178,13 @@ const ProfilePage = () => {
                 className="content__section content__section--main"
               >
                 <Row className="chat">
-                  <Col style={{ width: "100%" }}>
+                  <Col
+                    style={{
+                      width: "100%",
+                      display: "flex",
+                      flexDirection: "column",
+                    }}
+                  >
                     <Row className="chat__section chat__section--top">
                       <div className="chat__column chat__column--name">
                         <span className="chat__name">#general</span>
@@ -196,18 +200,20 @@ const ProfilePage = () => {
                         </span>
                         <span className="chat__users">1,903</span>
                       </div>
-                      <form className="chat__form" action="#">
+
+                      <form className="form" action="#">
                         <input
-                          className="chat__input"
+                          className="form__input form__input--search"
                           type="text"
                           placeholder="Search.."
                         />
-                        <button className="chat__button chat__button--form">
-                          <span className="chat__icon">
+                        <button className="form__button form__button--search">
+                          <span className="form__icon">
                             <SvgTemplate id="search" />
                           </span>
                         </button>
                       </form>
+
                       <div className="chat__column">
                         <button className="chat__button">
                           <span className="chat__icon">
@@ -228,7 +234,32 @@ const ProfilePage = () => {
                       <CommentsList />
                     </Row>
 
-                    <Row>{/* input */}</Row>
+                    <Row className="chat__section chat__section--bottom">
+                        <form className="form form--message" action="#">
+                          <input
+                            className="form__input form__input--message"
+                            type="text"
+                            placeholder="Message in #general"
+                          />
+                          <div className="form__interaction">
+                            <button className="form__button form__button--message form__button--voice">
+                              <span className="form__icon">
+                                <SvgTemplate id="microphone" />
+                              </span>
+                            </button>
+                            <button className="form__button form__button--message form__button--file">
+                              <span className="form__icon">
+                                <SvgTemplate id="clip" />
+                              </span>
+                            </button>
+                          </div>
+                          <button className="form__button form__button--message form__button--emoji">
+                            <span className="form__icon">
+                              <SmileOutlined />
+                            </span>
+                          </button>
+                        </form>
+                    </Row>
                   </Col>
                 </Row>
               </Col>

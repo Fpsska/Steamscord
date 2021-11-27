@@ -85,11 +85,11 @@ const FormList = () => {
         }}
       >
         <Button
-          className="form__button"
           type="primary"
           htmlType="submit"
           style={{
             width: "100%",
+            padding: 0
           }}
         >
           Submit
