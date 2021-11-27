@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Layout, Menu, Row, Col, Comment, Tooltip, Avatar } from "antd";
+import { Layout, Menu, Row, Col } from "antd";
 import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
@@ -7,12 +7,7 @@ import {
   VideoCameraOutlined,
   UploadOutlined,
   LogoutOutlined,
-  DislikeOutlined,
-  LikeOutlined,
-  DislikeFilled,
-  LikeFilled,
 } from "@ant-design/icons";
-import moment from "moment";
 import { Modal } from "antd";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -20,6 +15,7 @@ import { switchAuthStatus } from "../../app/store/authSlice";
 import SvgTemplate from "../Common/SvgTemplate";
 import ChannelList from "../Channel/ChannelList";
 import FriendList from "../Friend/FriendList";
+import CommentsList from "../Comment/CommentList";
 import "./ProfilePage.scss";
 
 import "antd/dist/antd.css";
@@ -43,38 +39,6 @@ const ProfilePage = () => {
   const dispatch = useDispatch();
 
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [likes, setLikes] = useState(0);
-  const [dislikes, setDislikes] = useState(0);
-  const [action, setAction] = useState(null);
-
-  const like = () => {
-    setLikes(1);
-    setDislikes(0);
-    setAction("liked");
-  };
-  const dislike = () => {
-    setLikes(0);
-    setDislikes(1);
-    setAction("disliked");
-  };
-
-  const actions = [
-    <Tooltip key="comment-basic-like" title="Like">
-      <span onClick={like}>
-        {React.createElement(action === "liked" ? LikeFilled : LikeOutlined)}
-        <span className="comment-action">{likes}</span>
-      </span>
-    </Tooltip>,
-    <Tooltip key="comment-basic-dislike" title="Dislike">
-      <span onClick={dislike}>
-        {React.createElement(
-          action === "disliked" ? DislikeFilled : DislikeOutlined
-        )}
-        <span className="comment-action">{dislikes}</span>
-      </span>
-    </Tooltip>,
-    <span key="comment-basic-reply-to">Reply to</span>,
-  ];
 
   const handleConfirm = () => {
     setIsModalVisible(false);
@@ -210,6 +174,7 @@ const ProfilePage = () => {
                 </Row>
               </Col>
               {/* /. COL LEFT */}
+
               <Col
                 span={17}
                 className="content__section content__section--main"
@@ -258,40 +223,17 @@ const ProfilePage = () => {
                         </button>
                       </div>
                     </Row>
+
                     <Row className="chat__section chat__section--main">
-                      <div>
-                        <Comment
-                          actions={actions}
-                          author={<a>Han Solo</a>}
-                          avatar={
-                            <Avatar
-                              src="https://joeschmoe.io/api/v1/random"
-                              alt="Han Solo"
-                            />
-                          }
-                          content={
-                            <p>
-                              We supply a series of design principles, practical
-                              patterns and high quality design resources (Sketch
-                              and Axure), to help people create their product
-                              prototypes beautifully and efficiently.
-                            </p>
-                          }
-                          datetime={
-                            <Tooltip
-                              title={moment().format("YYYY-MM-DD HH:mm:ss")}
-                            >
-                              <span>{moment().fromNow()}</span>
-                            </Tooltip>
-                          }
-                        />
-                      </div>
+                      <CommentsList />
                     </Row>
+
                     <Row>{/* input */}</Row>
                   </Col>
                 </Row>
               </Col>
               {/* /. COL MIDDLE */}
+
               <Col
                 span={3}
                 className="content__section content__section--right"
