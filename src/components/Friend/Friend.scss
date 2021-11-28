@@ -1,6 +1,7 @@
 .friends {
     margin: 0;
     max-height: 250px;
+    min-height: 250px;
     overflow-y: scroll;
     /* полоса прокрутки (скроллбар) */
     &::-webkit-scrollbar {

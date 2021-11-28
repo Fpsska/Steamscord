@@ -13,8 +13,7 @@ function App() {
 
   return (
     <div className="App">
-      <header className="header"></header>
-      <main className="main">
+      <div className="page">
         <>
           {AuthStatus ? <>
             <ProfilePage />
@@ -22,8 +21,7 @@ function App() {
             <FormList />
           </div>}
         </>
-      </main>
-      <footer className="footer"></footer>
+      </div>
     </div>
   );
 }

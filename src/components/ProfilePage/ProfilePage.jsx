@@ -8,6 +8,10 @@ import {
   UploadOutlined,
   LogoutOutlined,
   SmileOutlined,
+  FacebookOutlined,
+  TwitterOutlined,
+  InstagramOutlined,
+  LinkedinOutlined,
 } from "@ant-design/icons";
 import { Modal } from "antd";
 import { useSelector } from "react-redux";
@@ -55,7 +59,7 @@ const ProfilePage = () => {
     <Layout
       style={{
         height: "100vh",
-        overflow: "auto",
+        overflow: "hidden",
       }}
     >
       <Sider
@@ -172,7 +176,6 @@ const ProfilePage = () => {
                 </Row>
               </Col>
               {/* /. COL LEFT */}
-
               <Col
                 span={17}
                 className="content__section content__section--main"
@@ -235,30 +238,30 @@ const ProfilePage = () => {
                     </Row>
 
                     <Row className="chat__section chat__section--bottom">
-                        <form className="form form--message" action="#">
-                          <input
-                            className="form__input form__input--message"
-                            type="text"
-                            placeholder="Message in #general"
-                          />
-                          <div className="form__interaction">
-                            <button className="form__button form__button--message form__button--voice">
-                              <span className="form__icon">
-                                <SvgTemplate id="microphone" />
-                              </span>
-                            </button>
-                            <button className="form__button form__button--message form__button--file">
-                              <span className="form__icon">
-                                <SvgTemplate id="clip" />
-                              </span>
-                            </button>
-                          </div>
-                          <button className="form__button form__button--message form__button--emoji">
+                      <form className="form form--message" action="#">
+                        <input
+                          className="form__input form__input--message"
+                          type="text"
+                          placeholder="Message in #general"
+                        />
+                        <div className="form__interaction">
+                          <button className="form__button form__button--message form__button--voice">
                             <span className="form__icon">
-                              <SmileOutlined />
+                              <SvgTemplate id="microphone" />
                             </span>
                           </button>
-                        </form>
+                          <button className="form__button form__button--message form__button--file">
+                            <span className="form__icon">
+                              <SvgTemplate id="clip" />
+                            </span>
+                          </button>
+                        </div>
+                        <button className="form__button form__button--message form__button--emoji">
+                          <span className="form__icon">
+                            <SmileOutlined />
+                          </span>
+                        </button>
+                      </form>
                     </Row>
                   </Col>
                 </Row>
@@ -268,7 +271,81 @@ const ProfilePage = () => {
               <Col
                 span={3}
                 className="content__section content__section--right"
-              ></Col>
+              >
+                <div className="profile">
+                  <img
+                    className="profile__image"
+                    src={
+                      require(`../../assets/images/profile-main.png`).default
+                    }
+                    alt="profile"
+                  />
+
+                  <div className="profile__wrapper">
+                    <div className="profile__bio">
+                      <h2 className="profile__name">Fpsska</h2>
+                      <span className="profile__status">
+                        Junior Frontend Developer
+                      </span>
+                    </div>
+
+                    <ul className="profile__social social">
+                      <li className="social__icon">
+                        <a className="social__link" href="#">
+                          <FacebookOutlined />
+                        </a>
+                      </li>
+                      <li className="social__icon">
+                        <a className="social__link" href="#">
+                          <TwitterOutlined />
+                        </a>
+                      </li>
+                      <li className="social__icon">
+                        <a className="social__link" href="#">
+                          <InstagramOutlined />
+                        </a>
+                      </li>
+                      <li className="social__icon">
+                        <a className="social__link" href="#">
+                          <LinkedinOutlined />
+                        </a>
+                      </li>
+                    </ul>
+
+                    <button className="profile__button">Message</button>
+
+                    <ul className="profile__information information">
+                      <li className="information__template">
+                        <span className="information__title">Username</span>
+                        <a className="information__link" href="#">
+                          @Fpsska
+                        </a>
+                      </li>
+                      <li className="information__template">
+                        <span className="information__title">Email</span>
+                        <a
+                          className="information__link"
+                          href="mailto:a-luna@gmail.com"
+                        >
+                          a-dropmail.com
+                        </a>
+                      </li>
+                      <li className="information__template">
+                        <span className="information__title">Skype</span>
+                        <a className="information__link" href="#">
+                          fpsska_skype
+                        </a>
+                      </li>
+                      <li className="information__template">
+                        <span className="information__title">Timezone</span>
+                        <span>
+                          {new Date().toLocaleTimeString()} Local time
+                        </span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </Col>
             </Row>
           </div>
         </Content>
