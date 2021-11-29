@@ -1,4 +1,7 @@
 @media (max-width: 1440px) {
+    .chat__section--top.chat__section--top {
+        padding: 10px 20px 10px 20px;
+    }
     .form__input--message.form__input--message {
         padding: 20px 90px 20px 90px;
     }
@@ -16,9 +19,6 @@
 @media (max-width: 992px) {
     .content__section--left.content__section--left {
         display: none;
-    }
-    .chat__section--top.chat__section--top {
-        padding: 10px 20px 10px 20px;
     }
     .message.message {
         max-height: calc(100vh - 205px);
@@ -97,5 +97,12 @@
     }
     .message.message {
         max-height: calc(100vh - 235px);
+    }
+}
+
+@media (orientation: landscape) and (max-height: 768px) {
+    .channels,
+    .friends {
+        min-height: calc(100vh - 500px);
     }
 }

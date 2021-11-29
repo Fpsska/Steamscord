@@ -1,6 +1,5 @@
 .channels {
     max-height: calc(100vh - 640px);
-    // min-height: calc(100vh - 600px);
     overflow-y: scroll;
     /* полоса прокрутки (скроллбар) */
     &::-webkit-scrollbar {

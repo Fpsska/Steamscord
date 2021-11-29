@@ -1,12 +1,12 @@
 .App {
     height: 100vh;
     width: 100%;
-    // overflow: hidden;
+    overflow: hidden;
 }
 
 body {
     font-size: 14px;
-    background-color: rgba(0, 0, 0, 0.15);
+    background-color: #fff;
 }
 
 
@@ -27,7 +27,3 @@ body {
 button {
     cursor: pointer;
 }
-
-// .ant-layout.site-layout {
-
-// }
