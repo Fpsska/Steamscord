@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/toolkit-antdesign/static/css/main.cc875abe.chunk.css",
+    "main.css": "/toolkit-antdesign/static/css/main.c5c71497.chunk.css",
     "main.js": "/toolkit-antdesign/static/js/main.31a2a3b0.chunk.js",
     "main.js.map": "/toolkit-antdesign/static/js/main.31a2a3b0.chunk.js.map",
     "runtime-main.js": "/toolkit-antdesign/static/js/runtime-main.6a02ac50.js",
@@ -10,7 +10,7 @@
     "static/js/2.6fba5471.chunk.js.map": "/toolkit-antdesign/static/js/2.6fba5471.chunk.js.map",
     "index.html": "/toolkit-antdesign/index.html",
     "static/css/2.a95be28f.chunk.css.map": "/toolkit-antdesign/static/css/2.a95be28f.chunk.css.map",
-    "static/css/main.cc875abe.chunk.css.map": "/toolkit-antdesign/static/css/main.cc875abe.chunk.css.map",
+    "static/css/main.c5c71497.chunk.css.map": "/toolkit-antdesign/static/css/main.c5c71497.chunk.css.map",
     "static/js/2.6fba5471.chunk.js.LICENSE.txt": "/toolkit-antdesign/static/js/2.6fba5471.chunk.js.LICENSE.txt",
     "static/media/chat-settings.svg": "/toolkit-antdesign/static/media/chat-settings.4ca5f9e3.svg",
     "static/media/clip.svg": "/toolkit-antdesign/static/media/clip.3da05cf4.svg",
@@ -35,7 +35,7 @@
     "static/js/runtime-main.6a02ac50.js",
     "static/css/2.a95be28f.chunk.css",
     "static/js/2.6fba5471.chunk.js",
-    "static/css/main.cc875abe.chunk.css",
+    "static/css/main.c5c71497.chunk.css",
     "static/js/main.31a2a3b0.chunk.js"
   ]
 }
