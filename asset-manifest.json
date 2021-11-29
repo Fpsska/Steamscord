@@ -1,0 +1,41 @@
+{
+  "files": {
+    "main.css": "/toolkit-antdesign/static/css/main.cc875abe.chunk.css",
+    "main.js": "/toolkit-antdesign/static/js/main.31a2a3b0.chunk.js",
+    "main.js.map": "/toolkit-antdesign/static/js/main.31a2a3b0.chunk.js.map",
+    "runtime-main.js": "/toolkit-antdesign/static/js/runtime-main.6a02ac50.js",
+    "runtime-main.js.map": "/toolkit-antdesign/static/js/runtime-main.6a02ac50.js.map",
+    "static/css/2.a95be28f.chunk.css": "/toolkit-antdesign/static/css/2.a95be28f.chunk.css",
+    "static/js/2.6fba5471.chunk.js": "/toolkit-antdesign/static/js/2.6fba5471.chunk.js",
+    "static/js/2.6fba5471.chunk.js.map": "/toolkit-antdesign/static/js/2.6fba5471.chunk.js.map",
+    "index.html": "/toolkit-antdesign/index.html",
+    "static/css/2.a95be28f.chunk.css.map": "/toolkit-antdesign/static/css/2.a95be28f.chunk.css.map",
+    "static/css/main.cc875abe.chunk.css.map": "/toolkit-antdesign/static/css/main.cc875abe.chunk.css.map",
+    "static/js/2.6fba5471.chunk.js.LICENSE.txt": "/toolkit-antdesign/static/js/2.6fba5471.chunk.js.LICENSE.txt",
+    "static/media/chat-settings.svg": "/toolkit-antdesign/static/media/chat-settings.4ca5f9e3.svg",
+    "static/media/clip.svg": "/toolkit-antdesign/static/media/clip.3da05cf4.svg",
+    "static/media/dialog.svg": "/toolkit-antdesign/static/media/dialog.e48cc59f.svg",
+    "static/media/mircrophone.svg": "/toolkit-antdesign/static/media/mircrophone.97c6dd44.svg",
+    "static/media/notification.svg": "/toolkit-antdesign/static/media/notification.33411cae.svg",
+    "static/media/profile-12.jpg": "/toolkit-antdesign/static/media/profile-12.d00c2c7f.jpg",
+    "static/media/profile-2.jpg": "/toolkit-antdesign/static/media/profile-2.540c615a.jpg",
+    "static/media/profile-3.jpg": "/toolkit-antdesign/static/media/profile-3.b6fc6471.jpg",
+    "static/media/profile-4.jpg": "/toolkit-antdesign/static/media/profile-4.db65a0b6.jpg",
+    "static/media/profile-5.jpg": "/toolkit-antdesign/static/media/profile-5.1de41dc2.jpg",
+    "static/media/profile-6.jpg": "/toolkit-antdesign/static/media/profile-6.1c12d33a.jpg",
+    "static/media/profile-7.jpg": "/toolkit-antdesign/static/media/profile-7.25f7244a.jpg",
+    "static/media/profile-8.jpg": "/toolkit-antdesign/static/media/profile-8.3722e443.jpg",
+    "static/media/profile-9.jpg": "/toolkit-antdesign/static/media/profile-9.5eb53b4a.jpg",
+    "static/media/search.svg": "/toolkit-antdesign/static/media/search.b9b6dbce.svg",
+    "static/media/settings.svg": "/toolkit-antdesign/static/media/settings.37d5385f.svg",
+    "static/media/star.svg": "/toolkit-antdesign/static/media/star.37cb731e.svg",
+    "static/media/user.svg": "/toolkit-antdesign/static/media/user.57df8919.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.6a02ac50.js",
+    "static/css/2.a95be28f.chunk.css",
+    "static/js/2.6fba5471.chunk.js",
+    "static/css/main.cc875abe.chunk.css",
+    "static/js/main.31a2a3b0.chunk.js"
+  ]
+}
