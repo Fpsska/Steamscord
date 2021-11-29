@@ -72,6 +72,10 @@
         font-weight: 700;
         margin: 0;
     }
+    &__title--main {
+        font-size: 24px;
+        text-transform: none;
+    }
     &__title--small {
         text-transform: none;
         @include text-left;
@@ -97,13 +101,16 @@
         border-bottom: 1px solid rgba($color: #000, $alpha: 0.25);
         flex: 0 0 auto;
     }
+    &__column--user {
+        margin: 0 20px;
+    }
+    &__column--notification {
+        margin: 0 20px;
+    }
     &__section--main {
         padding: 6px 6px 6px 22px;
         flex: 1 1 auto;
     }
-    // &__section--bottom {
-    //     flex: 0 0 auto;
-    // }
     &__column {
         display: flex;
         align-items: center;
@@ -114,9 +121,9 @@
     &__column--name {
         flex: 1;
     }
-    &__column--settings {
-        margin: 0 0 0 20px;
-    }
+    // &__column--settings {
+    //     margin: 0 0 0 20px;
+    // }
     &__button {
         background-color: transparent;
         padding: 0;
@@ -130,9 +137,10 @@
 
 .form {
     position: relative;
-    margin: 0 20px 0 20px;
+    // margin: 0 20px 0 20px;
     &__input {
         padding: 6px 16px;
+        margin: 0 !important;
         border-radius: 5px;
         border: 0.5px solid rgba(0, 0, 0, 0.24);
         &::placeholder {
@@ -214,7 +222,7 @@
         line-height: 15.6px;
         font-weight: 700;
         border-radius: 5px;
-        background-color: #3577EF;
+        background-color: #3577ef;
         color: #fff;
         width: 100%;
         padding: 5px;

@@ -1,8 +1,9 @@
 import React from 'react';
 import './App.scss';
 import "./assets/scss/reset.scss"
+import "./assets/scss/media.scss"
 import 'antd/dist/antd.css'
-import FormList from './components/Form/FormList';
+import Authorisation from './components/Auth/Auth';
 import ProfilePage from './components/ProfilePage/ProfilePage';
 import { useSelector } from 'react-redux';
 
@@ -13,15 +14,11 @@ function App() {
 
   return (
     <div className="App">
-      <div className="page">
-        <>
-          {AuthStatus ? <>
-            <ProfilePage />
-          </> : <div className="section">
-            <FormList />
-          </div>}
-        </>
-      </div>
+      {AuthStatus ? <>
+        <ProfilePage />
+      </> : <div className="section">
+        <Authorisation />
+      </div>}
     </div>
   );
 }

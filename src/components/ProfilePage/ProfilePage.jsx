@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import { Layout, Menu, Row, Col } from "antd";
 import {
   MenuUnfoldOutlined,
@@ -29,13 +29,26 @@ const ProfilePage = () => {
 
   const [collapsed, setCollapsedStatus] = useState(true);
 
-  const toggle = () => {
-    setCollapsedStatus(!collapsed);
+  const AsideToggle = () => {
+    if (window.innerWidth >= 768) {
+      setCollapsedStatus(!collapsed);
+    }
   };
+
+  // useLayoutEffect(() => {
+  //   window.addEventListener("resize", AsideToggle);
+  //   window.addEventListener("load", AsideToggle);
+  //   return () => {
+  //     window.removeEventListener("resize", AsideToggle);
+  //     window.removeEventListener("load", AsideToggle);
+  //   };
+  // }, []);
 
   const { AuthStatus, userInformation } = useSelector(
     (state) => state.authReducer
   );
+
+  console.log(userInformation.name);
   const { channels, friends } = useSelector((state) => state.ProfileReducer);
 
   const dispatch = useDispatch();
@@ -58,8 +71,7 @@ const ProfilePage = () => {
   return (
     <Layout
       style={{
-        height: "100vh",
-        overflow: "hidden",
+        height: "100%",
       }}
     >
       <Sider
@@ -68,9 +80,13 @@ const ProfilePage = () => {
         collapsed={collapsed}
         style={{ position: "relative" }}
       >
-        <div className="logo" />
-        <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
-          <Menu.Item key="1" icon={<UserOutlined />}>
+        <div className="logo"/>
+        <Menu
+          theme="dark"
+          mode="inline"
+          defaultSelectedKeys={["1"]}
+        >
+          <Menu.Item key="1" icon={<UserOutlined />} style={{ marginTop: "0" }}>
             {userInformation.username}
           </Menu.Item>
           <Menu.Item key="2" icon={<VideoCameraOutlined />}>
@@ -79,14 +95,12 @@ const ProfilePage = () => {
           <Menu.Item key="3" icon={<UploadOutlined />}>
             upload
           </Menu.Item>
-        </Menu>
-        <Menu
-          theme="dark"
-          mode="inline"
-          defaultSelectedKeys={["0"]}
-          style={{ position: "absolute", bottom: "0" }}
-        >
-          <Menu.Item key="1" icon={<LogoutOutlined />} onClick={logOut}>
+          <Menu.Item
+            key="4"
+            icon={<LogoutOutlined />}
+            onClick={logOut}
+            style={{ margin: "0" }}
+          >
             Log Out
           </Menu.Item>
           {isModalVisible ? (
@@ -111,7 +125,7 @@ const ProfilePage = () => {
             collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
             {
               className: "trigger",
-              onClick: toggle,
+              onClick: AsideToggle,
             }
           )}
         </Header>
@@ -125,11 +139,19 @@ const ProfilePage = () => {
         >
           <div className="content">
             <Row className="content__wrapper">
-              <Col span={4} className="content__section content__section--left">
+              <Col
+                md={0}
+                lg={6}
+                xl={6}
+                xxl={4}
+                className="content__section content__section--left"
+              >
                 <Row>
                   <Col style={{ width: "100%" }}>
                     <div className="content__preview">
-                      <h2 className="content__title">Nomad List</h2>
+                      <h2 className="content__title content__title--main">
+                        Nomad List
+                      </h2>
                       <button className="content__button">
                         <span className="content__icon">
                           <SvgTemplate id="settings" />
@@ -177,7 +199,10 @@ const ProfilePage = () => {
               </Col>
               {/* /. COL LEFT */}
               <Col
-                span={17}
+                md={24}
+                lg={18}
+                xl={18}
+                xxl={17}
                 className="content__section content__section--main"
               >
                 <Row className="chat">
@@ -197,33 +222,37 @@ const ProfilePage = () => {
                           </span>
                         </button>
                       </div>
-                      <div className="chat__column">
+
+                      <div className="chat__column chat__column--user">
                         <span className="chat__icon">
                           <SvgTemplate id="user" />
                         </span>
                         <span className="chat__users">1,903</span>
                       </div>
 
-                      <form className="form" action="#">
-                        <input
-                          className="form__input form__input--search"
-                          type="text"
-                          placeholder="Search.."
-                        />
-                        <button className="form__button form__button--search">
-                          <span className="form__icon">
-                            <SvgTemplate id="search" />
-                          </span>
-                        </button>
-                      </form>
+                      <div className="chat__column chat__column--form">
+                        <form className="form" action="#">
+                          <input
+                            className="form__input form__input--search"
+                            type="text"
+                            placeholder="Search.."
+                          />
+                          <button className="form__button form__button--search">
+                            <span className="form__icon">
+                              <SvgTemplate id="search" />
+                            </span>
+                          </button>
+                        </form>
+                      </div>
 
-                      <div className="chat__column">
+                      <div className="chat__column chat__column--notification">
                         <button className="chat__button">
                           <span className="chat__icon">
                             <SvgTemplate id="notification" />
                           </span>
                         </button>
                       </div>
+
                       <div className="chat__column chat__column--settings">
                         <button className="chat__button">
                           <span className="chat__icon">
@@ -269,7 +298,8 @@ const ProfilePage = () => {
               {/* /. COL MIDDLE */}
 
               <Col
-                span={3}
+                xs={0}
+                xxl={3}
                 className="content__section content__section--right"
               >
                 <div className="profile">

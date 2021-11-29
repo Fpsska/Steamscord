@@ -1,7 +1,6 @@
 .friends {
     margin: 0;
-    max-height: 250px;
-    min-height: 250px;
+    max-height: calc(100vh - 595px);
     overflow-y: scroll;
     /* полоса прокрутки (скроллбар) */
     &::-webkit-scrollbar {
@@ -15,35 +14,39 @@
     &__item {
         display: flex;
         align-items: center;
-        position: relative;
-        &::before {
-            content: "";
-            position: absolute;
-            top: 40%;
-            left: -10%;
-            width: 10px;
-            height: 10px;
-            border-radius: 100%;
-            background-color: rgb(81, 243, 59);
-            z-index: 5;
-        }
-        :not(:last-child) {
-            margin: 0 15px 0 0;
-        }
         &:not(:last-child) {
             margin: 0 0 20px 0;
         }
+    }
+    &__information {
+        display: flex;
+        flex-direction: column;
+    }
+    &__status {
+        font-size: 13px;
+        font-weight: 400;
+    }
+    &__status--online {
+        color: #59BF40 !important;
     }
     &__image {
         border-radius: 5px;
         object-fit: cover;
         width: 40px;
         height: 40px;
+        border: 1px solid transparent;
+        margin: 0 15px 0 0;
+    }
+    &__image--online {
+        border: 1px solid #5ba32b !important;
     }
     &__name {
         font-weight: 400;
-        font-size: 14px;
+        font-size: 15px;
         line-height: 16.8px;
         color: #b5b5b5;
+    }
+    &__name--online {
+        color: #c6e684 !important;
     }
 }

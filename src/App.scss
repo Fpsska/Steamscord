@@ -1,9 +1,7 @@
 .App {
-    height: 100%;
-}
-
-#root {
-    height: 100%;
+    height: 100vh;
+    width: 100%;
+    // overflow: hidden;
 }
 
 body {
@@ -19,7 +17,7 @@ body {
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    height: 100vh;
+    height: 100%;
 }
 
 .icon {
@@ -29,3 +27,7 @@ body {
 button {
     cursor: pointer;
 }
+
+// .ant-layout.site-layout {
+
+// }

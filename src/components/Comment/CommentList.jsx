@@ -9,7 +9,7 @@ const CommentsList = () => {
   const commentList = messages.map((item) => {
     return (
       <CommentItem
-        key={item.key}
+        key={item.id}
         name={item.name}
         image={item.image}
         text={item.text}

@@ -1,0 +1,101 @@
+@media (max-width: 1440px) {
+    .form__input--message.form__input--message {
+        padding: 20px 90px 20px 90px;
+    }
+    .ant-layout-sider-collapsed.ant-layout-sider-collapsed {
+        flex: 0 0 50px !important;
+        max-width: 50px !important;
+        min-width: 50px !important;
+        width: 50px !important;
+    }
+    .logo.logo {
+        height: 20px;
+    }
+}
+
+@media (max-width: 992px) {
+    .content__section--left.content__section--left {
+        display: none;
+    }
+    .chat__section--top.chat__section--top {
+        padding: 10px 20px 10px 20px;
+    }
+    .message.message {
+        max-height: calc(100vh - 205px);
+    }
+}
+
+@media (max-width: 768px) {
+    .message.message {
+        max-height: calc(100vh - 195px);
+    }
+}
+
+@media (max-width: 680px) {
+    .message.message {
+        max-height: calc(100vh - 195px);
+    }
+}
+
+@media (max-width: 592px) {
+    .message.message {
+        max-height: calc(100vh - 195px);
+    }
+}
+
+@media (max-width: 544px) {
+    .message.message {
+        max-height: calc(100vh - 215px);
+    }
+}
+
+@media (max-width: 500px) {
+    .chat__column--form {
+        margin: 20px 0 0 0;
+    }
+    .chat__column--settings {
+        margin: 20px 0 0 0;
+    }
+    .chat__column--notification {
+        margin: 20px 0 0 0;
+    }
+    .message.message {
+        max-height: calc(100vh - 245px);
+    }
+}
+
+@media (min-width: 482px) and (max-width: 499px) {
+    .message.message {
+        max-height: calc(100vh - 265px);
+    }
+}
+
+@media (max-width: 320px) {
+    .chat__column--name.chat__column--name {
+        flex: 0 0 auto;
+    }
+    .chat__column--user.chat__column--user {
+        margin: 0 0 0 20px;
+    }
+    .chat__column--settings.chat__column--settings {
+        position: absolute;
+        top: -8.4%;
+        right: 5%;
+        margin: 0;
+    }
+    .chat__column--notification.chat__column--notification {
+        display: none;
+    }
+    .chat__column--form.chat__column--form {
+        flex: 1 1 auto;
+    }
+    .form {
+        width: 100%;
+    }
+    .form__input--search {
+        width: 100%;
+    }
+    .message.message {
+        max-height: calc(100vh - 235px);
+    }
+}

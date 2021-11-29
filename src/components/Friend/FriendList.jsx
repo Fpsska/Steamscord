@@ -6,7 +6,15 @@ import "./Friend.scss";
 const FriendList = () => {
   const { friends } = useSelector((state) => state.ProfileReducer);
   const friendList = friends.map((item) => {
-    return <FriendItem key={item.id} name={item.name} image={item.image} />;
+    return (
+      <FriendItem
+        key={item.id}
+        name={item.name}
+        image={item.image}
+        status={item.isOnline}
+        activity={item.status}
+      />
+    );
   });
   return <ul className="friends">{friendList}</ul>;
 };
