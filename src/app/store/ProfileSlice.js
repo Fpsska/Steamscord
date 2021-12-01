@@ -224,12 +224,15 @@ const ProfileSlice = createSlice({
                 time: new Date().toLocaleTimeString()
             }
         ],
+        settingsIsOpen: false,
     },
     reducers: {
-
+        switchSettingsStatus(state, action) {
+            state.settingsIsOpen = action.payload
+        }
     }
 })
 
-export const { } = ProfileSlice.actions;
+export const { switchSettingsStatus } = ProfileSlice.actions;
 
 export default ProfileSlice.reducer;
