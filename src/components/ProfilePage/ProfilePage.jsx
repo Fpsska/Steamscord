@@ -12,6 +12,7 @@ import {
   TwitterOutlined,
   InstagramOutlined,
   LinkedinOutlined,
+  SettingOutlined
 } from "@ant-design/icons";
 import { Modal } from "antd";
 import { useSelector } from "react-redux";
@@ -165,7 +166,7 @@ const ProfilePage = () => {
                             Nomad List
                           </h2>
                           <button
-                            className="content__button"
+                            className="content__button content__button--settings"
                             onClick={openMainSettings}
                           >
                             <span className="content__icon">

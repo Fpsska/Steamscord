@@ -15,6 +15,7 @@
 // /. ant
 
 .settings {
+    position: relative;
     height: 100%;
     background-color: #36393f;
     &__column {
@@ -24,14 +25,25 @@
         background-color: #36393f;
     }
     &__column--right {
+        overflow-y: scroll;
         background-color: #4f545c;
+        /* полоса прокрутки (скроллбар) */
+        &::-webkit-scrollbar {
+            width: 8px;
+            background-color: #2f3136;
+            border-radius: 10px;
+        }
+        /* ползунок скроллбара */
+        &::-webkit-scrollbar-thumb {
+            background-color: #18191c;
+            border-radius: 10px;
+        }
     }
     &__wrapper {
         position: relative;
         max-width: 700px;
         width: 100%;
         // max-height: calc(100vh - 110px);
-        // overflow-y: scroll;
         padding: 50px 35px 100px 35px;
     }
     &__nav {
@@ -79,11 +91,16 @@
 }
 
 .account {
-    &__section--top {
-        margin: 0 0 40px 0;
+    &__section--review {
+        margin: 0 0 50px 0;
     }
-    &__section--bottom {
-        margin: 40px 0 0 0;
+    &__section--removal {
+        margin: 50px 0 0 0;
+    }
+    &__section--authenfication {
+        border-top: 1px solid rgba($color: #fff, $alpha: 0.1);
+        border-bottom: 1px solid rgba($color: #fff, $alpha: 0.1);
+        padding: 30px 0;
     }
     &__button--edit,
     &__button--add {
@@ -100,7 +117,7 @@
         background-color: transparent;
     }
     &__button--password {
-        margin: 5px 0 30px 0
+        margin: 5px 0 30px 0;
     }
 }
 
@@ -120,6 +137,8 @@
         display: flex;
         justify-content: space-between;
     }
+    // &__preview {
+    // }
     &__image {
         object-fit: cover;
         width: 60px;
