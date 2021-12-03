@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form, Input, Button, Checkbox } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { useDispatch } from "react-redux";
@@ -9,10 +9,15 @@ const Authorisation = () => {
   const dispatch = useDispatch();
 
   const { AuthStatus } = useSelector((state) => state.authReducer);
+  const [isLoading, setLoadingStatus] = useState(false);
 
   const onFinish = (values) => {
-    dispatch(getUserNameValue(values));
-    dispatch(switchAuthStatus(!AuthStatus));
+    setLoadingStatus(true)
+    setTimeout(() => {
+      dispatch(getUserNameValue(values));
+      dispatch(switchAuthStatus(!AuthStatus));
+      setLoadingStatus(false)
+    }, 2000);
   };
 
   return (
@@ -69,6 +74,7 @@ const Authorisation = () => {
           htmlType="submit"
           className="login-form-button"
           style={{ width: "100%" }}
+          loading={isLoading}
         >
           Log in
         </Button>

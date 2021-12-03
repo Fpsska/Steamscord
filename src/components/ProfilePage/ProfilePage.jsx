@@ -60,13 +60,14 @@ const ProfilePage = () => {
   const [isLoading, setLoadingStatus] = useState(false);
 
   const { confirm } = Modal;
-  const { TextArea } = Input;
+  const { TextArea, Search } = Input;
 
   const handleExitModal = () => {
     confirm({
       title: "Exit",
       visible: { isModalVisible },
       content: "Are you sure?",
+      okText: "Submit",
       onOk() {
         setIsModalVisible(false);
         dispatch(switchAuthStatus(!AuthStatus));
@@ -258,16 +259,10 @@ const ProfilePage = () => {
 
                           <div className="chat__column chat__column--form">
                             <form className="form" action="#">
-                              <input
-                                className="form__input form__input--search"
-                                type="text"
+                              <Search
                                 placeholder="Search.."
+                                style={{ borderRadius: "5px" }}
                               />
-                              <button className="form__button form__button--search">
-                                <span className="form__icon">
-                                  <SvgTemplate id="search" />
-                                </span>
-                              </button>
                             </form>
                           </div>
 
@@ -282,7 +277,10 @@ const ProfilePage = () => {
                           </div>
 
                           <div className="chat__column chat__column--settings">
-                            <button className="chat__button">
+                            <button
+                              className="chat__button"
+                              onClick={errorNotification}
+                            >
                               <span className="chat__icon">
                                 <SvgTemplate id="chat-settings" />
                               </span>

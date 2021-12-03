@@ -127,17 +127,6 @@
     }
     &__column--notification {
         margin: 0 20px;
-        // position: relative;
-        // &::before {
-        //     content: "";
-        //     position: absolute;
-        //     top: 0;
-        //     right: 0;
-        //     width: 4px;
-        //     height: 4px;
-        //     background-color: #fd4948;
-        //     border-radius: 100%;
-        // }
     }
     &__section--main {
         padding: 6px 6px 6px 22px;
@@ -153,9 +142,6 @@
     &__column--name {
         flex: 1;
     }
-    // &__column--settings {
-    //     margin: 0 0 0 20px;
-    // }
     &__button {
         background-color: transparent;
         padding: 0;
@@ -169,7 +155,6 @@
 
 .form {
     position: relative;
-    // margin: 0 20px 0 20px;
     &__input {
         padding: 6px 16px;
         margin: 0 !important;
@@ -207,11 +192,6 @@
         border: none;
         border-top: 1px solid rgba(0, 0, 0, 0.24);
         padding: 25px 90px 25px 90px;
-    }
-    &__button--search {
-        position: absolute;
-        top: 14%;
-        left: 82%;
     }
     &__button--message {
         position: absolute;
