@@ -1,5 +1,5 @@
 import React, { useLayoutEffect, useState } from "react";
-import { Layout, Menu, Row, Col } from "antd";
+import { Layout, Menu, Row, Col, Badge, message, Button, Input } from "antd";
 import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
@@ -12,7 +12,6 @@ import {
   TwitterOutlined,
   InstagramOutlined,
   LinkedinOutlined,
-  SettingOutlined
 } from "@ant-design/icons";
 import { Modal } from "antd";
 import { useSelector } from "react-redux";
@@ -55,28 +54,51 @@ const ProfilePage = () => {
     (state) => state.ProfileReducer
   );
 
-  console.log(settingsIsOpen);
-
   const dispatch = useDispatch();
 
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isLoading, setLoadingStatus] = useState(false);
 
-  const handleConfirm = () => {
-    setIsModalVisible(false);
-    dispatch(switchAuthStatus(!AuthStatus));
+  const { confirm } = Modal;
+  const { TextArea } = Input;
+
+  const handleExitModal = () => {
+    confirm({
+      title: "Exit",
+      visible: { isModalVisible },
+      content: "Are you sure?",
+      onOk() {
+        setIsModalVisible(false);
+        dispatch(switchAuthStatus(!AuthStatus));
+        console.log(AuthStatus);
+      },
+      onCancel() {
+        setIsModalVisible(false);
+      },
+    });
   };
-  const handleCancel = () => {
+
+  const handleCancelModal = () => {
     setIsModalVisible(false);
   };
-  const logOut = () => {
+  const openMessageModal = () => {
     setIsModalVisible(true);
-    setIsModalVisible(!isModalVisible);
+  };
+  const sendMessage = () => {
+    setLoadingStatus(true);
+    setTimeout(() => {
+      setIsModalVisible(false);
+      setLoadingStatus(false);
+    }, 2200);
   };
 
   const openMainSettings = () => {
     dispatch(switchSettingsStatus(true));
   };
 
+  const errorNotification = () => {
+    message.error("Function temporarily unavailable");
+  };
   return (
     <>
       {settingsIsOpen ? (
@@ -111,25 +133,11 @@ const ProfilePage = () => {
               <Menu.Item
                 key="4"
                 icon={<LogoutOutlined />}
-                onClick={logOut}
+                onClick={handleExitModal}
                 style={{ margin: "0" }}
               >
                 Log Out
               </Menu.Item>
-              {isModalVisible ? (
-                <>
-                  <Modal
-                    title="Exit"
-                    visible={isModalVisible}
-                    onOk={handleConfirm}
-                    onCancel={handleCancel}
-                  >
-                    <p>Are you sure?</p>
-                  </Modal>
-                </>
-              ) : (
-                <></>
-              )}
             </Menu>
           </Sider>
           <Layout className="site-layout">
@@ -265,9 +273,11 @@ const ProfilePage = () => {
 
                           <div className="chat__column chat__column--notification">
                             <button className="chat__button">
-                              <span className="chat__icon">
-                                <SvgTemplate id="notification" />
-                              </span>
+                              <Badge count={5} size="small">
+                                <span className="chat__icon">
+                                  <SvgTemplate id="notification" />
+                                </span>
+                              </Badge>
                             </button>
                           </div>
 
@@ -292,18 +302,27 @@ const ProfilePage = () => {
                               placeholder="Message in #general"
                             />
                             <div className="form__interaction">
-                              <button className="form__button form__button--message form__button--voice">
+                              <button
+                                className="form__button form__button--message form__button--voice"
+                                onClick={errorNotification}
+                              >
                                 <span className="form__icon">
                                   <SvgTemplate id="microphone" />
                                 </span>
                               </button>
-                              <button className="form__button form__button--message form__button--file">
+                              <button
+                                className="form__button form__button--message form__button--file"
+                                onClick={errorNotification}
+                              >
                                 <span className="form__icon">
                                   <SvgTemplate id="clip" />
                                 </span>
                               </button>
                             </div>
-                            <button className="form__button form__button--message form__button--emoji">
+                            <button
+                              className="form__button form__button--message form__button--emoji"
+                              onClick={errorNotification}
+                            >
                               <span className="form__icon">
                                 <SmileOutlined />
                               </span>
@@ -360,9 +379,35 @@ const ProfilePage = () => {
                             </a>
                           </li>
                         </ul>
-
-                        <button className="profile__button">Message</button>
-
+                        <>
+                          <button
+                            className="profile__button"
+                            onClick={openMessageModal}
+                          >
+                            Message
+                          </button>
+                          <Modal
+                            visible={isModalVisible}
+                            title="Write your message there!"
+                            onOk={sendMessage}
+                            onCancel={handleCancelModal}
+                            footer={[
+                              <Button key="back" onClick={handleCancelModal}>
+                                Cancel
+                              </Button>,
+                              <Button
+                                key="submit"
+                                type="primary"
+                                loading={isLoading}
+                                onClick={sendMessage}
+                              >
+                                Send
+                              </Button>,
+                            ]}
+                          >
+                            <TextArea rows={4} />
+                          </Modal>
+                        </>
                         <ul className="profile__information information">
                           <li className="information__template">
                             <span className="information__title">Username</span>

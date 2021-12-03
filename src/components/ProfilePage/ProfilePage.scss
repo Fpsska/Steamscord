@@ -127,17 +127,17 @@
     }
     &__column--notification {
         margin: 0 20px;
-        position: relative;
-        &::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 4px;
-            height: 4px;
-            background-color: #fd4948;
-            border-radius: 100%;
-        }
+        // position: relative;
+        // &::before {
+        //     content: "";
+        //     position: absolute;
+        //     top: 0;
+        //     right: 0;
+        //     width: 4px;
+        //     height: 4px;
+        //     background-color: #fd4948;
+        //     border-radius: 100%;
+        // }
     }
     &__section--main {
         padding: 6px 6px 6px 22px;
