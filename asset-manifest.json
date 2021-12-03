@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/Steamscord/static/css/main.68c0a6bc.chunk.css",
-    "main.js": "/Steamscord/static/js/main.71f43cc4.chunk.js",
-    "main.js.map": "/Steamscord/static/js/main.71f43cc4.chunk.js.map",
+    "main.css": "/Steamscord/static/css/main.6c944642.chunk.css",
+    "main.js": "/Steamscord/static/js/main.af262dfd.chunk.js",
+    "main.js.map": "/Steamscord/static/js/main.af262dfd.chunk.js.map",
     "runtime-main.js": "/Steamscord/static/js/runtime-main.afab03cf.js",
     "runtime-main.js.map": "/Steamscord/static/js/runtime-main.afab03cf.js.map",
     "static/css/2.a95be28f.chunk.css": "/Steamscord/static/css/2.a95be28f.chunk.css",
-    "static/js/2.9dac4c3f.chunk.js": "/Steamscord/static/js/2.9dac4c3f.chunk.js",
-    "static/js/2.9dac4c3f.chunk.js.map": "/Steamscord/static/js/2.9dac4c3f.chunk.js.map",
+    "static/js/2.5ef5957a.chunk.js": "/Steamscord/static/js/2.5ef5957a.chunk.js",
+    "static/js/2.5ef5957a.chunk.js.map": "/Steamscord/static/js/2.5ef5957a.chunk.js.map",
     "index.html": "/Steamscord/index.html",
     "static/css/2.a95be28f.chunk.css.map": "/Steamscord/static/css/2.a95be28f.chunk.css.map",
-    "static/css/main.68c0a6bc.chunk.css.map": "/Steamscord/static/css/main.68c0a6bc.chunk.css.map",
-    "static/js/2.9dac4c3f.chunk.js.LICENSE.txt": "/Steamscord/static/js/2.9dac4c3f.chunk.js.LICENSE.txt",
+    "static/css/main.6c944642.chunk.css.map": "/Steamscord/static/css/main.6c944642.chunk.css.map",
+    "static/js/2.5ef5957a.chunk.js.LICENSE.txt": "/Steamscord/static/js/2.5ef5957a.chunk.js.LICENSE.txt",
     "static/media/chat-settings.svg": "/Steamscord/static/media/chat-settings.4ca5f9e3.svg",
     "static/media/clip.svg": "/Steamscord/static/media/clip.3da05cf4.svg",
     "static/media/dialog.svg": "/Steamscord/static/media/dialog.e48cc59f.svg",
@@ -34,8 +34,8 @@
   "entrypoints": [
     "static/js/runtime-main.afab03cf.js",
     "static/css/2.a95be28f.chunk.css",
-    "static/js/2.9dac4c3f.chunk.js",
-    "static/css/main.68c0a6bc.chunk.css",
-    "static/js/main.71f43cc4.chunk.js"
+    "static/js/2.5ef5957a.chunk.js",
+    "static/css/main.6c944642.chunk.css",
+    "static/js/main.af262dfd.chunk.js"
   ]
 }
