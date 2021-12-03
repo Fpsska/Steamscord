@@ -1,5 +1,15 @@
 import React, { useLayoutEffect, useState } from "react";
-import { Layout, Menu, Row, Col, Badge, message, Button, Input } from "antd";
+import {
+  Layout,
+  Menu,
+  Row,
+  Col,
+  Badge,
+  message,
+  Button,
+  Input,
+  Spin,
+} from "antd";
 import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
@@ -17,7 +27,10 @@ import { Modal } from "antd";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { switchAuthStatus } from "../../app/store/authSlice";
-import { switchSettingsStatus } from "../../app/store/ProfileSlice";
+import {
+  switchSettingsStatus,
+  switchFetchingStatus,
+} from "../../app/store/ProfileSlice";
 import SvgTemplate from "../Common/SvgTemplate";
 import ChannelList from "../Channel/ChannelList";
 import FriendList from "../Friend/FriendList";
@@ -50,7 +63,7 @@ const ProfilePage = () => {
     (state) => state.authReducer
   );
 
-  const { channels, friends, settingsIsOpen } = useSelector(
+  const { channels, friends, settingsIsOpen, isFetching } = useSelector(
     (state) => state.ProfileReducer
   );
 
@@ -100,6 +113,11 @@ const ProfilePage = () => {
   const errorNotification = () => {
     message.error("Function temporarily unavailable");
   };
+
+  setTimeout(() => {
+    dispatch(switchFetchingStatus(true));
+  }, 3000);
+
   return (
     <>
       {settingsIsOpen ? (
@@ -289,7 +307,18 @@ const ProfilePage = () => {
                         </Row>
 
                         <Row className="chat__section chat__section--main">
-                          <CommentsList />
+                          {isFetching ? (
+                            <CommentsList />
+                          ) : (
+                            <Spin
+                              size="large"
+                              style={{
+                                position: "absolute",
+                                top: "50%",
+                                left: "50%",
+                              }}
+                            />
+                          )}
                         </Row>
 
                         <Row className="chat__section chat__section--bottom">

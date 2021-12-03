@@ -4,6 +4,7 @@ import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { getUserNameValue, switchAuthStatus } from "../../app/store/authSlice";
+import "./Auth.scss";
 
 const Authorisation = () => {
   const dispatch = useDispatch();
@@ -12,11 +13,11 @@ const Authorisation = () => {
   const [isLoading, setLoadingStatus] = useState(false);
 
   const onFinish = (values) => {
-    setLoadingStatus(true)
+    setLoadingStatus(true);
     setTimeout(() => {
       dispatch(getUserNameValue(values));
       dispatch(switchAuthStatus(!AuthStatus));
-      setLoadingStatus(false)
+      setLoadingStatus(false);
     }, 2000);
   };
 
@@ -59,7 +60,7 @@ const Authorisation = () => {
         />
       </Form.Item>
       <Form.Item>
-        <Form.Item name="remember" valuePropName="checked" noStyle>
+        <Form.Item name="remember" valuePropName="" noStyle>
           <Checkbox>Remember me</Checkbox>
         </Form.Item>
 

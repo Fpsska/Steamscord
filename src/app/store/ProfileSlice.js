@@ -225,14 +225,18 @@ const ProfileSlice = createSlice({
             }
         ],
         settingsIsOpen: false,
+        isFetching: false
     },
     reducers: {
         switchSettingsStatus(state, action) {
             state.settingsIsOpen = action.payload
+        },
+        switchFetchingStatus(state, action) {
+            state.isFetching = action.payload
         }
     }
 })
 
-export const { switchSettingsStatus } = ProfileSlice.actions;
+export const { switchSettingsStatus, switchFetchingStatus } = ProfileSlice.actions;
 
 export default ProfileSlice.reducer;
