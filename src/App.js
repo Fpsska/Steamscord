@@ -4,7 +4,7 @@ import "./assets/scss/reset.scss"
 import "./assets/scss/media.scss"
 import 'antd/dist/antd.css'
 import Authorisation from './components/Auth/Auth';
-import ProfilePage from './components/ProfilePage/ProfilePage';
+import ProfilePage from './components/Pages/ProfilePage/ProfilePage';
 import { useSelector } from 'react-redux';
 
 

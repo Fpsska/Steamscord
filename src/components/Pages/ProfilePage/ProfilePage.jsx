@@ -1,15 +1,5 @@
-import React, { useLayoutEffect, useState } from "react";
-import {
-  Layout,
-  Menu,
-  Row,
-  Col,
-  Badge,
-  message,
-  Button,
-  Input,
-  Spin,
-} from "antd";
+import React, { useState } from "react";
+import { Layout, Menu, Row, Col, Button, Input, Spin, message } from "antd";
 import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
@@ -17,7 +7,6 @@ import {
   VideoCameraOutlined,
   UploadOutlined,
   LogoutOutlined,
-  SmileOutlined,
   FacebookOutlined,
   TwitterOutlined,
   InstagramOutlined,
@@ -26,16 +15,18 @@ import {
 import { Modal } from "antd";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { switchAuthStatus } from "../../app/store/authSlice";
+import { switchAuthStatus } from "../../../app/store/authSlice";
 import {
   switchSettingsStatus,
   switchFetchingStatus,
-} from "../../app/store/ProfileSlice";
-import SvgTemplate from "../Common/SvgTemplate";
-import ChannelList from "../Channel/ChannelList";
-import FriendList from "../Friend/FriendList";
-import CommentsList from "../Comment/CommentList";
-import SettingsPage from "../SettingsPage/SettingsPage";
+} from "../../../app/store/ProfileSlice";
+import SvgTemplate from "../../Common/SvgTemplate";
+import ChannelList from "../../Channel/ChannelList";
+import FriendList from "../../Friend/FriendList";
+import CommentsList from "../../Comment/CommentList";
+import SettingsPage from "../../SettingsPage/SettingsPage";
+import ChatHeader from "../../Chat/ChatHeader";
+import ChatForm from "../../Chat/ChatForm";
 import "./ProfilePage.scss";
 import "antd/dist/antd.css";
 
@@ -73,7 +64,7 @@ const ProfilePage = () => {
   const [isLoading, setLoadingStatus] = useState(false);
 
   const { confirm } = Modal;
-  const { TextArea, Search } = Input;
+  const { TextArea } = Input;
 
   const handleExitModal = () => {
     confirm({
@@ -110,13 +101,13 @@ const ProfilePage = () => {
     dispatch(switchSettingsStatus(true));
   };
 
-  const errorNotification = () => {
-    message.error("Function temporarily unavailable");
-  };
-
   setTimeout(() => {
     dispatch(switchFetchingStatus(true));
   }, 3000);
+
+  const errorNotification = () => {
+    message.error("Function temporarily unavailable");
+  };
 
   return (
     <>
@@ -259,51 +250,7 @@ const ProfilePage = () => {
                         }}
                       >
                         <Row className="chat__section chat__section--top">
-                          <div className="chat__column chat__column--name">
-                            <span className="chat__name">#general</span>
-                            <button className="chat__button">
-                              <span className="chat__icon">
-                                <SvgTemplate id="star" />
-                              </span>
-                            </button>
-                          </div>
-
-                          <div className="chat__column chat__column--user">
-                            <span className="chat__icon">
-                              <SvgTemplate id="user" />
-                            </span>
-                            <span className="chat__users">1,903</span>
-                          </div>
-
-                          <div className="chat__column chat__column--form">
-                            <form className="form" action="#">
-                              <Search
-                                placeholder="Search.."
-                                style={{ borderRadius: "5px" }}
-                              />
-                            </form>
-                          </div>
-
-                          <div className="chat__column chat__column--notification">
-                            <button className="chat__button">
-                              <Badge count={5} size="small">
-                                <span className="chat__icon">
-                                  <SvgTemplate id="notification" />
-                                </span>
-                              </Badge>
-                            </button>
-                          </div>
-
-                          <div className="chat__column chat__column--settings">
-                            <button
-                              className="chat__button"
-                              onClick={errorNotification}
-                            >
-                              <span className="chat__icon">
-                                <SvgTemplate id="chat-settings" />
-                              </span>
-                            </button>
-                          </div>
+                          <ChatHeader />
                         </Row>
 
                         <Row className="chat__section chat__section--main">
@@ -322,39 +269,7 @@ const ProfilePage = () => {
                         </Row>
 
                         <Row className="chat__section chat__section--bottom">
-                          <form className="form form--message" action="#">
-                            <input
-                              className="form__input form__input--message"
-                              type="text"
-                              placeholder="Message in #general"
-                            />
-                            <div className="form__interaction">
-                              <button
-                                className="form__button form__button--message form__button--voice"
-                                onClick={errorNotification}
-                              >
-                                <span className="form__icon">
-                                  <SvgTemplate id="microphone" />
-                                </span>
-                              </button>
-                              <button
-                                className="form__button form__button--message form__button--file"
-                                onClick={errorNotification}
-                              >
-                                <span className="form__icon">
-                                  <SvgTemplate id="clip" />
-                                </span>
-                              </button>
-                            </div>
-                            <button
-                              className="form__button form__button--message form__button--emoji"
-                              onClick={errorNotification}
-                            >
-                              <span className="form__icon">
-                                <SmileOutlined />
-                              </span>
-                            </button>
-                          </form>
+                          <ChatForm />
                         </Row>
                       </Col>
                     </Row>
@@ -370,7 +285,7 @@ const ProfilePage = () => {
                       <img
                         className="profile__image"
                         src={
-                          require(`../../assets/images/profile-main.png`)
+                          require(`../../../assets/images/profile-main.png`)
                             .default
                         }
                         alt="profile"

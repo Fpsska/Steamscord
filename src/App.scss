@@ -29,4 +29,62 @@ button {
     cursor: pointer;
 }
 
-
+.form {
+    position: relative;
+    &__input {
+        padding: 6px 16px;
+        margin: 0 !important;
+        border-radius: 5px;
+        border: 0.5px solid rgba(0, 0, 0, 0.24);
+        &::placeholder {
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 16.8px;
+            color: #8d8d8d;
+        }
+    }
+    &__interaction {
+        position: absolute;
+        left: 0;
+        top: 35%;
+        padding: 0 24px;
+        :not(:last-child) {
+            margin: 0 20px 0 0;
+        }
+    }
+    &__button {
+        background-color: transparent;
+        padding: 0;
+    }
+    &__name {
+        font-size: 20px;
+        font-weight: 700;
+        color: #000;
+    }
+    &__input--message {
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+        border: none;
+        border-top: 1px solid rgba(0, 0, 0, 0.24);
+        padding: 25px 90px 25px 90px;
+    }
+    &__button--message {
+        position: absolute;
+    }
+    &__button--voice {
+        position: static;
+    }
+    &__button--file {
+        position: static;
+    }
+    &__button--emoji {
+        right: 0;
+        top: 35%;
+        padding: 0 20px;
+    }
+}
+.form--message {
+    margin: 0;
+    width: 100%;
+}

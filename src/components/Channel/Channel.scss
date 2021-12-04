@@ -17,6 +17,9 @@
         line-height: 16.8px;
         color: #b5b5b5;
     }
+    &__link.active {
+        color: #1890ff;
+    }
     :not(:last-child) {
         margin: 0 0 12px 0;
     }
