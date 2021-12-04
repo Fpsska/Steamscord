@@ -1,10 +1,13 @@
 import React from 'react';
+import { Routes, Route } from 'react-router-dom';
 import './App.scss';
 import "./assets/scss/reset.scss"
 import "./assets/scss/media.scss"
 import 'antd/dist/antd.css'
 import Authorisation from './components/Auth/Auth';
-import ProfilePage from './components/Pages/ProfilePage/ProfilePage';
+import ChatPageFirst from "./components/Pages/ChatPages/ChatPageFirst"
+import ChatPageSecond from './components/Pages/ChatPages/ChatPageSecond';
+import GeneralLayout from './components/Common/Layout';
 import { useSelector } from 'react-redux';
 
 
@@ -14,11 +17,18 @@ function App() {
 
   return (
     <div className="App">
-      {AuthStatus ? <>
+      {/* {AuthStatus ? <>
         <ProfilePage />
       </> : <div className="section">
         <Authorisation />
-      </div>}
+      </div>} */}
+
+      <Routes>
+        <Route path="/Steamscord" element={<GeneralLayout />}>
+          <Route index element={<ChatPageFirst />} />
+          <Route path="/Steamscord/chatpagesecond" element={<ChatPageSecond />} />
+        </Route>
+      </Routes>
     </div>
   );
 }

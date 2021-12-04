@@ -88,3 +88,199 @@ button {
     margin: 0;
     width: 100%;
 }
+
+.trigger {
+    padding: 0 24px;
+    font-size: 18px;
+    line-height: 64px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.trigger:hover {
+    color: #1890ff;
+}
+
+.logo {
+    height: 32px;
+    margin: 16px;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.site-layout .site-layout-background {
+    background: #fff;
+}
+
+// /.ant
+@mixin text-left {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16.8px;
+    color: #b5b5b5;
+}
+
+.content {
+    height: 100%;
+    &__wrapper {
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+    &__preview {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 0 0 15px 0;
+        padding: 0 20px 0 0;
+    }
+    &__preview--treads {
+        justify-content: flex-start;
+        :not(:last-child) {
+            margin: 0 10px 0 0;
+        }
+    }
+    &__section {
+        height: 100%;
+    }
+    &__section--left {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 40px 10px 20px 40px;
+        background-color: rgba($color: #25272a, $alpha: 0.75);
+    }
+    &__section--main {
+        background-color: rgba(59, 48, 48, 0.3);
+    }
+    &__section--right {
+        background-color: rgba(160, 122, 122, 0.3);
+    }
+    &__title {
+        text-transform: uppercase;
+        color: #b5b5b5;
+        font-size: 12px;
+        line-height: 14.4px;
+        font-weight: 700;
+        margin: 0;
+    }
+    &__title--main {
+        font-size: 24px;
+        text-transform: none;
+    }
+    &__title--small {
+        text-transform: none;
+        @include text-left;
+    }
+    &__counter {
+        color: #b5b5b5;
+        font-size: 12px;
+    }
+    &__button {
+        background-color: transparent;
+        padding: 0;
+    }
+    &__button--settings {
+        position: relative;
+        &::before {
+            transition: 0.25s linear;
+            opacity: 0;
+            content: "Settings";
+            font-size: 16px;
+            color: #fff;
+            position: absolute;
+            top: -170%;
+            left: -170%;
+            padding: 5px;
+            z-index: 2;
+            background-color: rgba(0, 0, 0, 0.54);
+        }
+        &:hover {
+            &::before {
+                opacity: 1;
+            }
+        }
+    }
+}
+
+.profile {
+    background-color: rgba($color: #fff, $alpha: 0.8);
+    height: 100%;
+    &__wrapper {
+        padding: 16px 20px;
+    }
+    &__image {
+        object-fit: cover;
+        width: 100%;
+        height: 201px;
+    }
+    &__name {
+        margin: 0;
+        font-weight: 700;
+        padding: 0 5px 0 0;
+        position: relative;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        &::before {
+            content: "";
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            right: 0;
+            top: 30%;
+            background-color: #59bf40;
+            border-radius: 100%;
+        }
+    }
+    &__bio {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    &__button {
+        margin: 0 0 20px 0;
+        font-size: 13px;
+        line-height: 15.6px;
+        font-weight: 700;
+        border-radius: 5px;
+        background-color: #3577ef;
+        color: #fff;
+        width: 100%;
+        padding: 5px;
+    }
+}
+
+.social {
+    margin: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    :not(:last-child) {
+        margin: 0 12px 0 0;
+    }
+    &__link {
+        color: #000;
+    }
+}
+
+.information {
+    margin: 0;
+    &__template {
+        display: flex;
+        flex-direction: column;
+        &:not(:last-child) {
+            margin: 0 0 10px 0;
+        }
+    }
+    &__title {
+        font-size: 12px;
+        line-height: 14.4px;
+        font-weight: 400;
+        color: #5f6164;
+    }
+    &__link {
+        font-size: 14px;
+        line-height: 16.8px;
+        font-weight: 600;
+        color: #000;
+    }
+}
