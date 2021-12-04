@@ -4,7 +4,7 @@ import CommentItem from "./CommentItem";
 import "./Comment.scss";
 
 const CommentsList = () => {
-  const { messages } = useSelector((state) => state.ProfileReducer);
+  const { messages } = useSelector((state) => state.ChatReducer);
 
   const commentList = messages.map((item) => {
     return (

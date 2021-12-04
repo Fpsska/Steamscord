@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const ProfileSlice = createSlice({
-    name: "profilePage",
+const ChatSlice = createSlice({
+    name: "chatPage",
     initialState: {
         channels: [
             {
@@ -237,6 +237,6 @@ const ProfileSlice = createSlice({
     }
 })
 
-export const { switchSettingsStatus, switchFetchingStatus } = ProfileSlice.actions;
+export const { switchSettingsStatus, switchFetchingStatus } = ChatSlice.actions;
 
-export default ProfileSlice.reducer;
+export default ChatSlice.reducer;

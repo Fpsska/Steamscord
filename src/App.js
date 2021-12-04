@@ -17,18 +17,16 @@ function App() {
 
   return (
     <div className="App">
-      {/* {AuthStatus ? <>
-        <ProfilePage />
+      {AuthStatus ? <>
+        <Routes>
+          <Route path="/Steamscord" element={<GeneralLayout />}>
+            <Route index element={<ChatPageFirst />} />
+            <Route path="/Steamscord/chatpagesecond" element={<ChatPageSecond />} />
+          </Route>
+        </Routes>
       </> : <div className="section">
         <Authorisation />
-      </div>} */}
-
-      <Routes>
-        <Route path="/Steamscord" element={<GeneralLayout />}>
-          <Route index element={<ChatPageFirst />} />
-          <Route path="/Steamscord/chatpagesecond" element={<ChatPageSecond />} />
-        </Route>
-      </Routes>
+      </div>}
     </div>
   );
 }

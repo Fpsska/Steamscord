@@ -21,7 +21,7 @@ import { switchAuthStatus } from "../../app/store/authSlice";
 import {
   switchSettingsStatus,
   switchFetchingStatus,
-} from "../../app/store/ProfileSlice";
+} from "../../app/store/ChatSlice";
 import SvgTemplate from "../Common/SvgTemplate";
 import ChannelList from "../Channel/ChannelList";
 import FriendList from "../Friend/FriendList";
@@ -43,7 +43,7 @@ const GeneralLayout = () => {
   );
 
   const { channels, friends, settingsIsOpen, isFetching } = useSelector(
-    (state) => state.ProfileReducer
+    (state) => state.ChatReducer
   );
 
   const dispatch = useDispatch();

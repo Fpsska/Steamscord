@@ -4,7 +4,7 @@ import FriendItem from "./FriendItem";
 import "./Friend.scss";
 
 const FriendList = () => {
-  const { friends } = useSelector((state) => state.ProfileReducer);
+  const { friends } = useSelector((state) => state.ChatReducer);
   const friendList = friends.map((item) => {
     return (
       <FriendItem

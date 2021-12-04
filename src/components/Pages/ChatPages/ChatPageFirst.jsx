@@ -6,7 +6,7 @@ import ChatForm from "../../Chat/ChatForm";
 import { useSelector } from "react-redux";
 
 const ChatPageFirst = () => {
-  const { isFetching } = useSelector((state) => state.ProfileReducer);
+  const { isFetching } = useSelector((state) => state.ChatReducer);
 
   return (
     <>
