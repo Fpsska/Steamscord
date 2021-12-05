@@ -6,51 +6,63 @@ const ChatSlice = createSlice({
         channels: [
             {
                 id: 1,
-                text: "# general 1"
+                text: "# NikitosXClub",
+                link: "/Steamscord"
             },
             {
                 id: 2,
-                text: "# general 2"
+                text: "# LocatElysium",
+                link: "/Steamscord/LocatElysium"
             },
             {
                 id: 3,
-                text: "# general 3"
+                text: "# general 3",
+                link: "/Steamscord/test"
             },
             {
                 id: 4,
-                text: "# general 4"
+                text: "# general 4",
+                link: "/Steamscord/test"
             },
             {
                 id: 5,
-                text: "# general 5"
+                text: "# general 5",
+                link: "/Steamscord/test"
             },
             {
                 id: 6,
-                text: "# general 6"
+                text: "# general 6",
+                link: "/Steamscord/test"
             },
             {
                 id: 7,
-                text: "# general 7"
+                text: "# general 7",
+                link: "/Steamscord/test"
             },
             {
                 id: 8,
-                text: "# general 8"
+                text: "# general 8",
+                link: "/Steamscord/test"
             },
             {
                 id: 9,
-                text: "# general 9"
+                text: "# general 9",
+                link: "/Steamscord/test"
             },
             {
                 id: 10,
-                text: "# general 10"
+                text: "# general 10",
+                link: "/Steamscord/test"
             },
             {
                 id: 11,
-                text: "# general 11"
+                text: "# general 11",
+                link: "/Steamscord/test"
             },
             {
                 id: 12,
-                text: "# general 12"
+                text: "# general 12",
+                link: "/Steamscord/test"
             }
         ],
         friends: [
@@ -138,7 +150,7 @@ const ChatSlice = createSlice({
                 isOnline: true
             }
         ],
-        messages: [
+        messagesPageFirst: [
             {
                 id: 1,
                 name: "TheHello",
@@ -223,6 +235,22 @@ const ChatSlice = createSlice({
                 text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum, optio quod. Velit, ut. Doloremque necessitatibus aperiam non fuga corporis illum magnam aspernatur recusandae, qui, id suscipit sed, obcaecati saepe error. Velit consequatur unde vero dolorem nobis repellat perferendis alias rerum eum tempora fugit ipsa cumque quas, labore, illum, esse impedit quidem ducimus!Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum, optio quod. Velit, ut. Doloremque necessitatibus aperiam non fuga corporis illum magnam aspernatur recusandae, qui, id suscipit sed, obcaecati saepe error. Velit consequatur unde vero dolorem nobis repellat perferendis alias rerum eum tempora fugit ipsa cumque quas, labore, illum, esse impedit quidem ducimus!",
                 time: new Date().toLocaleTimeString()
             }
+        ],
+        messagesPageSecond: [
+            {
+                id: 1,
+                name: "TheHello",
+                image: "profile-1.jpg",
+                text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum, optio quod. Velit, ut. Doloremque necessitatibus aperiam non fuga corporis illum magnam aspernatur recusandae, qui, id suscipit sed, obcaecati saepe error. Velit consequatur unde vero dolorem nobis repellat perferendis alias rerum eum tempora fugit ipsa cumque quas, labore, illum, esse impedit quidem ducimus!",
+                time: new Date().toLocaleTimeString()
+            },
+            {
+                id: 2,
+                name: "Nikitos aka. Батя ;D",
+                image: "profile-9.jpg",
+                text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum, optio quod. Velit, ut. Doloremque necessitatibus aperiam non fuga corporis illum magnam aspernatur recusandae, qui, id suscipit sed, obcaecati saepe error. Velit consequatur unde vero dolorem nobis repellat perferendis alias rerum eum tempora fugit ipsa cumque quas, labore, illum, esse impedit quidem ducimus!Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum, optio quod. Velit, ut. Doloremque necessitatibus aperiam non fuga corporis illum magnam aspernatur recusandae, qui, id suscipit sed, obcaecati saepe error. Velit consequatur unde vero dolorem nobis repellat perferendis alias rerum eum tempora fugit ipsa cumque quas, labore, illum, esse impedit quidem ducimus!",
+                time: new Date().toLocaleTimeString()
+            },
         ],
         settingsIsOpen: false,
         isFetching: false

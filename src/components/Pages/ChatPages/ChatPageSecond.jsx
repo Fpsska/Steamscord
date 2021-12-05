@@ -1,7 +1,17 @@
 import React from "react";
+import { Spin } from "antd";
 
 const ChatPageSecond = () => {
-  return <h1>hello from SECOND page</h1>;
+  return (
+    <>
+      <Spin
+        size="large"
+        style={{
+          margin:"auto"
+        }}
+      />
+    </>
+  );
 };
 
 export default ChatPageSecond;

@@ -39,27 +39,6 @@
     .message.message {
         max-height: calc(100vh - 195px);
     }
-    .chat__column--name.chat__column--name {
-        flex: 0 0 auto;
-    }
-    .chat__column--user.chat__column--user {
-        margin: 0 0 0 20px;
-    }
-    .chat__column--form.chat__column--form {
-        flex: 1 1 auto;
-    }
-    .form {
-        width: 100%;
-    }
-    .chat__column--settings.chat__column--settings {
-        position: absolute;
-        top: -8.4%;
-        right: 5%;
-        margin: 0;
-    }
-    .chat__column--notification.chat__column--notification {
-        display: none;
-    }
 }
 
 @media (max-width: 592px) {
@@ -72,12 +51,30 @@
     .message.message {
         max-height: calc(100vh - 215px);
     }
+    .chat__column--name.chat__column--name {
+        flex: 0 0 auto;
+    }
+    .chat__column--user.chat__column--user {
+        margin: 0 20px;
+    }
+    .chat__column--form.chat__column--form {
+        flex: 1 1 auto;
+    }
+    .form {
+        width: 100%;
+    }
+    .chat__column--settings.chat__column--settings {
+        position: absolute;
+        top: -5.2%;
+        right: 5%;
+        margin: 0;
+    }
+    .chat__column--notification.chat__column--notification {
+        display: none;
+    }
 }
 
 @media (max-width: 500px) {
-    .chat__column--form {
-        margin: 20px 0 0 0;
-    }
     .chat__column--settings {
         margin: 20px 0 0 0;
     }
@@ -113,11 +110,32 @@
     .message.message {
         max-height: calc(100vh - 265px);
     }
+    .chat__column--form {
+        margin: 20px 0 0 0;
+    }
+    .chat__column--user.chat__column--user {
+        margin: 0 0 0 20px;
+    }
+}
+
+@media (max-width: 375px) {
+    .chat__column--user.chat__column--user {
+        margin: 0 0 0 20px;
+    }
+    .chat__column--form {
+        margin: 10px 0 0 0;
+    }
 }
 
 @media (max-width: 320px) {
     .message.message {
         max-height: calc(100vh - 235px);
+    }
+    .chat__column--form {
+        margin: 10px 0 0 0;
+    }
+    .chat__column--user.chat__column--user {
+        margin: 0 0 0 20px;
     }
 }
 

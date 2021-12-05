@@ -25,6 +25,8 @@ import {
 import SvgTemplate from "../Common/SvgTemplate";
 import ChannelList from "../Channel/ChannelList";
 import FriendList from "../Friend/FriendList";
+import ChatHeader from "../Chat/ChatHeader";
+import ChatForm from "../Chat/ChatForm";
 import "antd/dist/antd.css";
 
 const GeneralLayout = () => {
@@ -223,7 +225,15 @@ const GeneralLayout = () => {
                       flexDirection: "column",
                     }}
                   >
-                    <Outlet />
+                    <Row className="chat__section chat__section--top">
+                      <ChatHeader />
+                    </Row>
+                    <Row className="chat__section chat__section--main">
+                      <Outlet />
+                    </Row>
+                    <Row className="chat__section chat__section--bottom">
+                      <ChatForm />
+                    </Row>
                   </Col>
                 </Row>
               </Col>

@@ -2,9 +2,9 @@ import React from "react";
 import { Badge, Input, message } from "antd";
 import { StarOutlined } from "@ant-design/icons";
 import SvgTemplate from "../Common/SvgTemplate";
-import "./Chat.scss"
+import "./Chat.scss";
 
-const ChatHeader = () => {
+const ChatHeader = ({text}) => {
   const { Search } = Input;
 
   const errorNotification = () => {
@@ -14,7 +14,7 @@ const ChatHeader = () => {
   return (
     <>
       <div className="chat__column chat__column--name">
-        <span className="chat__name">#general 1</span>
+        <span className="chat__name">{text}</span>
         <button className="chat__button">
           <span className="chat__icon">
             <StarOutlined />
@@ -26,7 +26,7 @@ const ChatHeader = () => {
         <span className="chat__icon">
           <SvgTemplate id="user" />
         </span>
-        <span className="chat__users">1,903</span>
+        <span className="chat__users">{Math.round(Math.random() * 3000)}</span>
       </div>
 
       <div className="chat__column chat__column--form">
@@ -37,7 +37,7 @@ const ChatHeader = () => {
 
       <div className="chat__column chat__column--notification">
         <button className="chat__button">
-          <Badge count={5} size="small">
+          <Badge count={Math.round(Math.random() * 9)} size="small">
             <span className="chat__icon">
               <SvgTemplate id="notification" />
             </span>

@@ -4,9 +4,9 @@ import CommentItem from "./CommentItem";
 import "./Comment.scss";
 
 const CommentsList = () => {
-  const { messages } = useSelector((state) => state.ChatReducer);
+  const { messagesPageFirst } = useSelector((state) => state.ChatReducer);
 
-  const commentList = messages.map((item) => {
+  const commentList = messagesPageFirst.map((item) => {
     return (
       <CommentItem
         key={item.id}
