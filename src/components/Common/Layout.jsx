@@ -85,6 +85,9 @@ const GeneralLayout = () => {
       setIsModalVisible(false);
       setLoadingStatus(false);
     }, 2200);
+    setTimeout(() => {
+      message.success("Message sent successfully!");
+    }, 3000);
   };
 
   const openMainSettings = () => {

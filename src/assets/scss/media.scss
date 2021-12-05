@@ -104,6 +104,19 @@
         display: flex;
         flex-direction: column;
     }
+    .warning__button {
+        min-width: 120px;
+    }
+    .warning__image {
+        width: 128px;
+        height: 128px;
+    }
+    .warning__title {
+        font-size: 24px;
+    }
+    .warning__description {
+        font-size: 16px;
+    }
 }
 
 @media (min-width: 482px) and (max-width: 499px) {
@@ -136,6 +149,9 @@
     }
     .chat__column--user.chat__column--user {
         margin: 0 0 0 20px;
+    }
+    .warning__button {
+        min-width: 100px;
     }
 }
 
