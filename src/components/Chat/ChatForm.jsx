@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { message } from "antd";
 import { SmileOutlined } from "@ant-design/icons";
 import SvgTemplate from "../Common/SvgTemplate";
@@ -8,12 +8,15 @@ const ChatForm = () => {
     message.error("Function temporarily unavailable");
   };
 
+  const [isLoaded, setLoadingStatus] = useState(false); // переписать на isFetching
+
   return (
     <form className="form form--message" action="">
       <input
         className="form__input form__input--message"
         type="text"
         placeholder="Message in #general"
+        disabled={isLoaded ? "" : true}
       />
       <div className="form__interaction">
         <button

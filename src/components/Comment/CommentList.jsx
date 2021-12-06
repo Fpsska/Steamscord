@@ -11,9 +11,9 @@ const CommentsList = () => {
       <CommentItem
         key={item.id}
         name={item.name}
-        image={item.image}
         text={item.text}
         time={item.time}
+        // image={item.image}
       />
     );
   });
