@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Outlet } from "react-router";
 
 import { Layout, Menu, Row, Col, Button, Input, message } from "antd";
@@ -21,7 +21,6 @@ import { switchAuthStatus } from "../../app/store/authSlice";
 import {
   switchSettingsStatus,
   switchFetchingStatus,
-  fetchComments,
 } from "../../app/store/ChatSlice";
 import SvgTemplate from "../Common/SvgTemplate";
 import ChannelList from "../Channel/ChannelList";
@@ -41,7 +40,7 @@ const GeneralLayout = () => {
     }
   };
 
-  const { AuthStatus, userInformation } = useSelector(
+  const { authStatus, userInformation } = useSelector(
     (state) => state.authReducer
   );
   const { channels, friends, settingsIsOpen, isFetching } = useSelector(
@@ -64,8 +63,8 @@ const GeneralLayout = () => {
       okText: "Submit",
       onOk() {
         setIsModalVisible(false);
-        dispatch(switchAuthStatus(!AuthStatus));
-        console.log(AuthStatus);
+        dispatch(switchAuthStatus(!authStatus));
+        console.log(authStatus);
       },
       onCancel() {
         setIsModalVisible(false);
@@ -96,11 +95,7 @@ const GeneralLayout = () => {
 
   setTimeout(() => {
     dispatch(switchFetchingStatus(true));
-  }, 3000);
-
-  useEffect(() => {
-    dispatch(fetchComments());
-  }, [dispatch]);
+  }, 1500);
 
   return (
     <Layout

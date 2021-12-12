@@ -2,15 +2,11 @@ import React from "react";
 import { Avatar } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 
-const CommentItem = ({ name, text, time }) => {
+const CommentItem = ({ name, text, image, time }) => {
   return (
     <div className="message__template">
-      {/* <img
-        className="message__profile-image"
-        src={require(`../../assets/images/${image}`).default}
-        alt="profile"
-      /> */}
-      <Avatar className="message__profile-image" shape="square" size={40} icon={<UserOutlined />} />
+      {/* <Avatar className="message__profile-image" shape="square" size={40} icon={<UserOutlined />} /> */}
+      <img className="message__profile-image" src={image} alt="profile" />
       <div className="message__content">
         <div className="message__information">
           <span className="message__name">{name}</span>

@@ -1,40 +1,6 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
-export const fetchComments = createAsyncThunk(
-    "chat/fetchComments", // action type
-    async function (_, { rejectWithValue }) {
-        try {
-            const response = await fetch("https://jsonplaceholder.typicode.com/comments?_limit=12")
-            // const response = await fetch("http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=9AA8D6B945980A8F34FD85D02BF87DDE&steamids=76561198263478170_76561198034948682_76561198084746227_76561197988532919_76561198291514144_76561198873628029_76561198857004420_76561198155088017", {
-            // mode: "no-cors"
-            // })
-            if (!response.ok) {
-                throw new Error("Something wrong!")
-            }
 
-            const responseData = await response.json()
-            console.log(responseData);
-            const actualData = []
-
-            responseData.forEach(item => {
-                actualData.push(
-                    {
-                        id: item.id,
-                        name: item.name,
-                        image: null,
-                        text: item.body,
-                        time: new Date().toLocaleTimeString(),
-                    }
-                )
-            })
-
-            return actualData
-
-        } catch (error) {
-            return rejectWithValue(error.message)
-        }
-    }
-);
 
 const ChatSlice = createSlice({
     name: "chat",
@@ -43,62 +9,74 @@ const ChatSlice = createSlice({
             {
                 id: 1,
                 text: "# NikitosXClub",
-                link: "/Steamscord"
+                link: "/Steamscord",
+                isSelected: false
             },
             {
                 id: 2,
                 text: "# LocatElysium",
-                link: "/Steamscord/LocatElysium"
+                link: "/Steamscord/LocatElysium",
+                isSelected: false
             },
             {
                 id: 3,
                 text: "# general 3",
-                link: "/Steamscord/test"
+                link: "/Steamscord/test",
+                isSelected: false
             },
             {
                 id: 4,
                 text: "# general 4",
-                link: "/Steamscord/test"
+                link: "/Steamscord/test",
+                isSelected: false
             },
             {
                 id: 5,
                 text: "# general 5",
-                link: "/Steamscord/test"
+                link: "/Steamscord/test",
+                isSelected: false
             },
             {
                 id: 6,
                 text: "# general 6",
-                link: "/Steamscord/test"
+                link: "/Steamscord/test",
+                isSelected: false
             },
             {
                 id: 7,
                 text: "# general 7",
-                link: "/Steamscord/test"
+                link: "/Steamscord/test",
+                isSelected: false
             },
             {
                 id: 8,
                 text: "# general 8",
-                link: "/Steamscord/test"
+                link: "/Steamscord/test",
+                isSelected: false
             },
             {
                 id: 9,
                 text: "# general 9",
-                link: "/Steamscord/test"
+                link: "/Steamscord/test",
+                isSelected: false
             },
             {
                 id: 10,
                 text: "# general 10",
-                link: "/Steamscord/test"
+                link: "/Steamscord/test",
+                isSelected: false
             },
             {
                 id: 11,
                 text: "# general 11",
-                link: "/Steamscord/test"
+                link: "/Steamscord/test",
+                isSelected: false
             },
             {
                 id: 12,
                 text: "# general 12",
-                link: "/Steamscord/test"
+                link: "/Steamscord/test",
+                isSelected: false
             }
         ],
         friends: [
@@ -186,19 +164,8 @@ const ChatSlice = createSlice({
                 isOnline: true
             }
         ],
-        messagesPageFirst: [
-            // {
-            //     id: "",
-            //     name: "TheHello",
-            //     image: "profile-1.jpg",
-            //     text: "",
-            //     time: new Date().toLocaleTimeString()
-            // },
-        ],
         settingsIsOpen: false,
-        isFetching: false,
-        status: null,
-        fetchError: null
+        isFetching: true,
     },
     reducers: {
         switchSettingsStatus(state, action) {
@@ -206,22 +173,22 @@ const ChatSlice = createSlice({
         },
         switchFetchingStatus(state, action) {
             state.isFetching = action.payload
-        }
-    },
-    extraReducers: {
-        [fetchComments.pending]: (state) => {
-            state.status = "loading"
-            state.isFetching = true
         },
-        [fetchComments.fulfilled]: (state, action) => {
-            state.status = "success"
-            state.isFetching = false
-            state.messagesPageFirst = action.payload
-        },
-        [fetchComments.rejected]: (state, action) => {
-            state.status = "failed"
-            state.fetchError = action.payload
-        }
+        // switchSelectedStatus(state, action) {
+        //     // state.channels.map(item => {
+        //     //     return {
+        //     //         ...item,
+        //     //         isSelected: action.payload
+        //     //     }
+        //     // })
+        //     ///////
+        //     // return [...state.channels.map(item => {
+        //     //     return {
+        //     //         ...item,
+        //     //         isSelected: action.payload
+        //     //     }
+        //     // })]
+        // }
     }
 })
 
