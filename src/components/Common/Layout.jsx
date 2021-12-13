@@ -205,7 +205,7 @@ const GeneralLayout = () => {
                   <Col style={{ width: "100%" }}>
                     <div className="content__preview">
                       <h2 className="content__title">Friends</h2>
-                      <span className="content__counter">{friends.length}</span>
+                      <span className="content__counter">??</span>
                     </div>
                     <FriendList />
                   </Col>

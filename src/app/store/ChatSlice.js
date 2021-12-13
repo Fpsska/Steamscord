@@ -79,90 +79,16 @@ const ChatSlice = createSlice({
                 isSelected: false
             }
         ],
-        friends: [
-            {
-                id: 1,
-                name: "TheHello",
-                image: "profile-1.jpg",
-                status: "Counter-Strike: Global Offensive",
-                isOnline: true
-            },
-            {
-                id: 2,
-                name: "Bzz",
-                image: "profile-2.jpg",
-                status: "Metro Exodus",
-                isOnline: true
-            },
-            {
-                id: 3,
-                name: "justplayer",
-                image: "profile-3.jpg",
-                status: "",
-                isOnline: false
-            }, {
-                id: 4,
-                name: "❟❛❟ronin❟❛❟",
-                image: "profile-4.jpg",
-                status: "Dota 2",
-                isOnline: true
-            },
-            {
-                id: 5,
-                name: "TTV_siLvyFPS",
-                image: "profile-5.jpg",
-                status: "Apex Legends",
-                isOnline: true
-            },
-            {
-                id: 6,
-                name: "Gigzer",
-                image: "profile-6.jpg",
-                status: "New World",
-                isOnline: true
-            },
-            {
-                id: 7,
-                name: "Stikkin",
-                image: "profile-7.jpg",
-                status: "PUBG: BATTLEGROUNDS",
-                isOnline: true
-            },
-            {
-                id: 8,
-                name: "incoRRect™",
-                image: "profile-8.jpg",
-                status: "Counter-Strike: Global Offensive",
-                isOnline: true
-            },
-            {
-                id: 9,
-                name: "Nikitos aka. Батя ;D",
-                image: "profile-9.jpg",
-                status: "",
-                isOnline: false
-            },
-            {
-                id: 10,
-                name: "namastefellas",
-                image: "profile-10.jpg",
-                status: "Batman: The Enemy Within - The Telltale Series",
-                isOnline: true
-            },
-            {
-                id: 11,
-                name: "Mas Fuerte",
-                image: "profile-11.jpg",
-                status: "Worlds of Tanks",
-                isOnline: true
-            },
-            {
-                id: 12,
-                name: "torontotokyo drift™",
-                image: "profile-12.jpg",
-                status: "Counter-Strike: Global Offensive",
-                isOnline: true
-            }
+        gameActivity: [
+            "",
+            "Counter-Strike: Global Offensive",
+            "Worlds of Tanks",
+            "Batman: The Enemy Within - The Telltale Series",
+            "PUBG: BATTLEGROUNDS",
+            "New World",
+            "Apex Legends",
+            "Dota 2",
+            "Metro Exodus"
         ],
         settingsIsOpen: false,
         isFetching: true,

@@ -22,12 +22,14 @@
         display: flex;
         flex-direction: column;
     }
-    &__status {
+    &__activity {
         font-size: 13px;
         font-weight: 400;
+        display: none;
     }
-    &__status--online {
+    &__activity--online {
         color: #59BF40 !important;
+        display: block;
     }
     &__image {
         border-radius: 5px;

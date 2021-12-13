@@ -7,8 +7,8 @@ const FriendItem = ({ name, image, status, activity }) => {
         className={
           status ? "friends__image friends__image--online" : "friends__image"
         }
-        src={require(`../../assets/images/${image}`).default}
-        alt="img"
+        src={image}
+        alt="profle"
       />
 
       <div className="friends__information">
@@ -22,8 +22,8 @@ const FriendItem = ({ name, image, status, activity }) => {
         <span
           className={
             status
-              ? "friends__status friends__status--online"
-              : "friends__status"
+              ? "friends__activity friends__activity--online"
+              : "friends__activity"
           }
         >
           {activity}
