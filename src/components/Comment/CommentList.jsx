@@ -6,7 +6,7 @@ import "./Comment.scss";
 
 const CommentsList = () => {
   const { data = [], isLoading, error } = useGetProfileInfoQuery();
-  
+
   const commentList = data.map((item) => {
     return (
       <CommentItem
@@ -21,26 +21,22 @@ const CommentsList = () => {
 
   return (
     <>
-      {isLoading && (
-        <Spin
-          size="large"
-          style={{
-            minHeight: "100%",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        />
-      )}
-      {error && (
-        <Result
-          status="500"
-          title="500"
-          subTitle="Sorry, something went wrong."
-          extra={<Button type="primary">Back Home</Button>}
-        />
-      )}
-      {data && commentList}
+      {isLoading ? (
+        <div className="loading">
+          <Spin size="large" />
+        </div>
+      ) : error ? (
+        <div className="loading">
+          <Result
+            status="500"
+            title="500"
+            subTitle="Sorry, something went wrong."
+            extra={<Button type="primary">Refresh</Button>}
+          />
+        </div>
+      ) : data ? (
+        <div className="message">{commentList}</div>
+      ) : null}
     </>
   );
 };

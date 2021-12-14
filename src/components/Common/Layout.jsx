@@ -63,7 +63,7 @@ const GeneralLayout = () => {
       okText: "Submit",
       onOk() {
         setIsModalVisible(false);
-        dispatch(switchAuthStatus(!authStatus));
+        dispatch(switchAuthStatus(false));
         console.log(authStatus);
       },
       onCancel() {
@@ -92,10 +92,6 @@ const GeneralLayout = () => {
   const openMainSettings = () => {
     dispatch(switchSettingsStatus(true));
   };
-
-  // setTimeout(() => {
-  //   dispatch(switchFetchingStatus(true));
-  // }, 1000);
 
   return (
     <Layout

@@ -138,6 +138,12 @@
     .chat__column--form {
         margin: 10px 0 0 0;
     }
+    .ant-result.ant-result {
+        padding: 0;
+    }
+    .ant-result-extra.ant-result-extra {
+        margin: 10px 0 0 0;
+    }
 }
 
 @media (max-width: 320px) {
@@ -152,6 +158,10 @@
     }
     .warning__button {
         min-width: 100px;
+    }
+    .ant-result-title,
+    .ant-result-subtitle {
+        display: none;
     }
 }
 

@@ -26,7 +26,7 @@ const FriendList = () => {
 
   return (
     <>
-      {isLoading && (
+      {isLoading ? (
         <Space direction="vertical" style={{ width: "100%" }} size="large">
           <div>
             <Skeleton.Avatar
@@ -83,8 +83,7 @@ const FriendList = () => {
             <Skeleton.Button active="active" size="middle" shape="round" />
           </div>
         </Space>
-      )}
-      {error && (
+      ) : error ? (
         <Space direction="vertical" style={{ width: "100%" }} size="large">
           <div>
             <Skeleton.Avatar
@@ -135,8 +134,9 @@ const FriendList = () => {
             <Skeleton.Button size="middle" shape="round" block="block" />
           </div>
         </Space>
-      )}
-      {data && friendList}
+      ) : data ? (
+        friendList
+      ) : null}
     </>
   );
 };
