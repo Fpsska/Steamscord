@@ -43,7 +43,7 @@ const GeneralLayout = () => {
   const { authStatus, userInformation } = useSelector(
     (state) => state.authReducer
   );
-  const { channels, friends, settingsIsOpen, isFetching } = useSelector(
+  const { channels, settingsIsOpen, isFetching } = useSelector(
     (state) => state.chatReducer
   );
 
@@ -96,7 +96,6 @@ const GeneralLayout = () => {
   // setTimeout(() => {
   //   dispatch(switchFetchingStatus(true));
   // }, 1000);
-  
 
   return (
     <Layout
@@ -208,7 +207,10 @@ const GeneralLayout = () => {
                       <h2 className="content__title">Friends</h2>
                       <span className="content__counter">??</span>
                     </div>
-                    <FriendList />
+                    <ul className="friends">
+                      {" "}
+                      <FriendList />
+                    </ul>
                   </Col>
                 </Row>
               </Col>
