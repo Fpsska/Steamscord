@@ -1,10 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit';
 import authReducer from "./authSlice"
-import ChatReducer from "./ChatSlice"
+import chatReducer from "./chatSlice"
+import { steamAPI } from '../api/steamAPI';
 
 export const store = configureStore({
   reducer: {
     authReducer: authReducer,
-    ChatReducer: ChatReducer,
+    chatReducer: chatReducer,
+    [steamAPI.reducerPath]: steamAPI.reducer
   },
+  middleware: (getDefaultMiddleware) => {
+    return getDefaultMiddleware().concat(steamAPI.middleware)
+  }
 });

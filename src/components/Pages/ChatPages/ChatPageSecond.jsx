@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const ChatPageSecond = () => {
-  const { isFetching } = useSelector((state) => state.ChatReducer);
+  const { isFetching } = useSelector((state) => state.chatReducer);
 
   const [contentVisible, setContentVisibleStatus] = useState(false);
   const [isLoading, setLoadingStatus] = useState(false);

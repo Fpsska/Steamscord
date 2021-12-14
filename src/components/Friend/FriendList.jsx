@@ -1,26 +1,17 @@
 import React from "react";
-import axios from "axios";
 import { useSelector } from "react-redux";
-import { useEffect } from "react";
 import { useState } from "react";
 import FriendItem from "./FriendItem";
+import useGetProfileInfoQuery from "../../app/api/steamAPI"
 import "./Friend.scss";
 
 const FriendList = () => {
-  const [friends, setFriends] = useState([]);
 
-  useEffect(() => {
-    axios
-      .get("/api")
-      .then((response) => {
-        setFriends(response.data);
-      })
-      .catch((error) => console.log("CATCH ERROR:", error));
-  }, []);
+  const {data = [], isLoading} = useGetProfileInfoQuery()
 
-  const { gameActivity } = useSelector((state) => state.ChatReducer);
+  const { gameActivity } = useSelector((state) => state.chatReducer);
 
-  const friendList = friends.map((item) => {
+  const friendList = data.map((item) => {
     const getGameActivity = Math.floor(Math.random() * gameActivity.length);
 
     return (

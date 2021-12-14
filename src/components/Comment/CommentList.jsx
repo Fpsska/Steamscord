@@ -1,34 +1,44 @@
 import React from "react";
+import { Result, Button, Spin } from "antd";
 import CommentItem from "./CommentItem";
+import useGetProfileInfoQuery from "../../app/api/steamAPI";
 import "./Comment.scss";
-import { useState } from "react";
-import { useEffect } from "react";
-import axios from "axios";
 
 const CommentsList = () => {
-  const [comments, setComments] = useState([]);
+  const { data = [], isLoading } = useGetProfileInfoQuery();
 
-  useEffect(() => {
-    axios
-      .get("/api")
-      .then((response) => {
-        setComments(response.data);
-      })
-      .catch((error) => console.log("CATCH ERROR:", error));
-  }, []);
-
-  const commentList = comments.map((item) => {
-    return (
-      <CommentItem
-        key={item.steamid}
-        name={item.personaname}
-        image={item.avatarmedium}
-        text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum, optio quod. Velit, ut. Doloremque necessitatibus aperiam non fuga corporis illum magnam aspernatur recusandae, qui, id suscipit sed, obcaecati saepe error. Velit consequatur unde vero dolorem nobis repellat perferendis alias rerum eum tempora fugit ipsa cumque quas, labore, illum, esse impedit quidem ducimus!Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum, optio quod. Velit, ut. Doloremque necessitatibus aperiam non fuga corporis illum magnam aspernatur recusandae, qui, id suscipit sed, obcaecati saepe error. Velit consequatur unde vero dolorem nobis repellat perferendis alias rerum eum tempora fugit ipsa cumque quas, labore, illum, esse impedit quidem ducimus!"
-        time={new Date().toLocaleTimeString()}
-      />
-    );
-  });
-  return <div className="message">{commentList}</div>;
+  return (
+    <>
+      {isLoading ? (
+        <Spin
+          size="large"
+          style={{
+            minHeight: "100%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        />
+      ) : (
+        <Result
+          status="500"
+          title="500"
+          subTitle="Sorry, something went wrong."
+          extra={<Button type="primary">Back Home</Button>}
+        />
+      )}
+      {data &&
+        data.map((item) => {
+          <CommentItem
+            key={item.steamid}
+            name={item.personaname}
+            image={item.avatarmedium}
+            text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum, optio quod. Velit, ut. Doloremque necessitatibus aperiam non fuga corporis illum magnam aspernatur recusandae, qui, id suscipit sed, obcaecati saepe error. Velit consequatur unde vero dolorem nobis repellat perferendis alias rerum eum tempora fugit ipsa cumque quas, labore, illum, esse impedit quidem ducimus!Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum, optio quod. Velit, ut. Doloremque necessitatibus aperiam non fuga corporis illum magnam aspernatur recusandae, qui, id suscipit sed, obcaecati saepe error. Velit consequatur unde vero dolorem nobis repellat perferendis alias rerum eum tempora fugit ipsa cumque quas, labore, illum, esse impedit quidem ducimus!"
+            time={new Date().toLocaleTimeString()}
+          />;
+        })}
+    </>
+  );
 };
 
 export default CommentsList;

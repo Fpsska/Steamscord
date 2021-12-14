@@ -61,3 +61,13 @@
         flex-shrink: 0;
     }
 }
+
+.ant-result {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.ant-result-image {
+    margin: 0 auto;
+}

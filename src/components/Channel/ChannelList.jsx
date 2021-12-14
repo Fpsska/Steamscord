@@ -4,7 +4,7 @@ import ChannelItem from "./ChannelItem";
 import "./Channel.scss";
 
 const ChannelList = () => {
-  const { channels } = useSelector((state) => state.ChatReducer);
+  const { channels } = useSelector((state) => state.chatReducer);
   const channelList = channels.map((item) => {
     return <ChannelItem key={item.id} text={item.text} link={item.link} />;
   });

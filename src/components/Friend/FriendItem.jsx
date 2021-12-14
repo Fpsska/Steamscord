@@ -14,7 +14,7 @@ const FriendItem = ({ name, image, status, activity }) => {
       <div className="friends__information">
         <span
           className={
-            status ? "friends__name friends__name--online" : "friends__name"
+            status ? "friends__name friends__name--online" : "friends__name" 
           }
         >
           {name}

@@ -1,8 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-
-
-const ChatSlice = createSlice({
+const chatSlice = createSlice({
     name: "chat",
     initialState: {
         channels: [
@@ -80,7 +78,6 @@ const ChatSlice = createSlice({
             }
         ],
         gameActivity: [
-            "",
             "Counter-Strike: Global Offensive",
             "Worlds of Tanks",
             "Batman: The Enemy Within - The Telltale Series",
@@ -118,6 +115,6 @@ const ChatSlice = createSlice({
     }
 })
 
-export const { switchSettingsStatus, switchFetchingStatus } = ChatSlice.actions;
+export const { switchSettingsStatus, switchFetchingStatus } = chatSlice.actions;
 
-export default ChatSlice.reducer;
+export default chatSlice.reducer;
