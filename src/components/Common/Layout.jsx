@@ -27,6 +27,8 @@ import ChannelList from "../Channel/ChannelList";
 import FriendList from "../Friend/FriendList";
 import ChatHeader from "../Chat/ChatHeader";
 import ChatForm from "../Chat/ChatForm";
+import useGetProfileInfoQuery from "../../app/api/steamAPI";
+
 import "antd/dist/antd.css";
 
 const GeneralLayout = () => {
@@ -40,17 +42,15 @@ const GeneralLayout = () => {
     }
   };
 
-  const { authStatus, userInformation } = useSelector(
-    (state) => state.authReducer
-  );
-  const { channels, settingsIsOpen, isFetching } = useSelector(
+  const { userInformation } = useSelector((state) => state.authReducer);
+  const { channels, settingsIsOpen } = useSelector(
     (state) => state.chatReducer
   );
 
   const dispatch = useDispatch();
 
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [isLoading, setLoadingStatus] = useState(false);
+  const [isButtonLoading, setLoadingStatus] = useState(false);
 
   const { confirm } = Modal;
   const { TextArea } = Input;
@@ -64,7 +64,6 @@ const GeneralLayout = () => {
       onOk() {
         setIsModalVisible(false);
         dispatch(switchAuthStatus(false));
-        console.log(authStatus);
       },
       onCancel() {
         setIsModalVisible(false);
@@ -75,9 +74,11 @@ const GeneralLayout = () => {
   const handleCancelModal = () => {
     setIsModalVisible(false);
   };
+
   const openMessageModal = () => {
     setIsModalVisible(true);
   };
+
   const sendMessage = () => {
     setLoadingStatus(true);
     setTimeout(() => {
@@ -88,6 +89,10 @@ const GeneralLayout = () => {
       message.success("Message sent successfully!");
     }, 3000);
   };
+  // /.MODAL
+
+  const { data = [], isLoading, error } = useGetProfileInfoQuery();
+  // /.API
 
   const openMainSettings = () => {
     dispatch(switchSettingsStatus(true));
@@ -201,11 +206,15 @@ const GeneralLayout = () => {
                   <Col style={{ width: "100%" }}>
                     <div className="content__preview">
                       <h2 className="content__title">Friends</h2>
-                      <span className="content__counter">??</span>
+                      <span className="content__counter">{data.length}</span>
                     </div>
                     <ul className="friends">
                       {" "}
-                      <FriendList />
+                      <FriendList
+                        data={data}
+                        isLoading={isLoading}
+                        error={error}
+                      />
                     </ul>
                   </Col>
                 </Row>
@@ -230,7 +239,7 @@ const GeneralLayout = () => {
                       <ChatHeader />
                     </Row>
                     <Row className="chat__section chat__section--main">
-                      <Outlet />
+                      <Outlet data={data} isLoading={isLoading} error={error} />
                     </Row>
                     <Row className="chat__section chat__section--bottom">
                       <ChatForm />
@@ -302,7 +311,7 @@ const GeneralLayout = () => {
                           <Button
                             key="submit"
                             type="primary"
-                            loading={isLoading}
+                            loading={isButtonLoading}
                             onClick={sendMessage}
                           >
                             Send

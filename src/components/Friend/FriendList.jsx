@@ -2,12 +2,9 @@ import React from "react";
 import { Skeleton, Space } from "antd";
 import { useSelector } from "react-redux";
 import FriendItem from "./FriendItem";
-import useGetProfileInfoQuery from "../../app/api/steamAPI";
 import "./Friend.scss";
 
-const FriendList = () => {
-  const { data = [], isLoading, error } = useGetProfileInfoQuery();
-
+const FriendList = ({ data, isLoading, error }) => {
   const { gameActivity } = useSelector((state) => state.chatReducer);
 
   const getGameActivity = Math.floor(Math.random() * gameActivity.length);

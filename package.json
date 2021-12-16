@@ -22,8 +22,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "server": "node src/app/server/server.js",
-    "dev": "nodemon src/app/server/server.js",
+    "server": "nodemon src/app/server/server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",

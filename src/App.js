@@ -23,7 +23,7 @@ function App() {
         <Routes>
           <Route path="/Steamscord" element={<GeneralLayout />}>
             <Route index element={<ChatPageFirst />} />
-            <Route path="/Steamscord/LocatElysium" element={<ChatPageSecond />} />
+            <Route path="/Steamscord/LocalElysium" element={<ChatPageSecond />} />
             <Route path="*" element={<NoFoundPage />} />
           </Route>
         </Routes>

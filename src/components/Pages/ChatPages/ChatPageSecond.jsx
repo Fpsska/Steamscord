@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import { Spin, Button, Empty } from "antd";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const ChatPageSecond = () => {
   const { isFetching } = useSelector((state) => state.chatReducer);
 
   const [contentVisible, setContentVisibleStatus] = useState(false);
   const [isLoading, setLoadingStatus] = useState(false);
+
+  const navigate = useNavigate();
 
   const acceptAction = () => {
     setLoadingStatus(true);
@@ -16,6 +18,9 @@ const ChatPageSecond = () => {
       setContentVisibleStatus(true);
     }, 3000);
   };
+
+  const goBack = () => navigate(-1);
+
   return (
     <>
       {isFetching ? (
@@ -40,11 +45,9 @@ const ChatPageSecond = () => {
                 <Button
                   className="warning__button warning__button--cancel"
                   type="primary"
+                  onClick={goBack}
                 >
-                  {" "}
-                  <Link className="warning__link" to="/Steamscord">
-                    Back
-                  </Link>
+                  Back
                 </Button>
                 <Button
                   className="warning__button warning__button--accept"

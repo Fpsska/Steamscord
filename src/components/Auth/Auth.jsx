@@ -10,7 +10,7 @@ const Authorisation = () => {
   const dispatch = useDispatch();
 
   const { AuthStatus } = useSelector((state) => state.authReducer);
-  const [isLoading, setLoadingStatus] = useState(false);
+  const [isButtonLoading, setLoadingStatus] = useState(false);
 
   const onFinish = (values) => {
     setLoadingStatus(true);
@@ -75,7 +75,7 @@ const Authorisation = () => {
           htmlType="submit"
           className="login-form-button"
           style={{ width: "100%" }}
-          loading={isLoading}
+          loading={isButtonLoading}
         >
           Log in
         </Button>

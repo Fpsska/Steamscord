@@ -12,8 +12,8 @@ const chatSlice = createSlice({
             },
             {
                 id: 2,
-                text: "# LocatElysium",
-                link: "/Steamscord/LocatElysium",
+                text: "# LocalElysium",
+                link: "/Steamscord/LocalElysium",
                 isSelected: false
             },
             {
