@@ -44,8 +44,11 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:3001",
   "devDependencies": {
     "nodemon": "^2.0.15"
-  }
+  },
+  "engines": {
+    "node": "16.x"
+  },
+  "proxy": "http://localhost:3001"
 }
