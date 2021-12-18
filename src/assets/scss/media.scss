@@ -16,7 +16,6 @@
     }
 }
 
-
 @media (max-width: 992px) {
     .content__section--left.content__section--left {
         display: none !important;
@@ -37,6 +36,10 @@
 }
 
 @media (max-width: 680px) {
+    .ant-layout-header {
+        display: none;
+    }
+
     .message.message {
         max-height: calc(100vh - 165px);
     }
@@ -46,7 +49,8 @@
     }
     .ant-layout-header .trigger {
         position: absolute;
-        padding: 15px 22px 15px 22px;
+        padding: 0;
+        margin: 20px 0 0 24px;
         left: 0;
         top: 0;
     }
@@ -68,11 +72,6 @@
     .form {
         width: 100%;
     }
-    .chat__column--settings.chat__column--settings {
-        position: absolute;
-        top: -5.2%;
-        right: 5%;
-    }
     .chat__column--notification.chat__column--notification {
         display: none;
     }
@@ -80,7 +79,7 @@
 
 @media (max-width: 500px) {
     .chat__column--settings.chat__column--settings {
-        top: -3.2%;
+        display: none;
     }
     .chat__column--notification.chat__column--notification {
         margin: 20px 5px 0 5px;
@@ -157,9 +156,6 @@
     .message.message {
         max-height: calc(100vh - 195px);
     }
-    .chat__column--settings.chat__column--settings {
-        top: -3.2%;
-    }
 }
 
 @media (max-width: 320px) {
@@ -188,7 +184,7 @@
     }
     .ant-layout-header .trigger {
         position: absolute;
-        padding: 15px 22px 15px 22px;
+        margin: 12px 0 0 16px;
         left: 0;
         top: 0;
     }
@@ -198,5 +194,11 @@
     .channels,
     .friends {
         min-height: calc(100vh - 505px);
+    }
+}
+
+@media (orientation: landscape) and (max-height: 475px) {
+    .ant-layout-header {
+        display: none;
     }
 }
