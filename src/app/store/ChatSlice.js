@@ -105,12 +105,12 @@ const chatSlice = createSlice({
         //     //     }
         //     // })
         //     ///////
-        //     // return [...state.channels.map(item => {
-        //     //     return {
-        //     //         ...item,
-        //     //         isSelected: action.payload
-        //     //     }
-        //     // })]
+        //     return [...state.channels.map(item => {
+        //         return {
+        //             ...item,
+        //             isSelected: action.payload
+        //         }
+        //     })]
         // }
     }
 })

@@ -1,7 +1,4 @@
 @media (max-width: 1440px) {
-    .chat__section--top.chat__section--top {
-        padding: 10px 20px 10px 20px;
-    }
     .form__input--message.form__input--message {
         padding: 20px 90px 20px 90px;
     }
@@ -14,11 +11,15 @@
     .logo.logo {
         height: 20px;
     }
+    .channels.channels {
+        max-height: calc(100vh - 745px);
+    }
 }
+
 
 @media (max-width: 992px) {
     .content__section--left.content__section--left {
-        display: none;
+        display: none !important;
     }
     .message.message {
         max-height: calc(100vh - 205px);
@@ -27,7 +28,7 @@
 
 @media (max-width: 768px) {
     .message.message {
-        max-height: calc(100vh - 195px);
+        max-height: calc(100vh - 185px);
     }
     .settings__column--left.settings__column--left {
         position: absolute;
@@ -37,19 +38,23 @@
 
 @media (max-width: 680px) {
     .message.message {
-        max-height: calc(100vh - 195px);
+        max-height: calc(100vh - 165px);
     }
-}
-
-@media (max-width: 592px) {
-    .message.message {
-        max-height: calc(100vh - 195px);
+    .ant-layout-header.ant-layout-header {
+        height: 40px;
+        position: relative;
+    }
+    .ant-layout-header .trigger {
+        position: absolute;
+        padding: 15px 22px 15px 22px;
+        left: 0;
+        top: 0;
     }
 }
 
 @media (max-width: 544px) {
     .message.message {
-        max-height: calc(100vh - 215px);
+        max-height: calc(100vh - 165px);
     }
     .chat__column--name.chat__column--name {
         flex: 0 0 auto;
@@ -67,7 +72,6 @@
         position: absolute;
         top: -5.2%;
         right: 5%;
-        margin: 0;
     }
     .chat__column--notification.chat__column--notification {
         display: none;
@@ -75,14 +79,14 @@
 }
 
 @media (max-width: 500px) {
-    .chat__column--settings {
-        margin: 20px 0 0 0;
+    .chat__column--settings.chat__column--settings {
+        top: -3.2%;
     }
     .chat__column--notification.chat__column--notification {
         margin: 20px 5px 0 5px;
     }
     .message.message {
-        max-height: calc(100vh - 245px);
+        max-height: calc(100vh - 165px);
     }
     .account-card__row,
     .account-card__header {
@@ -121,13 +125,19 @@
 
 @media (min-width: 482px) and (max-width: 499px) {
     .message.message {
-        max-height: calc(100vh - 265px);
+        max-height: calc(100vh - 185px);
     }
     .chat__column--form {
         margin: 20px 0 0 0;
     }
     .chat__column--user.chat__column--user {
         margin: 0 0 0 20px;
+    }
+}
+
+@media (min-width: 376px) and (max-width: 405px) {
+    .message.message {
+        max-height: calc(100vh - 195px);
     }
 }
 
@@ -144,11 +154,17 @@
     .ant-result-extra.ant-result-extra {
         margin: 10px 0 0 0;
     }
+    .message.message {
+        max-height: calc(100vh - 195px);
+    }
+    .chat__column--settings.chat__column--settings {
+        top: -3.2%;
+    }
 }
 
 @media (max-width: 320px) {
     .message.message {
-        max-height: calc(100vh - 235px);
+        max-height: calc(100vh - 200px);
     }
     .chat__column--form {
         margin: 10px 0 0 0;
@@ -166,8 +182,21 @@
 }
 
 @media (orientation: landscape) and (max-height: 768px) {
+    .ant-layout-header.ant-layout-header {
+        height: 40px;
+        position: relative;
+    }
+    .ant-layout-header .trigger {
+        position: absolute;
+        padding: 15px 22px 15px 22px;
+        left: 0;
+        top: 0;
+    }
+    .message.message {
+        max-height: calc(100vh - 165px);
+    }
     .channels,
     .friends {
-        min-height: calc(100vh - 500px);
+        min-height: calc(100vh - 505px);
     }
 }

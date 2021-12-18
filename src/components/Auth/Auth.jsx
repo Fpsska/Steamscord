@@ -69,7 +69,7 @@ const Authorisation = () => {
         </a>
       </Form.Item>
 
-      <Form.Item>
+      <Form.Item style={{ margin: "0" }}>
         <Button
           type="primary"
           htmlType="submit"
