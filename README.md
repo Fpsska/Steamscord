@@ -1,4 +1,6 @@
 # Steamscord 🤖
+HEROKU:
+- [steamscord](https://steamscord.herokuapp.com/)
 
 GH-PAGES:
 - [steamscord](https://fpsska.github.io/Steamscord/)
