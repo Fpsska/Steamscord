@@ -1,10 +1,13 @@
 const express = require("express");
+const path = require('path');
 const axios = require('axios');
 
 const PORT = process.env.PORT || 3001
 
 const app = express();
 
+//  Serve the static files from the React app
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
