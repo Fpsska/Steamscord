@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 3001
 const app = express();
 
 //  Serve the static files from the React app
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '../../../build')));
 
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
