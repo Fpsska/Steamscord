@@ -3,7 +3,7 @@ import authReducer from "./authSlice"
 import chatReducer from "./chatSlice"
 import { steamAPI } from '../api/steamAPI';
 
-export const store = configureStore({
+export default configureStore({
   reducer: {
     authReducer: authReducer,
     chatReducer: chatReducer,
