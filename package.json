@@ -49,5 +49,6 @@
   },
   "engines": {
     "node": "16.x"
-  }
+  },
+  "proxy": "https://steamscord.herokuapp.com/"
 }
