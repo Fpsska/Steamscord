@@ -97,9 +97,13 @@ const GeneralLayout = () => {
   const { data = [], isLoading, error } = useGetProfileInfoQuery();
   // /.API
 
-  // if (error === undefined) {
-  //   switchInputStatus(true);
-  // }
+  if (useGetProfileInfoQuery().status === "fulfilled") {
+    dispatch(switchInputStatus(true));
+    console.log("isInputActive:", isInputActive);
+  } else {
+    console.log("isInputActive:", isInputActive);
+  }
+  console.log("status:", useGetProfileInfoQuery().status);
 
   const navigate = useNavigate();
 

@@ -1,6 +1,7 @@
 import React from "react";
 import { message } from "antd";
 import { SmileOutlined } from "@ant-design/icons";
+import { useSelector } from "react-redux";
 import SvgTemplate from "../Common/SvgTemplate";
 
 const ChatForm = () => {
@@ -8,7 +9,7 @@ const ChatForm = () => {
     message.error("Function temporarily unavailable");
   };
 
-  const { isInputActive } = (state) => state.chatReducer;
+  const { isInputActive } = useSelector((state) => state.chatReducer);
 
   return (
     <form className="form form--message" action="#">
