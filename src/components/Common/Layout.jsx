@@ -21,6 +21,7 @@ import { switchAuthStatus } from "../../app/store/authSlice";
 import {
   switchSettingsStatus,
   switchFetchingStatus,
+  switchInputStatus,
 } from "../../app/store/chatSlice";
 import SvgTemplate from "../Common/SvgTemplate";
 import ChannelList from "../Channel/ChannelList";
@@ -43,7 +44,7 @@ const GeneralLayout = () => {
   };
 
   const { userInformation } = useSelector((state) => state.authReducer);
-  const { channels, settingsIsOpen } = useSelector(
+  const { channels, settingsIsOpen, isFetching, isInputActive } = useSelector(
     (state) => state.chatReducer
   );
 
@@ -93,6 +94,13 @@ const GeneralLayout = () => {
 
   const { data = [], isLoading, error } = useGetProfileInfoQuery();
   // /.API
+
+  console.log("error:", error);
+
+  if (error === undefined) {
+    switchInputStatus(true);
+    console.log("isInputActive:", isInputActive);
+  }
 
   const openMainSettings = () => {
     dispatch(switchSettingsStatus(true));
@@ -239,7 +247,7 @@ const GeneralLayout = () => {
                       <ChatHeader />
                     </Row>
                     <Row className="chat__section chat__section--main">
-                      <Outlet data={data} isLoading={isLoading} error={error} />
+                      <Outlet />
                     </Row>
                     <Row className="chat__section chat__section--bottom">
                       <ChatForm />

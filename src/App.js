@@ -21,8 +21,8 @@ function App() {
       {AuthStatus ? <>
         <Routes>
           <Route path="/Steamscord" element={<GeneralLayout />}>
-            <Route index element={<ChatPageFirst />} />
-            <Route path="/Steamscord/LocalElysium" element={<ChatPageSecond />} />
+            <Route path="NikitosXClub" element={<ChatPageFirst />} />
+            <Route path="LocalElysium" element={<ChatPageSecond />} />
             <Route path="*" element={<NoFoundPage />} />
           </Route>
         </Routes>

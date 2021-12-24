@@ -4,7 +4,7 @@ import { StarOutlined } from "@ant-design/icons";
 import SvgTemplate from "../Common/SvgTemplate";
 import "./Chat.scss";
 
-const ChatHeader = ({text}) => {
+const ChatHeader = () => {
   const { Search } = Input;
 
   const errorNotification = () => {
@@ -14,7 +14,7 @@ const ChatHeader = ({text}) => {
   return (
     <>
       <div className="chat__column chat__column--name">
-        <span className="chat__name">{text}</span>
+        <span className="chat__name">untitled</span>
         <button className="chat__button">
           <span className="chat__icon">
             <StarOutlined />

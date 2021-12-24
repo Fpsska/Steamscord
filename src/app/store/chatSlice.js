@@ -6,75 +6,63 @@ const chatSlice = createSlice({
         channels: [
             {
                 id: 1,
-                text: "# NikitosXClub",
-                link: "/Steamscord",
-                isSelected: false
+                name: "# NikitosXClub",
+                link: "NikitosXClub",
             },
             {
                 id: 2,
-                text: "# LocalElysium",
-                link: "/Steamscord/LocalElysium",
-                isSelected: false
+                name: "# LocalElysium",
+                link: "LocalElysium",
             },
             {
                 id: 3,
-                text: "# general 3",
-                link: "/Steamscord/test",
-                isSelected: false
+                name: "# general 3",
+                link: "test",
             },
             {
                 id: 4,
-                text: "# general 4",
-                link: "/Steamscord/test",
-                isSelected: false
+                name: "# general 4",
+                link: "test",
             },
             {
                 id: 5,
-                text: "# general 5",
-                link: "/Steamscord/test",
-                isSelected: false
+                name: "# general 5",
+                link: "test",
             },
             {
                 id: 6,
-                text: "# general 6",
-                link: "/Steamscord/test",
-                isSelected: false
+                name: "# general 6",
+                link: "test",
             },
             {
                 id: 7,
-                text: "# general 7",
-                link: "/Steamscord/test",
-                isSelected: false
+                name: "# general 7",
+                link: "test",
             },
             {
                 id: 8,
-                text: "# general 8",
-                link: "/Steamscord/test",
-                isSelected: false
+                name: "# general 8",
+                link: "test",
             },
             {
                 id: 9,
-                text: "# general 9",
-                link: "/Steamscord/test",
-                isSelected: false
+                name: "# general 9",
+                link: "test",
             },
             {
                 id: 10,
-                text: "# general 10",
-                link: "/Steamscord/test",
-                isSelected: false
+                name: "# general 10",
+                link: "test",
             },
             {
                 id: 11,
-                text: "# general 11",
-                link: "/Steamscord/test",
-                isSelected: false
+                name: "# general 11",
+                link: "test",
             },
             {
                 id: 12,
-                text: "# general 12",
-                link: "/Steamscord/test",
-                isSelected: false
+                name: "# general 12",
+                link: "test",
             }
         ],
         gameActivity: [
@@ -89,6 +77,7 @@ const chatSlice = createSlice({
         ],
         settingsIsOpen: false,
         isFetching: true,
+        isInputActive: false
     },
     reducers: {
         switchSettingsStatus(state, action) {
@@ -97,24 +86,12 @@ const chatSlice = createSlice({
         switchFetchingStatus(state, action) {
             state.isFetching = action.payload
         },
-        // switchSelectedStatus(state, action) {
-        //     // state.channels.map(item => {
-        //     //     return {
-        //     //         ...item,
-        //     //         isSelected: action.payload
-        //     //     }
-        //     // })
-        //     ///////
-        //     return [...state.channels.map(item => {
-        //         return {
-        //             ...item,
-        //             isSelected: action.payload
-        //         }
-        //     })]
-        // }
+        switchInputStatus(state, action) {
+            state.isInputActive = action.payload
+        }
     }
 })
 
-export const { switchSettingsStatus, switchFetchingStatus } = chatSlice.actions;
+export const { switchSettingsStatus, switchFetchingStatus, switchInputStatus } = chatSlice.actions;
 
 export default chatSlice.reducer;
