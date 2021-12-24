@@ -77,7 +77,8 @@ const chatSlice = createSlice({
         ],
         settingsIsOpen: false,
         isFetching: true,
-        isInputActive: false
+        isInputActive: false,
+        isHomePage: false
     },
     reducers: {
         switchSettingsStatus(state, action) {
@@ -88,10 +89,13 @@ const chatSlice = createSlice({
         },
         switchInputStatus(state, action) {
             state.isInputActive = action.payload
+        },
+        switchHomePageStatus(state, action) {
+            state.isHomePage = action.payload
         }
     }
 })
 
-export const { switchSettingsStatus, switchFetchingStatus, switchInputStatus } = chatSlice.actions;
+export const { switchSettingsStatus, switchFetchingStatus, switchInputStatus, switchHomePageStatus } = chatSlice.actions;
 
 export default chatSlice.reducer;

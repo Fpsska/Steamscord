@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Outlet } from "react-router";
+import { Outlet, useNavigate } from "react-router";
 
 import { Layout, Menu, Row, Col, Button, Input, message } from "antd";
 import {
@@ -22,6 +22,7 @@ import {
   switchSettingsStatus,
   switchFetchingStatus,
   switchInputStatus,
+  switchHomePageStatus,
 } from "../../app/store/chatSlice";
 import SvgTemplate from "../Common/SvgTemplate";
 import ChannelList from "../Channel/ChannelList";
@@ -29,6 +30,7 @@ import FriendList from "../Friend/FriendList";
 import ChatHeader from "../Chat/ChatHeader";
 import ChatForm from "../Chat/ChatForm";
 import useGetProfileInfoQuery from "../../app/api/steamAPI";
+import HomePage from "../Pages/HomePage/HomePage";
 
 import "antd/dist/antd.css";
 
@@ -44,7 +46,7 @@ const GeneralLayout = () => {
   };
 
   const { userInformation } = useSelector((state) => state.authReducer);
-  const { channels, settingsIsOpen, isFetching, isInputActive } = useSelector(
+  const { channels, settingsIsOpen, isHomePage, isInputActive } = useSelector(
     (state) => state.chatReducer
   );
 
@@ -95,15 +97,15 @@ const GeneralLayout = () => {
   const { data = [], isLoading, error } = useGetProfileInfoQuery();
   // /.API
 
-  console.log("error:", error);
+  // if (error === undefined) {
+  //   switchInputStatus(true);
+  // }
 
-  if (error === undefined) {
-    switchInputStatus(true);
-    console.log("isInputActive:", isInputActive);
-  }
+  const navigate = useNavigate();
 
   const openMainSettings = () => {
-    dispatch(switchSettingsStatus(true));
+    dispatch(switchHomePageStatus(true));
+    navigate("/Steamscord", { replace: true });
   };
 
   return (
@@ -236,23 +238,29 @@ const GeneralLayout = () => {
                 className="content__section content__section--main"
               >
                 <Row className="chat">
-                  <Col
-                    style={{
-                      width: "100%",
-                      display: "flex",
-                      flexDirection: "column",
-                    }}
-                  >
-                    <Row className="chat__section chat__section--top">
-                      <ChatHeader />
-                    </Row>
-                    <Row className="chat__section chat__section--main">
-                      <Outlet />
-                    </Row>
-                    <Row className="chat__section chat__section--bottom">
-                      <ChatForm />
-                    </Row>
-                  </Col>
+                  {isHomePage ? (
+                    <HomePage />
+                  ) : (
+                    <>
+                      <Col
+                        style={{
+                          width: "100%",
+                          display: "flex",
+                          flexDirection: "column",
+                        }}
+                      >
+                        <Row className="chat__section chat__section--top">
+                          <ChatHeader />
+                        </Row>
+                        <Row className="chat__section chat__section--main">
+                          <Outlet />
+                        </Row>
+                        <Row className="chat__section chat__section--bottom">
+                          <ChatForm />
+                        </Row>
+                      </Col>
+                    </>
+                  )}
                 </Row>
               </Col>
               {/* /. COL MIDDLE */}

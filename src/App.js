@@ -6,6 +6,7 @@ import GeneralLayout from './components/Common/Layout';
 import ChatPageFirst from "./components/Pages/ChatPages/ChatPageFirst"
 import ChatPageSecond from './components/Pages/ChatPages/ChatPageSecond';
 import NoFoundPage from './components/Pages/NoFoundPage/NoFoundPage';
+import HomePage from './components/Pages/HomePage/HomePage';
 import './App.scss';
 import "./assets/scss/reset.scss"
 import "./assets/scss/media.scss"
@@ -21,6 +22,7 @@ function App() {
       {AuthStatus ? <>
         <Routes>
           <Route path="/Steamscord" element={<GeneralLayout />}>
+            <Route index element={<HomePage />} />
             <Route path="NikitosXClub" element={<ChatPageFirst />} />
             <Route path="LocalElysium" element={<ChatPageSecond />} />
             <Route path="*" element={<NoFoundPage />} />

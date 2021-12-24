@@ -1,10 +1,22 @@
 import React from "react";
+import { switchHomePageStatus } from "../../app/store/chatSlice";
 import { NavLink } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 const ChannelItem = ({ name, link }) => {
+  const dispatch = useDispatch();
+
+  const resetHomePageStatus = () => {
+    dispatch(switchHomePageStatus(false));
+  };
+
   return (
     <li className="channels__item">
-      <NavLink className="channels__link" to={link}>
+      <NavLink
+        className="channels__link"
+        to={link}
+        onClick={resetHomePageStatus}
+      >
         {name}
       </NavLink>
     </li>
