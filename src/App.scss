@@ -183,7 +183,10 @@ button {
         opacity: 0.7;
         &:hover {
             opacity: 1;
-            transition: 0.25s linear;
+            transition: 0.20s all linear;
+        }
+        &:active {
+            transform: scale(1.2);
         }
     }
 }

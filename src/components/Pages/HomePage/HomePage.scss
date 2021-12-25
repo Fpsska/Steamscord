@@ -1,6 +1,10 @@
 .home {
     padding: 20px 40px;
     background-color: rgba(55, 56, 56, 0.75);
+    height: 100%;
+    &__wrapper {
+        max-height: calc(100vh - 300px);
+    }
     &__list {
         margin: 0 0 20px 0;
     }

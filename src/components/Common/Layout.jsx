@@ -31,7 +31,6 @@ import ChatHeader from "../Chat/ChatHeader";
 import ChatForm from "../Chat/ChatForm";
 import useGetProfileInfoQuery from "../../app/api/steamAPI";
 import HomePage from "../Pages/HomePage/HomePage";
-
 import "antd/dist/antd.css";
 
 const GeneralLayout = () => {
@@ -46,11 +45,12 @@ const GeneralLayout = () => {
   };
 
   const { userInformation } = useSelector((state) => state.authReducer);
-  const { channels, settingsIsOpen, isHomePage, isInputActive } = useSelector(
+  const { channels, settingsIsOpen, isHomePage } = useSelector(
     (state) => state.chatReducer
   );
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isButtonLoading, setLoadingStatus] = useState(false);
@@ -99,15 +99,9 @@ const GeneralLayout = () => {
 
   if (useGetProfileInfoQuery().status === "fulfilled") {
     dispatch(switchInputStatus(true));
-    console.log("isInputActive:", isInputActive);
-  } else {
-    console.log("isInputActive:", isInputActive);
   }
-  console.log("status:", useGetProfileInfoQuery().status);
 
-  const navigate = useNavigate();
-
-  const openMainSettings = () => {
+  const openHomePage = () => {
     dispatch(switchHomePageStatus(true));
     navigate("/Steamscord", { replace: true });
   };
@@ -180,7 +174,7 @@ const GeneralLayout = () => {
                       </h2>
                       <button
                         className="content__button content__button--settings"
-                        onClick={openMainSettings}
+                        onClick={openHomePage}
                       >
                         <span className="content__icon">
                           <SvgTemplate id="settings" />
@@ -241,10 +235,12 @@ const GeneralLayout = () => {
                 xxl={17}
                 className="content__section content__section--main"
               >
-                <Row className="chat">
-                  {isHomePage ? (
+                {isHomePage ? (
+                  <Row style={{ height: "100%" }}>
                     <HomePage />
-                  ) : (
+                  </Row>
+                ) : (
+                  <Row className="chat">
                     <>
                       <Col
                         style={{
@@ -264,8 +260,8 @@ const GeneralLayout = () => {
                         </Row>
                       </Col>
                     </>
-                  )}
-                </Row>
+                  </Row>
+                )}
               </Col>
               {/* /. COL MIDDLE */}
               <Col

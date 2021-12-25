@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Spin, Button, Empty } from "antd";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { switchHomePageStatus } from "../../../app/store/chatSlice";
+import { useDispatch } from "react-redux";
 
 const ChatPageSecond = () => {
   const { isFetching } = useSelector((state) => state.chatReducer);
@@ -9,6 +11,7 @@ const ChatPageSecond = () => {
   const [contentVisible, setContentVisibleStatus] = useState(false);
   const [isLoading, setLoadingStatus] = useState(false);
 
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const acceptAction = () => {
@@ -19,7 +22,10 @@ const ChatPageSecond = () => {
     }, 3000);
   };
 
-  const goBack = () => navigate(-1);
+  const goBack = () => {
+    dispatch(switchHomePageStatus(true));
+    navigate("/Steamscord", { replace: true });
+  };
 
   return (
     <>
@@ -47,7 +53,7 @@ const ChatPageSecond = () => {
                   type="primary"
                   onClick={goBack}
                 >
-                  Back
+                  Go homepage
                 </Button>
                 <Button
                   className="warning__button warning__button--accept"

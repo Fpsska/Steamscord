@@ -78,7 +78,7 @@ const chatSlice = createSlice({
         settingsIsOpen: false,
         isFetching: true,
         isInputActive: false,
-        isHomePage: false
+        isHomePage: true
     },
     reducers: {
         switchSettingsStatus(state, action) {
