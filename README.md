@@ -1,8 +1,10 @@
-# Steamscord 🤖
+# Steamscord 🤖 
 GH-PAGES:
 - [steamscord](https://fpsska.github.io/Steamscord/)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+
+_inspired by_ [Discord](https://discord.com/) & [Steam](https://store.steampowered.com/about/)
 
 ## Available Scripts
 
