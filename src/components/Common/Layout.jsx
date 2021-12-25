@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Outlet, useNavigate } from "react-router";
 
-import { Layout, Menu, Row, Col, Button, Input, message } from "antd";
+import { Layout, Menu, Row, Col, Button, Form, Input, message } from "antd";
 import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
@@ -29,8 +29,9 @@ import ChannelList from "../Channel/ChannelList";
 import FriendList from "../Friend/FriendList";
 import ChatHeader from "../Chat/ChatHeader";
 import ChatForm from "../Chat/ChatForm";
-import useGetProfileInfoQuery from "../../app/api/steamAPI";
 import HomePage from "../Pages/HomePage/HomePage";
+import SettingsPage from "../Pages/SettingsPage/SettingsPage";
+import useGetProfileInfoQuery from "../../app/api/steamAPI";
 import "antd/dist/antd.css";
 
 const GeneralLayout = () => {
@@ -82,6 +83,10 @@ const GeneralLayout = () => {
     setIsModalVisible(true);
   };
 
+  const inputMessageHandle = (event) => {
+    console.log(event.target.value);
+  };
+
   const sendMessage = () => {
     setLoadingStatus(true);
     setTimeout(() => {
@@ -91,6 +96,7 @@ const GeneralLayout = () => {
     setTimeout(() => {
       message.success("Message sent successfully!");
     }, 3000);
+    inputMessageHandle();
   };
   // /.MODAL
 
@@ -104,6 +110,10 @@ const GeneralLayout = () => {
   const openHomePage = () => {
     dispatch(switchHomePageStatus(true));
     navigate("/Steamscord", { replace: true });
+  };
+
+  const openProfileSettings = () => {
+    dispatch(switchSettingsStatus(true));
   };
 
   return (
@@ -120,8 +130,13 @@ const GeneralLayout = () => {
       >
         <div className="logo" />
         <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
-          <Menu.Item key="1" icon={<UserOutlined />} style={{ marginTop: "0" }}>
-            {userInformation.username}
+          <Menu.Item
+            key="1"
+            icon={<UserOutlined />}
+            style={{ marginTop: "0" }}
+            onClick={openProfileSettings}
+          >
+            settings
           </Menu.Item>
           <Menu.Item key="2" icon={<VideoCameraOutlined />}>
             meeting
@@ -239,6 +254,8 @@ const GeneralLayout = () => {
                   <Row style={{ height: "100%" }}>
                     <HomePage />
                   </Row>
+                ) : settingsIsOpen ? (
+                  <SettingsPage />
                 ) : (
                   <Row className="chat">
                     <>
@@ -263,6 +280,7 @@ const GeneralLayout = () => {
                   </Row>
                 )}
               </Col>
+              {/* settingsIsOpen <SettingsPage/>  */}
               {/* /. COL MIDDLE */}
               <Col
                 xs={0}
@@ -334,7 +352,9 @@ const GeneralLayout = () => {
                           </Button>,
                         ]}
                       >
-                        <TextArea rows={4} />
+                        <Form onSubmit={inputMessageHandle}>
+                          <TextArea rows={4} />
+                        </Form>
                       </Modal>
                     </>
                     <ul className="profile__information information">

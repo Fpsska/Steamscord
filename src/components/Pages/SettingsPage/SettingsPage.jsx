@@ -1,11 +1,10 @@
 import React from "react";
-import "./Settings.scss";
-import { Row, Col } from "antd";
-import { CloseCircleOutlined } from "@ant-design/icons";
-import { Card } from "antd";
-import { Button, notification } from "antd";
 import { useDispatch } from "react-redux";
-import { switchSettingsStatus } from "../../app/store/ProfileSlice";
+import { Row, Col, Card } from "antd";
+import { CloseCircleOutlined } from "@ant-design/icons";
+import { Button, notification } from "antd";
+import { switchSettingsStatus } from "../../../app/store/chatSlice";
+import "./Settings.scss";
 
 const SettingsPage = () => {
   const dispatch = useDispatch();
@@ -24,55 +23,7 @@ const SettingsPage = () => {
 
   return (
     <Row className="settings" style={{ width: "100%", height: "100%" }}>
-      <Col sm={0} md={0} lg={6} xxl={8} className="settings__column settings__column--left">
-        <nav className="settings__nav nav">
-          <ul className="nav__menu">
-            <li className="nav__item">
-              <a className="nav__link nav__link--title" href="#">
-                user settings
-              </a>
-            </li>
-            <li className="nav__item">
-              <a className="nav__link" href="#">
-                My Account
-              </a>
-            </li>
-            <li className="nav__item">
-              <a className="nav__link" href="#">
-                User Profile
-              </a>
-            </li>
-            <li className="nav__item">
-              <a className="nav__link" href="#">
-                Privacy And Safety
-              </a>
-            </li>
-            <li className="nav__item">
-              <a className="nav__link" href="#">
-                Authorized Apps
-              </a>
-            </li>
-            <li className="nav__item">
-              <a className="nav__link" href="#">
-                Connections
-              </a>
-            </li>
-          </ul>
-          <button
-            className="settings__button settings__button--exit"
-            onClick={closeSettingsPage}
-          >
-            Log Out
-          </button>
-        </nav>
-      </Col>
-      <Col
-        sm={24}
-        md={24}
-        lg={18}
-        xxl={16}
-        className="settings__column settings__column--right"
-      >
+      <Col xxl={24} className="settings__column settings__column--right">
         <div className="settings__wrapper account">
           <button className="settings__button settings__button--close">
             <span className="">
@@ -90,7 +41,7 @@ const SettingsPage = () => {
                 style={{
                   maxWidth: "700px",
                   width: "100%",
-                  backgroundColor: "#2f3136",
+                  backgroundColor: "#666",
                   borderRadius: "5px",
                 }}
               >
@@ -100,7 +51,7 @@ const SettingsPage = () => {
                       <img
                         className="account-card__image"
                         src={
-                          require(`../../assets/images/profile-main.png`)
+                          require(`../../../assets/images/profile-main.png`)
                             .default
                         }
                         alt="avatar"

@@ -59,6 +59,10 @@
         height: 40px;
         margin: 0 14px 0 0;
         flex-shrink: 0;
+        transition: all 0.2s linear;
+        &:hover {
+            transform: scale(1.05);
+        }
     }
 }
 
@@ -71,5 +75,3 @@
 .ant-result-image {
     margin: 0 auto;
 }
-
-

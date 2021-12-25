@@ -12,14 +12,14 @@ const HomePage = () => {
           <li className="features__text">
             <span className="features__title">
               Video Backgrounds have arrived.
-            </span>
+            </span>{" "}
             Add a blur or an official Discord preset background to your video
             calls. And, if you have Nitro, upload a custom video background.
           </li>
           <li className="features__text">
             <span className="features__title">
               You can finally upload multiple files at once.
-            </span>
+            </span>{" "}
             I can’t believe it either and I work here.
           </li>
           <li className="features__text">
@@ -30,7 +30,7 @@ const HomePage = () => {
             People who use screen readers will no longer be missing out.
           </li>
           <li className="features__text">
-            <span className="features__title">New video preview toggle.</span>
+            <span className="features__title">New video preview toggle.</span>{" "}
             You can now preview your camera before you go on video. Visit User
             Settings Voice, Video to turn this feature on/off, but leave it on
             if you keep your laundry on that one chair behind you.
@@ -38,7 +38,7 @@ const HomePage = () => {
           <li className="features__text">
             <span className="features__title">
               Add bots directly from bot profiles.
-            </span>
+            </span>{" "}
             Bot developers can now enable an "Add to Server" button on a bot's
             user profile, so people can add it to their own servers way more
             easily.

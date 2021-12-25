@@ -1,5 +1,6 @@
 .friends {
     margin: 0;
+    padding: 2px;
     max-height: calc(100vh - 595px);
     overflow-y: scroll;
     /* полоса прокрутки (скроллбар) */
@@ -28,7 +29,7 @@
         display: none;
     }
     &__activity--online {
-        color: #59BF40 !important;
+        color: #59bf40 !important;
         display: block;
     }
     &__image {
@@ -39,6 +40,11 @@
         border: 1px solid transparent;
         margin: 0 15px 0 0;
         cursor: pointer;
+        transition: all 0.2s linear;
+        transform: scale(1);
+        &:hover {
+            transform: scale(1.05);
+        }
     }
     &__image--online {
         border: 1px solid #5ba32b !important;
@@ -53,4 +59,3 @@
         color: #c6e684 !important;
     }
 }
-

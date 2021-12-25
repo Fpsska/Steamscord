@@ -1,5 +1,4 @@
 .site-card-border-less-wrapper {
-    background-color: #4f545c;
     margin: 20px 0 0 0;
 }
 [data-theme="dark"] .site-card-border-less-wrapper {
@@ -16,8 +15,7 @@
 
 .settings {
     position: relative;
-    height: 100%;
-    background-color: #36393f;
+    background-color: rgba(77, 80, 80, 0.75);
     &__column {
         height: 100%;
     }
@@ -26,24 +24,29 @@
     }
     &__column--right {
         overflow-y: scroll;
-        background-color: #4f545c;
+        background-color: rgba(77, 80, 80, 0.75);
         /* полоса прокрутки (скроллбар) */
         &::-webkit-scrollbar {
             width: 8px;
             background-color: #2f3136;
             border-radius: 10px;
         }
+        &::-webkit-scrollbar-track {
+            background-color: rgba(77, 80, 80, 0.75);
+            border-radius: 10px;
+        }
         /* ползунок скроллбара */
         &::-webkit-scrollbar-thumb {
-            background-color: #18191c;
+            background-color: #36393f;
             border-radius: 10px;
         }
     }
     &__wrapper {
         position: relative;
-        max-width: 700px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         width: 100%;
-        // max-height: calc(100vh - 110px);
         padding: 50px 35px 100px 35px;
     }
     &__nav {
@@ -62,7 +65,6 @@
         background-color: transparent;
         position: fixed;
         z-index: -1;
-        // z-index: 2;
     }
     &__title {
         font-size: 20px;
@@ -83,6 +85,8 @@
         line-height: 20px;
         font-weight: 400;
         color: #b9bbbe;
+        margin: 0 0 20px 0;
+        max-width: 700px;
     }
     &__button--exit {
         background-color: transparent;
@@ -104,7 +108,7 @@
     }
     &__button--edit,
     &__button--add {
-        background-color: #4f545c;
+        background-color: rgba(77, 80, 80, 0.75);
         border-radius: 5px;
         min-width: 60px;
         min-height: 35px;
@@ -137,8 +141,6 @@
         display: flex;
         justify-content: space-between;
     }
-    // &__preview {
-    // }
     &__image {
         object-fit: cover;
         width: 60px;
@@ -179,8 +181,3 @@
         color: #8e9297;
     }
 }
-
-//     border-top: 1px solid rgba($color: #fff, $alpha: 0.2);
-//     border-bottom: 1px solid rgba($color: #fff, $alpha: 0.2);
-//     padding: 40px 0;
-// }
