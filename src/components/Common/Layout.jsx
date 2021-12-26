@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Outlet, useNavigate } from "react-router";
-
 import { Layout, Menu, Row, Col, Button, Form, Input, message } from "antd";
 import {
   MenuUnfoldOutlined,
@@ -46,7 +45,7 @@ const GeneralLayout = () => {
   };
 
   const { userInformation } = useSelector((state) => state.authReducer);
-  const { channels, settingsIsOpen, isHomePage } = useSelector(
+  const { channels, settingsIsOpen, isHomePage, isInputActive } = useSelector(
     (state) => state.chatReducer
   );
 
@@ -114,6 +113,7 @@ const GeneralLayout = () => {
 
   const openProfileSettings = () => {
     dispatch(switchSettingsStatus(true));
+    navigate("/Steamscord/Settings", { replace: true });
   };
 
   return (
@@ -251,9 +251,7 @@ const GeneralLayout = () => {
                 className="content__section content__section--main"
               >
                 {isHomePage ? (
-                  <Row style={{ height: "100%" }}>
-                    <HomePage />
-                  </Row>
+                  <HomePage />
                 ) : settingsIsOpen ? (
                   <SettingsPage />
                 ) : (
@@ -280,7 +278,6 @@ const GeneralLayout = () => {
                   </Row>
                 )}
               </Col>
-              {/* settingsIsOpen <SettingsPage/>  */}
               {/* /. COL MIDDLE */}
               <Col
                 xs={0}
@@ -327,12 +324,14 @@ const GeneralLayout = () => {
                       </li>
                     </ul>
                     <>
-                      <button
+                      <Button
+                        type="primary"
                         className="profile__button"
                         onClick={openMessageModal}
+                        disabled={isInputActive ? "" : true}
                       >
                         Message
-                      </button>
+                      </Button>
                       <Modal
                         visible={isModalVisible}
                         title="Write your message there!"

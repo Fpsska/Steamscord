@@ -1,11 +1,23 @@
 .home {
-    padding: 20px 40px;
+    padding: 20px 20px 20px 40px;
     background-color: rgba(55, 56, 56, 0.75);
     height: 100%;
     &__wrapper {
-        max-height: calc(100vh - 300px);
+        max-height: calc(100vh - 190px);
+        overflow-y: scroll;
+        padding: 0 20px;
+        /* полоса прокрутки (скроллбар) */
+        &::-webkit-scrollbar {
+            width: 6px;
+            background-color: transparent;
+        }
+        /* ползунок скроллбара */
+        &::-webkit-scrollbar-thumb {
+            background-color: #b5b5b5;
+            border-radius: 10px;
+        }
     }
-    &__list {
+    &__section {
         margin: 0 0 20px 0;
     }
     &__date {
@@ -45,9 +57,19 @@
             background-color: #faa81a;
         }
     }
+    &__title--other {
+        color: #ed4245;
+        &::after {
+            content: "";
+            height: 1px;
+            flex: 1;
+            margin: 0 0 0 5px;
+            background-color: #ed4245;
+        }
+    }
 }
 
-.features {
+.list {
     &__text {
         color: #b9bbbe;
         list-style-type: disc;

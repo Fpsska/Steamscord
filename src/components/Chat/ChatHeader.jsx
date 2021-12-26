@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Badge, Input, message } from "antd";
 import { StarOutlined } from "@ant-design/icons";
 import SvgTemplate from "../Common/SvgTemplate";
@@ -10,6 +11,8 @@ const ChatHeader = () => {
   const errorNotification = () => {
     message.error("Function temporarily unavailable");
   };
+
+  const { isInputActive } = useSelector((state) => state.chatReducer);
 
   return (
     <>
@@ -31,7 +34,11 @@ const ChatHeader = () => {
 
       <div className="chat__column chat__column--form">
         <form className="form" action="">
-          <Search placeholder="Search.." style={{ borderRadius: "5px" }} />
+          <Search
+            placeholder="Search.."
+            style={{ borderRadius: "5px" }}
+            disabled={isInputActive ? "" : true}
+          />
         </form>
       </div>
 

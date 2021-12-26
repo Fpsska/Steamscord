@@ -121,7 +121,7 @@
         background-color: transparent;
     }
     &__button--password {
-        margin: 5px 0 30px 0;
+        margin: 20px 0 30px 0;
     }
 }
 
@@ -140,6 +140,10 @@
     &__row {
         display: flex;
         justify-content: space-between;
+    }
+    &__preview {
+        display: flex;
+        align-items: center;
     }
     &__image {
         object-fit: cover;

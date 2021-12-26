@@ -1,5 +1,8 @@
 import React from "react";
-import { switchHomePageStatus, switchSettingsStatus } from "../../app/store/chatSlice";
+import {
+  switchHomePageStatus,
+  switchSettingsStatus,
+} from "../../app/store/chatSlice";
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
@@ -8,7 +11,7 @@ const ChannelItem = ({ name, link }) => {
 
   const resetHomePageStatus = () => {
     dispatch(switchHomePageStatus(false));
-    dispatch(switchSettingsStatus(false))
+    dispatch(switchSettingsStatus(false));
   };
 
   return (

@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useLayoutEffect } from "react";
 import { Result, Empty, Button, Spin } from "antd";
 import CommentItem from "./CommentItem";
 import useGetProfileInfoQuery from "../../app/api/steamAPI";
-import { useLayoutEffect } from "react";
 import "./Comment.scss";
 
 const CommentsList = () => {
@@ -60,7 +59,11 @@ const CommentsList = () => {
               status="500"
               title="500"
               subTitle="Sorry, something went wrong."
-              extra={<Button type="primary">Refresh</Button>}
+              extra={
+                <Button type="primary">
+                  Refresh
+                </Button>
+              }
             />
           )}
         </div>
