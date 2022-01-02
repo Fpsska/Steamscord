@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/Steamscord/static/css/main.1c0a058c.chunk.css",
-    "main.js": "/Steamscord/static/js/main.cbd8de77.chunk.js",
-    "main.js.map": "/Steamscord/static/js/main.cbd8de77.chunk.js.map",
+    "main.css": "/Steamscord/static/css/main.375f54c9.chunk.css",
+    "main.js": "/Steamscord/static/js/main.2242d33e.chunk.js",
+    "main.js.map": "/Steamscord/static/js/main.2242d33e.chunk.js.map",
     "runtime-main.js": "/Steamscord/static/js/runtime-main.afab03cf.js",
     "runtime-main.js.map": "/Steamscord/static/js/runtime-main.afab03cf.js.map",
     "static/css/2.a95be28f.chunk.css": "/Steamscord/static/css/2.a95be28f.chunk.css",
-    "static/js/2.6abcd152.chunk.js": "/Steamscord/static/js/2.6abcd152.chunk.js",
-    "static/js/2.6abcd152.chunk.js.map": "/Steamscord/static/js/2.6abcd152.chunk.js.map",
+    "static/js/2.42868aef.chunk.js": "/Steamscord/static/js/2.42868aef.chunk.js",
+    "static/js/2.42868aef.chunk.js.map": "/Steamscord/static/js/2.42868aef.chunk.js.map",
     "index.html": "/Steamscord/index.html",
     "static/css/2.a95be28f.chunk.css.map": "/Steamscord/static/css/2.a95be28f.chunk.css.map",
-    "static/css/main.1c0a058c.chunk.css.map": "/Steamscord/static/css/main.1c0a058c.chunk.css.map",
-    "static/js/2.6abcd152.chunk.js.LICENSE.txt": "/Steamscord/static/js/2.6abcd152.chunk.js.LICENSE.txt",
+    "static/css/main.375f54c9.chunk.css.map": "/Steamscord/static/css/main.375f54c9.chunk.css.map",
+    "static/js/2.42868aef.chunk.js.LICENSE.txt": "/Steamscord/static/js/2.42868aef.chunk.js.LICENSE.txt",
     "static/media/warning.png": "/Steamscord/static/media/warning.f6629081.png"
   },
   "entrypoints": [
     "static/js/runtime-main.afab03cf.js",
     "static/css/2.a95be28f.chunk.css",
-    "static/js/2.6abcd152.chunk.js",
-    "static/css/main.1c0a058c.chunk.css",
-    "static/js/main.cbd8de77.chunk.js"
+    "static/js/2.42868aef.chunk.js",
+    "static/css/main.375f54c9.chunk.css",
+    "static/js/main.2242d33e.chunk.js"
   ]
 }
