@@ -12,7 +12,22 @@
         height: 20px;
     }
     .channels.channels {
-        max-height: calc(100vh - 745px);
+        max-height: 30vh;
+    }
+}
+
+@media (max-width: 1366px) {
+    .message.message {
+        max-height: 81vh;
+    }
+}
+
+@media (max-width: 1024px) {
+    .friends.friends {
+        max-height: 30vh;
+    }
+    .message.message {
+        max-height: 86vh;
     }
 }
 
@@ -21,17 +36,20 @@
         display: none !important;
     }
     .message.message {
-        max-height: calc(100vh - 205px);
+        max-height: 81vh;
     }
 }
 
 @media (max-width: 768px) {
     .message.message {
-        max-height: calc(100vh - 185px);
+        max-height: 82vh;
     }
     .settings__column--left.settings__column--left {
         position: absolute;
         left: -100%;
+    }
+    .home {
+        padding: 20px 10px 20px 20px;
     }
 }
 
@@ -39,26 +57,17 @@
     .ant-layout-header {
         display: none;
     }
-
     .message.message {
-        max-height: calc(100vh - 165px);
-    }
-    .ant-layout-header.ant-layout-header {
-        height: 40px;
-        position: relative;
-    }
-    .ant-layout-header .trigger {
-        position: absolute;
-        padding: 0;
-        margin: 20px 0 0 24px;
-        left: 0;
-        top: 0;
+        max-height: 82vh;
     }
 }
 
 @media (max-width: 544px) {
     .message.message {
-        max-height: calc(100vh - 165px);
+        max-height: 82vh;
+    }
+    .home__wrapper {
+        max-height: 91vh;
     }
     .chat__column--name.chat__column--name {
         flex: 0 0 auto;
@@ -83,9 +92,6 @@
     }
     .chat__column--notification.chat__column--notification {
         margin: 20px 5px 0 5px;
-    }
-    .message.message {
-        max-height: calc(100vh - 165px);
     }
     .account-card__row,
     .account-card__header {
@@ -124,7 +130,7 @@
 
 @media (min-width: 482px) and (max-width: 499px) {
     .message.message {
-        max-height: calc(100vh - 185px);
+        max-height: 73vh;
     }
     .chat__column--form {
         margin: 20px 0 0 0;
@@ -132,11 +138,29 @@
     .chat__column--user.chat__column--user {
         margin: 0 0 0 20px;
     }
+    .home__wrapper {
+        max-height: 91vh;
+    }
+}
+
+@media (min-width: 411px) and (max-width: 414px) {
+    .home__wrapper {
+        max-height: 91vh;
+    }
+    .chat__column--form {
+        margin: 10px 0 0 0;
+    }
 }
 
 @media (min-width: 376px) and (max-width: 405px) {
     .message.message {
-        max-height: calc(100vh - 195px);
+        max-height: 68vh;
+    }
+    .home {
+        padding: 20px 10px 20px 20px;
+    }
+    .home__wrapper {
+        max-height: 91vh;
     }
 }
 
@@ -153,14 +177,17 @@
     .ant-result-extra.ant-result-extra {
         margin: 10px 0 0 0;
     }
+    .home__wrapper {
+        max-height: 87vh;
+    }
     .message.message {
-        max-height: calc(100vh - 195px);
+        max-height: 75vh;
     }
 }
 
 @media (max-width: 320px) {
     .message.message {
-        max-height: calc(100vh - 200px);
+        max-height: 72vh;
     }
     .chat__column--form {
         margin: 10px 0 0 0;
@@ -177,28 +204,32 @@
     }
 }
 
-@media (orientation: landscape) and (max-height: 768px) {
-    .ant-layout-header.ant-layout-header {
-        height: 40px;
-        position: relative;
-    }
-    .ant-layout-header .trigger {
-        position: absolute;
-        margin: 12px 0 0 16px;
-        left: 0;
-        top: 0;
+@media (orientation: landscape) and (max-height: 767px) {
+    .content__title--main {
+        font-size: 18px;
     }
     .message.message {
-        max-height: calc(100vh - 165px);
+        max-height: 70vh;
     }
-    .channels,
-    .friends {
-        min-height: calc(100vh - 505px);
+    .home__wrapper {
+        max-height: 85vh;
     }
 }
 
 @media (orientation: landscape) and (max-height: 475px) {
     .ant-layout-header {
         display: none;
+    }
+    .message.message {
+        max-height: 69vh;
+    }
+}
+
+@media (orientation: landscape) and (max-height: 375px) {
+    .ant-layout-header {
+        display: none;
+    }
+    .message.message {
+        max-height: 62vh;
     }
 }

@@ -32,6 +32,7 @@ import HomePage from "../Pages/HomePage/HomePage";
 import SettingsPage from "../Pages/SettingsPage/SettingsPage";
 import useGetProfileInfoQuery from "../../app/api/steamAPI";
 import "antd/dist/antd.css";
+import { useEffect } from "react";
 
 const GeneralLayout = () => {
   const { Header, Sider, Content } = Layout;
@@ -100,11 +101,17 @@ const GeneralLayout = () => {
   // /.MODAL
 
   const { data = [], isLoading, error } = useGetProfileInfoQuery();
-  // /.API
 
+  const DefineInputStatus = () => {};
   if (useGetProfileInfoQuery().status === "fulfilled") {
     dispatch(switchInputStatus(true));
   }
+
+  useEffect(() => {
+    DefineInputStatus();
+  }, []);
+
+  // /.API
 
   const openHomePage = () => {
     dispatch(switchHomePageStatus(true));

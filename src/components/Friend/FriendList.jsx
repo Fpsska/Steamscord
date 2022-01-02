@@ -1,22 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { Skeleton, Space } from "antd";
 import { useSelector } from "react-redux";
 import FriendItem from "./FriendItem";
 import "./Friend.scss";
+import { useMemo } from "react";
 
 const FriendList = ({ data, isLoading, error }) => {
   const { gameActivity } = useSelector((state) => state.chatReducer);
 
-  const getGameActivity = Math.floor(Math.random() * gameActivity.length);
-
   const friendList = data.map((item) => {
+    const getRandomGameActivity = Math.floor(
+      Math.random() * gameActivity.length
+    );
+
     return (
       <FriendItem
         key={item.steamid}
         name={item.personaname}
         image={item.avatarmedium}
         status={Boolean(Math.round(Math.random()))}
-        activity={(getGameActivity, gameActivity[getGameActivity])}
+        activity={(getRandomGameActivity, gameActivity[getRandomGameActivity])}
       />
     );
   });
