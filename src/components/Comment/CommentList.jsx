@@ -1,15 +1,12 @@
-import React, { useState, useLayoutEffect } from "react";
+import React, { useState, useLayoutEffect, useMemo } from "react";
 import { Result, Empty, Button, Spin } from "antd";
 import CommentItem from "./CommentItem";
-import useGetProfileInfoQuery from "../../app/api/steamAPI";
+import { withRTK } from "../../hoc/withRTK";
 import "./Comment.scss";
-import { useMemo } from "react";
 
-const CommentsList = () => {
-  const { data = [], isLoading, error } = useGetProfileInfoQuery();
-
+const CommentsList = ({ data, isLoading, error }) => {
   const [isMobileErrorTemplate, setMobileErrorTemplate] = useState(false);
-
+  //
   const defineErrorTemplate = () => {
     if (window.innerWidth < 768 || window.innerHeight < 475) {
       setMobileErrorTemplate(true);
@@ -17,7 +14,7 @@ const CommentsList = () => {
       setMobileErrorTemplate(false);
     }
   };
-
+  //
   useLayoutEffect(() => {
     window.addEventListener("resize", defineErrorTemplate);
     window.addEventListener("load", defineErrorTemplate);
@@ -75,4 +72,4 @@ const CommentsList = () => {
   );
 };
 
-export default CommentsList;
+export default withRTK(CommentsList);

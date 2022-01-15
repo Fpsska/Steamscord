@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React, { useMemo } from "react";
 import { Skeleton, Space } from "antd";
 import { useSelector } from "react-redux";
 import FriendItem from "./FriendItem";
 import "./Friend.scss";
-import { useMemo } from "react";
 
 const FriendList = ({ data, isLoading, error }) => {
   const { gameActivity } = useSelector((state) => state.chatReducer);

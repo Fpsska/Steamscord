@@ -19,8 +19,6 @@ import { useDispatch } from "react-redux";
 import { switchAuthStatus } from "../../app/store/authSlice";
 import {
   switchSettingsStatus,
-  switchFetchingStatus,
-  switchInputStatus,
   switchHomePageStatus,
 } from "../../app/store/chatSlice";
 import SvgTemplate from "../Common/SvgTemplate";
@@ -30,11 +28,10 @@ import ChatHeader from "../Chat/ChatHeader";
 import ChatForm from "../Chat/ChatForm";
 import HomePage from "../Pages/HomePage/HomePage";
 import SettingsPage from "../Pages/SettingsPage/SettingsPage";
-import useGetProfileInfoQuery from "../../app/api/steamAPI";
+import { withRTK } from "../../hoc/withRTK";
 import "antd/dist/antd.css";
-import { useEffect } from "react";
 
-const GeneralLayout = () => {
+const GeneralLayout = ({ data, isLoading, error }) => {
   const { Header, Sider, Content } = Layout;
 
   const [collapsed, setCollapsedStatus] = useState(true);
@@ -96,19 +93,6 @@ const GeneralLayout = () => {
     inputMessageHandle();
   };
   // /.MODAL
-
-  const { data = [], isLoading, error } = useGetProfileInfoQuery();
-
-  const DefineInputStatus = () => {};
-  if (useGetProfileInfoQuery().status === "fulfilled") {
-    dispatch(switchInputStatus(true));
-  }
-
-  useEffect(() => {
-    DefineInputStatus();
-  }, []);
-
-  // /.API
 
   const openHomePage = () => {
     dispatch(switchHomePageStatus(true));
@@ -400,4 +384,4 @@ const GeneralLayout = () => {
   );
 };
 
-export default GeneralLayout;
+export default withRTK(GeneralLayout);
