@@ -6,14 +6,14 @@ import SvgTemplate from "../Common/SvgTemplate";
 import "./Chat.scss";
 
 const ChatHeader = () => {
+  const { isInputActive, isHomePage } = useSelector(
+    (state) => state.chatReducer
+  );
   const { Search } = Input;
-
+  //
   const errorNotification = () => {
     message.error("Function temporarily unavailable");
   };
-
-  const { isInputActive } = useSelector((state) => state.chatReducer);
-
   return (
     <>
       <div className="chat__column chat__column--name">
@@ -29,7 +29,7 @@ const ChatHeader = () => {
         <span className="chat__icon">
           <SvgTemplate id="user" />
         </span>
-        <span className="chat__users">{Math.round(Math.random() * 3000)}</span>
+        <span className="chat__users">1337</span>
       </div>
 
       <div className="chat__column chat__column--form">
@@ -44,7 +44,7 @@ const ChatHeader = () => {
 
       <div className="chat__column chat__column--notification">
         <button className="chat__button">
-          <Badge count={Math.round(Math.random() * 9)} size="small">
+          <Badge count={9} size="small">
             <span className="chat__icon">
               <SvgTemplate id="notification" />
             </span>

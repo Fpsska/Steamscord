@@ -38,26 +38,23 @@ const GeneralLayout = () => {
   const { Header, Sider, Content } = Layout;
 
   const [collapsed, setCollapsedStatus] = useState(true);
+  const { channels, settingsIsOpen, isHomePage, isInputActive } = useSelector(
+    (state) => state.chatReducer
+  );
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isButtonLoading, setLoadingStatus] = useState(false);
+
+  const { confirm } = Modal;
+  const { TextArea } = Input;
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const AsideToggle = () => {
     if (window.innerWidth >= 768) {
       setCollapsedStatus(!collapsed);
     }
   };
-
-  const { userInformation } = useSelector((state) => state.authReducer);
-  const { channels, settingsIsOpen, isHomePage, isInputActive } = useSelector(
-    (state) => state.chatReducer
-  );
-
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const [isButtonLoading, setLoadingStatus] = useState(false);
-
-  const { confirm } = Modal;
-  const { TextArea } = Input;
 
   const handleExitModal = () => {
     confirm({

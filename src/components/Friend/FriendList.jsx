@@ -8,21 +8,27 @@ import { useMemo } from "react";
 const FriendList = ({ data, isLoading, error }) => {
   const { gameActivity } = useSelector((state) => state.chatReducer);
 
-  const friendList = data.map((item) => {
-    const getRandomGameActivity = Math.floor(
-      Math.random() * gameActivity.length
-    );
+  const friendList = useMemo(
+    () =>
+      data.map((item) => {
+        const getRandomGameActivity = Math.floor(
+          Math.random() * gameActivity.length
+        );
 
-    return (
-      <FriendItem
-        key={item.steamid}
-        name={item.personaname}
-        image={item.avatarmedium}
-        status={Boolean(Math.round(Math.random()))}
-        activity={(getRandomGameActivity, gameActivity[getRandomGameActivity])}
-      />
-    );
-  });
+        return (
+          <FriendItem
+            key={item.steamid}
+            name={item.personaname}
+            image={item.avatarmedium}
+            status={Boolean(Math.round(Math.random()))}
+            activity={
+              (getRandomGameActivity, gameActivity[getRandomGameActivity])
+            }
+          />
+        );
+      }),
+    [data]
+  );
 
   return (
     <>
