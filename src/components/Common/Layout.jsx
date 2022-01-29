@@ -28,10 +28,13 @@ import ChatHeader from "../Chat/ChatHeader";
 import ChatForm from "../Chat/ChatForm";
 import HomePage from "../Pages/HomePage/HomePage";
 import SettingsPage from "../Pages/SettingsPage/SettingsPage";
-import { withRTK } from "../../hoc/withRTK";
 import "antd/dist/antd.css";
 
-const GeneralLayout = ({ data, isLoading, error }) => {
+import { useData } from "../../hook/data";
+
+const GeneralLayout = () => {
+  const { data, error, isLoading } = useData();
+
   const { Header, Sider, Content } = Layout;
 
   const [collapsed, setCollapsedStatus] = useState(true);
@@ -103,7 +106,7 @@ const GeneralLayout = ({ data, isLoading, error }) => {
     dispatch(switchSettingsStatus(true));
     navigate("/Steamscord/Settings", { replace: true });
   };
-
+  //
   return (
     <Layout
       style={{
@@ -256,7 +259,7 @@ const GeneralLayout = ({ data, isLoading, error }) => {
                           <ChatHeader />
                         </Row>
                         <Row className="chat__section chat__section--main">
-                          <Outlet />
+                          <Outlet data={data} />
                         </Row>
                         <Row className="chat__section chat__section--bottom">
                           <ChatForm />
@@ -384,4 +387,4 @@ const GeneralLayout = ({ data, isLoading, error }) => {
   );
 };
 
-export default withRTK(GeneralLayout);
+export default GeneralLayout;

@@ -1,10 +1,13 @@
 import React, { useState, useLayoutEffect, useMemo } from "react";
 import { Result, Empty, Button, Spin } from "antd";
 import CommentItem from "./CommentItem";
-import { withRTK } from "../../hoc/withRTK";
 import "./Comment.scss";
 
-const CommentsList = ({ data, isLoading, error }) => {
+import { useData } from "../../hook/data";
+
+const CommentsList = () => {
+  const { data, error, isLoading } = useData();
+
   const [isMobileErrorTemplate, setMobileErrorTemplate] = useState(false);
   //
   const defineErrorTemplate = () => {
@@ -72,4 +75,4 @@ const CommentsList = ({ data, isLoading, error }) => {
   );
 };
 
-export default withRTK(CommentsList);
+export default CommentsList;
