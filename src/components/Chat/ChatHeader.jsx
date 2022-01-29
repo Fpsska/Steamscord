@@ -5,7 +5,7 @@ import { StarOutlined } from "@ant-design/icons";
 import SvgTemplate from "../Common/SvgTemplate";
 import "./Chat.scss";
 
-const ChatHeader = () => {
+const ChatHeader = ({ enteredSearchValue, setEnteredSearchValue }) => {
   const { isInputActive, isHomePage } = useSelector(
     (state) => state.chatReducer
   );
@@ -39,7 +39,9 @@ const ChatHeader = () => {
           <Search
             placeholder="Search.."
             style={{ borderRadius: "5px" }}
-            disabled={isInputActive ? "" : true}
+            disabled={isInputActive ? "" : ""}
+            value={enteredSearchValue}
+            onChange={(e) => setEnteredSearchValue(e.target.value)}
           />
         </form>
       </div>

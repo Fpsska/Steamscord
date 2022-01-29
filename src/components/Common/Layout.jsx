@@ -29,11 +29,16 @@ import ChatForm from "../Chat/ChatForm";
 import HomePage from "../Pages/HomePage/HomePage";
 import SettingsPage from "../Pages/SettingsPage/SettingsPage";
 import "antd/dist/antd.css";
-
-import { useData } from "../../hook/data";
+import useData from "../../hook/data";
+import useFilter from "../../hook/filter";
 
 const GeneralLayout = () => {
   const { data, error, isLoading } = useData();
+
+  const { enteredSearchValue, setEnteredSearchValue, availableItems } =
+    useFilter(data, "personaname");
+
+  const [filteredItems] = useState(availableItems);
 
   const { Header, Sider, Content } = Layout;
 
@@ -256,10 +261,13 @@ const GeneralLayout = () => {
                         }}
                       >
                         <Row className="chat__section chat__section--top">
-                          <ChatHeader />
+                          <ChatHeader
+                            enteredSearchValue={enteredSearchValue}
+                            setEnteredSearchValue={setEnteredSearchValue}
+                          />
                         </Row>
                         <Row className="chat__section chat__section--main">
-                          <Outlet data={data} />
+                          <Outlet />
                         </Row>
                         <Row className="chat__section chat__section--bottom">
                           <ChatForm />

@@ -6,7 +6,7 @@ import { switchInputStatus } from "../app/store/chatSlice"
 
 
 
-export function useData() {
+const useData = () => {
     const { data = [], isLoading, error } = useGetProfileInfoQuery();
     // const dispatch = useDispatch()
     // const DefineInputStatus = () => {
@@ -24,3 +24,5 @@ export function useData() {
         error
     };
 }
+
+export default useData;

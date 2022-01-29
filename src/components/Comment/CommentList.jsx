@@ -2,11 +2,13 @@ import React, { useState, useLayoutEffect, useMemo } from "react";
 import { Result, Empty, Button, Spin } from "antd";
 import CommentItem from "./CommentItem";
 import "./Comment.scss";
-
-import { useData } from "../../hook/data";
+import useData from "../../hook/data";
+import useFilter from "../../hook/filter";
 
 const CommentsList = () => {
-  const { data, error, isLoading } = useData();
+  const { error, isLoading } = useData();
+  const { availableItems } = useFilter();
+  console.log("availableItems:", availableItems);
 
   const [isMobileErrorTemplate, setMobileErrorTemplate] = useState(false);
   //
@@ -29,7 +31,7 @@ const CommentsList = () => {
 
   const commentList = useMemo(
     () =>
-      data.map((item) => {
+      availableItems.map((item) => {
         return (
           <CommentItem
             key={item.steamid}
@@ -40,7 +42,7 @@ const CommentsList = () => {
           />
         );
       }),
-    [data]
+    [availableItems]
   );
 
   return (
@@ -68,7 +70,7 @@ const CommentsList = () => {
             />
           )}
         </div>
-      ) : data ? (
+      ) : availableItems ? (
         <div className="message">{commentList}</div>
       ) : null}
     </>
