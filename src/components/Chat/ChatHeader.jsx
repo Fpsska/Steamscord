@@ -15,7 +15,6 @@ const ChatHeader = ({ enteredSearchValue, setEnteredSearchValue }) => {
     message.error("Function temporarily unavailable");
   };
   //
-
   return (
     <>
       <div className="chat__column chat__column--name">

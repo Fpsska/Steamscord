@@ -29,17 +29,15 @@ import ChatForm from "../Chat/ChatForm";
 import HomePage from "../Pages/HomePage/HomePage";
 import SettingsPage from "../Pages/SettingsPage/SettingsPage";
 import "antd/dist/antd.css";
-import useData from "../../hook/data";
-import useFilter from "../../hook/filter";
 
-const GeneralLayout = () => {
-  const { data, error, isLoading } = useData();
-
-  const { enteredSearchValue, setEnteredSearchValue, availableItems } =
-    useFilter(data, "personaname");
-
-  const [filteredItems] = useState(availableItems);
-
+const GeneralLayout = ({
+  enteredSearchValue,
+  setEnteredSearchValue,
+  data,
+  error,
+  isLoading,
+}) => {
+  //
   const { Header, Sider, Content } = Layout;
 
   const [collapsed, setCollapsedStatus] = useState(true);
@@ -54,7 +52,7 @@ const GeneralLayout = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  //
   const AsideToggle = () => {
     if (window.innerWidth >= 768) {
       setCollapsedStatus(!collapsed);

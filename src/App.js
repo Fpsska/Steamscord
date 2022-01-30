@@ -12,18 +12,25 @@ import "./assets/scss/reset.scss"
 import "./assets/scss/media.scss"
 import 'antd/dist/antd.css'
 
+import useFilter from './hook/filter';
+import useData from './hook/data';
+
 
 
 function App() {
   const { AuthStatus } = useSelector(state => state.authReducer)
-
+  const { data, error, isLoading } = useData();
+  const { enteredSearchValue, setEnteredSearchValue, availableItems } = useFilter(
+    data,
+    "personaname"
+  );
   return (
     <div className="App">
       {AuthStatus ? <>
         <Routes>
-          <Route path="/Steamscord" element={<GeneralLayout />}>
+          <Route path="/Steamscord" element={<GeneralLayout enteredSearchValue={enteredSearchValue} setEnteredSearchValue={setEnteredSearchValue} data={data} isLoading={isLoading} error={error} />}>
             <Route index element={<HomePage />} />
-            <Route path="NikitosXClub" element={<ChatPageFirst />} />
+            <Route path="NikitosXClub" element={<ChatPageFirst availableItems={availableItems} isLoading={isLoading} error={error} />} />
             <Route path="LocalElysium" element={<ChatPageSecond />} />
             <Route path="*" element={<NoFoundPage />} />
           </Route>

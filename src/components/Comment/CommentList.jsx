@@ -2,14 +2,8 @@ import React, { useState, useLayoutEffect, useMemo } from "react";
 import { Result, Empty, Button, Spin } from "antd";
 import CommentItem from "./CommentItem";
 import "./Comment.scss";
-import useData from "../../hook/data";
-import useFilter from "../../hook/filter";
 
-const CommentsList = () => {
-  const { error, isLoading } = useData();
-  const { availableItems } = useFilter();
-  console.log("availableItems:", availableItems);
-
+const CommentsList = ({ availableItems, isLoading, error }) => {
   const [isMobileErrorTemplate, setMobileErrorTemplate] = useState(false);
   //
   const defineErrorTemplate = () => {
