@@ -1,27 +1,28 @@
-import { useEffect } from "react";
-import { useState } from "react";
 import { useDispatch } from "react-redux";
-import useGetProfileInfoQuery from "../app/api/steamAPI"
+import { useEffect } from "react";
 import { switchInputStatus } from "../app/store/chatSlice"
+import useGetProfileInfoQuery from "../app/api/steamAPI"
 
 
 
 const useData = () => {
-    const { data = [], isLoading, error } = useGetProfileInfoQuery();
-    // const dispatch = useDispatch()
-    // const DefineInputStatus = () => {
-    //     if (useGetProfileInfoQuery().status === "fulfilled") {
-    //         dispatch(switchInputStatus(true));
-    //     }
-    // };
-    //
-    // useEffect(() => {
-    //     DefineInputStatus();
-    // }, []);
+    const { data = [], isLoading, isError } = useGetProfileInfoQuery();
+    const dispatch = useDispatch()
+
+    const DefineInputStatus = () => {
+        if (isError === true) {
+            dispatch(switchInputStatus(false))
+        }
+    };
+
+    useEffect(() => {
+        DefineInputStatus()
+    })
+
     return {
         data,
         isLoading,
-        error
+        isError
     };
 }
 

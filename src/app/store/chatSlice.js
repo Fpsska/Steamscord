@@ -77,7 +77,7 @@ const chatSlice = createSlice({
         ],
         settingsIsOpen: false,
         isFetching: true,
-        isInputActive: false,
+        isInputActive: true,
         isHomePage: true
     },
     reducers: {

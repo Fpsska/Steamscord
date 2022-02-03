@@ -1,12 +1,12 @@
 import React from "react";
 import CommentsList from "../../Comment/CommentList";
 
-const ChatPageFirst = ({ availableItems, error, isLoading }) => {
+const ChatPageFirst = ({ availableItems, isError, isLoading }) => {
   return (
     <CommentsList
       availableItems={availableItems}
       isLoading={isLoading}
-      error={error}
+      isError={isError}
     />
   );
 };

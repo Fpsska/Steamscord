@@ -34,7 +34,7 @@ const GeneralLayout = ({
   enteredSearchValue,
   setEnteredSearchValue,
   data,
-  error,
+  isError,
   isLoading,
 }) => {
   //
@@ -230,7 +230,7 @@ const GeneralLayout = ({
                       <FriendList
                         data={data}
                         isLoading={isLoading}
-                        error={error}
+                        isError={isError}
                       />
                     </ul>
                   </Col>

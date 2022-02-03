@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import FriendItem from "./FriendItem";
 import "./Friend.scss";
 
-const FriendList = ({ data, isLoading, error }) => {
+const FriendList = ({ data, isLoading, isError }) => {
   const { gameActivity } = useSelector((state) => state.chatReducer);
 
   const friendList = useMemo(
@@ -88,7 +88,7 @@ const FriendList = ({ data, isLoading, error }) => {
             <Skeleton.Button active="active" size="middle" shape="round" />
           </div>
         </Space>
-      ) : error ? (
+      ) : isError ? (
         <Space direction="vertical" style={{ width: "100%" }} size="large">
           <div>
             <Skeleton.Avatar

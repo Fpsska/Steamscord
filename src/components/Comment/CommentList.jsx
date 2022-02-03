@@ -3,7 +3,7 @@ import { Result, Empty, Button, Spin } from "antd";
 import CommentItem from "./CommentItem";
 import "./Comment.scss";
 
-const CommentsList = ({ availableItems, isLoading, error }) => {
+const CommentsList = ({ availableItems, isLoading, isError }) => {
   const [isMobileErrorTemplate, setMobileErrorTemplate] = useState(false);
   //
   const defineErrorTemplate = () => {
@@ -45,7 +45,7 @@ const CommentsList = ({ availableItems, isLoading, error }) => {
         <div className="loading">
           <Spin size="large" />
         </div>
-      ) : error ? (
+      ) : isError ? (
         <div className="loading">
           {isMobileErrorTemplate ? (
             <div className="loading__error">

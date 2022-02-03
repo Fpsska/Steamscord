@@ -17,20 +17,23 @@ import useData from './hook/data';
 
 
 
+
 function App() {
   const { AuthStatus } = useSelector(state => state.authReducer)
-  const { data, error, isLoading } = useData();
+  const { data, isError, isLoading } = useData();
   const { enteredSearchValue, setEnteredSearchValue, availableItems } = useFilter(
     data,
     "personaname"
   );
+
+
   return (
     <div className="App">
       {AuthStatus ? <>
         <Routes>
-          <Route path="/Steamscord" element={<GeneralLayout enteredSearchValue={enteredSearchValue} setEnteredSearchValue={setEnteredSearchValue} data={data} isLoading={isLoading} error={error} />}>
+          <Route path="/Steamscord" element={<GeneralLayout enteredSearchValue={enteredSearchValue} setEnteredSearchValue={setEnteredSearchValue} data={data} isLoading={isLoading} isError={isError} />}>
             <Route index element={<HomePage />} />
-            <Route path="NikitosXClub" element={<ChatPageFirst availableItems={availableItems} isLoading={isLoading} error={error} />} />
+            <Route path="NikitosXClub" element={<ChatPageFirst availableItems={availableItems} isLoading={isLoading} isError={isError} />} />
             <Route path="LocalElysium" element={<ChatPageSecond />} />
             <Route path="*" element={<NoFoundPage />} />
           </Route>

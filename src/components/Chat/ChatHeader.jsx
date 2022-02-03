@@ -38,7 +38,7 @@ const ChatHeader = ({ enteredSearchValue, setEnteredSearchValue }) => {
           <Search
             placeholder="Search.."
             style={{ borderRadius: "5px" }}
-            disabled={isInputActive ? "" : ""}
+            disabled={isInputActive ? "" : true}
             value={enteredSearchValue}
             onChange={(e) => setEnteredSearchValue(e.target.value)}
           />
