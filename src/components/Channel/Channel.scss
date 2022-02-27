@@ -1,13 +1,11 @@
 .channels {
-    max-height: 31vh;
+    max-height: calc(100vh - 650px);
     overflow-y: scroll;
     overflow-x: hidden;
-    /* полоса прокрутки (скроллбар) */
     &::-webkit-scrollbar {
         width: 6px;
         background-color: transparent;
     }
-    /* ползунок скроллбара */
     &::-webkit-scrollbar-thumb {
         background-color: #b5b5b5;
         border-radius: 10px;

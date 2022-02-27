@@ -1,14 +1,12 @@
 .friends {
     margin: 0;
     padding: 2px;
-    max-height: 40vh;
+    max-height: calc(100vh - 600px);
     overflow-y: scroll;
-    /* полоса прокрутки (скроллбар) */
     &::-webkit-scrollbar {
         width: 0;
         background-color: transparent;
     }
-    /* ползунок скроллбара */
     &::-webkit-scrollbar-thumb {
         background-color: transparent;
     }
