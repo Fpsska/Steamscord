@@ -6,7 +6,7 @@ import SvgTemplate from "../Common/SvgTemplate";
 import "./Chat.scss";
 
 const ChatHeader = ({ enteredSearchValue, setEnteredSearchValue }) => {
-  const { isInputActive, isHomePage } = useSelector(
+  const { isInputActive } = useSelector(
     (state) => state.chatReducer
   );
   const { Search } = Input;

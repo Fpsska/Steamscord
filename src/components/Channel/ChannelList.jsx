@@ -1,8 +1,8 @@
 import React from "react";
+import { useMemo } from "react";
 import { useSelector } from "react-redux";
 import ChannelItem from "./ChannelItem";
 import "./Channel.scss";
-import { useMemo } from "react";
 
 const ChannelList = () => {
   const { channels } = useSelector((state) => state.chatReducer);

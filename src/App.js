@@ -7,8 +7,8 @@ import ChatPageFirst from "./components/Pages/ChatPages/ChatPageFirst"
 import ChatPageSecond from './components/Pages/ChatPages/ChatPageSecond';
 import NoFoundPage from './components/Pages/NoFoundPage/NoFoundPage';
 import HomePage from './components/Pages/HomePage/HomePage';
-import './App.scss';
-import "./assets/scss/reset.scss"
+import './App.css';
+import "./assets/scss/style.scss"
 import "./assets/scss/media.scss"
 import 'antd/dist/antd.css'
 

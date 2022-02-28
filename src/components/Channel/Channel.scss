@@ -2,6 +2,8 @@
     max-height: calc(100vh - 650px);
     overflow-y: scroll;
     overflow-x: hidden;
+    list-style: none;
+    padding: 0;
     &::-webkit-scrollbar {
         width: 6px;
         background-color: transparent;

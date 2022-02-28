@@ -1,6 +1,6 @@
 import React from "react";
-import { Avatar } from "antd";
-import { UserOutlined } from "@ant-design/icons";
+// import { Avatar } from "antd";
+// import { UserOutlined } from "@ant-design/icons";
 
 const CommentItem = ({ name, text, image, time }) => {
   return (

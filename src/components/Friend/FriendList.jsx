@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useCallback } from "react";
 import { Skeleton, Space } from "antd";
 import { useSelector } from "react-redux";
 import FriendItem from "./FriendItem";
@@ -6,23 +6,21 @@ import "./Friend.scss";
 
 const FriendList = ({ data, isLoading, isError }) => {
   const { gameActivity } = useSelector((state) => state.chatReducer);
-
+  // 
+  const getRandomGameActivity = useCallback(() => {
+    return Math.floor(Math.random() * gameActivity.length)
+  }, [gameActivity])
+  // 
   const friendList = useMemo(
     () =>
       data.map((item) => {
-        const getRandomGameActivity = Math.floor(
-          Math.random() * gameActivity.length
-        );
-
         return (
           <FriendItem
             key={item.steamid}
             name={item.personaname}
             image={item.avatarmedium}
             status={Boolean(Math.round(Math.random()))}
-            activity={
-              (getRandomGameActivity, gameActivity[getRandomGameActivity])
-            }
+            activity={getRandomGameActivity(), gameActivity[getRandomGameActivity()]}
           />
         );
       }),

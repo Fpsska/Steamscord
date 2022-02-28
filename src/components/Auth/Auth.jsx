@@ -63,7 +63,7 @@ const Authorisation = () => {
         <Form.Item name="remember" valuePropName="" noStyle>
           <Checkbox>Remember me</Checkbox>
         </Form.Item>
-        <a className="login-form-forgot" href="">
+        <a className="login-form-forgot" href="#">
           Forgot password
         </a>
       </Form.Item>
@@ -78,7 +78,7 @@ const Authorisation = () => {
         >
           Log in
         </Button>
-        Or <a href="">register now!</a>
+        Or <a href="#">register now!</a>
       </Form.Item>
     </Form>
   );
