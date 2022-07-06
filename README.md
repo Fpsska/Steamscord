@@ -3,7 +3,8 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
 ###### _inspired by [Discord](https://discord.com/) & [Steam](https://store.steampowered.com/about/)_
-
+###### _hosted by_
+- [heroku](https://vercel.com/)
 
 ### `Watch demo` _[steamscord](https://fpsska.github.io/Steamscord/)_
 
