@@ -1,15 +1,17 @@
-import React, { useMemo, useCallback } from "react";
-import { Skeleton, Space } from "antd";
+import React, { useMemo } from "react";
+
 import { useSelector } from "react-redux";
+
+import { Skeleton, Space } from "antd";
+
+import { getRandomGameActivity } from "../../helpers/getRandomActivity";
+
 import FriendItem from "./FriendItem";
+
 import "./Friend.scss";
 
 const FriendList = ({ data, isLoading, isError }) => {
   const { gameActivity } = useSelector((state) => state.chatReducer);
-  // 
-  const getRandomGameActivity = useCallback(() => {
-    return Math.floor(Math.random() * gameActivity.length)
-  }, [gameActivity])
   // 
   const friendList = useMemo(
     () =>
@@ -20,16 +22,16 @@ const FriendList = ({ data, isLoading, isError }) => {
             name={item.personaname}
             image={item.avatarmedium}
             status={Boolean(Math.round(Math.random()))}
-            activity={getRandomGameActivity(), gameActivity[getRandomGameActivity()]}
+            activity={gameActivity[getRandomGameActivity(gameActivity)]}
           />
         );
       }),
-    [data]
+    [data, gameActivity]
   );
 
   return (
     <>
-      {isLoading ? (
+      {isError || isLoading ? (
         <Space direction="vertical" style={{ width: "100%" }} size="large">
           <div>
             <Skeleton.Avatar
@@ -86,60 +88,7 @@ const FriendList = ({ data, isLoading, isError }) => {
             <Skeleton.Button active="active" size="middle" shape="round" />
           </div>
         </Space>
-      ) : isError ? (
-        <Space direction="vertical" style={{ width: "100%" }} size="large">
-          <div>
-            <Skeleton.Avatar
-              size="middle"
-              shape="avatarShape"
-              style={{ margin: "0 15px 0 0" }}
-            />
-            <Skeleton.Button size="middle" shape="round" block="block" />
-          </div>
-          <div>
-            <Skeleton.Avatar
-              size="middle"
-              shape="avatarShape"
-              style={{ margin: "0 15px 0 0" }}
-            />
-            <Skeleton.Button size="middle" shape="round" block="block" />
-          </div>
-          <div>
-            <Skeleton.Avatar
-              size="middle"
-              shape="avatarShape"
-              style={{ margin: "0 15px 0 0" }}
-            />
-            <Skeleton.Button size="middle" shape="round" block="block" />
-          </div>
-          <div>
-            <Skeleton.Avatar
-              size="middle"
-              shape="avatarShape"
-              style={{ margin: "0 15px 0 0" }}
-            />
-            <Skeleton.Button size="middle" shape="round" block="block" />
-          </div>
-          <div>
-            <Skeleton.Avatar
-              size="middle"
-              shape="avatarShape"
-              style={{ margin: "0 15px 0 0" }}
-            />
-            <Skeleton.Button size="middle" shape="round" block="block" />
-          </div>
-          <div>
-            <Skeleton.Avatar
-              size="middle"
-              shape="avatarShape"
-              style={{ margin: "0 15px 0 0" }}
-            />
-            <Skeleton.Button size="middle" shape="round" block="block" />
-          </div>
-        </Space>
-      ) : data ? (
-        friendList
-      ) : null}
+      ) : friendList}
     </>
   );
 };

@@ -11,21 +11,6 @@
     .logo.logo {
         height: 20px;
     }
-    .friends {
-        max-height: calc(100vh - 750px);
-    }
-    .channels {
-        max-height: calc(100vh - 800px);
-    }
-}
-
-@media (max-width: 1024px) {
-    .friends {
-        max-height: calc(100vh - 565px);
-    }
-    .channels {
-        max-height: calc(100vh - 550px);
-    }
 }
 
 @media (max-width: 992px) {
