@@ -19,7 +19,8 @@ const ChannelList = () => {
               link={item.link}
             />
           )
-        })}
+        })
+      }
     </ul>
   )
 

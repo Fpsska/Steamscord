@@ -1,14 +1,16 @@
 import React from "react";
 import { useSelector } from "react-redux";
+
 import { Badge, Input, message } from "antd";
 import { StarOutlined } from "@ant-design/icons";
+
 import SvgTemplate from "../Common/SvgTemplate";
+
 import "./Chat.scss";
 
 const ChatHeader = ({ enteredSearchValue, setEnteredSearchValue }) => {
-  const { isInputActive } = useSelector(
-    (state) => state.chatReducer
-  );
+  const { isInputActive } = useSelector((state) => state.chatReducer);
+
   const { Search } = Input;
   //
   const errorNotification = () => {
@@ -20,9 +22,7 @@ const ChatHeader = ({ enteredSearchValue, setEnteredSearchValue }) => {
       <div className="chat__column chat__column--name">
         <span className="chat__name">untitled</span>
         <button className="chat__button">
-          <span className="chat__icon">
-            <StarOutlined />
-          </span>
+          <span className="chat__icon"><StarOutlined /></span>
         </button>
       </div>
 
@@ -38,7 +38,7 @@ const ChatHeader = ({ enteredSearchValue, setEnteredSearchValue }) => {
           <Search
             placeholder="Search.."
             style={{ borderRadius: "5px" }}
-            disabled={isInputActive ? "" : true}
+            disabled={!isInputActive}
             value={enteredSearchValue}
             onChange={(e) => setEnteredSearchValue(e.target.value)}
           />
