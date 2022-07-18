@@ -15,8 +15,8 @@ import "./assets/scss/style.scss"
 import "./assets/scss/media.scss"
 import 'antd/dist/antd.css'
 
-import useFilter from './hook/filter';
-import useData from './hook/data';
+import { useFilter } from './hook/useFilter';
+import { useData } from './hook/useData';
 
 function App() {
   const { AuthStatus } = useSelector(state => state.authReducer)

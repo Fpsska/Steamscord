@@ -1,7 +1,8 @@
 import { useState } from "react";
-import useDebounce from "./debounce";
 
-const useFilter = (items, filterProp) => {
+import { useDebounce } from "./useDebounce";
+
+export function useFilter(items, filterProp) {
     const [enteredSearchValue, setEnteredSearchValue] = useState("");
     const activeSearchValue = useDebounce(enteredSearchValue, 300);
 
@@ -17,5 +18,3 @@ const useFilter = (items, filterProp) => {
         availableItems
     };
 }
-
-export default useFilter;
