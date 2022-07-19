@@ -1,14 +1,14 @@
-import React, { useMemo } from "react";
+import React, { useMemo } from 'react';
 
-import { useSelector } from "react-redux";
+import { useSelector } from 'react-redux';
 
-import { Skeleton, Space } from "antd";
+import { Skeleton, Space } from 'antd';
 
-import { getRandomGameActivity } from "../../helpers/getRandomActivity";
+import { getRandomGameActivity } from '../../helpers/getRandomActivity';
 
-import FriendItem from "./FriendItem";
+import FriendItem from './FriendItem';
 
-import "./Friend.scss";
+import './Friend.scss';
 
 const FriendList = ({ data, isLoading, isError }) => {
   const { gameActivity } = useSelector((state) => state.chatReducer);
@@ -32,13 +32,13 @@ const FriendList = ({ data, isLoading, isError }) => {
   return (
     <>
       {isError || isLoading ? (
-        <Space direction="vertical" style={{ width: "100%" }} size="large">
+        <Space direction="vertical" style={{ width: '100%' }} size="large">
           <div>
             <Skeleton.Avatar
               active="active"
               size="middle"
               shape="avatarShape"
-              style={{ margin: "0 15px 0 0" }}
+              style={{ margin: '0 15px 0 0' }}
             />
             <Skeleton.Button active="active" size="middle" shape="round" />
           </div>
@@ -47,7 +47,7 @@ const FriendList = ({ data, isLoading, isError }) => {
               active="active"
               size="middle"
               shape="avatarShape"
-              style={{ margin: "0 15px 0 0" }}
+              style={{ margin: '0 15px 0 0' }}
             />
             <Skeleton.Button active="active" size="middle" shape="round" />
           </div>
@@ -56,7 +56,7 @@ const FriendList = ({ data, isLoading, isError }) => {
               active="active"
               size="middle"
               shape="avatarShape"
-              style={{ margin: "0 15px 0 0" }}
+              style={{ margin: '0 15px 0 0' }}
             />
             <Skeleton.Button active="active" size="middle" shape="round" />
           </div>
@@ -65,7 +65,7 @@ const FriendList = ({ data, isLoading, isError }) => {
               active="active"
               size="middle"
               shape="avatarShape"
-              style={{ margin: "0 15px 0 0" }}
+              style={{ margin: '0 15px 0 0' }}
             />
             <Skeleton.Button active="active" size="middle" shape="round" />
           </div>
@@ -74,7 +74,7 @@ const FriendList = ({ data, isLoading, isError }) => {
               active="active"
               size="middle"
               shape="avatarShape"
-              style={{ margin: "0 15px 0 0" }}
+              style={{ margin: '0 15px 0 0' }}
             />
             <Skeleton.Button active="active" size="middle" shape="round" />
           </div>
@@ -83,7 +83,7 @@ const FriendList = ({ data, isLoading, isError }) => {
               active="active"
               size="middle"
               shape="avatarShape"
-              style={{ margin: "0 15px 0 0" }}
+              style={{ margin: '0 15px 0 0' }}
             />
             <Skeleton.Button active="active" size="middle" shape="round" />
           </div>

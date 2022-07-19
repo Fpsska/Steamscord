@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
 const SvgTemplate = (props) => {
   switch (props.id) {
-    case "settings":
+    case 'settings':
       return (
         <svg
           className="icon icon--settings"
@@ -21,7 +21,7 @@ const SvgTemplate = (props) => {
           />
         </svg>
       );
-    case "dialog":
+    case 'dialog':
       return (
         <svg
           className="icon icon--dialog"
@@ -40,7 +40,7 @@ const SvgTemplate = (props) => {
           />
         </svg>
       );
-    case "star":
+    case 'star':
       return (
         <svg
           className="icon icon--star"
@@ -59,7 +59,7 @@ const SvgTemplate = (props) => {
           />
         </svg>
       );
-    case "user":
+    case 'user':
       return (
         <svg
           className="icon icon--user"
@@ -78,7 +78,7 @@ const SvgTemplate = (props) => {
           />
         </svg>
       );
-    case "search":
+    case 'search':
       return (
         <svg
           className="icon icon--search"
@@ -97,7 +97,7 @@ const SvgTemplate = (props) => {
           />
         </svg>
       );
-    case "notification":
+    case 'notification':
       return (
         <svg
           className="icon icon--notification"
@@ -116,7 +116,7 @@ const SvgTemplate = (props) => {
           />
         </svg>
       );
-    case "chat-settings":
+    case 'chat-settings':
       return (
         <svg
           className="icon icon--chat-settings"
@@ -148,7 +148,7 @@ const SvgTemplate = (props) => {
           </g>
         </svg>
       );
-    case "clip":
+    case 'clip':
       return (
         <svg
           className="icon icon--clip"
@@ -167,7 +167,7 @@ const SvgTemplate = (props) => {
           />
         </svg>
       );
-    case "microphone":
+    case 'microphone':
       return (
         <svg
           className="icon icon--microphone"

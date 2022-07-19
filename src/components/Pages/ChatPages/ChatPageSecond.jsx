@@ -1,9 +1,12 @@
-import React, { useState } from "react";
-import { Spin, Button, Empty } from "antd";
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { switchHomePageStatus } from "../../../app/store/chatSlice";
-import { useDispatch } from "react-redux";
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { useNavigate } from 'react-router-dom';
+
+import { Spin, Button, Empty } from 'antd';
+
+import { switchHomePageStatus } from '../../../app/store/chatSlice';
+
 
 const ChatPageSecond = () => {
   const { isFetching } = useSelector((state) => state.chatReducer);
@@ -24,7 +27,7 @@ const ChatPageSecond = () => {
 
   const goBack = () => {
     dispatch(switchHomePageStatus(true));
-    navigate("/Steamscord", { replace: true });
+    navigate('/Steamscord', { replace: true });
   };
 
   return (
@@ -32,12 +35,12 @@ const ChatPageSecond = () => {
       {isFetching ? (
         <>
           {contentVisible ? (
-            <Empty style={{ margin: "auto" }} />
+            <Empty style={{ margin: 'auto' }} />
           ) : (
             <div className="warning">
               <img
                 className="warning__image"
-                src={require(`../../../assets/images/warning.png`).default}
+                src={require('../../../assets/images/warning.png').default}
                 alt="warning"
               />
               <div className="warning__text">
@@ -72,7 +75,7 @@ const ChatPageSecond = () => {
         <Spin
           size="large"
           style={{
-            margin: "auto",
+            margin: 'auto',
           }}
         />
       )}

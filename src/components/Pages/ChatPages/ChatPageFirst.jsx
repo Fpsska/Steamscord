@@ -1,5 +1,6 @@
-import React from "react";
-import CommentsList from "../../Comment/CommentList";
+import React from 'react';
+
+import CommentsList from '../../Comment/CommentList';
 
 const ChatPageFirst = ({ availableItems, isError, isLoading }) => {
   

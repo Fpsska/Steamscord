@@ -1,10 +1,12 @@
-import React, { useState } from "react";
-import { Form, Input, Button, Checkbox } from "antd";
-import { UserOutlined, LockOutlined } from "@ant-design/icons";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
-import { getUserNameValue, switchAuthStatus } from "../../app/store/authSlice";
-import "./Auth.scss";
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { Form, Input, Button, Checkbox } from 'antd';
+import { UserOutlined, LockOutlined } from '@ant-design/icons';
+
+import { getUserNameValue, switchAuthStatus } from '../../app/store/authSlice';
+
+import './Auth.scss';
 
 const Authorisation = () => {
   const dispatch = useDispatch();
@@ -26,7 +28,7 @@ const Authorisation = () => {
       name="normal_login"
       className="login-form"
       initialValues={{
-        remember: true,
+        remember: true
       }}
       onFinish={onFinish}
     >
@@ -35,8 +37,8 @@ const Authorisation = () => {
         rules={[
           {
             required: true,
-            message: "Please input your Username!",
-          },
+            message: 'Please input your Username!'
+          }
         ]}
       >
         <Input
@@ -49,8 +51,8 @@ const Authorisation = () => {
         rules={[
           {
             required: true,
-            message: "Please input your Password!",
-          },
+            message: 'Please input your Password!'
+          }
         ]}
       >
         <Input
@@ -63,17 +65,15 @@ const Authorisation = () => {
         <Form.Item name="remember" valuePropName="" noStyle>
           <Checkbox>Remember me</Checkbox>
         </Form.Item>
-        <a className="login-form-forgot" href="#">
-          Forgot password
-        </a>
+        <a className="login-form-forgot" href="#">Forgot password</a>
       </Form.Item>
 
-      <Form.Item style={{ margin: "0" }}>
+      <Form.Item style={{ margin: '0' }}>
         <Button
           type="primary"
           htmlType="submit"
           className="login-form-button"
-          style={{ width: "100%" }}
+          style={{ width: '100%' }}
           loading={isButtonLoading}
         >
           Log in

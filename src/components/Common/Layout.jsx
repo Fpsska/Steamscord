@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
-import { Outlet, useNavigate } from "react-router";
+import { Outlet, useNavigate } from 'react-router';
 
-import { Layout, Menu, Row, Col, Button, Form, Input, message } from "antd";
+import { Layout, Menu, Row, Col, Button, Form, Input, message } from 'antd';
 import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
@@ -14,25 +14,25 @@ import {
   FacebookOutlined,
   TwitterOutlined,
   InstagramOutlined,
-  LinkedinOutlined,
-} from "@ant-design/icons";
-import { Modal } from "antd";
+  LinkedinOutlined
+} from '@ant-design/icons';
+import { Modal } from 'antd';
 
-import { switchAuthStatus } from "../../app/store/authSlice";
+import { switchAuthStatus } from '../../app/store/authSlice';
 import {
   switchSettingsStatus,
-  switchHomePageStatus,
-} from "../../app/store/chatSlice";
+  switchHomePageStatus
+} from '../../app/store/chatSlice';
 
-import SvgTemplate from "../Common/SvgTemplate";
-import ChannelList from "../Channel/ChannelList";
-import FriendList from "../Friend/FriendList";
-import ChatHeader from "../Chat/ChatHeader";
-import ChatForm from "../Chat/ChatForm";
-import HomePage from "../Pages/HomePage/HomePage";
-import SettingsPage from "../Pages/SettingsPage/SettingsPage";
+import SvgTemplate from '../Common/SvgTemplate';
+import ChannelList from '../Channel/ChannelList';
+import FriendList from '../Friend/FriendList';
+import ChatHeader from '../Chat/ChatHeader';
+import ChatForm from '../Chat/ChatForm';
+import HomePage from '../Pages/HomePage/HomePage';
+import SettingsPage from '../Pages/SettingsPage/SettingsPage';
 
-import "antd/dist/antd.css";
+import 'antd/dist/antd.css';
 
 const GeneralLayout = (props) => {
 
@@ -70,17 +70,17 @@ const GeneralLayout = (props) => {
 
   const handleExitModal = () => {
     confirm({
-      title: "Exit",
+      title: 'Exit',
       visible: { isModalVisible },
-      content: "Are you sure?",
-      okText: "Submit",
+      content: 'Are you sure?',
+      okText: 'Submit',
       onOk() {
         setIsModalVisible(false);
         dispatch(switchAuthStatus(false));
       },
       onCancel() {
         setIsModalVisible(false);
-      },
+      }
     });
   };
 
@@ -103,7 +103,7 @@ const GeneralLayout = (props) => {
       setLoadingStatus(false);
     }, 2200);
     setTimeout(() => {
-      message.success("Message sent successfully!");
+      message.success('Message sent successfully!');
     }, 3000);
     // inputMessageHandle();
   };
@@ -111,32 +111,32 @@ const GeneralLayout = (props) => {
 
   const openHomePage = () => {
     dispatch(switchHomePageStatus(true));
-    navigate("/Steamscord", { replace: true });
+    navigate('/Steamscord', { replace: true });
   };
 
   const openProfileSettings = () => {
     dispatch(switchSettingsStatus(true));
-    navigate("/Steamscord/Settings", { replace: true });
+    navigate('/Steamscord/Settings', { replace: true });
   };
   //
   return (
     <Layout
       style={{
-        height: "100%",
+        height: '100%'
       }}
     >
       <Sider
         trigger={null}
         collapsible
         collapsed={collapsed}
-        style={{ position: "relative" }}
+        style={{ position: 'relative' }}
       >
         <div className="logo" />
-        <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
+        <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
           <Menu.Item
             key="1"
             icon={<UserOutlined />}
-            style={{ marginTop: "0" }}
+            style={{ marginTop: '0' }}
             onClick={openProfileSettings}
           >
             settings
@@ -147,7 +147,7 @@ const GeneralLayout = (props) => {
             key="4"
             icon={<LogoutOutlined />}
             onClick={handleExitModal}
-            style={{ margin: "0" }}
+            style={{ margin: '0' }}
           >
             Log Out
           </Menu.Item>
@@ -158,8 +158,8 @@ const GeneralLayout = (props) => {
           {React.createElement(
             collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
             {
-              className: "trigger",
-              onClick: AsideToggle,
+              className: 'trigger',
+              onClick: AsideToggle
             }
           )}
         </Header>
@@ -168,7 +168,7 @@ const GeneralLayout = (props) => {
           style={{
             margin: 0,
             padding: 0,
-            minHeight: 280,
+            minHeight: 280
           }}
         >
           <div className="content">
@@ -181,7 +181,7 @@ const GeneralLayout = (props) => {
                 className="content__section content__section--left"
               >
                 <Row>
-                  <Col style={{ width: "100%" }}>
+                  <Col style={{ width: '100%' }}>
                     <div className="content__preview">
                       <h2 className="content__title content__title--main">Nomad List</h2>
                       <button
@@ -196,7 +196,7 @@ const GeneralLayout = (props) => {
                   </Col>
                 </Row>
                 <Row>
-                  <Col style={{ width: "100%" }}>
+                  <Col style={{ width: '100%' }}>
                     <div className="content__preview content__preview--treads">
                       <button className="content__button">
                         <span className="content__icon">
@@ -209,7 +209,7 @@ const GeneralLayout = (props) => {
                 </Row>
                 {/*  */}
                 <Row>
-                  <Col style={{ width: "100%" }}>
+                  <Col style={{ width: '100%' }}>
                     <div className="content__preview">
                       <h2 className="content__title">Channels</h2>
                       <span className="content__counter">
@@ -221,13 +221,13 @@ const GeneralLayout = (props) => {
                 </Row>
                 {/*  */}
                 <Row>
-                  <Col style={{ width: "100%" }}>
+                  <Col style={{ width: '100%' }}>
                     <div className="content__preview">
                       <h2 className="content__title">Friends</h2>
                       <span className="content__counter">{data.length}</span>
                     </div>
                     <ul className="friends">
-                      {" "}
+                      {' '}
                       <FriendList
                         data={data}
                         isLoading={isLoading}
@@ -254,9 +254,9 @@ const GeneralLayout = (props) => {
                     <>
                       <Col
                         style={{
-                          width: "100%",
-                          display: "flex",
-                          flexDirection: "column",
+                          width: '100%',
+                          display: 'flex',
+                          flexDirection: 'column'
                         }}
                       >
                         <Row className="chat__section chat__section--top">
@@ -284,7 +284,7 @@ const GeneralLayout = (props) => {
                   <img
                     className="profile__image"
                     src={
-                      require(`../../assets/images/profile-main.png`).default
+                      require('../../assets/images/profile-main.png').default
                     }
                     alt="profile"
                   />

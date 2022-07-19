@@ -5,14 +5,14 @@ import { Routes, Route } from 'react-router-dom';
 
 import Authorisation from './components/Auth/Auth';
 import GeneralLayout from './components/Common/Layout';
-import ChatPageFirst from "./components/Pages/ChatPages/ChatPageFirst"
+import ChatPageFirst from './components/Pages/ChatPages/ChatPageFirst';
 import ChatPageSecond from './components/Pages/ChatPages/ChatPageSecond';
 import NoFoundPage from './components/Pages/NoFoundPage/NoFoundPage';
 import HomePage from './components/Pages/HomePage/HomePage';
 
 import './App.css';
-import "./assets/scss/style.scss"
-import "./assets/scss/media.scss"
+import './assets/scss/style.scss'
+import './assets/scss/media.scss'
 import 'antd/dist/antd.css'
 
 import { useFilter } from './hook/useFilter';
@@ -24,7 +24,7 @@ function App() {
   const {
     enteredSearchValue,
     setEnteredSearchValue,
-    availableItems } = useFilter(data, "personaname");
+    availableItems } = useFilter(data, 'personaname');
 
   return (
     <div className="App">

@@ -1,12 +1,12 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React from 'react';
+import { useSelector } from 'react-redux';
 
-import { Badge, Input, message } from "antd";
-import { StarOutlined } from "@ant-design/icons";
+import { Badge, Input, message } from 'antd';
+import { StarOutlined } from '@ant-design/icons';
 
-import SvgTemplate from "../Common/SvgTemplate";
+import SvgTemplate from '../Common/SvgTemplate';
 
-import "./Chat.scss";
+import './Chat.scss';
 
 const ChatHeader = ({ enteredSearchValue, setEnteredSearchValue }) => {
   const { isInputActive } = useSelector((state) => state.chatReducer);
@@ -14,7 +14,7 @@ const ChatHeader = ({ enteredSearchValue, setEnteredSearchValue }) => {
   const { Search } = Input;
   //
   const errorNotification = () => {
-    message.error("Function temporarily unavailable");
+    message.error('Function temporarily unavailable');
   };
   //
   return (
@@ -37,7 +37,7 @@ const ChatHeader = ({ enteredSearchValue, setEnteredSearchValue }) => {
         <form className="form" action="">
           <Search
             placeholder="Search.."
-            style={{ borderRadius: "5px" }}
+            style={{ borderRadius: '5px' }}
             disabled={!isInputActive}
             value={enteredSearchValue}
             onChange={(e) => setEnteredSearchValue(e.target.value)}

@@ -1,5 +1,6 @@
-import React from "react";
-import "./HomePage.scss";
+import React from 'react';
+
+import './HomePage.scss';
 
 const HomePage = () => {
   return (
@@ -10,20 +11,20 @@ const HomePage = () => {
         <h3 className="home__title home__title--features">NEW FEATURES</h3>
         <ul className="home__section list">
           <li className="list__text">
-            <span className="list__title">Video Backgrounds have arrived.</span>{" "}
+            <span className="list__title">Video Backgrounds have arrived.</span>{' '}
             Add a blur or an official Discord preset background to your video
             calls. And, if you have Nitro, upload a custom video background.
           </li>
           <li className="list__text">
             <span className="list__title">
               You can finally upload multiple files at once.
-            </span>{" "}
+            </span>{' '}
             I can’t believe it either and I work here.
           </li>
           <li className="list__text">
             <span className="list__title">
               Image uploads can now have descriptions.
-            </span>{" "}
+            </span>{' '}
             Click on the pencil icon while uploading an image to add alt text.
             People who use screen readers will no longer be missing out.
           </li>
@@ -36,13 +37,13 @@ const HomePage = () => {
           <li className="list__text">
             <span className="list__title">
               Add bots directly from bot profiles.
-            </span>{" "}
+            </span>{' '}
             Bot developers can now enable an "Add to Server" button on a bot's
             user profile, so people can add it to their own servers way more
             easily.
           </li>
           <li className="list__text">
-            <span className="list__title">Improvements to GIF cropper.</span>{" "}
+            <span className="list__title">Improvements to GIF cropper.</span>{' '}
             It's now faster and smoother to crop GIFs for avatars and profile
             banners. Also, we fine-tuned the cancel button. And by fine-tuned we
             mean it actually works now.
@@ -59,7 +60,7 @@ const HomePage = () => {
           </li>
           <li className="list__text">
             <span className="list__title">
-              You can now directly report spam.{" "}
+              You can now directly report spam.{' '}
             </span>
             Added a prominent Report Spam button in DMs so you can give us a
             faster signal when you’re being bothered. Also added a Roast Spam
@@ -67,7 +68,7 @@ const HomePage = () => {
           </li>
           <li className="list__text">
             <span className="list__title">
-              Beefed up our suspicious link warning.{" "}
+              Beefed up our suspicious link warning.{' '}
             </span>
             This new system can also better warn you before you visit a
             malicious domain. Don't click suspicious links. Free Nitro for your
@@ -96,7 +97,7 @@ const HomePage = () => {
           </li>
           <li className="list__text">
             <span className="list__title">
-              Fix wrong behavior of channel-list scroll.{" "}
+              Fix wrong behavior of channel-list scroll.{' '}
             </span>
             Accusamus, molestias autem? Ad unde magni vero assumenda corrupti
             blanditiis ut, ipsum voluptatibus, ducimus ipsa tempora at voluptate

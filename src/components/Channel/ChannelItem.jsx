@@ -1,10 +1,11 @@
-import React from "react";
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+
 import {
   switchHomePageStatus,
-  switchSettingsStatus,
-} from "../../app/store/chatSlice";
-import { NavLink } from "react-router-dom";
-import { useDispatch } from "react-redux";
+  switchSettingsStatus
+} from '../../app/store/chatSlice';
 
 const ChannelItem = ({ name, link }) => {
   const dispatch = useDispatch();

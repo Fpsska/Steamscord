@@ -1,10 +1,13 @@
-import React from "react";
-import { useDispatch } from "react-redux";
-import { Row, Col, Card } from "antd";
-import { CloseCircleOutlined } from "@ant-design/icons";
-import { Button, notification } from "antd";
-import { switchSettingsStatus } from "../../../app/store/chatSlice";
-import "./Settings.scss";
+import React from 'react';
+import { useDispatch } from 'react-redux';
+
+import { Row, Col, Card } from 'antd';
+import { CloseCircleOutlined } from '@ant-design/icons';
+import { Button, notification } from 'antd';
+
+import { switchSettingsStatus } from '../../../app/store/chatSlice';
+
+import './Settings.scss';
 
 const SettingsPage = () => {
   const dispatch = useDispatch();
@@ -15,14 +18,14 @@ const SettingsPage = () => {
 
   const openNotificationWithIcon = (type) => {
     notification[type]({
-      message: "Dear user!",
+      message: 'Dear user!',
       description:
-        "This feature is not yet available, Please try again later :)",
+      'This feature is not yet available, Please try again later :)'
     });
   };
 
   return (
-    <Row className="settings" style={{ width: "100%", height: "100%" }}>
+    <Row className="settings" style={{ width: '100%', height: '100%' }}>
       <Col xxl={24} className="settings__column settings__column--right">
         <div className="settings__wrapper account">
           <button className="settings__button settings__button--close">
@@ -39,10 +42,10 @@ const SettingsPage = () => {
                 title="Profile review"
                 bordered={false}
                 style={{
-                  maxWidth: "700px",
-                  width: "100%",
-                  backgroundColor: "#666",
-                  borderRadius: "5px",
+                  maxWidth: '700px',
+                  width: '100%',
+                  backgroundColor: '#666',
+                  borderRadius: '5px'
                 }}
               >
                 <div className="account-card">
@@ -51,7 +54,7 @@ const SettingsPage = () => {
                       <img
                         className="account-card__image"
                         src={
-                          require(`../../../assets/images/profile-main.png`)
+                          require('../../../assets/images/profile-main.png')
                             .default
                         }
                         alt="avatar"
@@ -61,7 +64,7 @@ const SettingsPage = () => {
                     <Button
                       className="settings__button account__button--profileEdit"
                       type="primary"
-                      onClick={() => openNotificationWithIcon("info")}
+                      onClick={() => openNotificationWithIcon('info')}
                     >
                       Edit User Profile
                     </Button>
@@ -79,7 +82,7 @@ const SettingsPage = () => {
                         </div>
                         <button
                           className="settings__button account__button--edit"
-                          onClick={() => openNotificationWithIcon("info")}
+                          onClick={() => openNotificationWithIcon('info')}
                         >
                           Edit
                         </button>
@@ -97,7 +100,7 @@ const SettingsPage = () => {
                         </div>
                         <button
                           className="settings__button account__button--edit"
-                          onClick={() => openNotificationWithIcon("info")}
+                          onClick={() => openNotificationWithIcon('info')}
                         >
                           Edit
                         </button>
@@ -115,7 +118,7 @@ const SettingsPage = () => {
                         </div>
                         <button
                           className="settings__button account__button--add"
-                          onClick={() => openNotificationWithIcon("info")}
+                          onClick={() => openNotificationWithIcon('info')}
                         >
                           Add
                         </button>
@@ -133,7 +136,7 @@ const SettingsPage = () => {
             <Button
               className="settings__button account__button--password"
               type="primary"
-              onClick={() => openNotificationWithIcon("info")}
+              onClick={() => openNotificationWithIcon('info')}
             >
               Change Password
             </Button>
@@ -148,7 +151,7 @@ const SettingsPage = () => {
               <Button
                 className="settings__button account__button--authenfication"
                 type="primary"
-                onClick={() => openNotificationWithIcon("info")}
+                onClick={() => openNotificationWithIcon('info')}
               >
                 Enable Two-Factor Auth
               </Button>
@@ -166,7 +169,7 @@ const SettingsPage = () => {
                 className="settings__button account__button--disableAcc"
                 type="primary"
                 danger
-                onClick={() => openNotificationWithIcon("info")}
+                onClick={() => openNotificationWithIcon('info')}
               >
                 Disable Account
               </Button>

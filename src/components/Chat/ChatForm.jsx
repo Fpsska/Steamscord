@@ -1,12 +1,14 @@
-import React from "react";
-import { message } from "antd";
-import { SmileOutlined } from "@ant-design/icons";
-import { useSelector } from "react-redux";
-import SvgTemplate from "../Common/SvgTemplate";
+import React from 'react';
+import { useSelector } from 'react-redux';
+
+import { message } from 'antd';
+import { SmileOutlined } from '@ant-design/icons';
+
+import SvgTemplate from '../Common/SvgTemplate';
 
 const ChatForm = () => {
   const errorNotification = () => {
-    message.error("Function temporarily unavailable");
+    message.error('Function temporarily unavailable');
   };
 
   const { isInputActive } = useSelector((state) => state.chatReducer);
@@ -17,7 +19,7 @@ const ChatForm = () => {
         className="form__input form__input--message"
         type="text"
         placeholder="Message in #general"
-        disabled={isInputActive ? "" : true}
+        disabled={!isInputActive}
       />
       <div className="form__interaction">
         <button

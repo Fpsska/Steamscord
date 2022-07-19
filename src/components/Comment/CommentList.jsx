@@ -1,7 +1,8 @@
-import React, { useState, useLayoutEffect } from "react";
-import { Result, Empty, Button, Spin } from "antd";
-import CommentItem from "./CommentItem";
-import "./Comment.scss";
+import React, { useState, useLayoutEffect } from 'react';
+import { Result, Empty, Button, Spin } from 'antd';
+
+import CommentItem from './CommentItem';
+import './Comment.scss';
 
 const CommentsList = ({ availableItems, isLoading, isError }) => {
   const [isMobileErrorTemplate, setMobileErrorTemplate] = useState(false);
@@ -16,11 +17,11 @@ const CommentsList = ({ availableItems, isLoading, isError }) => {
       }
     };
 
-    window.addEventListener("resize", defineErrorTemplate);
-    window.addEventListener("load", defineErrorTemplate);
+    window.addEventListener('resize', defineErrorTemplate);
+    window.addEventListener('load', defineErrorTemplate);
     return () => {
-      window.removeEventListener("resize", defineErrorTemplate);
-      window.removeEventListener("load", defineErrorTemplate);
+      window.removeEventListener('resize', defineErrorTemplate);
+      window.removeEventListener('load', defineErrorTemplate);
     };
   }, [isError]);
 
@@ -36,7 +37,7 @@ const CommentsList = ({ availableItems, isLoading, isError }) => {
             <div className="loading__error">
               <Empty
                 image={Empty.PRESENTED_IMAGE_SIMPLE}
-                style={{ margin: "0 0 10px 0" }}
+                style={{ margin: '0 0 10px 0' }}
               />
               <p className="loading__text">Sorry, something went wrong.</p>
             </div>

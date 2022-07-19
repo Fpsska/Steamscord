@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 
 const FriendItem = ({ name, image, status, activity }) => {
   return (
     <li className="friends__item">
       <img
         className={
-          status ? "friends__image friends__image--online" : "friends__image"
+          status ? 'friends__image friends__image--online' : 'friends__image'
         }
         src={image}
         alt="profle"
@@ -14,7 +14,7 @@ const FriendItem = ({ name, image, status, activity }) => {
       <div className="friends__information">
         <span
           className={
-            status ? "friends__name friends__name--online" : "friends__name" 
+            status ? 'friends__name friends__name--online' : 'friends__name' 
           }
         >
           {name}
@@ -22,8 +22,8 @@ const FriendItem = ({ name, image, status, activity }) => {
         <span
           className={
             status
-              ? "friends__activity friends__activity--online"
-              : "friends__activity"
+              ? 'friends__activity friends__activity--online'
+              : 'friends__activity'
           }
         >
           {activity}

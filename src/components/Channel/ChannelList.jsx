@@ -1,9 +1,9 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React from 'react';
+import { useSelector } from 'react-redux';
 
-import ChannelItem from "./ChannelItem";
+import ChannelItem from './ChannelItem';
 
-import "./Channel.scss";
+import './Channel.scss';
 
 const ChannelList = () => {
   const { channels } = useSelector((state) => state.chatReducer);
