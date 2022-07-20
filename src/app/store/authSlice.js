@@ -3,19 +3,24 @@ import { createSlice } from '@reduxjs/toolkit';
 const authSlice = createSlice({
     name: 'authorizationSlice',
     initialState: {
-        userInformation: [],
-        authStatus: false
+        isAuthorized: false,
+        userName: 'guest'
     },
     reducers: {
-        getUserNameValue(state, action) {
-            state.userInformation = action.payload
+        login(state, action) {
+            state.isAuthorized = true;
+            state.userName = action.payload.name;
         },
-        switchAuthStatus(state, action) {
-            state.AuthStatus = action.payload
+        logOut(state) {
+            state.isAuthorized = false;
+            state.userName = '';
         }
     }
 })
 
-export const { getUserNameValue, switchAuthStatus } = authSlice.actions;
+export const {
+    login,
+    logOut
+} = authSlice.actions;
 
 export default authSlice.reducer;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Row, Col, Card } from 'antd';
 import { CloseCircleOutlined } from '@ant-design/icons';
@@ -10,6 +10,9 @@ import { switchSettingsStatus } from '../../../app/store/chatSlice';
 import './Settings.scss';
 
 const SettingsPage = () => {
+
+  const { userName } = useSelector((state) => state.authReducer);
+
   const dispatch = useDispatch();
 
   const closeSettingsPage = () => {
@@ -20,7 +23,7 @@ const SettingsPage = () => {
     notification[type]({
       message: 'Dear user!',
       description:
-      'This feature is not yet available, Please try again later :)'
+        'This feature is not yet available, Please try again later :)'
     });
   };
 
@@ -59,7 +62,7 @@ const SettingsPage = () => {
                         }
                         alt="avatar"
                       />
-                      <span className="account-card__name">Fpsska#1531</span>
+                      <span className="account-card__name">{userName}#1531</span>
                     </div>
                     <Button
                       className="settings__button account__button--profileEdit"
@@ -77,7 +80,7 @@ const SettingsPage = () => {
                             username
                           </h4>
                           <span className="account-card__username--text">
-                            Fpsska#1531
+                          {userName}#1531
                           </span>
                         </div>
                         <button

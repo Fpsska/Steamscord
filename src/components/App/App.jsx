@@ -19,7 +19,7 @@ import { useFilter } from '../../hook/useFilter';
 import { useData } from '../../hook/useData';
 
 function App() {
-  const { AuthStatus } = useSelector(state => state.authReducer)
+  const { isAuthorized } = useSelector(state => state.authReducer)
   const { data, isError, isLoading } = useData();
   const {
     enteredSearchValue,
@@ -28,32 +28,36 @@ function App() {
 
   return (
     <div className="App">
-      <Routes>
-        <Route
-          path="/Steamscord"
-          element={<GeneralLayout
-            enteredSearchValue={enteredSearchValue}
-            setEnteredSearchValue={setEnteredSearchValue}
-            data={data}
-            isLoading={isLoading}
-            isError={isError}
-          />}>
-
-          <Route index element={<HomePage />} />
-          <Route path="NikitosXClub"
-            element={<ChatPageFirst
-              availableItems={availableItems}
+      {isAuthorized ?
+        <Routes>
+          <Route
+            path="/Steamscord"
+            element={<GeneralLayout
+              enteredSearchValue={enteredSearchValue}
+              setEnteredSearchValue={setEnteredSearchValue}
+              data={data}
               isLoading={isLoading}
               isError={isError}
-            />}
-          />
-          <Route path="LocalElysium" element={<ChatPageSecond />} />
+            />}>
 
-          <Route path="Authorisation" element={<Authorisation />} />
-          <Route path="*" element={<NoFoundPage />} />
+            <Route index element={<HomePage />} />
+            <Route path="NikitosXClub"
+              element={<ChatPageFirst
+                availableItems={availableItems}
+                isLoading={isLoading}
+                isError={isError}
+              />}
+            />
+            <Route path="LocalElysium" element={<ChatPageSecond />} />
 
-        </Route>
-      </Routes>
+            <Route path="Authorisation" element={<Authorisation />} />
+            <Route path="*" element={<NoFoundPage />} />
+
+          </Route>
+        </Routes>
+        : <div className="section"><Authorisation /></div>
+      }
+
     </div>
   );
 }

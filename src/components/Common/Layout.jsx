@@ -18,7 +18,7 @@ import {
 } from '@ant-design/icons';
 import { Modal } from 'antd';
 
-import { switchAuthStatus } from '../../app/store/authSlice';
+import { logOut } from '../../app/store/authSlice';
 import {
   switchSettingsStatus,
   switchHomePageStatus
@@ -76,7 +76,7 @@ const GeneralLayout = (props) => {
       okText: 'Submit',
       onOk() {
         setIsModalVisible(false);
-        dispatch(switchAuthStatus(false));
+        dispatch(logOut());
       },
       onCancel() {
         setIsModalVisible(false);

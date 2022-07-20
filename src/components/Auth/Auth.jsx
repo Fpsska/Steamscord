@@ -1,24 +1,22 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { Form, Input, Button, Checkbox } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 
-import { getUserNameValue, switchAuthStatus } from '../../app/store/authSlice';
+import { login } from '../../app/store/authSlice';
 
 import './Auth.scss';
 
 const Authorisation = () => {
   const dispatch = useDispatch();
 
-  const { AuthStatus } = useSelector((state) => state.authReducer);
   const [isButtonLoading, setLoadingStatus] = useState(false);
 
-  const onFinish = (values) => {
+  const onSubmit = (data) => {
     setLoadingStatus(true);
     setTimeout(() => {
-      dispatch(getUserNameValue(values));
-      dispatch(switchAuthStatus(!AuthStatus));
+      dispatch(login({ name: data.username }));
       setLoadingStatus(false);
     }, 2000);
   };
@@ -30,7 +28,7 @@ const Authorisation = () => {
       initialValues={{
         remember: true
       }}
-      onFinish={onFinish}
+      onFinish={onSubmit}
     >
       <Form.Item
         name="username"
