@@ -75,7 +75,7 @@ const ChatPageSecond = () => {
         <Spin
           size="large"
           style={{
-            margin: 'auto',
+            margin: 'auto'
           }}
         />
       )}

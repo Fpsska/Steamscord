@@ -1,7 +1,7 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const authSlice = createSlice({
-    name: "authorization",
+    name: 'authorizationSlice',
     initialState: {
         userInformation: [],
         authStatus: false
