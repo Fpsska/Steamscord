@@ -12,6 +12,6 @@ export default configureStore({
     [steamAPI.reducerPath]: steamAPI.reducer
   },
   middleware: (getDefaultMiddleware) => {
-    return getDefaultMiddleware().concat(steamAPI.middleware)
+    return getDefaultMiddleware().concat(steamAPI.middleware);
   }
 });
