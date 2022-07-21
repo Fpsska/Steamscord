@@ -8,7 +8,7 @@ const ProtectedRoute = ({ children }) => {
     const location = useLocation();
 
     if (!isAuthorized) {
-        return <Navigate to="/Steamscord/Authorisation" state={{ from: location }}/>; 
+        return <Navigate to="/Steamscord/Authorisation" state={{ from: location }} replace />;
     }
 
     return children;

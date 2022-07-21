@@ -55,7 +55,7 @@ const GeneralLayout = (props) => {
     isInputActive
   } = useSelector((state) => state.chatReducer);
 
-  const { userName } = useSelector((state) => state.authReducer);
+  const { userName, isAuthorized } = useSelector((state) => state.authReducer);
 
   const [collapsed, setCollapsedStatus] = useState(true);
 
@@ -294,7 +294,7 @@ const GeneralLayout = (props) => {
                   <div className="profile__wrapper">
                     <div className="profile__bio">
                       <h2 className="profile__name">{userName}</h2>
-                      <span className="profile__position"></span>
+                      <span className="profile__position">{isAuthorized ? 'verified profile' : 'unregistered profile'}</span>
                     </div>
 
                     <ul className="profile__social social">
@@ -343,15 +343,15 @@ const GeneralLayout = (props) => {
                     <ul className="profile__information information">
                       <li className="information__template">
                         <span className="information__title">Username</span>
-                        <a className="information__link" href="#">@{userName}</a>
+                        <a className="information__link" href="#">{isAuthorized ? `@${userName}` : '-'}</a>
                       </li>
                       <li className="information__template">
                         <span className="information__title">Email</span>
-                        <a className="information__link" href="mailto:a-luna@gmail.com">-</a>
+                        <a className="information__link" href="mailto:a-luna@gmail.com">{isAuthorized ? 'a-dropmail.com' : '-'}</a>
                       </li>
                       <li className="information__template">
                         <span className="information__title">Skype</span>
-                        <a className="information__link" href="#">-</a>
+                        <a className="information__link" href="#">{isAuthorized ? `${userName}_skype` : '-'}</a>
                       </li>
                       <li className="information__template">
                         <span className="information__title">Timezone</span>

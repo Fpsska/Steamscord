@@ -56,8 +56,8 @@ function App() {
                   isError={isError}
                 />
               </ProtectedRoute>
-            }
-          />
+            } />
+
           <Route path="LocalElysium"
             element={
               <ProtectedRoute>
@@ -66,6 +66,7 @@ function App() {
             } />
 
         </Route>
+
       </Routes>
     </div>
   );

@@ -17,52 +17,52 @@ const chatSlice = createSlice({
             {
                 id: 3,
                 name: '# general 3',
-                link: 'test'
+                link: 'test1'
             },
             {
                 id: 4,
                 name: '# general 4',
-                link: 'test'
+                link: 'test2'
             },
             {
                 id: 5,
                 name: '# general 5',
-                link: 'test'
+                link: 'test3'
             },
             {
                 id: 6,
                 name: '# general 6',
-                link: 'test'
+                link: 'test4'
             },
             {
                 id: 7,
                 name: '# general 7',
-                link: 'test'
+                link: 'test5'
             },
             {
                 id: 8,
                 name: '# general 8',
-                link: 'test'
+                link: 'test6'
             },
             {
                 id: 9,
                 name: '# general 9',
-                link: 'test'
+                link: 'test7'
             },
             {
                 id: 10,
                 name: '# general 10',
-                link: 'test'
+                link: 'test8'
             },
             {
                 id: 11,
                 name: '# general 11',
-                link: 'test'
+                link: 'test9'
             },
             {
                 id: 12,
                 name: '# general 12',
-                link: 'test'
+                link: 'test10'
             }
         ],
         gameActivity: [
@@ -94,8 +94,13 @@ const chatSlice = createSlice({
             state.isHomePage = action.payload
         }
     }
-})
+});
 
-export const { switchSettingsStatus, switchFetchingStatus, switchInputStatus, switchHomePageStatus } = chatSlice.actions;
+export const {
+    switchSettingsStatus,
+    switchFetchingStatus,
+    switchInputStatus,
+    switchHomePageStatus
+} = chatSlice.actions;
 
 export default chatSlice.reducer;
