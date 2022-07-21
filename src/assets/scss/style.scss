@@ -256,6 +256,7 @@ body {
 
 .social {
     margin: 20px 0;
+    padding: 0;
     display: flex;
     justify-content: space-between;
     :not(:last-child) {
@@ -268,6 +269,7 @@ body {
 
 .information {
     margin: 0;
+    padding: 0;
     &__template {
         display: flex;
         flex-direction: column;

@@ -55,6 +55,8 @@ const GeneralLayout = (props) => {
     isInputActive
   } = useSelector((state) => state.chatReducer);
 
+  const { userName } = useSelector((state) => state.authReducer);
+
   const [collapsed, setCollapsedStatus] = useState(true);
 
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -291,8 +293,8 @@ const GeneralLayout = (props) => {
 
                   <div className="profile__wrapper">
                     <div className="profile__bio">
-                      <h2 className="profile__name">Fpsska</h2>
-                      <span className="profile__position">Junior Frontend Developer</span>
+                      <h2 className="profile__name">{userName}</h2>
+                      <span className="profile__position"></span>
                     </div>
 
                     <ul className="profile__social social">
@@ -341,15 +343,15 @@ const GeneralLayout = (props) => {
                     <ul className="profile__information information">
                       <li className="information__template">
                         <span className="information__title">Username</span>
-                        <a className="information__link" href="#"> @Fpsska</a>
+                        <a className="information__link" href="#">@{userName}</a>
                       </li>
                       <li className="information__template">
                         <span className="information__title">Email</span>
-                        <a className="information__link" href="mailto:a-luna@gmail.com">a-dropmail.com</a>
+                        <a className="information__link" href="mailto:a-luna@gmail.com">-</a>
                       </li>
                       <li className="information__template">
                         <span className="information__title">Skype</span>
-                        <a className="information__link" href="#">fpsska_skype</a>
+                        <a className="information__link" href="#">-</a>
                       </li>
                       <li className="information__template">
                         <span className="information__title">Timezone</span>

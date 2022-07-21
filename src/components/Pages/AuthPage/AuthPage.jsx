@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
+import { useNavigate, useLocation } from 'react-router';
+
 import { Form, Input, Button, Checkbox } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 
@@ -10,13 +12,17 @@ import './Auth.scss';
 
 const AuthorisationPage = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const [isButtonLoading, setLoadingStatus] = useState(false);
+  const [routeLink] = useState(location.state?.from?.pathname || '/Steamscord');
 
   const onSubmit = (data) => {
     setLoadingStatus(true);
     setTimeout(() => {
       dispatch(login({ name: data.username }));
+      navigate(routeLink, {replace: true});
       setLoadingStatus(false);
     }, 2000);
   };
