@@ -48,6 +48,9 @@ body {
             line-height: 16.8px;
             color: #8d8d8d;
         }
+        &:focus {
+            outline: none;
+        }
     }
     &__interaction {
         position: absolute;

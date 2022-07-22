@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 
 import GeneralLayout from '../Common/Layout';
 import AuthorisationPage from '../Pages/AuthPage/AuthPage';
+import SettingsPage from '../Pages/SettingsPage/SettingsPage';
 import ChatPageFirst from '../Pages/ChatPages/ChatPageFirst';
 import ChatPageSecond from '../Pages/ChatPages/ChatPageSecond';
 import NoFoundPage from '../Pages/NoFoundPage/NoFoundPage';
@@ -45,7 +46,13 @@ function App() {
           }>
 
           <Route index element={<HomePage />} />
+
+          {/*  */}
+
+          <Route path="Settings" element={<SettingsPage />} />
           <Route path="*" element={<NoFoundPage />} />
+
+          {/* ./ other pages  */}
 
           <Route path="NikitosXClub"
             element={
@@ -64,6 +71,8 @@ function App() {
                 <ChatPageSecond />
               </ProtectedRoute>
             } />
+
+            {/* ./ channels */}
 
         </Route>
 

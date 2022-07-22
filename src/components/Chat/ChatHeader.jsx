@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import { Badge, Input, message } from 'antd';
+import { Row, Badge, Input, message } from 'antd';
 import { StarOutlined } from '@ant-design/icons';
 
 import SvgTemplate from '../Common/SvgTemplate';
@@ -18,7 +18,7 @@ const ChatHeader = ({ enteredSearchValue, setEnteredSearchValue }) => {
   };
   //
   return (
-    <>
+    <Row className="chat__section chat__section--top">
       <div className="chat__column chat__column--name">
         <span className="chat__name">untitled</span>
         <button className="chat__button">
@@ -62,7 +62,7 @@ const ChatHeader = ({ enteredSearchValue, setEnteredSearchValue }) => {
           </span>
         </button>
       </div>
-    </>
+    </Row>
   );
 };
 

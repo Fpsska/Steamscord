@@ -113,12 +113,12 @@ const GeneralLayout = (props) => {
 
   const openHomePage = () => {
     dispatch(switchHomePageStatus(true));
-    navigate('/Steamscord', { replace: true });
+    navigate('/Steamscord');
   };
 
   const openProfileSettings = () => {
-    dispatch(switchSettingsStatus(true));
-    navigate('/Steamscord/Settings', { replace: true });
+    // dispatch(switchSettingsStatus(true));
+    navigate('/Steamscord/Settings');
   };
   //
   return (
@@ -247,34 +247,9 @@ const GeneralLayout = (props) => {
                 xxl={17}
                 className="content__section content__section--main"
               >
-                {isHomePage ? (
-                  <HomePage />
-                ) : settingsIsOpen ? (
-                  <SettingsPage />
-                ) : (
-                  <Row className="chat">
-                    <>
-                      <Col
-                        style={{
-                          width: '100%',
-                          display: 'flex',
-                          flexDirection: 'column'
-                        }}
-                      >
-                        <Row className="chat__section chat__section--top">
-                          <ChatHeader
-                            enteredSearchValue={enteredSearchValue}
-                            setEnteredSearchValue={setEnteredSearchValue}
-                          />
-                        </Row>
-                        {/*  */}
-                        <Row className="chat__section chat__section--main"><Outlet /></Row>
-                        {/*  */}
-                        <Row className="chat__section chat__section--bottom"><ChatForm /></Row>
-                      </Col>
-                    </>
-                  </Row>
-                )}
+
+                <div className="chat"><Outlet /></div>
+
               </Col>
               {/* /. COL MIDDLE */}
               <Col
