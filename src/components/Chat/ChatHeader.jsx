@@ -8,7 +8,13 @@ import SvgTemplate from '../Common/SvgTemplate';
 
 import './Chat.scss';
 
-const ChatHeader = ({ enteredSearchValue, setEnteredSearchValue }) => {
+const ChatHeader = (props) => {
+
+  const {
+    enteredSearchValue,
+    setEnteredSearchValue = () => { }
+  } = props;
+
   const { isInputActive } = useSelector((state) => state.chatReducer);
 
   const { Search } = Input;
