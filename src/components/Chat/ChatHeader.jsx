@@ -34,7 +34,7 @@ const ChatHeader = ({ enteredSearchValue, setEnteredSearchValue }) => {
       </div>
 
       <div className="chat__column chat__column--form">
-        <form className="form" action="">
+        <form className="form" onSubmit={e => e.preventDefault()}>
           <Search
             placeholder="Search.."
             style={{ borderRadius: '5px' }}

@@ -6,14 +6,15 @@ import useGetProfileInfoQuery from '../app/api/steamAPI';
 
 export function useData() {
     const { isAuthorized } = useSelector((state) => state.authReducer);
+    const { isFetching } = useSelector((state) => state.chatReducer);
     const { data = [], isLoading, isError } = useGetProfileInfoQuery();
 
     const dispatch = useDispatch();
 
     useEffect(() => {
-        const validStatus = !isError && !isLoading && isAuthorized;
+        const validStatus = !isError && !isLoading && isAuthorized && !isFetching;
         validStatus ? dispatch(switchInputStatus(true)) : dispatch(switchInputStatus(false));
-    }, [isError, isLoading, isAuthorized]);
+    }, [isError, isLoading, isAuthorized, isFetching]);
 
     return { data };
 }
