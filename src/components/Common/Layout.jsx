@@ -19,26 +19,17 @@ import {
 import { Modal } from 'antd';
 
 import { logOut } from '../../app/store/authSlice';
-import {
-  switchSettingsStatus,
-  switchHomePageStatus
-} from '../../app/store/chatSlice';
+import { switchHomePageStatus } from '../../app/store/chatSlice';
 
 import SvgTemplate from '../Common/SvgTemplate';
 import ChannelList from '../Channel/ChannelList';
 import FriendList from '../Friend/FriendList';
-import ChatHeader from '../Chat/ChatHeader';
-import ChatForm from '../Chat/ChatForm';
-import HomePage from '../Pages/HomePage/HomePage';
-import SettingsPage from '../Pages/SettingsPage/SettingsPage';
 
 import 'antd/dist/antd.css';
 
 const GeneralLayout = (props) => {
 
   const {
-    enteredSearchValue,
-    setEnteredSearchValue,
     data,
     isError,
     isLoading
@@ -48,17 +39,10 @@ const GeneralLayout = (props) => {
   const { confirm } = Modal;
   const { TextArea } = Input;
 
-  const {
-    channels,
-    settingsIsOpen,
-    isHomePage,
-    isInputActive
-  } = useSelector((state) => state.chatReducer);
-
+  const { channels, isInputActive } = useSelector((state) => state.chatReducer);
   const { userName, isAuthorized } = useSelector((state) => state.authReducer);
 
   const [collapsed, setCollapsedStatus] = useState(true);
-
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isButtonLoading, setLoadingStatus] = useState(false);
 

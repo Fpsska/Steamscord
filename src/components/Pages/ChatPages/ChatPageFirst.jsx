@@ -10,7 +10,15 @@ import CommentsList from '../../Comment/CommentList';
 import ChatHeader from '../../Chat/ChatHeader';
 import ChatForm from '../../Chat/ChatForm';
 
-const ChatPageFirst = ({ availableItems, isError, isLoading }) => {
+const ChatPageFirst = (props) => {
+
+  const {
+    enteredSearchValue,
+    setEnteredSearchValue,
+    availableItems,
+    isError,
+    isLoading
+  } = props;
 
   const { isFetching } = useSelector(state => state.chatReducer);
   const { isAuthorized } = useSelector(state => state.authReducer);
@@ -29,8 +37,8 @@ const ChatPageFirst = ({ availableItems, isError, isLoading }) => {
   return (
     <>
       <ChatHeader
-      // enteredSearchValue={enteredSearchValue}
-      // setEnteredSearchValue={setEnteredSearchValue}
+        enteredSearchValue={enteredSearchValue}
+        setEnteredSearchValue={setEnteredSearchValue}
       />
       {isFetching ?
         <Spin
@@ -40,11 +48,13 @@ const ChatPageFirst = ({ availableItems, isError, isLoading }) => {
           }}
         />
         :
-        <CommentsList
-          availableItems={availableItems}
-          isLoading={isLoading}
-          isError={isError}
-        />
+        <div className="chat__section chat__section--main">
+          <CommentsList
+            availableItems={availableItems}
+            isLoading={isLoading}
+            isError={isError}
+          />
+        </div>
       }
       <ChatForm />
     </>

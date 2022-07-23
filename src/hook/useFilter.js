@@ -4,7 +4,7 @@ import { useDebounce } from './useDebounce';
 
 export function useFilter(items, filterProp) {
     const [enteredSearchValue, setEnteredSearchValue] = useState('');
-    const activeSearchValue = useDebounce(enteredSearchValue, 300);
+    const activeSearchValue = useDebounce(enteredSearchValue, 200);
 
     const availableItems = activeSearchValue
         ? items.filter((item) =>

@@ -22,10 +22,12 @@ import { useData } from '../../hook/useData';
 
 function App() {
   const { data, isError, isLoading } = useData();
+
   const {
     enteredSearchValue,
     setEnteredSearchValue,
-    availableItems } = useFilter(data, 'personaname');
+    availableItems
+  } = useFilter(data, 'personaname');
 
   return (
     <div className="App">
@@ -37,8 +39,6 @@ function App() {
           path="/Steamscord"
           element={
             <GeneralLayout
-              enteredSearchValue={enteredSearchValue}
-              setEnteredSearchValue={setEnteredSearchValue}
               data={data}
               isLoading={isLoading}
               isError={isError}
@@ -59,6 +59,8 @@ function App() {
               <ProtectedRoute>
                 <ChatPageFirst
                   availableItems={availableItems}
+                  enteredSearchValue={enteredSearchValue}
+                  setEnteredSearchValue={setEnteredSearchValue}
                   isLoading={isLoading}
                   isError={isError}
                 />
@@ -72,7 +74,7 @@ function App() {
               </ProtectedRoute>
             } />
 
-            {/* ./ channels */}
+          {/* ./ channels */}
 
         </Route>
 
