@@ -40,14 +40,7 @@ const ChatPageFirst = (props) => {
         enteredSearchValue={enteredSearchValue}
         setEnteredSearchValue={setEnteredSearchValue}
       />
-      {isFetching ?
-        <Spin
-          size="large"
-          style={{
-            margin: 'auto'
-          }}
-        />
-        :
+      {!isFetching ?
         <div className="chat__section chat__section--main">
           <CommentsList
             availableItems={availableItems}
@@ -55,6 +48,13 @@ const ChatPageFirst = (props) => {
             isError={isError}
           />
         </div>
+        :
+        <Spin
+          size="large"
+          style={{
+            margin: 'auto'
+          }}
+        />
       }
       <ChatForm />
     </>

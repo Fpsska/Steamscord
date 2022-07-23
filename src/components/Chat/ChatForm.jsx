@@ -8,7 +8,7 @@ import SvgTemplate from '../Common/SvgTemplate';
 
 const ChatForm = () => {
 
-  const { isInputActive } = useSelector((state) => state.chatReducer);
+  const { isInputActive, isFetching } = useSelector((state) => state.chatReducer);
 
   const formRef = useRef(!null);
 
@@ -28,7 +28,7 @@ const ChatForm = () => {
           className="form__input form__input--message"
           type="text"
           placeholder="Message in #general"
-          disabled={!isInputActive}
+          disabled={!isInputActive || isFetching}
         />
         <div className="form__interaction">
           <button

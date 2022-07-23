@@ -15,7 +15,7 @@ const ChatHeader = (props) => {
     setEnteredSearchValue = () => { }
   } = props;
 
-  const { isInputActive } = useSelector((state) => state.chatReducer);
+  const { isInputActive, isFetching } = useSelector((state) => state.chatReducer);
 
   const { Search } = Input;
   //
@@ -44,7 +44,7 @@ const ChatHeader = (props) => {
           <Search
             placeholder="Search.."
             style={{ borderRadius: '5px' }}
-            disabled={!isInputActive}
+            disabled={!isInputActive || isFetching}
             value={enteredSearchValue}
             onChange={(e) => setEnteredSearchValue(e.target.value)}
           />
