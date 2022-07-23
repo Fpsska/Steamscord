@@ -82,16 +82,16 @@ const chatSlice = createSlice({
     },
     reducers: {
         switchSettingsStatus(state, action) {
-            state.settingsIsOpen = action.payload
+            state.settingsIsOpen = action.payload;
         },
         switchFetchingStatus(state, action) {
-            state.isFetching = action.payload
+            state.isFetching = action.payload;
         },
         switchInputStatus(state, action) {
-            state.isInputActive = action.payload
+            state.isInputActive = action.payload;
         },
         switchHomePageStatus(state, action) {
-            state.isHomePage = action.payload
+            state.isHomePage = action.payload;
         }
     }
 });

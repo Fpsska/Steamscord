@@ -29,11 +29,7 @@ import 'antd/dist/antd.css';
 
 const GeneralLayout = (props) => {
 
-  const {
-    data,
-    isError,
-    isLoading
-  } = props;
+  const { data } = props;
   // 
   const { Header, Sider, Content } = Layout;
   const { confirm } = Modal;
@@ -214,11 +210,7 @@ const GeneralLayout = (props) => {
                     </div>
                     <ul className="friends">
                       {' '}
-                      <FriendList
-                        data={data}
-                        isLoading={isLoading}
-                        isError={isError}
-                      />
+                      <FriendList data={data} />
                     </ul>
                   </Col>
                 </Row>

@@ -51,6 +51,9 @@ body {
         &:focus {
             outline: none;
         }
+        &:disabled {
+            cursor: not-allowed;
+        }
     }
     &__interaction {
         position: absolute;

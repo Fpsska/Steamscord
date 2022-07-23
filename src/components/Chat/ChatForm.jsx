@@ -7,11 +7,12 @@ import { SmileOutlined } from '@ant-design/icons';
 import SvgTemplate from '../Common/SvgTemplate';
 
 const ChatForm = () => {
+
+  const { isInputActive } = useSelector((state) => state.chatReducer);
+
   const errorNotification = () => {
     message.error('Function temporarily unavailable');
   };
-
-  const { isInputActive } = useSelector((state) => state.chatReducer);
 
   return (
     <Row className="chat__section chat__section--bottom">

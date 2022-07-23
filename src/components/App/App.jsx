@@ -38,11 +38,7 @@ function App() {
         <Route
           path="/Steamscord"
           element={
-            <GeneralLayout
-              data={data}
-              isLoading={isLoading}
-              isError={isError}
-            />
+            <GeneralLayout data={data} />
           }>
 
           <Route index element={<HomePage />} />

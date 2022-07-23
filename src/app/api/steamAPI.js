@@ -1,4 +1,4 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const steamAPI = createApi({
     reducerPath: 'steamAPI',
@@ -8,8 +8,8 @@ export const steamAPI = createApi({
             query: () => '/'
         })
     })
-})
+});
 
 const { useGetProfileInfoQuery } = steamAPI;
 
-export default useGetProfileInfoQuery
+export default useGetProfileInfoQuery;

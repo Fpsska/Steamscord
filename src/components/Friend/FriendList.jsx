@@ -10,9 +10,8 @@ import FriendItem from './FriendItem';
 
 import './Friend.scss';
 
-const FriendList = ({ data, isLoading, isError }) => {
-  const { gameActivity } = useSelector((state) => state.chatReducer);
-  const { isAuthorized } = useSelector((state) => state.authReducer);
+const FriendList = ({ data }) => {
+  const { gameActivity, isInputActive } = useSelector((state) => state.chatReducer);
   // 
   const friendList = useMemo(
     () =>
@@ -32,7 +31,7 @@ const FriendList = ({ data, isLoading, isError }) => {
 
   return (
     <>
-      {isError || isLoading || !isAuthorized ?  (
+      {!isInputActive ? (
         <Space direction="vertical" style={{ width: '100%' }} size="large">
           <div>
             <Skeleton.Avatar
