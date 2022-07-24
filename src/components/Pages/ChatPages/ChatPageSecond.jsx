@@ -29,7 +29,7 @@ const ChatPageSecond = () => {
 
   return (
     <>
-      <ChatHeader channelName={'LocalElysium'} channelMembersCount={937} />
+      <ChatHeader channelName={'LocalElysium'} channelMembersCount={937} contentVisible={contentVisible} />
       {contentVisible ?
         <Empty style={{ margin: 'auto' }} />
         :
@@ -66,7 +66,7 @@ const ChatPageSecond = () => {
           </div>
         </div>
       }
-      <ChatForm />
+      <ChatForm contentVisible={contentVisible} />
     </>
   );
 };

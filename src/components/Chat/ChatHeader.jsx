@@ -14,7 +14,8 @@ const ChatHeader = (props) => {
     enteredSearchValue,
     setEnteredSearchValue = () => { },
     channelName = 'untitled',
-    channelMembersCount = 0
+    channelMembersCount = 0,
+    contentVisible = true
   } = props;
 
   const { isInputActive, isFetching } = useSelector((state) => state.chatReducer);
@@ -46,7 +47,7 @@ const ChatHeader = (props) => {
           <Search
             placeholder="Search.."
             style={{ borderRadius: '5px' }}
-            disabled={!isInputActive || isFetching}
+            disabled={!isInputActive || isFetching || !contentVisible}
             value={enteredSearchValue}
             onChange={(e) => setEnteredSearchValue(e.target.value)}
           />

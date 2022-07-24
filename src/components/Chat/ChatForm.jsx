@@ -6,7 +6,7 @@ import { SmileOutlined } from '@ant-design/icons';
 
 import SvgTemplate from '../Common/SvgTemplate';
 
-const ChatForm = () => {
+const ChatForm = ({ contentVisible = true }) => {
 
   const { isInputActive, isFetching } = useSelector((state) => state.chatReducer);
 
@@ -28,7 +28,7 @@ const ChatForm = () => {
           className="form__input form__input--message"
           type="text"
           placeholder="Message in #general"
-          disabled={!isInputActive || isFetching}
+          disabled={!isInputActive || isFetching || !contentVisible}
         />
         <div className="form__interaction">
           <button
