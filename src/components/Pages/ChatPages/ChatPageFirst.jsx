@@ -26,12 +26,11 @@ const ChatPageFirst = (props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    isAuthorized && setTimeout(() => {
+    const cheker = isAuthorized && setTimeout(() => {
       dispatch(switchFetchingStatus(false));
     }, 1300);
-    return () => {
-      // clear Interval
-    };
+
+    return () => clearInterval(cheker);
   }, [isAuthorized]);
 
   return (
@@ -39,6 +38,8 @@ const ChatPageFirst = (props) => {
       <ChatHeader
         enteredSearchValue={enteredSearchValue}
         setEnteredSearchValue={setEnteredSearchValue}
+        channelName={'NikitosXClub'}
+        channelMembersCount={1337}
       />
       {!isFetching ?
         <div className="chat__section chat__section--main">

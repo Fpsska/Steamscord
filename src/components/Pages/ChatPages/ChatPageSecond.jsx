@@ -29,7 +29,7 @@ const ChatPageSecond = () => {
 
   return (
     <>
-      <ChatHeader />
+      <ChatHeader channelName={'LocalElysium'} channelMembersCount={937} />
       {contentVisible ?
         <Empty style={{ margin: 'auto' }} />
         :

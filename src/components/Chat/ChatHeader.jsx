@@ -12,7 +12,9 @@ const ChatHeader = (props) => {
 
   const {
     enteredSearchValue,
-    setEnteredSearchValue = () => { }
+    setEnteredSearchValue = () => { },
+    channelName = 'untitled',
+    channelMembersCount = 0
   } = props;
 
   const { isInputActive, isFetching } = useSelector((state) => state.chatReducer);
@@ -26,7 +28,7 @@ const ChatHeader = (props) => {
   return (
     <Row className="chat__section chat__section--top">
       <div className="chat__column chat__column--name">
-        <span className="chat__name">untitled</span>
+        <span className="chat__name">{channelName}</span>
         <button className="chat__button">
           <span className="chat__icon"><StarOutlined /></span>
         </button>
@@ -36,7 +38,7 @@ const ChatHeader = (props) => {
         <span className="chat__icon">
           <SvgTemplate id="user" />
         </span>
-        <span className="chat__users">1337</span>
+        <span className="chat__users">{channelMembersCount}</span>
       </div>
 
       <div className="chat__column chat__column--form">

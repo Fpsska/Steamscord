@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 
 import { useSelector } from 'react-redux';
 
-import { Skeleton, Space } from 'antd';
+import { Skeleton, Space, Row } from 'antd';
 
 import { getRandomGameActivity } from '../../helpers/getRandomActivity';
 
@@ -33,7 +33,7 @@ const FriendList = ({ data }) => {
     <>
       {!isInputActive ? (
         <Space direction="vertical" style={{ width: '100%' }} size="large">
-          <div>
+          <Row>
             <Skeleton.Avatar
               active="active"
               size="middle"
@@ -41,8 +41,8 @@ const FriendList = ({ data }) => {
               style={{ margin: '0 15px 0 0' }}
             />
             <Skeleton.Button active="active" size="middle" shape="round" />
-          </div>
-          <div>
+          </Row>
+          <Row>
             <Skeleton.Avatar
               active="active"
               size="middle"
@@ -50,8 +50,8 @@ const FriendList = ({ data }) => {
               style={{ margin: '0 15px 0 0' }}
             />
             <Skeleton.Button active="active" size="middle" shape="round" />
-          </div>
-          <div>
+          </Row>
+          <Row>
             <Skeleton.Avatar
               active="active"
               size="middle"
@@ -59,8 +59,8 @@ const FriendList = ({ data }) => {
               style={{ margin: '0 15px 0 0' }}
             />
             <Skeleton.Button active="active" size="middle" shape="round" />
-          </div>
-          <div>
+          </Row>
+          <Row>
             <Skeleton.Avatar
               active="active"
               size="middle"
@@ -68,8 +68,8 @@ const FriendList = ({ data }) => {
               style={{ margin: '0 15px 0 0' }}
             />
             <Skeleton.Button active="active" size="middle" shape="round" />
-          </div>
-          <div>
+          </Row>
+          <Row>
             <Skeleton.Avatar
               active="active"
               size="middle"
@@ -77,7 +77,7 @@ const FriendList = ({ data }) => {
               style={{ margin: '0 15px 0 0' }}
             />
             <Skeleton.Button active="active" size="middle" shape="round" />
-          </div>
+          </Row>
           <div>
             <Skeleton.Avatar
               active="active"
