@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 
 import { Row, Badge, Input, message } from 'antd';
 
-import { BsStar  } from 'react-icons/bs';
+import { BsStar } from 'react-icons/bs';
 import { BiUser } from 'react-icons/bi';
 import { IoNotificationsOutline } from 'react-icons/io5';
 import { FiMoreVertical } from 'react-icons/fi';
@@ -17,10 +17,11 @@ const ChatHeader = (props) => {
     setEnteredSearchValue = () => { },
     channelName = 'untitled',
     channelMembersCount = 0,
-    contentVisible = true
+    isPageInteractive = false,
+    isError
   } = props;
 
-  const { isInputActive, isFetching } = useSelector((state) => state.chatReducer);
+  const { isAuthorized } = useSelector((state) => state.authReducer);
 
   const { Search } = Input;
   //
@@ -47,7 +48,7 @@ const ChatHeader = (props) => {
           <Search
             placeholder="Search.."
             style={{ borderRadius: '5px' }}
-            disabled={!isInputActive || isFetching || !contentVisible}
+            disabled={!isAuthorized || !isPageInteractive || isError}
             value={enteredSearchValue}
             onChange={(e) => setEnteredSearchValue(e.target.value)}
           />
@@ -57,14 +58,14 @@ const ChatHeader = (props) => {
       <div className="chat__column chat__column--notification">
         <button className="chat__button">
           <Badge count={9} size="small">
-            <IoNotificationsOutline size={20}/>
+            <IoNotificationsOutline size={20} />
           </Badge>
         </button>
       </div>
 
       <div className="chat__column chat__column--settings">
         <button className="chat__button" onClick={errorNotification}>
-          <FiMoreVertical size={20}/>
+          <FiMoreVertical size={20} />
         </button>
       </div>
     </Row>

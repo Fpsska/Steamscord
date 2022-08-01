@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
 
-import { Spin } from 'antd';
+import { Spin, Result, Button } from 'antd';
 
 import { switchFetchingStatus } from '../../../app/store/chatSlice';
 
@@ -16,9 +16,10 @@ const ChatPageFirst = (props) => {
     enteredSearchValue,
     setEnteredSearchValue,
     availableItems,
-    isError,
-    isLoading
+    isLoading,
+    isError
   } = props;
+
 
   const { isFetching } = useSelector(state => state.chatReducer);
   const { isAuthorized } = useSelector(state => state.authReducer);
@@ -26,12 +27,12 @@ const ChatPageFirst = (props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const cheker = isAuthorized && setTimeout(() => {
+    const cheker = isAuthorized && !isLoading && setTimeout(() => {
       dispatch(switchFetchingStatus(false));
     }, 1300);
 
     return () => clearInterval(cheker);
-  }, [isAuthorized]);
+  }, [isAuthorized, isLoading]);
 
   return (
     <>
@@ -40,24 +41,37 @@ const ChatPageFirst = (props) => {
         setEnteredSearchValue={setEnteredSearchValue}
         channelName={'NikitosXClub'}
         channelMembersCount={1337}
+        isPageInteractive={!isFetching}
+        isError={isError}
       />
-      {!isFetching ?
-        <div className="chat__section chat__section--main">
-          <CommentsList
-            availableItems={availableItems}
-            isLoading={isLoading}
-            isError={isError}
+      <div className="chat__section chat__section--main">
+        {isFetching ?
+          <Spin
+            size="large"
+            style={{
+              height: '100%',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center'
+            }}
           />
-        </div>
-        :
-        <Spin
-          size="large"
-          style={{
-            margin: 'auto'
-          }}
-        />
-      }
-      <ChatForm />
+          :
+          isError ?
+            <div className="loading">
+              <Result
+                status="500"
+                title="500"
+                subTitle="Sorry, something went wrong."
+                extra={<Button type="primary">Refresh</Button>}
+              />
+            </div>
+            :
+            <CommentsList
+              availableItems={availableItems}
+            />
+        }
+      </div>
+      <ChatForm isPageInteractive={!isFetching} isError={isError} />
     </>
   );
 };

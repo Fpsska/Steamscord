@@ -8,9 +8,9 @@ import ChatHeader from '../../Chat/ChatHeader';
 import ChatForm from '../../Chat/ChatForm';
 
 
-const ChatPageSecond = () => {
+const ChatPageSecond = ({isError}) => {
 
-  const [contentVisible, setContentVisibleStatus] = useState(false);
+  const [isContentVisible, setContentVisibleStatus] = useState(false);
   const [isLoading, setLoadingStatus] = useState(false);
 
   const navigate = useNavigate();
@@ -29,8 +29,8 @@ const ChatPageSecond = () => {
 
   return (
     <>
-      <ChatHeader channelName={'LocalElysium'} channelMembersCount={937} contentVisible={contentVisible} />
-      {contentVisible ?
+      <ChatHeader channelName={'LocalElysium'} channelMembersCount={937} isError={isError} />
+      {isContentVisible ?
         <Empty style={{ margin: 'auto' }} />
         :
         <div className="warning">
@@ -66,7 +66,7 @@ const ChatPageSecond = () => {
           </div>
         </div>
       }
-      <ChatForm contentVisible={contentVisible} />
+      <ChatForm isError={isError} />
     </>
   );
 };

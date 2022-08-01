@@ -18,7 +18,6 @@ import { Modal } from 'antd';
 import { AiOutlineHome, AiOutlineMessage } from 'react-icons/ai';
 
 import { logOut } from '../../app/store/authSlice';
-import { switchHomePageStatus } from '../../app/store/chatSlice';
 
 import ChannelList from '../Channel/ChannelList';
 import FriendList from '../Friend/FriendList';
@@ -26,9 +25,8 @@ import Profile from '../Profile/Profile';
 
 import 'antd/dist/antd.css';
 
-const GeneralLayout = (props) => {
-  const { data } = props;
-  //
+const GeneralLayout = ({ data, isError }) => {
+
   const { Header, Sider, Content } = Layout;
   const { confirm } = Modal;
 
@@ -66,12 +64,10 @@ const GeneralLayout = (props) => {
   // };
 
   const openHomePage = () => {
-    dispatch(switchHomePageStatus(true));
     navigate('/Steamscord');
   };
 
   const openProfileSettings = () => {
-    // dispatch(switchSettingsStatus(true));
     navigate('/Steamscord/Settings');
   };
   //
@@ -188,7 +184,7 @@ const GeneralLayout = (props) => {
                     </div>
                     <ul className="friends">
                       {' '}
-                      <FriendList data={data} />
+                      <FriendList data={data} isError={isError} />
                     </ul>
                   </Col>
                 </Row>

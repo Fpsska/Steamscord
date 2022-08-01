@@ -1,23 +1,15 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import { Row, Col, Card } from 'antd';
 import { CloseCircleOutlined } from '@ant-design/icons';
 import { Button, notification } from 'antd';
-
-import { switchSettingsStatus } from '../../../app/store/chatSlice';
 
 import './Settings.scss';
 
 const SettingsPage = () => {
 
   const { userName } = useSelector((state) => state.authReducer);
-
-  const dispatch = useDispatch();
-
-  const closeSettingsPage = () => {
-    dispatch(switchSettingsStatus(false));
-  };
 
   const openNotificationWithIcon = (type) => {
     notification[type]({
@@ -80,7 +72,7 @@ const SettingsPage = () => {
                             username
                           </h4>
                           <span className="account-card__username--text">
-                          {userName}#1531
+                            {userName}#1531
                           </span>
                         </div>
                         <button

@@ -18,10 +18,12 @@ import '../../assets/scss/media.scss';
 import 'antd/dist/antd.css';
 
 import { useFilter } from '../../hook/useFilter';
-import { useData } from '../../hook/useData';
 
-function App() {
-  const { data, isError, isLoading } = useData();
+import useGetProfileInfoQuery from '../../app/api/steamAPI';
+
+const App = () => {
+
+  const { data = [], isLoading, isError } = useGetProfileInfoQuery();
 
   const {
     enteredSearchValue,
@@ -38,7 +40,7 @@ function App() {
         <Route
           path="/Steamscord"
           element={
-            <GeneralLayout data={data} />
+            <GeneralLayout data={data} isError={isError} />
           }>
 
           <Route index element={<HomePage />} />
@@ -70,7 +72,7 @@ function App() {
           <Route path="LocalElysium"
             element={
               <ProtectedRoute>
-                <ChatPageSecond />
+                <ChatPageSecond isError={isError} />
               </ProtectedRoute>
             } />
 

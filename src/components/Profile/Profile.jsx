@@ -8,10 +8,7 @@ import './profile.scss';
 const Profile = ({ isModalVisible, setIsModalVisible }) => {
 
     const { userName, isAuthorized } = useSelector((state) => state.authReducer);
-    const { isInputActive } = useSelector((state) => state.chatReducer);
     const { currentUser } = useSelector((state) => state.profileReducer);
-
-    console.log(currentUser[0])
 
     const [isButtonLoading, setLoadingStatus] = useState(false);
 
@@ -76,7 +73,7 @@ const Profile = ({ isModalVisible, setIsModalVisible }) => {
                         type="primary"
                         className="profile__button"
                         onClick={openMessageModal}
-                        disabled={!isInputActive}
+                        disabled={!isAuthorized}
                     >
                         Message
                     </Button>
@@ -103,15 +100,19 @@ const Profile = ({ isModalVisible, setIsModalVisible }) => {
                 <ul className="profile__information information">
                     <li className="information__template">
                         <span className="information__title">Username</span>
-                        <a className="information__link" href="#">{isAuthorized ? `@${currentUser[0]?.personaname || userName}` : '-'}</a>
+                        <a className="information__link" href="#">{currentUser[0]?.personaname || userName}</a>
                     </li>
                     <li className="information__template">
                         <span className="information__title">Email</span>
-                        <a className="information__link" href="mailto:a-luna@gmail.com">{isAuthorized ? 'a-dropmail.com' : '-'}</a>
+                        {isAuthorized ?
+                            <a className="information__link" href="mailto:a-luna@gmail.com">mail-placeholder.com</a>
+                            :
+                            <a className="information__link" href="#">-</a>
+                        }
                     </li>
                     <li className="information__template">
                         <span className="information__title">Skype</span>
-                        <a className="information__link" href="#">{isAuthorized ? `${currentUser[0]?.personaname || userName}_skype` : '-'}</a>
+                        <a className="information__link" href="#">{currentUser[0]?.personaname || '-'}</a>
                     </li>
                     <li className="information__template">
                         <span className="information__title">Timezone</span>

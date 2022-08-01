@@ -6,9 +6,9 @@ import { Row, message } from 'antd';
 import { BsMic, BsEmojiSmile, BsPaperclip } from 'react-icons/bs';
 
 
-const ChatForm = ({ contentVisible = true }) => {
+const ChatForm = ({ isPageInteractive = false, isError }) => {
 
-  const { isInputActive, isFetching } = useSelector((state) => state.chatReducer);
+  const { isAuthorized } = useSelector((state) => state.authReducer);
 
   const formRef = useRef(!null);
 
@@ -28,7 +28,7 @@ const ChatForm = ({ contentVisible = true }) => {
           className="form__input form__input--message"
           type="text"
           placeholder="Message in #general"
-          disabled={!isInputActive || isFetching || !contentVisible}
+          disabled={!isAuthorized || !isPageInteractive || isError}
         />
         <div className="form__interaction">
           <button
