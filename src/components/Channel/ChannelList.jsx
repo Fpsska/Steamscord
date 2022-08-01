@@ -18,11 +18,11 @@ const ChannelList = () => {
               name={item.name}
               link={item.link}
             />
-          )
+          );
         })
       }
     </ul>
-  )
+  );
 
 };
 

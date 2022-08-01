@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { Outlet, useNavigate } from 'react-router';
 
-import { Layout, Menu, Row, Col, Button, Form, Input, message } from 'antd';
+import { Layout, Menu, Row, Col } from 'antd';
 import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
@@ -16,31 +16,26 @@ import {
 import { Modal } from 'antd';
 
 import { AiOutlineHome, AiOutlineMessage } from 'react-icons/ai';
-import { FaFacebookSquare, FaTwitterSquare, FaLinkedin, FaInstagramSquare } from 'react-icons/fa';
 
 import { logOut } from '../../app/store/authSlice';
 import { switchHomePageStatus } from '../../app/store/chatSlice';
 
-
 import ChannelList from '../Channel/ChannelList';
 import FriendList from '../Friend/FriendList';
+import Profile from '../Profile/Profile';
 
 import 'antd/dist/antd.css';
 
 const GeneralLayout = (props) => {
-
   const { data } = props;
-  // 
+  //
   const { Header, Sider, Content } = Layout;
   const { confirm } = Modal;
-  const { TextArea } = Input;
 
-  const { channels, isInputActive } = useSelector((state) => state.chatReducer);
-  const { userName, isAuthorized } = useSelector((state) => state.authReducer);
+  const { channels } = useSelector((state) => state.chatReducer);
 
   const [collapsed, setCollapsedStatus] = useState(true);
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [isButtonLoading, setLoadingStatus] = useState(false);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -66,30 +61,9 @@ const GeneralLayout = (props) => {
     });
   };
 
-  const handleCancelModal = () => {
-    setIsModalVisible(false);
-  };
-
-  const openMessageModal = () => {
-    setIsModalVisible(true);
-  };
-
   // const inputMessageHandle = (event) => {
   //   console.log(event.target.value);
   // };
-
-  const sendMessage = () => {
-    setLoadingStatus(true);
-    setTimeout(() => {
-      setIsModalVisible(false);
-      setLoadingStatus(false);
-    }, 2200);
-    setTimeout(() => {
-      message.success('Message sent successfully!');
-    }, 3000);
-    // inputMessageHandle();
-  };
-  // /.MODAL
 
   const openHomePage = () => {
     dispatch(switchHomePageStatus(true));
@@ -123,8 +97,12 @@ const GeneralLayout = (props) => {
           >
             settings
           </Menu.Item>
-          <Menu.Item key="2" icon={<VideoCameraOutlined />}>meeting</Menu.Item>
-          <Menu.Item key="3" icon={<UploadOutlined />}>upload</Menu.Item>
+          <Menu.Item key="2" icon={<VideoCameraOutlined />}>
+            meeting
+          </Menu.Item>
+          <Menu.Item key="3" icon={<UploadOutlined />}>
+            upload
+          </Menu.Item>
           <Menu.Item
             key="4"
             icon={<LogoutOutlined />}
@@ -165,7 +143,9 @@ const GeneralLayout = (props) => {
                 <Row>
                   <Col style={{ width: '100%' }}>
                     <div className="content__preview">
-                      <h2 className="content__title content__title--main">Nomad List</h2>
+                      <h2 className="content__title content__title--main">
+                        Nomad List
+                      </h2>
                       <button
                         className="content__button content__button--settings"
                         onClick={openHomePage}
@@ -181,7 +161,9 @@ const GeneralLayout = (props) => {
                       <button className="content__button">
                         <AiOutlineMessage size={20} color={'#b5b5b5'} />
                       </button>
-                      <h2 className="content__title content__title--small">All treads</h2>
+                      <h2 className="content__title content__title--small">
+                        All treads
+                      </h2>
                     </div>
                   </Col>
                 </Row>
@@ -219,9 +201,9 @@ const GeneralLayout = (props) => {
                 xxl={17}
                 className="content__section content__section--main"
               >
-
-                <div className="chat"><Outlet /></div>
-
+                <div className="chat">
+                  <Outlet />
+                </div>
               </Col>
               {/* /. COL MIDDLE */}
               <Col
@@ -229,84 +211,10 @@ const GeneralLayout = (props) => {
                 xxl={3}
                 className="content__section content__section--right"
               >
-                <div className="profile">
-                  <img
-                    className="profile__image"
-                    src={
-                      require('../../assets/images/profile-main.png').default
-                    }
-                    alt="profile"
-                  />
-
-                  <div className="profile__wrapper">
-                    <div className="profile__bio">
-                      <h2 className="profile__name">{userName}</h2>
-                      <span className="profile__position">{isAuthorized ? 'verified profile' : 'unregistered profile'}</span>
-                    </div>
-
-                    <ul className="profile__social social">
-                      <li className="social__icon">
-                        <a className="social__link" href="#"><FaFacebookSquare size={22} /></a>
-                      </li>
-                      <li className="social__icon">
-                        <a className="social__link" href="#"><FaTwitterSquare size={22} /></a>
-                      </li>
-                      <li className="social__icon">
-                        <a className="social__link" href="#"><FaInstagramSquare size={22} /></a>
-                      </li>
-                      <li className="social__icon">
-                        <a className="social__link" href="#"><FaLinkedin size={22} /></a>
-                      </li>
-                    </ul>
-                    <>
-                      <Button
-                        type="primary"
-                        className="profile__button"
-                        onClick={openMessageModal}
-                        disabled={!isInputActive}
-                      >
-                        Message
-                      </Button>
-                      <Modal
-                        visible={isModalVisible}
-                        title="Write your message there!"
-                        onOk={sendMessage}
-                        onCancel={handleCancelModal}
-                        footer={[
-                          <Button key="back" onClick={handleCancelModal}>Cancel</Button>,
-                          <Button
-                            key="submit"
-                            type="primary"
-                            loading={isButtonLoading}
-                            onClick={sendMessage}
-                          >
-                            Send
-                          </Button>
-                        ]}
-                      >
-                        <Form><TextArea rows={4} /></Form>
-                      </Modal>
-                    </>
-                    <ul className="profile__information information">
-                      <li className="information__template">
-                        <span className="information__title">Username</span>
-                        <a className="information__link" href="#">{isAuthorized ? `@${userName}` : '-'}</a>
-                      </li>
-                      <li className="information__template">
-                        <span className="information__title">Email</span>
-                        <a className="information__link" href="mailto:a-luna@gmail.com">{isAuthorized ? 'a-dropmail.com' : '-'}</a>
-                      </li>
-                      <li className="information__template">
-                        <span className="information__title">Skype</span>
-                        <a className="information__link" href="#">{isAuthorized ? `${userName}_skype` : '-'}</a>
-                      </li>
-                      <li className="information__template">
-                        <span className="information__title">Timezone</span>
-                        <span>{new Date().toLocaleTimeString()} Local time</span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
+                <Profile
+                  isModalVisible={isModalVisible}
+                  setIsModalVisible={setIsModalVisible}
+                />
               </Col>
             </Row>
           </div>

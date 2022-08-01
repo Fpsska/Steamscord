@@ -16,7 +16,7 @@ const authSlice = createSlice({
             state.userName = '';
         }
     }
-})
+});
 
 export const {
     login,
