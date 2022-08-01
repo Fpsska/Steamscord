@@ -19,10 +19,12 @@ const FriendList = ({ data }) => {
         return (
           <FriendItem
             key={item.steamid}
+            id={item.steamid}
             name={item.personaname}
             image={item.avatarmedium}
             status={Boolean(Math.round(Math.random()))}
             activity={gameActivity[getRandomGameActivity(gameActivity)]}
+            data={data}
           />
         );
       }),

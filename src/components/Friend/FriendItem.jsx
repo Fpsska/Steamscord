@@ -1,12 +1,24 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 
-const FriendItem = ({ name, image, status, activity }) => {
+import { getCurrentUser } from '../../app/store/profileSlice';
+
+const FriendItem = ({ id, name, image, status, activity, data }) => {
+  
+  const dispatch = useDispatch();
+
+  const setCurrentUser = () => {
+    const currentUser = data.filter(item => item.steamid === id);
+    dispatch(getCurrentUser(currentUser));
+  };
+
   return (
     <li className="friends__item">
       <img
         className={status ? 'friends__image friends__image--online' : 'friends__image'}
         src={image}
         alt="profle"
+        onClick={setCurrentUser}
       />
 
       <div className="friends__information">

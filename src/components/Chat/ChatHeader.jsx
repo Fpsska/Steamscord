@@ -3,7 +3,8 @@ import { useSelector } from 'react-redux';
 
 import { Row, Badge, Input, message } from 'antd';
 
-import { AiOutlineStar, AiOutlineUser } from 'react-icons/ai';
+import { BsStar  } from 'react-icons/bs';
+import { BiUser } from 'react-icons/bi';
 import { IoNotificationsOutline } from 'react-icons/io5';
 import { FiMoreVertical } from 'react-icons/fi';
 
@@ -32,12 +33,12 @@ const ChatHeader = (props) => {
       <div className="chat__column chat__column--name">
         <span className="chat__name">{channelName}</span>
         <button className="chat__button">
-          <AiOutlineStar size={20} />
+          <BsStar size={20} />
         </button>
       </div>
 
       <div className="chat__column chat__column--user">
-        <AiOutlineUser size={20} />
+        <BiUser size={20} />
         <span className="chat__users">{channelMembersCount}</span>
       </div>
 
