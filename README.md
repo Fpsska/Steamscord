@@ -5,7 +5,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ###### _inspired by [Discord](https://discord.com/) & [Steam](https://store.steampowered.com/about/)_
 
 ###### _hosted by_
-- [heroku](https://www.heroku.com/)
+- [vercel](https://vercel.com/)
 ###### _powered by_
 - [steam web API](https://steamcommunity.com/dev)
 - [ant design](https://ant.design/)
