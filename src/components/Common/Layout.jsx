@@ -7,21 +7,21 @@ import { Layout, Menu, Row, Col, Button, Form, Input, message } from 'antd';
 import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
-  UserOutlined,
   VideoCameraOutlined,
   UploadOutlined,
   LogoutOutlined,
-  FacebookOutlined,
-  TwitterOutlined,
-  InstagramOutlined,
-  LinkedinOutlined
+  SettingOutlined
 } from '@ant-design/icons';
+
 import { Modal } from 'antd';
+
+import { AiOutlineHome, AiOutlineMessage } from 'react-icons/ai';
+import { FaFacebookSquare, FaTwitterSquare, FaLinkedin, FaInstagramSquare } from 'react-icons/fa';
 
 import { logOut } from '../../app/store/authSlice';
 import { switchHomePageStatus } from '../../app/store/chatSlice';
 
-import SvgTemplate from '../Common/SvgTemplate';
+
 import ChannelList from '../Channel/ChannelList';
 import FriendList from '../Friend/FriendList';
 
@@ -117,7 +117,7 @@ const GeneralLayout = (props) => {
         <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
           <Menu.Item
             key="1"
-            icon={<UserOutlined />}
+            icon={<SettingOutlined />}
             style={{ marginTop: '0' }}
             onClick={openProfileSettings}
           >
@@ -170,9 +170,7 @@ const GeneralLayout = (props) => {
                         className="content__button content__button--settings"
                         onClick={openHomePage}
                       >
-                        <span className="content__icon">
-                          <SvgTemplate id="settings" />
-                        </span>
+                        <AiOutlineHome size={20} color={'#fff'} />
                       </button>
                     </div>
                   </Col>
@@ -181,9 +179,7 @@ const GeneralLayout = (props) => {
                   <Col style={{ width: '100%' }}>
                     <div className="content__preview content__preview--treads">
                       <button className="content__button">
-                        <span className="content__icon">
-                          <SvgTemplate id="dialog" />
-                        </span>
+                        <AiOutlineMessage size={20} color={'#b5b5b5'} />
                       </button>
                       <h2 className="content__title content__title--small">All treads</h2>
                     </div>
@@ -250,16 +246,16 @@ const GeneralLayout = (props) => {
 
                     <ul className="profile__social social">
                       <li className="social__icon">
-                        <a className="social__link" href="#"><FacebookOutlined /></a>
+                        <a className="social__link" href="#"><FaFacebookSquare size={22} /></a>
                       </li>
                       <li className="social__icon">
-                        <a className="social__link" href="#"><TwitterOutlined /></a>
+                        <a className="social__link" href="#"><FaTwitterSquare size={22} /></a>
                       </li>
                       <li className="social__icon">
-                        <a className="social__link" href="#"><InstagramOutlined /></a>
+                        <a className="social__link" href="#"><FaInstagramSquare size={22} /></a>
                       </li>
                       <li className="social__icon">
-                        <a className="social__link" href="#"><LinkedinOutlined /></a>
+                        <a className="social__link" href="#"><FaLinkedin size={22} /></a>
                       </li>
                     </ul>
                     <>

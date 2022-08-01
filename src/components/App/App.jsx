@@ -45,7 +45,11 @@ function App() {
 
           {/*  */}
 
-          <Route path="Settings" element={<SettingsPage />} />
+          <Route path="Settings" element={
+            <ProtectedRoute>
+              <SettingsPage />
+            </ProtectedRoute>
+          } />
           <Route path="*" element={<NoFoundPage />} />
 
           {/* ./ other pages  */}
