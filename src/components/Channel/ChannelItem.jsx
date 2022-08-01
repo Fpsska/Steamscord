@@ -7,7 +7,6 @@ const ChannelItem = ({ name, link }) => {
       <NavLink
         className="channels__link"
         to={link}
-        onClick={e => e.preventDefault()}
       >
         {name}
       </NavLink>

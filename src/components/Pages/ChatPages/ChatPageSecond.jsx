@@ -31,7 +31,7 @@ const ChatPageSecond = ({isError}) => {
     <>
       <ChatHeader channelName={'LocalElysium'} channelMembersCount={937} isError={isError} />
       {isContentVisible ?
-        <Empty style={{ margin: 'auto' }} />
+        <Empty image="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg" style={{ margin: 'auto' }} />
         :
         <div className="warning">
           <img

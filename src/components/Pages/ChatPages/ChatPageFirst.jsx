@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
 
-import { Spin, Result, Button } from 'antd';
+import { Col, Spin, Result, Empty } from 'antd';
 
 import { switchFetchingStatus } from '../../../app/store/chatSlice';
 
@@ -34,6 +34,25 @@ const ChatPageFirst = (props) => {
     return () => clearInterval(cheker);
   }, [isAuthorized, isLoading]);
 
+  const [isMobileErrorTemplate, setMobileErrorTemplate] = useState(false);
+
+  useLayoutEffect(() => {
+    const defineErrorTemplate = () => {
+      if (window.innerWidth < 768 || window.innerHeight < 475) {
+        setMobileErrorTemplate(true);
+      } else if (window.innerWidth > 768 || window.innerHeight > 475) {
+        setMobileErrorTemplate(false);
+      }
+    };
+
+    window.addEventListener('resize', defineErrorTemplate);
+    window.addEventListener('load', defineErrorTemplate);
+    return () => {
+      window.removeEventListener('resize', defineErrorTemplate);
+      window.removeEventListener('load', defineErrorTemplate);
+    };
+  }, [isError]);
+
   return (
     <>
       <ChatHeader
@@ -57,14 +76,26 @@ const ChatPageFirst = (props) => {
           />
           :
           isError ?
-            <div className="loading">
-              <Result
-                status="500"
-                title="500"
-                subTitle="Sorry, something went wrong."
-                extra={<Button type="primary">Refresh</Button>}
-              />
-            </div>
+            <Col style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              height: '100%'
+            }}>
+              {isMobileErrorTemplate ?
+                <Empty
+                  image={Empty.PRESENTED_IMAGE_SIMPLE}
+                  style={{ margin: '0 0 10px 0' }}
+                  description={'Sorry, something went wrong.'}
+                />
+                :
+                <Result
+                  status="500"
+                  title="500"
+                  subTitle="Sorry, something went wrong."
+                />
+              }
+            </Col>
             :
             <CommentsList
               availableItems={availableItems}

@@ -9,7 +9,7 @@ const NoFoundPage = () => {
   return (
     <>
       <ChatHeader />
-      <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} style={{ margin: 'auto' }} />
+      <Empty style={{ margin: 'auto' }} />
       <ChatForm />
     </>
   );
