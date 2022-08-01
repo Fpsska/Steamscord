@@ -1,5 +1,6 @@
 const express = require('express');
 const fetch = require('node-fetch');
+require('dotenv').config();
 
 const app = express();
 
@@ -21,7 +22,9 @@ app.get('/', (req, res) => {
 });
 
 app.get('/api/data', async (req, res) => {
-    const response = await fetch("http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=A15845DCA701187E95FB717C1D208226&steamids=76561198263478170_76561198034948682_76561198084746227_76561197988532919_76561198291514144_76561198873628029_76561198857004420_76561198155088017_76561198075746592")
+    const IDS = '76561198263478170_76561198034948682_76561198084746227_76561197988532919_76561198291514144_76561198873628029_76561198857004420_76561198155088017_76561198075746592_76561198833049585_76561198087024643_76561198353651479_76561198278418996'
+    const URL = `http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=${process.env.API_KEY}&steamids=${IDS}`
+    const response = await fetch(URL)
         .then(res => res.json())
         .catch(err => console.error(err.message || err));
 
