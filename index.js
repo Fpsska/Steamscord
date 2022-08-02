@@ -1,7 +1,7 @@
 const express = require('express');
 require('dotenv').config();
 
-const steamRouter = require('./routes/steam.routes');
+const userRouter = require('./routes/user.routes');
 
 
 const app = express();
@@ -23,7 +23,7 @@ app.get('/', (req, res) => {
     res.send('START route');
 });
 
-app.use('/api/data', steamRouter);
+app.use('/api/data', userRouter);
 
 
 
