@@ -9,7 +9,7 @@ class steamController {
             .then(res => res.json())
             .catch(err => console.error(err.message || err));
 
-        res.json(response.response);
+        res.json(response.response.players);
     }
 }
 
