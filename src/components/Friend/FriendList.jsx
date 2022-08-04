@@ -1,17 +1,17 @@
 import React, { useMemo } from 'react';
 
-import { useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import { Skeleton, Space, Row } from 'antd';
 
-import { getRandomGameActivity } from '../../helpers/getRandomActivity';
+import { getRandomGameArrayItem } from '../../helpers/getRandomGameArrayItem';
 
 import FriendItem from './FriendItem';
 
 import './Friend.scss';
 
 const FriendList = ({ data, isError }) => {
-  const { gameActivity } = useSelector((state) => state.chatReducer);
+  const { gameActivity, currentUser } = useSelector((state) => state.profileReducer);
   const { isAuthorized } = useSelector((state) => state.authReducer);
 
   const friendList = useMemo(
@@ -24,12 +24,13 @@ const FriendList = ({ data, isError }) => {
             name={item.personaname}
             image={item.avatarmedium}
             status={+String(item.timecreated).slice(-1) > 4 ? true : false}
-            activity={gameActivity[getRandomGameActivity(gameActivity)]}
+            activity={gameActivity[getRandomGameArrayItem(gameActivity)]}
             data={data}
+            currentUser={currentUser}
           />
         );
       }),
-    [data, gameActivity]
+    [data, gameActivity, currentUser]
   );
 
   return (

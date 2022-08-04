@@ -36,7 +36,6 @@ const Profile = ({ isModalVisible, setIsModalVisible }) => {
     // /.MODAL
 
     return (
-
         <div className="profile">
             <img
                 className="profile__image"
@@ -86,7 +85,7 @@ const Profile = ({ isModalVisible, setIsModalVisible }) => {
                             </Button>
                             <Modal
                                 visible={isModalVisible}
-                                title="Write your message there!"
+                                title={`Write your message from ${currentUser[0]?.personaname || 'this user'} there!`}
                                 onOk={sendMessage}
                                 onCancel={handleCancelModal}
                                 footer={[
