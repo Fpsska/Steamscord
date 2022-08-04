@@ -52,6 +52,7 @@ const GeneralLayout = ({ data, isError }) => {
       onOk() {
         setIsModalVisible(false);
         dispatch(logOut());
+        navigate('/Steamscord');
       },
       onCancel() {
         setIsModalVisible(false);

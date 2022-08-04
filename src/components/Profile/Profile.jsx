@@ -1,16 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Button, Form, Input, Modal, message } from 'antd';
 import { FaFacebookSquare, FaTwitterSquare, FaLinkedin, FaInstagramSquare } from 'react-icons/fa';
+
+import { getRandomGameArrayItem } from '../../helpers/getRandomGameArrayItem';
 
 import './profile.scss';
 
 const Profile = ({ isModalVisible, setIsModalVisible }) => {
 
     const { userName, isAuthorized } = useSelector((state) => state.authReducer);
-    const { currentUser } = useSelector((state) => state.profileReducer);
+    const { currentUser, timeZones } = useSelector((state) => state.profileReducer);
 
     const [isButtonLoading, setLoadingStatus] = useState(false);
+    const [timeZone, setTimeZone] = useState('');
 
     const { TextArea } = Input;
 
@@ -35,6 +38,10 @@ const Profile = ({ isModalVisible, setIsModalVisible }) => {
     };
     // /.MODAL
 
+    useEffect(() => {
+        setTimeZone(timeZones[getRandomGameArrayItem(timeZones)]);
+    }, [currentUser]);
+
     return (
         <div className="profile">
             <img
@@ -51,7 +58,10 @@ const Profile = ({ isModalVisible, setIsModalVisible }) => {
                         <h2 className="name__text" title={!isAuthorized ? userName : isAuthorized && currentUser.length === 0 ? userName : currentUser[0]?.personaname}>
                             {!isAuthorized ? userName : isAuthorized && currentUser.length === 0 ? userName : currentUser[0]?.personaname}
                         </h2>
-                        <span className={+String(currentUser[0]?.timecreated).slice(-1) > 4 ? 'name__prefix active' : 'name__prefix'}></span>
+                        {!isAuthorized || currentUser.length === 0 ? <></>
+                            :
+                            <span className={+String(currentUser[0]?.timecreated).slice(-1) > 4 ? 'name__prefix active' : 'name__prefix'}></span>
+                        }
                     </div>
                     <span className="profile__status">{isAuthorized ? 'verified profile' : 'unregistered profile'}</span>
                 </div>
@@ -125,7 +135,7 @@ const Profile = ({ isModalVisible, setIsModalVisible }) => {
                     </li>
                     <li className="information__template">
                         <span className="information__title">Timezone</span>
-                        <span>{new Date().toLocaleTimeString()} Local time</span>
+                        <span title={timeZone}>{timeZone}</span>
                     </li>
                 </ul>
             </div>

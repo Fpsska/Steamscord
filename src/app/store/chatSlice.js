@@ -65,16 +65,6 @@ const chatSlice = createSlice({
                 link: 'test10'
             }
         ],
-        gameActivity: [
-            'Counter-Strike: Global Offensive',
-            'Worlds of Tanks',
-            'Batman: The Enemy Within - The Telltale Series',
-            'PUBG: BATTLEGROUNDS',
-            'New World',
-            'Apex Legends',
-            'Dota 2',
-            'Metro Exodus'
-        ],
         settingsIsOpen: false,
         isFetching: true,
         isHomePage: true
