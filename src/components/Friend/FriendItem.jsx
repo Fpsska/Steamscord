@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { getCurrentUser } from '../../app/store/profileSlice';
 
-const FriendItem = ({ id, name, image, status, activity, data, currentUser }) => {
+const FriendItem = ({ id, name, image, status, activity, data }) => {
+
+  const { currentUser } = useSelector((state) => state.profileReducer);
 
   const [isAlreadyAdded, setAddedStatus] = useState(false);
 

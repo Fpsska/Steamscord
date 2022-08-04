@@ -26,11 +26,10 @@ const FriendList = ({ data, isError }) => {
             status={+String(item.timecreated).slice(-1) > 4 ? true : false}
             activity={gameActivity[getRandomGameArrayItem(gameActivity)]}
             data={data}
-            currentUser={currentUser}
           />
         );
       }),
-    [data, gameActivity, currentUser]
+    [data, gameActivity]
   );
 
   return (
