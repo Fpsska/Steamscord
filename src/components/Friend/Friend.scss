@@ -26,8 +26,8 @@
         font-weight: 400;
         display: none;
     }
-    &__activity--online {
-        color: #59bf40 !important;
+    &__activity.online {
+        color: #59bf40;
         display: block;
     }
     &__image {
@@ -44,8 +44,8 @@
             transform: scale(1.05);
         }
     }
-    &__image--online {
-        border: 1px solid #5ba32b !important;
+    &__image.online {
+        border: 1px solid #5ba32b;
     }
     &__name {
         font-weight: 400;
@@ -53,7 +53,7 @@
         line-height: 16.8px;
         color: #b5b5b5;
     }
-    &__name--online {
-        color: #c6e684 !important;
+    &__name.online {
+        color: #c6e684;
     }
 }

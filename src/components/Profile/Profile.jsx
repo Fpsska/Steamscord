@@ -48,10 +48,13 @@ const Profile = ({ isModalVisible, setIsModalVisible }) => {
 
             <div className="profile__wrapper">
                 <div className="profile__bio">
-                    <h2 className="profile__name" title={!isAuthorized ? userName : isAuthorized && currentUser.length === 0 ? userName : currentUser[0]?.personaname}>
-                        {!isAuthorized ? userName : isAuthorized && currentUser.length === 0 ? userName : currentUser[0]?.personaname}
-                    </h2>
-                    <span className="profile__position">{isAuthorized ? 'verified profile' : 'unregistered profile'}</span>
+                    <div className="name">
+                        <h2 className="name__text" title={!isAuthorized ? userName : isAuthorized && currentUser.length === 0 ? userName : currentUser[0]?.personaname}>
+                            {!isAuthorized ? userName : isAuthorized && currentUser.length === 0 ? userName : currentUser[0]?.personaname}
+                        </h2>
+                        <span className={+String(currentUser[0]?.timecreated).slice(-1) > 4 ? 'name__prefix active' : 'name__prefix'}></span>
+                    </div>
+                    <span className="profile__status">{isAuthorized ? 'verified profile' : 'unregistered profile'}</span>
                 </div>
 
                 <ul className="profile__social social">

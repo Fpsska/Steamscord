@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { getCurrentUser } from '../../app/store/profileSlice';
 
 const FriendItem = ({ id, name, image, status, activity, data }) => {
-  
+
   const dispatch = useDispatch();
 
   const setCurrentUser = () => {
@@ -15,21 +15,16 @@ const FriendItem = ({ id, name, image, status, activity, data }) => {
   return (
     <li className="friends__item">
       <img
-        className={status ? 'friends__image friends__image--online' : 'friends__image'}
+        className={status ? 'friends__image online' : 'friends__image'}
         src={image}
-        alt="profle"
+        alt="profle-avatar"
         onClick={setCurrentUser}
       />
-
       <div className="friends__information">
-        <span
-          className={status ? 'friends__name friends__name--online' : 'friends__name'}
-        >
+        <span className={status ? 'friends__name online' : 'friends__name'}>
           {name}
         </span>
-        <span
-          className={status ? 'friends__activity friends__activity--online' : 'friends__activity'}
-        >
+        <span className={status ? 'friends__activity online' : 'friends__activity'}>
           {activity}
         </span>
       </div>
