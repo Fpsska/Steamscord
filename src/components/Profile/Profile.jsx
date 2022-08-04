@@ -14,7 +14,6 @@ const Profile = ({ isModalVisible, setIsModalVisible }) => {
 
     const { TextArea } = Input;
 
-
     const handleCancelModal = () => {
         setIsModalVisible(false);
     };
@@ -41,16 +40,17 @@ const Profile = ({ isModalVisible, setIsModalVisible }) => {
         <div className="profile">
             <img
                 className="profile__image"
-                src={
-                    currentUser[0]?.avatarfull ||
-                    require('../../assets/images/profile-main.png').default
-                }
+                src={!isAuthorized ? require('../../assets/images/profile-main.png').default
+                    : isAuthorized && currentUser.length === 0 ? require('../../assets/images/profile-main.png').default
+                        : currentUser[0]?.avatarfull}
                 alt="profile"
             />
 
             <div className="profile__wrapper">
                 <div className="profile__bio">
-                    <h2 className="profile__name" title={currentUser[0]?.personaname || userName}>{currentUser[0]?.personaname || userName}</h2>
+                    <h2 className="profile__name" title={!isAuthorized ? userName : isAuthorized && currentUser.length === 0 ? userName : currentUser[0]?.personaname}>
+                        {!isAuthorized ? userName : isAuthorized && currentUser.length === 0 ? userName : currentUser[0]?.personaname}
+                    </h2>
                     <span className="profile__position">{isAuthorized ? 'verified profile' : 'unregistered profile'}</span>
                 </div>
 
@@ -68,39 +68,46 @@ const Profile = ({ isModalVisible, setIsModalVisible }) => {
                         <a className="social__link" href="#"><FaLinkedin size={22} /></a>
                     </li>
                 </ul>
-                <>
-                    <Button
-                        type="primary"
-                        className="profile__button"
-                        onClick={openMessageModal}
-                        disabled={!isAuthorized}
-                    >
-                        Message
-                    </Button>
-                    <Modal
-                        visible={isModalVisible}
-                        title="Write your message there!"
-                        onOk={sendMessage}
-                        onCancel={handleCancelModal}
-                        footer={[
-                            <Button key="back" onClick={handleCancelModal}>Cancel</Button>,
+                {
+                    !isAuthorized || (isAuthorized && currentUser.length === 0) ?
+                        <></>
+                        :
+                        <>
                             <Button
-                                key="submit"
                                 type="primary"
-                                loading={isButtonLoading}
-                                onClick={sendMessage}
+                                className="profile__button"
+                                onClick={openMessageModal}
+                                disabled={!isAuthorized}
                             >
-                                Send
+                                Message
                             </Button>
-                        ]}
-                    >
-                        <Form><TextArea rows={4} /></Form>
-                    </Modal>
-                </>
+                            <Modal
+                                visible={isModalVisible}
+                                title="Write your message there!"
+                                onOk={sendMessage}
+                                onCancel={handleCancelModal}
+                                footer={[
+                                    <Button key="back" onClick={handleCancelModal}>Cancel</Button>,
+                                    <Button
+                                        key="submit"
+                                        type="primary"
+                                        loading={isButtonLoading}
+                                        onClick={sendMessage}
+                                    >
+                                        Send
+                                    </Button>
+                                ]}
+                            >
+                                <Form><TextArea rows={4} /></Form>
+                            </Modal>
+                        </>
+                }
                 <ul className="profile__information information">
                     <li className="information__template">
                         <span className="information__title">Username</span>
-                        <a className="information__link" href="#">{currentUser[0]?.personaname || userName}</a>
+                        <a className="information__link" href="#" title={!isAuthorized ? userName : isAuthorized && currentUser.length === 0 ? userName : currentUser[0]?.personaname}>
+                            {!isAuthorized ? userName : userName && currentUser.length === 0 ? userName : currentUser[0]?.personaname}
+                        </a>
                     </li>
                     <li className="information__template">
                         <span className="information__title">Email</span>
@@ -112,7 +119,7 @@ const Profile = ({ isModalVisible, setIsModalVisible }) => {
                     </li>
                     <li className="information__template">
                         <span className="information__title">Skype</span>
-                        <a className="information__link" href="#">{currentUser[0]?.personaname || '-'}</a>
+                        <a className="information__link" href="#">{isAuthorized ? 'skype_placeholder' : '-'}</a>
                     </li>
                     <li className="information__template">
                         <span className="information__title">Timezone</span>

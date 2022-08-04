@@ -13,7 +13,7 @@ const authSlice = createSlice({
         },
         logOut(state) {
             state.isAuthorized = false;
-            state.userName = '';
+            state.userName = 'guest';
         }
     }
 });
