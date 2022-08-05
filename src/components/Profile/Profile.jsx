@@ -5,6 +5,8 @@ import { FaFacebookSquare, FaTwitterSquare, FaLinkedin, FaInstagramSquare } from
 
 import { getRandomGameArrayItem } from '../../helpers/getRandomGameArrayItem';
 
+import placeholderIMG from '../../assets/images/profile-main.png';
+
 import './profile.scss';
 
 const Profile = ({ isModalVisible, setIsModalVisible }) => {
@@ -46,16 +48,19 @@ const Profile = ({ isModalVisible, setIsModalVisible }) => {
         <div className="profile">
             <img
                 className="profile__image"
-                src={!isAuthorized ? require('../../assets/images/profile-main.png').default
-                    : isAuthorized && currentUser.length === 0 ? require('../../assets/images/profile-main.png').default
-                        : currentUser[0]?.avatarfull}
+                src={!isAuthorized ? placeholderIMG : isAuthorized && currentUser.length === 0 ? placeholderIMG : currentUser[0]?.avatarfull}
                 alt="profile"
+                onError={e => {
+                    e.target.src = placeholderIMG;
+                    e.onerror = null;
+                }}
             />
-
             <div className="profile__wrapper">
                 <div className="profile__bio">
                     <div className="name">
-                        <h2 className="name__text" title={!isAuthorized ? userName : isAuthorized && currentUser.length === 0 ? userName : currentUser[0]?.personaname}>
+                        <h2
+                            className={+String(currentUser[0]?.timecreated).slice(-1) > 4 ? 'name__text active' : 'name__text'}
+                            title={!isAuthorized ? userName : isAuthorized && currentUser.length === 0 ? userName : currentUser[0]?.personaname}>
                             {!isAuthorized ? userName : isAuthorized && currentUser.length === 0 ? userName : currentUser[0]?.personaname}
                         </h2>
                         {!isAuthorized || currentUser.length === 0 ? <></>
@@ -135,7 +140,7 @@ const Profile = ({ isModalVisible, setIsModalVisible }) => {
                     </li>
                     <li className="information__template">
                         <span className="information__title">Timezone</span>
-                        <span title={timeZone}>{timeZone}</span>
+                        <a className="information__link" href="#" title={timeZone}>{timeZone}</a>
                     </li>
                 </ul>
             </div>

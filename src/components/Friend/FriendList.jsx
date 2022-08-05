@@ -11,7 +11,7 @@ import FriendItem from './FriendItem';
 import './Friend.scss';
 
 const FriendList = ({ data, isError }) => {
-  const { gameActivity, currentUser } = useSelector((state) => state.profileReducer);
+  const { gameActivity } = useSelector((state) => state.profileReducer);
   const { isAuthorized } = useSelector((state) => state.authReducer);
 
   const friendList = useMemo(

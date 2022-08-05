@@ -206,43 +206,6 @@ body {
     }
 }
 
-.social {
-    margin: 20px 0;
-    padding: 0;
-    display: flex;
-    justify-content: space-between;
-    :not(:last-child) {
-        margin: 0 12px 0 0;
-    }
-    &__link {
-        color: #000;
-    }
-}
-
-.information {
-    margin: 0;
-    padding: 0;
-    &__template {
-        display: flex;
-        flex-direction: column;
-        &:not(:last-child) {
-            margin: 0 0 10px 0;
-        }
-    }
-    &__title {
-        font-size: 12px;
-        line-height: 14.4px;
-        font-weight: 400;
-        color: #5f6164;
-    }
-    &__link {
-        font-size: 14px;
-        line-height: 16.8px;
-        font-weight: 600;
-        color: #000;
-    }
-}
-
 .warning {
     margin: auto;
     display: flex;

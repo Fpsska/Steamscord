@@ -38,6 +38,7 @@
     align-items: center;
     justify-content: space-between;
     &__text {
+        color: #b5b5b5;
         margin: 0;
         font-weight: 700;
         position: relative;
@@ -45,6 +46,9 @@
         overflow: hidden;
         text-overflow: ellipsis;
         margin: 0 10px 0 0;
+    }
+    &__text.active {
+        color: #000;
     }
     &__prefix {
         flex-shrink: 0;
@@ -80,8 +84,11 @@
     &__template {
         display: flex;
         flex-direction: column;
+        :not(:last-child) {
+            margin: 0 0 5px 0;
+        }
         &:not(:last-child) {
-            margin: 0 0 10px 0;
+            margin: 0 0 15px 0;
         }
     }
     &__title {
