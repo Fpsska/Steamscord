@@ -14,7 +14,7 @@ import HomePage from '../Pages/HomePage/HomePage';
 
 import ProtectedRoute from '../../hoc/ProtectedRoute';
 
-import { fetchUsers } from '../../app/store/profileSlice';
+import { fetchUsers, fetchComments } from '../../app/store/profileSlice';
 import { useFilter } from '../../hook/useFilter';
 
 import './App.css';
@@ -30,6 +30,7 @@ const App = () => {
 
   useEffect(() => {
     dispatch(fetchUsers());
+    dispatch(fetchComments());
   }, []);
 
   const {

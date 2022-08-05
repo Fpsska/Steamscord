@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
+import { getRandomGameArrayItem } from '../../helpers/getRandomGameArrayItem';
 
 export const fetchUsers = createAsyncThunk(
     'profileSlice/fetchUsers',
@@ -14,9 +15,9 @@ export const fetchUsers = createAsyncThunk(
                 throw new Error('Response: server error!');
             }
 
-            const data = await response.json();
+            const usersData = await response.json();
 
-            return data;
+            return usersData;
 
         } catch (err) {
             return rejectWithValue(err.message);
@@ -24,12 +25,36 @@ export const fetchUsers = createAsyncThunk(
     }
 );
 
+export const fetchComments = createAsyncThunk(
+    'profileSlice/fetchComments',
+    async (_, { rejectWithValue }) => {
+
+        const limit = 20;
+        const URL = `https://jsonplaceholder.typicode.com/comments?&_limit=${limit}`;
+
+        try {
+            const response = await fetch(URL);
+
+            if (!response.ok) {
+                throw new Error('Response: server error!');
+            }
+
+            const commentsData = await response.json();
+
+            return commentsData;
+
+        } catch (err) {
+            return rejectWithValue(err.message);
+        }
+    }
+);
 
 const profileSlice = createSlice({
     name: 'profileSlice',
     initialState: {
         users: [],
         currentUser: [],
+        comments: [],
         gameActivity: [
             'Counter-Strike: Global Offensive',
             'Worlds of Tanks',
@@ -47,9 +72,13 @@ const profileSlice = createSlice({
             '(UTC+03:00) Minsk',
             '(UTC+06:00) Astana'
         ],
-        status: '',
-        error: null,
-        isUsersLoading: true
+        usersFetchingStatus: '',
+        usersFetchingError: null,
+        isUsersLoading: true,
+
+        commentsFetchingStatus: '',
+        commentsFetchingError: null,
+        isCommentsLoading: true
     },
     reducers: {
         getCurrentUser(state, action) {
@@ -57,18 +86,38 @@ const profileSlice = createSlice({
         }
     },
     extraReducers: {
+        [fetchComments.pending.type]: (state) => {
+            state.commentsFetchingStatus = 'loading';
+        },
+        [fetchComments.fulfilled.type]: (state, action) => {
+            state.comments = action.payload.map(item => item.body);
+            // state.comments = state.comments.map(item => item.body);
+
+            state.isCommentsLoading = false;
+            state.commentsFetchingStatus = 'success';
+        },
+        [fetchComments.rejected.type]: (state, action) => {
+            state.commentsFetchingError = action.payload;
+            state.isCommentsLoading = false;
+            state.commentsFetchingStatus = 'failed';
+        },
+
         [fetchUsers.pending.type]: (state) => {
-            state.status = 'loading';
+            state.usersFetchingStatus = 'loading';
         },
         [fetchUsers.fulfilled.type]: (state, action) => {
             state.users = action.payload;
+            state.users.map(item => {
+                item.comment = state.comments[getRandomGameArrayItem(state.comments)];
+            });
+            
             state.isUsersLoading = false;
-            state.status = 'success';
+            state.usersFetchingStatus = 'success';
         },
         [fetchUsers.rejected.type]: (state, action) => {
-            state.status = 'failed';
-            state.error = action.payload;
+            state.usersFetchingError = action.payload;
             state.isUsersLoading = false;
+            state.usersFetchingStatus = 'failed';
         }
     }
 });
