@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { getCurrentUser } from '../../app/store/profileSlice';
 
-const FriendItem = ({ id, name, image, status, activity, data }) => {
+const FriendItem = ({ id, name, image, status, activity, users }) => {
 
   const { currentUser } = useSelector((state) => state.profileReducer);
 
@@ -12,7 +12,7 @@ const FriendItem = ({ id, name, image, status, activity, data }) => {
   const dispatch = useDispatch();
 
   const setCurrentUser = () => {
-    const currentUserbyID = data.filter(item => item.steamid === id);
+    const currentUserbyID = users.filter(item => item.steamid === id);
     dispatch(getCurrentUser(currentUserbyID));
   };
 

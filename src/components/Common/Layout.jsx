@@ -25,7 +25,7 @@ import Profile from '../Profile/Profile';
 
 import 'antd/dist/antd.css';
 
-const GeneralLayout = ({ data, isError }) => {
+const GeneralLayout = ({ users, isError }) => {
 
   const { Header, Sider, Content } = Layout;
   const { confirm } = Modal;
@@ -181,11 +181,11 @@ const GeneralLayout = ({ data, isError }) => {
                   <Col style={{ width: '100%' }}>
                     <div className="content__preview">
                       <h2 className="content__title">Friends</h2>
-                      <span className="content__counter">{data.length}</span>
+                      <span className="content__counter">{users.length}</span>
                     </div>
                     <ul className="friends">
                       {' '}
-                      <FriendList data={data} isError={isError} />
+                      <FriendList users={users} isError={isError} />
                     </ul>
                   </Col>
                 </Row>

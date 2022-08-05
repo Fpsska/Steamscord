@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+
 const chatSlice = createSlice({
     name: 'chatSlice',
     initialState: {
@@ -65,9 +66,7 @@ const chatSlice = createSlice({
                 link: 'test10'
             }
         ],
-        settingsIsOpen: false,
-        isFetching: true,
-        isHomePage: true
+        isFetching: true
     },
     reducers: {
         switchFetchingStatus(state, action) {

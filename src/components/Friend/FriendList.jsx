@@ -10,13 +10,13 @@ import FriendItem from './FriendItem';
 
 import './Friend.scss';
 
-const FriendList = ({ data, isError }) => {
+const FriendList = ({ users, isError }) => {
   const { gameActivity } = useSelector((state) => state.profileReducer);
   const { isAuthorized } = useSelector((state) => state.authReducer);
 
   const friendList = useMemo(
     () =>
-      data.map((item) => {
+    users.map((item) => {
         return (
           <FriendItem
             key={item.steamid}
@@ -25,11 +25,11 @@ const FriendList = ({ data, isError }) => {
             image={item.avatarmedium}
             status={+String(item.timecreated).slice(-1) > 4 ? true : false}
             activity={gameActivity[getRandomGameArrayItem(gameActivity)]}
-            data={data}
+            users={users}
           />
         );
       }),
-    [data, gameActivity]
+    [users, gameActivity]
   );
 
   return (

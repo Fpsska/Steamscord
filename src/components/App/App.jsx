@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+
+import { useSelector, useDispatch } from 'react-redux';
 
 import { Routes, Route } from 'react-router-dom';
 
@@ -12,24 +14,29 @@ import HomePage from '../Pages/HomePage/HomePage';
 
 import ProtectedRoute from '../../hoc/ProtectedRoute';
 
+import { fetchUsers } from '../../app/store/profileSlice';
+import { useFilter } from '../../hook/useFilter';
+
 import './App.css';
 import '../../assets/scss/style.scss';
 import '../../assets/scss/media.scss';
 import 'antd/dist/antd.css';
 
-import { useFilter } from '../../hook/useFilter';
-
-import useGetProfileInfoQuery from '../../app/api/steamAPI';
-
 const App = () => {
 
-  const { data = [], isLoading, isError } = useGetProfileInfoQuery();
+  const { users, error, isUsersLoading } = useSelector(state => state.profileReducer);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchUsers());
+  }, []);
 
   const {
     enteredSearchValue,
     setEnteredSearchValue,
     availableItems
-  } = useFilter(data, 'personaname');
+  } = useFilter(users, 'personaname');
 
   return (
     <div className="App">
@@ -40,7 +47,7 @@ const App = () => {
         <Route
           path="/Steamscord"
           element={
-            <GeneralLayout data={data} isError={isError} />
+            <GeneralLayout users={users} isError={error} />
           }>
 
           <Route index element={<HomePage />} />
@@ -63,8 +70,8 @@ const App = () => {
                   availableItems={availableItems}
                   enteredSearchValue={enteredSearchValue}
                   setEnteredSearchValue={setEnteredSearchValue}
-                  isLoading={isLoading}
-                  isError={isError}
+                  isLoading={isUsersLoading}
+                  isError={error}
                 />
               </ProtectedRoute>
             } />
@@ -72,7 +79,7 @@ const App = () => {
           <Route path="LocalElysium"
             element={
               <ProtectedRoute>
-                <ChatPageSecond isError={isError} />
+                <ChatPageSecond isError={error} />
               </ProtectedRoute>
             } />
 
