@@ -74,15 +74,18 @@ const profileSlice = createSlice({
         ],
         usersFetchingStatus: '',
         usersFetchingError: null,
-        isUsersLoading: true,
 
         commentsFetchingStatus: '',
         commentsFetchingError: null,
-        isCommentsLoading: true
+
+        isDataLoading: true
     },
     reducers: {
         getCurrentUser(state, action) {
-            state.currentUser = action.payload;
+            state.currentUser = state.users.filter(item => item.steamid === action.payload);
+        },
+        switchDataLoadingStatus(state, action) {
+            state.isDataLoading = action.payload;
         }
     },
     extraReducers: {
@@ -91,17 +94,13 @@ const profileSlice = createSlice({
         },
         [fetchComments.fulfilled.type]: (state, action) => {
             state.comments = action.payload.map(item => item.body);
-            // state.comments = state.comments.map(item => item.body);
-
-            state.isCommentsLoading = false;
             state.commentsFetchingStatus = 'success';
         },
         [fetchComments.rejected.type]: (state, action) => {
             state.commentsFetchingError = action.payload;
-            state.isCommentsLoading = false;
             state.commentsFetchingStatus = 'failed';
         },
-
+        // /. get comments data
         [fetchUsers.pending.type]: (state) => {
             state.usersFetchingStatus = 'loading';
         },
@@ -110,20 +109,19 @@ const profileSlice = createSlice({
             state.users.map(item => {
                 item.comment = state.comments[getRandomGameArrayItem(state.comments)];
             });
-            
-            state.isUsersLoading = false;
+
             state.usersFetchingStatus = 'success';
         },
         [fetchUsers.rejected.type]: (state, action) => {
             state.usersFetchingError = action.payload;
-            state.isUsersLoading = false;
             state.usersFetchingStatus = 'failed';
         }
     }
 });
 
 export const {
-    getCurrentUser
+    getCurrentUser,
+    switchDataLoadingStatus
 } = profileSlice.actions;
 
 export default profileSlice.reducer;

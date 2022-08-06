@@ -30,7 +30,7 @@ const GeneralLayout = ({ users, isError }) => {
   const { Header, Sider, Content } = Layout;
   const { confirm } = Modal;
 
-  const { channels } = useSelector((state) => state.chatReducer);
+  const { channels } = useSelector((state) => state.mainReducer);
 
   const [collapsed, setCollapsedStatus] = useState(true);
   const [isModalVisible, setIsModalVisible] = useState(false);

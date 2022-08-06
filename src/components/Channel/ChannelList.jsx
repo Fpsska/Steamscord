@@ -6,7 +6,7 @@ import ChannelItem from './ChannelItem';
 import './Channel.scss';
 
 const ChannelList = () => {
-  const { channels } = useSelector((state) => state.chatReducer);
+  const { channels } = useSelector((state) => state.mainReducer);
 
   return (
     <ul className="channels">

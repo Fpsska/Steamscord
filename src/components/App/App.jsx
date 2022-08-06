@@ -14,7 +14,7 @@ import HomePage from '../Pages/HomePage/HomePage';
 
 import ProtectedRoute from '../../hoc/ProtectedRoute';
 
-import { fetchUsers, fetchComments } from '../../app/store/profileSlice';
+import { fetchUsers, fetchComments, switchDataLoadingStatus } from '../../app/store/profileSlice';
 import { useFilter } from '../../hook/useFilter';
 
 import './App.css';
@@ -24,14 +24,32 @@ import 'antd/dist/antd.css';
 
 const App = () => {
 
-  const { users, error, isUsersLoading } = useSelector(state => state.profileReducer);
+  const {
+    users,
+    usersFetchingError,
+    commentsFetchingError,
+    isDataLoading,
+    usersFetchingStatus,
+    commentsFetchingStatus
+  } = useSelector(state => state.profileReducer);
+
+  const { isAuthorized } = useSelector(state => state.authReducer);
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
+  useEffect(() => { // getting users, comments data
     dispatch(fetchUsers());
     dispatch(fetchComments());
   }, []);
+
+  useEffect(() => { // bad scalables of code 
+    const cheker = (isAuthorized && usersFetchingStatus === 'success' && commentsFetchingStatus === 'success') &&
+      setTimeout(() => {
+        dispatch(switchDataLoadingStatus(false));
+      }, 1300);
+
+    return () => clearInterval(cheker);
+  }, [usersFetchingStatus, commentsFetchingStatus, isAuthorized]);
 
   const {
     enteredSearchValue,
@@ -48,7 +66,7 @@ const App = () => {
         <Route
           path="/Steamscord"
           element={
-            <GeneralLayout users={users} isError={error} />
+            <GeneralLayout users={users} isError={usersFetchingError || commentsFetchingError} />
           }>
 
           <Route index element={<HomePage />} />
@@ -71,8 +89,8 @@ const App = () => {
                   availableItems={availableItems}
                   enteredSearchValue={enteredSearchValue}
                   setEnteredSearchValue={setEnteredSearchValue}
-                  isLoading={isUsersLoading}
-                  isError={error}
+                  isLoading={isDataLoading}
+                  isError={usersFetchingError || commentsFetchingError} // error(true) if at least has ERR
                 />
               </ProtectedRoute>
             } />
@@ -80,7 +98,7 @@ const App = () => {
           <Route path="LocalElysium"
             element={
               <ProtectedRoute>
-                <ChatPageSecond isError={error} />
+                <ChatPageSecond isError={usersFetchingError || commentsFetchingError} />
               </ProtectedRoute>
             } />
 

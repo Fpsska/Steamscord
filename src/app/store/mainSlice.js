@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 
-const chatSlice = createSlice({
-    name: 'chatSlice',
+const mainSlice = createSlice({
+    name: 'mainSlice',
     initialState: {
         channels: [
             {
@@ -66,17 +66,17 @@ const chatSlice = createSlice({
                 link: 'test10'
             }
         ],
-        isFetching: true
+        isFirstPageLoading: true
     },
     reducers: {
-        switchFetchingStatus(state, action) {
-            state.isFetching = action.payload;
+        switchFirstPageLoadingStatus(state, actions) {
+            state.isFirstPageLoading = actions.isFirstPageLoading;
         }
     }
 });
 
 export const {
-    switchFetchingStatus
-} = chatSlice.actions;
+    switchFirstPageLoadingStatus
+} = mainSlice.actions;
 
-export default chatSlice.reducer;
+export default mainSlice.reducer;

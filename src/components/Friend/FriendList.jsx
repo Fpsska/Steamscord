@@ -16,7 +16,7 @@ const FriendList = ({ users, isError }) => {
 
   const friendList = useMemo(
     () =>
-    users.map((item) => {
+      users.map((item) => {
         return (
           <FriendItem
             key={item.steamid}
@@ -25,7 +25,6 @@ const FriendList = ({ users, isError }) => {
             image={item.avatarmedium}
             status={+String(item.timecreated).slice(-1) > 4 ? true : false}
             activity={gameActivity[getRandomGameArrayItem(gameActivity)]}
-            users={users}
           />
         );
       }),

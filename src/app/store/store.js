@@ -1,13 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 import authReducer from './authSlice';
-import chatReducer from './chatSlice';
+import mainReducer from './mainSlice';
 import profileReducer from './profileSlice';
 
 export default configureStore({
   reducer: {
     authReducer: authReducer,
-    chatReducer: chatReducer,
+    mainReducer: mainReducer,
     profileReducer: profileReducer
   }
 });

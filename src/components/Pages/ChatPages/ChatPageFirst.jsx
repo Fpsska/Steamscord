@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { Col, Spin, Result, Empty } from 'antd';
 
-import { switchFetchingStatus } from '../../../app/store/chatSlice';
+import { switchFirstPageLoadingStatus } from '../../../app/store/mainSlice';
 
 import CommentsList from '../../Comment/CommentList';
 import ChatHeader from '../../Chat/ChatHeader';
@@ -21,18 +21,19 @@ const ChatPageFirst = (props) => {
   } = props;
 
 
-  const { isFetching } = useSelector(state => state.chatReducer);
-  const { isAuthorized } = useSelector(state => state.authReducer);
+  const { isFirstPageLoading } = useSelector(state => state.mainReducer);
+
+  // unlock route for only auth-d users
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const cheker = isAuthorized && !isLoading && setTimeout(() => {
-      dispatch(switchFetchingStatus(false));
+    const cheker = !isLoading && setTimeout(() => {
+      dispatch(switchFirstPageLoadingStatus(false));
     }, 1300);
 
     return () => clearInterval(cheker);
-  }, [isAuthorized, isLoading]);
+  }, [isLoading]);
 
   const [isMobileErrorTemplate, setMobileErrorTemplate] = useState(false);
 
@@ -60,11 +61,11 @@ const ChatPageFirst = (props) => {
         setEnteredSearchValue={setEnteredSearchValue}
         channelName={'NikitosXClub'}
         channelMembersCount={1337}
-        isPageInteractive={!isFetching}
+        isPageInteractive={!isFirstPageLoading}
         isError={isError}
       />
       <div className="chat__section chat__section--main">
-        {isFetching ?
+        {isFirstPageLoading ?
           <Spin
             size="large"
             style={{
@@ -102,7 +103,7 @@ const ChatPageFirst = (props) => {
             />
         }
       </div>
-      <ChatForm isPageInteractive={!isFetching} isError={isError} />
+      <ChatForm isPageInteractive={!isFirstPageLoading} isError={isError} />
     </>
   );
 };
