@@ -28,7 +28,7 @@ const ChatPageFirst = (props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const cheker = !isLoading && setTimeout(() => {
+    const cheker = (!isLoading || isError) && setTimeout(() => {
       dispatch(switchFirstPageLoadingStatus(false));
     }, 1300);
 
