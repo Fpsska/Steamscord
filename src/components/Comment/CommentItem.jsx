@@ -1,5 +1,7 @@
 import React from 'react';
 
+// /. imports
+
 const CommentItem = ({ name, comment, image, time }) => {
   return (
     <div className="message__template">

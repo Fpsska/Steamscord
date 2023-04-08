@@ -4,11 +4,13 @@ import { useSelector } from 'react-redux';
 
 import { Skeleton, Space, Row } from 'antd';
 
-import { getRandomGameArrayItem } from '../../helpers/getRandomGameArrayItem';
+import { getRandomGameArrayItem } from 'helpers/getRandomGameArrayItem';
 
 import FriendItem from './FriendItem';
 
 import './Friend.scss';
+
+// /. imports
 
 const FriendList = ({ users, isError }) => {
   const { gameActivity } = useSelector(state => state.profileReducer);

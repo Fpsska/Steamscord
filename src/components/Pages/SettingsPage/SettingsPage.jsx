@@ -4,9 +4,11 @@ import { useSelector } from 'react-redux';
 import { Row, Col, Card, Button, notification } from 'antd';
 import { CloseCircleOutlined } from '@ant-design/icons';
 
-import profileImg from '../../../assets/images/profile-main.png';
+import profileImg from 'assets/images/profile-main.png';
 
 import './Settings.scss';
+
+// /. imports
 
 const SettingsPage = () => {
   const { userName } = useSelector(state => state.authReducer);

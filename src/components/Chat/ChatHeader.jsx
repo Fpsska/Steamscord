@@ -13,7 +13,7 @@ import './Chat.scss';
 const ChatHeader = props => {
   const {
     enteredSearchValue,
-    setEnteredSearchValue = () => { },
+    setEnteredSearchValue = () => null,
     channelName = 'untitled',
     channelMembersCount = 0,
     isPageInteractive = false,

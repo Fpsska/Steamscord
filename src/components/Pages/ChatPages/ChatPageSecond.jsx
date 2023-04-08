@@ -4,10 +4,12 @@ import { useNavigate } from 'react-router-dom';
 
 import { Button, Empty } from 'antd';
 
-import ChatHeader from '../../Chat/ChatHeader';
-import ChatForm from '../../Chat/ChatForm';
+import ChatHeader from 'components/Chat/ChatHeader';
+import ChatForm from 'components/Chat/ChatForm';
 
-import warningImg from '../../../assets/images/warning.png';
+import warningImg from 'assets/images/warning.png';
+
+// /. imports
 
 const ChatPageSecond = ({ isError }) => {
   const [isContentVisible, setContentVisibleStatus] = useState(false);

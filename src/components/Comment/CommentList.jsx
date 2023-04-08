@@ -4,6 +4,8 @@ import CommentItem from './CommentItem';
 
 import './Comment.scss';
 
+// /. imports
+
 const CommentsList = ({ availableItems }) => {
   return (
     <div className="message">

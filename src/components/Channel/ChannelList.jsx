@@ -5,6 +5,8 @@ import ChannelItem from './ChannelItem';
 
 import './Channel.scss';
 
+// /. imports
+
 const ChannelList = () => {
   const { channels } = useSelector(state => state.mainReducer);
 

@@ -4,11 +4,13 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { Col, Spin, Result, Empty } from 'antd';
 
-import { switchFirstPageLoadingStatus } from '../../../app/slices/mainSlice';
+import { switchFirstPageLoadingStatus } from 'app/slices/mainSlice';
 
-import CommentsList from '../../Comment/CommentList';
-import ChatHeader from '../../Chat/ChatHeader';
-import ChatForm from '../../Chat/ChatForm';
+import CommentsList from 'components/Comment/CommentList';
+import ChatHeader from 'components/Chat/ChatHeader';
+import ChatForm from 'components/Chat/ChatForm';
+
+// /. imports
 
 const ChatPageFirst = props => {
   const {

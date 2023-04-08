@@ -1,6 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
+// /. imports
+
 const ChannelItem = ({ name, link }) => {
   return (
     <li className="channels__item">

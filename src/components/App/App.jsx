@@ -4,15 +4,17 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { Routes, Route } from 'react-router-dom';
 
-import GeneralLayout from '../Common/Layout';
-import AuthorisationPage from '../Pages/AuthPage/AuthPage';
-import SettingsPage from '../Pages/SettingsPage/SettingsPage';
-import ChatPageFirst from '../Pages/ChatPages/ChatPageFirst';
-import ChatPageSecond from '../Pages/ChatPages/ChatPageSecond';
-import NoFoundPage from '../Pages/NoFoundPage/NoFoundPage';
-import HomePage from '../Pages/HomePage/HomePage';
+import ProtectedRoute from 'hoc/ProtectedRoute';
 
-import ProtectedRoute from '../../hoc/ProtectedRoute';
+import GeneralLayout from 'components/Common/Layout';
+
+import AuthorisationPage from 'components/Pages/AuthPage/AuthPage';
+import SettingsPage from 'components/Pages/SettingsPage/SettingsPage';
+import ChatPageFirst from 'components/Pages/ChatPages/ChatPageFirst';
+import ChatPageSecond from 'components/Pages/ChatPages/ChatPageSecond';
+import NoFoundPage from 'components/Pages/NoFoundPage/NoFoundPage';
+import HomePage from 'components/Pages/HomePage/HomePage';
+
 
 import {
     fetchUsers,

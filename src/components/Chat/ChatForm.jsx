@@ -5,6 +5,8 @@ import { Row, message } from 'antd';
 
 import { BsMic, BsEmojiSmile, BsPaperclip } from 'react-icons/bs';
 
+// /. imports
+
 const ChatForm = ({ isPageInteractive = false, isError }) => {
   const { isAuthorized } = useSelector(state => state.authReducer);
 

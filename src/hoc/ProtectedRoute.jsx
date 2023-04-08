@@ -4,6 +4,8 @@ import { useSelector } from 'react-redux';
 
 import { Navigate, useLocation } from 'react-router';
 
+// /.imports
+
 const ProtectedRoute = ({ children }) => {
     const { isAuthorized } = useSelector(state => state.authReducer);
     const location = useLocation();

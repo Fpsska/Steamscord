@@ -8,11 +8,13 @@ import {
     FaInstagramSquare
 } from 'react-icons/fa';
 
-import { getRandomGameArrayItem } from '../../helpers/getRandomGameArrayItem';
+import { getRandomGameArrayItem } from 'helpers/getRandomGameArrayItem';
 
-import placeholderIMG from '../../assets/images/profile-main.png';
+import placeholderIMG from 'assets/images/profile-main.png';
 
 import './profile.scss';
+
+// /.imports
 
 const Profile = ({ isModalVisible, setIsModalVisible }) => {
     const { userName, isAuthorized } = useSelector(state => state.authReducer);
