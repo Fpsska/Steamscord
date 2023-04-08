@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-
 const mainSlice = createSlice({
     name: 'mainSlice',
     initialState: {
@@ -75,8 +74,6 @@ const mainSlice = createSlice({
     }
 });
 
-export const {
-    switchFirstPageLoadingStatus
-} = mainSlice.actions;
+export const { switchFirstPageLoadingStatus } = mainSlice.actions;
 
 export default mainSlice.reducer;

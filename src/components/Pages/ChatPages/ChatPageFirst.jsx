@@ -10,8 +10,7 @@ import CommentsList from '../../Comment/CommentList';
 import ChatHeader from '../../Chat/ChatHeader';
 import ChatForm from '../../Chat/ChatForm';
 
-const ChatPageFirst = (props) => {
-
+const ChatPageFirst = props => {
   const {
     enteredSearchValue,
     setEnteredSearchValue,
@@ -20,7 +19,6 @@ const ChatPageFirst = (props) => {
     isError
   } = props;
 
-
   const { isFirstPageLoading } = useSelector(state => state.mainReducer);
 
   // unlock route for only auth-d users
@@ -28,9 +26,11 @@ const ChatPageFirst = (props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const cheker = (!isLoading || isError) && setTimeout(() => {
-      dispatch(switchFirstPageLoadingStatus(false));
-    }, 1300);
+    const cheker =
+      (!isLoading || isError) &&
+      setTimeout(() => {
+        dispatch(switchFirstPageLoadingStatus(false));
+      }, 1300);
 
     return () => clearInterval(cheker);
   }, [isLoading]);
@@ -65,7 +65,7 @@ const ChatPageFirst = (props) => {
         isError={isError}
       />
       <div className="chat__section chat__section--main">
-        {isFirstPageLoading ?
+        {isFirstPageLoading ? (
           <Spin
             size="large"
             style={{
@@ -75,35 +75,37 @@ const ChatPageFirst = (props) => {
               alignItems: 'center'
             }}
           />
-          :
-          isError ?
-            <Col style={{
+        ) : isError ? (
+          <Col
+            style={{
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
               height: '100%'
-            }}>
-              {isMobileErrorTemplate ?
-                <Empty
-                  image={Empty.PRESENTED_IMAGE_SIMPLE}
-                  style={{ margin: '0 0 10px 0' }}
-                  description={'Sorry, something went wrong.'}
-                />
-                :
-                <Result
-                  status="500"
-                  title="500"
-                  subTitle="Sorry, something went wrong."
-                />
-              }
-            </Col>
-            :
-            <CommentsList
-              availableItems={availableItems}
-            />
-        }
+            }}
+          >
+            {isMobileErrorTemplate ? (
+              <Empty
+                image={Empty.PRESENTED_IMAGE_SIMPLE}
+                style={{ margin: '0 0 10px 0' }}
+                description={'Sorry, something went wrong.'}
+              />
+            ) : (
+              <Result
+                status="500"
+                title="500"
+                subTitle="Sorry, something went wrong."
+              />
+            )}
+          </Col>
+        ) : (
+          <CommentsList availableItems={availableItems} />
+        )}
       </div>
-      <ChatForm isPageInteractive={!isFirstPageLoading} isError={isError} />
+      <ChatForm
+        isPageInteractive={!isFirstPageLoading}
+        isError={isError}
+      />
     </>
   );
 };

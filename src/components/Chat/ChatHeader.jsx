@@ -10,8 +10,7 @@ import { FiMoreVertical } from 'react-icons/fi';
 
 import './Chat.scss';
 
-const ChatHeader = (props) => {
-
+const ChatHeader = props => {
   const {
     enteredSearchValue,
     setEnteredSearchValue = () => { },
@@ -21,7 +20,7 @@ const ChatHeader = (props) => {
     isError
   } = props;
 
-  const { isAuthorized } = useSelector((state) => state.authReducer);
+  const { isAuthorized } = useSelector(state => state.authReducer);
 
   const { Search } = Input;
   //
@@ -44,27 +43,38 @@ const ChatHeader = (props) => {
       </div>
 
       <div className="chat__column chat__column--form">
-        <form className="form" onSubmit={e => e.preventDefault()}>
+        <form
+          className="form"
+          onSubmit={e => e.preventDefault()}
+        >
           <Search
             placeholder="Search.."
             style={{ borderRadius: '5px' }}
-            disabled={!isAuthorized || !isPageInteractive || isError}
+            disabled={
+              !isAuthorized || !isPageInteractive || isError
+            }
             value={enteredSearchValue}
-            onChange={(e) => setEnteredSearchValue(e.target.value)}
+            onChange={e => setEnteredSearchValue(e.target.value)}
           />
         </form>
       </div>
 
       <div className="chat__column chat__column--notification">
         <button className="chat__button">
-          <Badge count={9} size="small">
+          <Badge
+            count={9}
+            size="small"
+          >
             <IoNotificationsOutline size={20} />
           </Badge>
         </button>
       </div>
 
       <div className="chat__column chat__column--settings">
-        <button className="chat__button" onClick={errorNotification}>
+        <button
+          className="chat__button"
+          onClick={errorNotification}
+        >
           <FiMoreVertical size={20} />
         </button>
       </div>

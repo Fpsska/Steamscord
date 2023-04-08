@@ -1,17 +1,17 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import { Row, Col, Card } from 'antd';
+import { Row, Col, Card, Button, notification } from 'antd';
 import { CloseCircleOutlined } from '@ant-design/icons';
-import { Button, notification } from 'antd';
+
+import profileImg from '../../../assets/images/profile-main.png';
 
 import './Settings.scss';
 
 const SettingsPage = () => {
+  const { userName } = useSelector(state => state.authReducer);
 
-  const { userName } = useSelector((state) => state.authReducer);
-
-  const openNotificationWithIcon = (type) => {
+  const openNotificationWithIcon = type => {
     notification[type]({
       message: 'Dear user!',
       description:
@@ -20,8 +20,14 @@ const SettingsPage = () => {
   };
 
   return (
-    <Row className="settings" style={{ width: '100%', height: '100%' }}>
-      <Col xxl={24} className="settings__column settings__column--right">
+    <Row
+      className="settings"
+      style={{ width: '100%', height: '100%' }}
+    >
+      <Col
+        xxl={24}
+        className="settings__column settings__column--right"
+      >
         <div className="settings__wrapper account">
           <button className="settings__button settings__button--close">
             <span className="">
@@ -48,18 +54,19 @@ const SettingsPage = () => {
                     <div className="account-card__preview">
                       <img
                         className="account-card__image"
-                        src={
-                          require('../../../assets/images/profile-main.png')
-                            .default
-                        }
+                        src={profileImg}
                         alt="avatar"
                       />
-                      <span className="account-card__name">{userName}#1531</span>
+                      <span className="account-card__name">
+                        {userName}#1531
+                      </span>
                     </div>
                     <Button
                       className="settings__button account__button--profileEdit"
                       type="primary"
-                      onClick={() => openNotificationWithIcon('info')}
+                      onClick={() =>
+                        openNotificationWithIcon('info')
+                      }
                     >
                       Edit User Profile
                     </Button>
@@ -77,7 +84,11 @@ const SettingsPage = () => {
                         </div>
                         <button
                           className="settings__button account__button--edit"
-                          onClick={() => openNotificationWithIcon('info')}
+                          onClick={() =>
+                            openNotificationWithIcon(
+                              'info'
+                            )
+                          }
                         >
                           Edit
                         </button>
@@ -95,7 +106,11 @@ const SettingsPage = () => {
                         </div>
                         <button
                           className="settings__button account__button--edit"
-                          onClick={() => openNotificationWithIcon('info')}
+                          onClick={() =>
+                            openNotificationWithIcon(
+                              'info'
+                            )
+                          }
                         >
                           Edit
                         </button>
@@ -108,12 +123,17 @@ const SettingsPage = () => {
                             phone number
                           </h4>
                           <span className="account-card__phone--text">
-                            You haven't added a phone number yet.
+                            You haven&apos;t added a
+                            phone number yet.
                           </span>
                         </div>
                         <button
                           className="settings__button account__button--add"
-                          onClick={() => openNotificationWithIcon('info')}
+                          onClick={() =>
+                            openNotificationWithIcon(
+                              'info'
+                            )
+                          }
                         >
                           Add
                         </button>
@@ -127,7 +147,9 @@ const SettingsPage = () => {
           </div>
           {/* /. account__section */}
           <div className="account__section account__section--authenfication">
-            <h3 className="settings__title">Password and Authenfication</h3>
+            <h3 className="settings__title">
+              Password and Authenfication
+            </h3>
             <Button
               className="settings__button account__button--password"
               type="primary"
@@ -136,12 +158,15 @@ const SettingsPage = () => {
               Change Password
             </Button>
             <div className="">
-              <h4 className="settings__subtitle">Two-factor authentication</h4>
+              <h4 className="settings__subtitle">
+                Two-factor authentication
+              </h4>
               <p className="settings__text">
-                Protect your Discord account with an extra layer of security.
-                Once configured, you'll be required to enter both your password
-                and an authentication code from your mobile phone in order to
-                sign in.
+                Protect your Discord account with an extra layer
+                of security. Once configured, you&apos;ll be
+                required to enter both your password and an
+                authentication code from your mobile phone in
+                order to sign in.
               </p>
               <Button
                 className="settings__button account__button--authenfication"
@@ -156,8 +181,8 @@ const SettingsPage = () => {
           <div className="account__section account__section--removal">
             <h4 className="settings__subtitle">Account Removal</h4>
             <p className="settings__text">
-              Disabling your account means you can recover it at any time after
-              taking this action.
+              Disabling your account means you can recover it at
+              any time after taking this action.
             </p>
             <div className="account__buttons">
               <Button

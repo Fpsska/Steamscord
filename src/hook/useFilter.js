@@ -7,9 +7,9 @@ export function useFilter(items, filterProp) {
     const activeSearchValue = useDebounce(enteredSearchValue, 200);
 
     const availableItems = activeSearchValue
-        ? items.filter((item) =>
-            RegExp(activeSearchValue, 'i').test(item[filterProp])
-        )
+        ? items.filter(item =>
+              RegExp(activeSearchValue, 'i').test(item[filterProp])
+          )
         : items;
 
     return {

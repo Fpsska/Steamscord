@@ -3,7 +3,11 @@ import React from 'react';
 const CommentItem = ({ name, comment, image, time }) => {
   return (
     <div className="message__template">
-      <img className="message__profile-image" src={image} alt="profile-avatar" />
+      <img
+        className="message__profile-image"
+        src={image}
+        alt="profile-avatar"
+      />
       <div className="message__content">
         <div className="message__information">
           <span className="message__name">{name}</span>

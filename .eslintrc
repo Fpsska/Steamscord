@@ -1,9 +1,32 @@
 {
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
     "extends": [
-        "react-app",
-        "react-app/jest"
+        "eslint:recommended",
+        "plugin:react/recommended",
+        // "plugin:import/errors",
+        "plugin:import/warnings",
+        "prettier"
     ],
+    "plugins": [
+        "import",
+        "react",
+        "react-hooks",
+        "prettier"
+    ],
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
     "rules": {
+        "prettier/prettier": [
+            "off",
+            {
+                "endOfLine": "auto"
+            }
+        ],
         "no-console": "warn",
         "quotes": [
             "error",
@@ -13,9 +36,10 @@
             "error",
             "prefer-double"
         ],
+        "no-unused-vars": "warn",
         "prefer-const": "error",
         "comma-dangle": [
-            "error",
+            "warn",
             "never"
         ],
         "semi": [
@@ -37,6 +61,8 @@
                 ],
                 "newlines-between": "always-and-inside-groups"
             }
-        ]
+        ],
+        "react-hooks/exhaustive-deps": "warn",
+        "react/prop-types": "off"
     }
 }

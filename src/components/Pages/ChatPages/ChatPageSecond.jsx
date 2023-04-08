@@ -7,9 +7,9 @@ import { Button, Empty } from 'antd';
 import ChatHeader from '../../Chat/ChatHeader';
 import ChatForm from '../../Chat/ChatForm';
 
+import warningImg from '../../../assets/images/warning.png';
 
-const ChatPageSecond = ({isError}) => {
-
+const ChatPageSecond = ({ isError }) => {
   const [isContentVisible, setContentVisibleStatus] = useState(false);
   const [isLoading, setLoadingStatus] = useState(false);
 
@@ -29,21 +29,29 @@ const ChatPageSecond = ({isError}) => {
 
   return (
     <>
-      <ChatHeader channelName={'LocalElysium'} channelMembersCount={937} isError={isError} />
-      {isContentVisible ?
-        <Empty image="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg" style={{ margin: 'auto' }} />
-        :
+      <ChatHeader
+        channelName={'LocalElysium'}
+        channelMembersCount={937}
+        isError={isError}
+      />
+      {isContentVisible ? (
+        <Empty
+          image="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
+          style={{ margin: 'auto' }}
+        />
+      ) : (
         <div className="warning">
           <img
             className="warning__image"
-            src={require('../../../assets/images/warning.png').default}
+            src={warningImg}
             alt="warning"
           />
           <div className="warning__text">
             <h2 className="warning__title">NSFW Channel</h2>
             <p className="warning__description">
-              You must be at least eighteen years old to view this channel.
-              Are you over eighteen and willing to see adult content?
+              You must be at least eighteen years old to view this
+              channel. Are you over eighteen and willing to see
+              adult content?
             </p>
           </div>
           <div className="warning__nav">
@@ -65,7 +73,7 @@ const ChatPageSecond = ({isError}) => {
             </Button>
           </div>
         </div>
-      }
+      )}
       <ChatForm isError={isError} />
     </>
   );

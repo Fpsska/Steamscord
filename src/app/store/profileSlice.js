@@ -5,7 +5,6 @@ import { getRandomGameArrayItem } from '../../helpers/getRandomGameArrayItem';
 export const fetchUsers = createAsyncThunk(
     'profileSlice/fetchUsers',
     async (_, { rejectWithValue }) => {
-
         const URL = 'https://steamscord-backend.vercel.app/api/data';
 
         try {
@@ -18,7 +17,6 @@ export const fetchUsers = createAsyncThunk(
             const usersData = await response.json();
 
             return usersData;
-
         } catch (err) {
             return rejectWithValue(err.message);
         }
@@ -28,7 +26,6 @@ export const fetchUsers = createAsyncThunk(
 export const fetchComments = createAsyncThunk(
     'profileSlice/fetchComments',
     async (_, { rejectWithValue }) => {
-
         const limit = 20;
         const URL = `https://jsonplaceholder.typicode.com/comments?&_limit=${limit}`;
 
@@ -42,7 +39,6 @@ export const fetchComments = createAsyncThunk(
             const commentsData = await response.json();
 
             return commentsData;
-
         } catch (err) {
             return rejectWithValue(err.message);
         }
@@ -82,14 +78,16 @@ const profileSlice = createSlice({
     },
     reducers: {
         getCurrentUser(state, action) {
-            state.currentUser = state.users.filter(item => item.steamid === action.payload);
+            state.currentUser = state.users.filter(
+                item => item.steamid === action.payload
+            );
         },
         switchDataLoadingStatus(state, action) {
             state.isDataLoading = action.payload;
         }
     },
     extraReducers: {
-        [fetchComments.pending.type]: (state) => {
+        [fetchComments.pending.type]: state => {
             state.commentsFetchingStatus = 'loading';
         },
         [fetchComments.fulfilled.type]: (state, action) => {
@@ -101,13 +99,14 @@ const profileSlice = createSlice({
             state.commentsFetchingStatus = 'failed';
         },
         // /. get comments data
-        [fetchUsers.pending.type]: (state) => {
+        [fetchUsers.pending.type]: state => {
             state.usersFetchingStatus = 'loading';
         },
         [fetchUsers.fulfilled.type]: (state, action) => {
             state.users = action.payload;
             state.users.map(item => {
-                item.comment = state.comments[getRandomGameArrayItem(state.comments)];
+                item.comment =
+                    state.comments[getRandomGameArrayItem(state.comments)];
             });
 
             state.usersFetchingStatus = 'success';
@@ -119,9 +118,6 @@ const profileSlice = createSlice({
     }
 });
 
-export const {
-    getCurrentUser,
-    switchDataLoadingStatus
-} = profileSlice.actions;
+export const { getCurrentUser, switchDataLoadingStatus } = profileSlice.actions;
 
 export default profileSlice.reducer;

@@ -16,13 +16,15 @@ const AuthorisationPage = () => {
   const location = useLocation();
 
   const [isButtonLoading, setLoadingStatus] = useState(false);
-  const [routeLink] = useState(location.state?.from?.pathname || '/Steamscord');
+  const [routeLink] = useState(
+    location.state?.from?.pathname || '/Steamscord'
+  );
 
-  const onSubmit = (data) => {
+  const onSubmit = data => {
     setLoadingStatus(true);
     setTimeout(() => {
       dispatch(login({ name: data.username }));
-      navigate(routeLink, {replace: true});
+      navigate(routeLink, { replace: true });
       setLoadingStatus(false);
     }, 2000);
   };
@@ -47,7 +49,9 @@ const AuthorisationPage = () => {
           ]}
         >
           <Input
-            prefix={<UserOutlined className="site-form-item-icon" />}
+            prefix={
+              <UserOutlined className="site-form-item-icon" />
+            }
             placeholder="Username"
           />
         </Form.Item>
@@ -61,16 +65,27 @@ const AuthorisationPage = () => {
           ]}
         >
           <Input
-            prefix={<LockOutlined className="site-form-item-icon" />}
+            prefix={
+              <LockOutlined className="site-form-item-icon" />
+            }
             type="password"
             placeholder="Password"
           />
         </Form.Item>
         <Form.Item>
-          <Form.Item name="remember" valuePropName="" noStyle>
+          <Form.Item
+            name="remember"
+            valuePropName=""
+            noStyle
+          >
             <Checkbox>Remember me</Checkbox>
           </Form.Item>
-          <a className="login-form-forgot" href="#">Forgot password</a>
+          <a
+            className="login-form-forgot"
+            href="#"
+          >
+            Forgot password
+          </a>
         </Form.Item>
 
         <Form.Item style={{ margin: '0' }}>
@@ -87,7 +102,6 @@ const AuthorisationPage = () => {
         </Form.Item>
       </Form>
     </div>
-
   );
 };
 

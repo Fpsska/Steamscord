@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { Outlet, useNavigate } from 'react-router';
 
-import { Layout, Menu, Row, Col } from 'antd';
+import { Layout, Menu, Row, Col, Modal } from 'antd';
 import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
@@ -12,8 +12,6 @@ import {
   LogoutOutlined,
   SettingOutlined
 } from '@ant-design/icons';
-
-import { Modal } from 'antd';
 
 import { AiOutlineHome, AiOutlineMessage } from 'react-icons/ai';
 
@@ -26,11 +24,10 @@ import Profile from '../Profile/Profile';
 import 'antd/dist/antd.css';
 
 const GeneralLayout = ({ users, isError }) => {
-
   const { Header, Sider, Content } = Layout;
   const { confirm } = Modal;
 
-  const { channels } = useSelector((state) => state.mainReducer);
+  const { channels } = useSelector(state => state.mainReducer);
 
   const [collapsed, setCollapsedStatus] = useState(true);
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -85,7 +82,11 @@ const GeneralLayout = ({ users, isError }) => {
         style={{ position: 'relative' }}
       >
         <div className="logo" />
-        <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
+        <Menu
+          theme="dark"
+          mode="inline"
+          defaultSelectedKeys={['1']}
+        >
           <Menu.Item
             key="1"
             icon={<SettingOutlined />}
@@ -94,10 +95,16 @@ const GeneralLayout = ({ users, isError }) => {
           >
             settings
           </Menu.Item>
-          <Menu.Item key="2" icon={<VideoCameraOutlined />}>
+          <Menu.Item
+            key="2"
+            icon={<VideoCameraOutlined />}
+          >
             meeting
           </Menu.Item>
-          <Menu.Item key="3" icon={<UploadOutlined />}>
+          <Menu.Item
+            key="3"
+            icon={<UploadOutlined />}
+          >
             upload
           </Menu.Item>
           <Menu.Item
@@ -111,7 +118,10 @@ const GeneralLayout = ({ users, isError }) => {
         </Menu>
       </Sider>
       <Layout className="site-layout">
-        <Header className="site-layout-background" style={{ padding: 0 }}>
+        <Header
+          className="site-layout-background"
+          style={{ padding: 0 }}
+        >
           {React.createElement(
             collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
             {
@@ -147,7 +157,10 @@ const GeneralLayout = ({ users, isError }) => {
                         className="content__button content__button--settings"
                         onClick={openHomePage}
                       >
-                        <AiOutlineHome size={20} color={'#fff'} />
+                        <AiOutlineHome
+                          size={20}
+                          color={'#fff'}
+                        />
                       </button>
                     </div>
                   </Col>
@@ -156,7 +169,10 @@ const GeneralLayout = ({ users, isError }) => {
                   <Col style={{ width: '100%' }}>
                     <div className="content__preview content__preview--treads">
                       <button className="content__button">
-                        <AiOutlineMessage size={20} color={'#b5b5b5'} />
+                        <AiOutlineMessage
+                          size={20}
+                          color={'#b5b5b5'}
+                        />
                       </button>
                       <h2 className="content__title content__title--small">
                         All treads
@@ -168,7 +184,9 @@ const GeneralLayout = ({ users, isError }) => {
                 <Row>
                   <Col style={{ width: '100%' }}>
                     <div className="content__preview">
-                      <h2 className="content__title">Channels</h2>
+                      <h2 className="content__title">
+                        Channels
+                      </h2>
                       <span className="content__counter">
                         {channels.length}
                       </span>
@@ -180,12 +198,19 @@ const GeneralLayout = ({ users, isError }) => {
                 <Row>
                   <Col style={{ width: '100%' }}>
                     <div className="content__preview">
-                      <h2 className="content__title">Friends</h2>
-                      <span className="content__counter">{users.length}</span>
+                      <h2 className="content__title">
+                        Friends
+                      </h2>
+                      <span className="content__counter">
+                        {users.length}
+                      </span>
                     </div>
                     <ul className="friends">
                       {' '}
-                      <FriendList users={users} isError={isError} />
+                      <FriendList
+                        users={users}
+                        isError={isError}
+                      />
                     </ul>
                   </Col>
                 </Row>

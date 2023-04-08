@@ -5,10 +5,8 @@ import { Row, message } from 'antd';
 
 import { BsMic, BsEmojiSmile, BsPaperclip } from 'react-icons/bs';
 
-
 const ChatForm = ({ isPageInteractive = false, isError }) => {
-
-  const { isAuthorized } = useSelector((state) => state.authReducer);
+  const { isAuthorized } = useSelector(state => state.authReducer);
 
   const formRef = useRef(!null);
 
@@ -16,14 +14,18 @@ const ChatForm = ({ isPageInteractive = false, isError }) => {
     message.error('Function temporarily unavailable');
   };
 
-  const onFormSubmit = (e) => {
+  const onFormSubmit = e => {
     e.preventDefault();
     formRef.current.reset();
   };
 
   return (
     <Row className="chat__section chat__section--bottom">
-      <form className="form form--message" ref={formRef} onSubmit={e => onFormSubmit(e)}>
+      <form
+        className="form form--message"
+        ref={formRef}
+        onSubmit={e => onFormSubmit(e)}
+      >
         <input
           className="form__input form__input--message"
           type="text"
@@ -36,14 +38,20 @@ const ChatForm = ({ isPageInteractive = false, isError }) => {
             className="form__button form__button--message form__button--voice"
             onClick={errorNotification}
           >
-            <BsMic size={20} color={'#b5b5b5'} />
+            <BsMic
+              size={20}
+              color={'#b5b5b5'}
+            />
           </button>
           <button
             type="button"
             className="form__button form__button--message form__button--file"
             onClick={errorNotification}
           >
-            <BsPaperclip size={20} color={'#b5b5b5'} />
+            <BsPaperclip
+              size={20}
+              color={'#b5b5b5'}
+            />
           </button>
         </div>
         <button
@@ -51,7 +59,10 @@ const ChatForm = ({ isPageInteractive = false, isError }) => {
           className="form__button form__button--message form__button--emoji"
           onClick={errorNotification}
         >
-          <BsEmojiSmile size={20} color={'#b5b5b5'} />
+          <BsEmojiSmile
+            size={20}
+            color={'#b5b5b5'}
+          />
         </button>
       </form>
     </Row>

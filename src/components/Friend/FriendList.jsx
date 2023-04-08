@@ -11,20 +11,26 @@ import FriendItem from './FriendItem';
 import './Friend.scss';
 
 const FriendList = ({ users, isError }) => {
-  const { gameActivity } = useSelector((state) => state.profileReducer);
-  const { isAuthorized } = useSelector((state) => state.authReducer);
+  const { gameActivity } = useSelector(state => state.profileReducer);
+  const { isAuthorized } = useSelector(state => state.authReducer);
 
   const friendList = useMemo(
     () =>
-      users.map((item) => {
+      users.map(item => {
         return (
           <FriendItem
             key={item.steamid}
             id={item.steamid}
             name={item.personaname}
             image={item.avatarmedium}
-            status={+String(item.timecreated).slice(-1) > 4 ? true : false}
-            activity={gameActivity[getRandomGameArrayItem(gameActivity)]}
+            status={
+              +String(item.timecreated).slice(-1) > 4
+                ? true
+                : false
+            }
+            activity={
+              gameActivity[getRandomGameArrayItem(gameActivity)]
+            }
           />
         );
       }),
@@ -34,7 +40,11 @@ const FriendList = ({ users, isError }) => {
   return (
     <>
       {!isAuthorized || isError ? (
-        <Space direction="vertical" style={{ width: '100%' }} size="large">
+        <Space
+          direction="vertical"
+          style={{ width: '100%' }}
+          size="large"
+        >
           <Row>
             <Skeleton.Avatar
               active="active"
@@ -42,7 +52,11 @@ const FriendList = ({ users, isError }) => {
               shape="avatarShape"
               style={{ margin: '0 15px 0 0' }}
             />
-            <Skeleton.Button active="active" size="middle" shape="round" />
+            <Skeleton.Button
+              active="active"
+              size="middle"
+              shape="round"
+            />
           </Row>
           <Row>
             <Skeleton.Avatar
@@ -51,7 +65,11 @@ const FriendList = ({ users, isError }) => {
               shape="avatarShape"
               style={{ margin: '0 15px 0 0' }}
             />
-            <Skeleton.Button active="active" size="middle" shape="round" />
+            <Skeleton.Button
+              active="active"
+              size="middle"
+              shape="round"
+            />
           </Row>
           <Row>
             <Skeleton.Avatar
@@ -60,7 +78,11 @@ const FriendList = ({ users, isError }) => {
               shape="avatarShape"
               style={{ margin: '0 15px 0 0' }}
             />
-            <Skeleton.Button active="active" size="middle" shape="round" />
+            <Skeleton.Button
+              active="active"
+              size="middle"
+              shape="round"
+            />
           </Row>
           <Row>
             <Skeleton.Avatar
@@ -69,7 +91,11 @@ const FriendList = ({ users, isError }) => {
               shape="avatarShape"
               style={{ margin: '0 15px 0 0' }}
             />
-            <Skeleton.Button active="active" size="middle" shape="round" />
+            <Skeleton.Button
+              active="active"
+              size="middle"
+              shape="round"
+            />
           </Row>
           <Row>
             <Skeleton.Avatar
@@ -78,7 +104,11 @@ const FriendList = ({ users, isError }) => {
               shape="avatarShape"
               style={{ margin: '0 15px 0 0' }}
             />
-            <Skeleton.Button active="active" size="middle" shape="round" />
+            <Skeleton.Button
+              active="active"
+              size="middle"
+              shape="round"
+            />
           </Row>
           <div>
             <Skeleton.Avatar
@@ -87,12 +117,16 @@ const FriendList = ({ users, isError }) => {
               shape="avatarShape"
               style={{ margin: '0 15px 0 0' }}
             />
-            <Skeleton.Button active="active" size="middle" shape="round" />
+            <Skeleton.Button
+              active="active"
+              size="middle"
+              shape="round"
+            />
           </div>
         </Space>
-      ) :
+      ) : (
         friendList
-      }
+      )}
     </>
   );
 };
