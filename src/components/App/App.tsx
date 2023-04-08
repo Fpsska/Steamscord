@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 
-import { useSelector, useDispatch } from 'react-redux';
-
 import { Routes, Route } from 'react-router-dom';
+
+import { useAppSelector, useAppDispatch } from 'app/hooks';
 
 import ProtectedRoute from 'hoc/ProtectedRoute';
 
@@ -15,22 +15,22 @@ import ChatPageSecond from 'components/Pages/ChatPages/ChatPageSecond';
 import NoFoundPage from 'components/Pages/NoFoundPage/NoFoundPage';
 import HomePage from 'components/Pages/HomePage/HomePage';
 
-
 import {
     fetchUsers,
     fetchComments,
     switchDataLoadingStatus
-} from '../../app/slices/profileSlice';
-import { useFilter } from '../../hook/useFilter';
+} from 'app/slices/profileSlice';
+
+import { useFilter } from 'hook/useFilter';
 
 import './App.css';
-import '../../assets/scss/style.scss';
-import '../../assets/scss/media.scss';
+import 'assets/scss/style.scss';
+import 'assets/scss/media.scss';
 import 'antd/dist/antd.css';
 
 // /. imports
 
-const App = () => {
+const App: React.FC = () => {
     const {
         users,
         usersFetchingError,
@@ -38,11 +38,11 @@ const App = () => {
         isDataLoading,
         usersFetchingStatus,
         commentsFetchingStatus
-    } = useSelector(state => state.profileReducer);
+    } = useAppSelector(state => state.profileReducer);
 
-    const { isAuthorized } = useSelector(state => state.authReducer);
+    const { isAuthorized } = useAppSelector(state => state.authReducer);
 
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
         // getting users, comments data
