@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { getCurrentUser } from '../../app/store/profileSlice';
+import { getCurrentUser } from '../../app/slices/profileSlice';
 
 const FriendItem = ({ id, name, image, status, activity }) => {
   const { currentUser } = useSelector(state => state.profileReducer);

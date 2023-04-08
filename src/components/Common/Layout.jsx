@@ -15,7 +15,7 @@ import {
 
 import { AiOutlineHome, AiOutlineMessage } from 'react-icons/ai';
 
-import { logOut } from '../../app/store/authSlice';
+import { logOut } from '../../app/slices/authSlice';
 
 import ChannelList from '../Channel/ChannelList';
 import FriendList from '../Friend/FriendList';

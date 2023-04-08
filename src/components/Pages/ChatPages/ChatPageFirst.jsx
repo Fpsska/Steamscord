@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { Col, Spin, Result, Empty } from 'antd';
 
-import { switchFirstPageLoadingStatus } from '../../../app/store/mainSlice';
+import { switchFirstPageLoadingStatus } from '../../../app/slices/mainSlice';
 
 import CommentsList from '../../Comment/CommentList';
 import ChatHeader from '../../Chat/ChatHeader';

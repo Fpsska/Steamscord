@@ -6,16 +6,20 @@
     "extends": [
         "eslint:recommended",
         "plugin:react/recommended",
-        // "plugin:import/errors",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:import/errors",
         "plugin:import/warnings",
+        "plugin:import/typescript",
         "prettier"
     ],
     "plugins": [
+        "@typescript-eslint",
         "import",
         "react",
         "react-hooks",
         "prettier"
     ],
+    "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "ecmaVersion": "latest",
         "sourceType": "module"
@@ -46,6 +50,7 @@
             "warn",
             "always"
         ],
+        "@typescript-eslint/no-explicit-any": "off",
         "import/order": [
             "error",
             {

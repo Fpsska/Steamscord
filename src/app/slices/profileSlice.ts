@@ -2,6 +2,8 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 import { getRandomGameArrayItem } from '../../helpers/getRandomGameArrayItem';
 
+//  /. imports
+
 export const fetchUsers = createAsyncThunk(
     'profileSlice/fetchUsers',
     async (_, { rejectWithValue }) => {
@@ -17,7 +19,7 @@ export const fetchUsers = createAsyncThunk(
             const usersData = await response.json();
 
             return usersData;
-        } catch (err) {
+        } catch (err: any) {
             return rejectWithValue(err.message);
         }
     }
@@ -39,47 +41,51 @@ export const fetchComments = createAsyncThunk(
             const commentsData = await response.json();
 
             return commentsData;
-        } catch (err) {
+        } catch (err: any) {
             return rejectWithValue(err.message);
         }
     }
 );
 
+const initialState: any = {
+    users: [],
+    currentUser: [],
+    comments: [],
+    gameActivity: [
+        'Counter-Strike: Global Offensive',
+        'Worlds of Tanks',
+        'Batman: The Enemy Within - The Telltale Series',
+        'PUBG: BATTLEGROUNDS',
+        'New World',
+        'Apex Legends',
+        'Dota 2',
+        'Metro Exodus'
+    ],
+    timeZones: [
+        '(UTC-06:00) Central America',
+        '(UTC+07:00) Novosibirsk',
+        '(UTC+04:00) Moscow, St. Petersburg, Volgograd',
+        '(UTC+03:00) Minsk',
+        '(UTC+06:00) Astana'
+    ],
+    usersFetchingStatus: '',
+    usersFetchingError: null,
+
+    commentsFetchingStatus: '',
+    commentsFetchingError: null,
+
+    isDataLoading: true
+};
+
+// /. initialState
+
 const profileSlice = createSlice({
     name: 'profileSlice',
-    initialState: {
-        users: [],
-        currentUser: [],
-        comments: [],
-        gameActivity: [
-            'Counter-Strike: Global Offensive',
-            'Worlds of Tanks',
-            'Batman: The Enemy Within - The Telltale Series',
-            'PUBG: BATTLEGROUNDS',
-            'New World',
-            'Apex Legends',
-            'Dota 2',
-            'Metro Exodus'
-        ],
-        timeZones: [
-            '(UTC-06:00) Central America',
-            '(UTC+07:00) Novosibirsk',
-            '(UTC+04:00) Moscow, St. Petersburg, Volgograd',
-            '(UTC+03:00) Minsk',
-            '(UTC+06:00) Astana'
-        ],
-        usersFetchingStatus: '',
-        usersFetchingError: null,
-
-        commentsFetchingStatus: '',
-        commentsFetchingError: null,
-
-        isDataLoading: true
-    },
+    initialState,
     reducers: {
-        getCurrentUser(state, action) {
+        getCurrentUser(state, action: any) {
             state.currentUser = state.users.filter(
-                item => item.steamid === action.payload
+                (item: any) => item.steamid === action.payload
             );
         },
         switchDataLoadingStatus(state, action) {
@@ -91,7 +97,7 @@ const profileSlice = createSlice({
             state.commentsFetchingStatus = 'loading';
         },
         [fetchComments.fulfilled.type]: (state, action) => {
-            state.comments = action.payload.map(item => item.body);
+            state.comments = action.payload.map((item: any) => item.body);
             state.commentsFetchingStatus = 'success';
         },
         [fetchComments.rejected.type]: (state, action) => {
@@ -104,7 +110,7 @@ const profileSlice = createSlice({
         },
         [fetchUsers.fulfilled.type]: (state, action) => {
             state.users = action.payload;
-            state.users.map(item => {
+            state.users.map((item: any) => {
                 item.comment =
                     state.comments[getRandomGameArrayItem(state.comments)];
             });
