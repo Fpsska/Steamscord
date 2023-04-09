@@ -2,8 +2,10 @@ import { useState, useEffect } from 'react';
 
 // /.imports
 
-export function useDebounce(value, delay) {
+export function useDebounce(value: string, delay: number): string {
     const [debValue, setValue] = useState(value);
+
+    // /. hooks
 
     useEffect(() => {
         const handler = setTimeout(() => {
