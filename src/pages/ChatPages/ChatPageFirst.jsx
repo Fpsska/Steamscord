@@ -6,9 +6,9 @@ import { Col, Spin, Result, Empty } from 'antd';
 
 import { switchFirstPageLoadingStatus } from 'app/slices/mainSlice';
 
-import CommentsList from 'components/Comment/CommentList';
-import ChatHeader from 'components/Chat/ChatHeader';
-import ChatForm from 'components/Chat/ChatForm';
+import CommentsList from 'components/ui/Comment/CommentList';
+import ChatHeader from 'components/layout/Chat/ChatHeader';
+import ChatForm from 'components/layout/Chat/ChatForm';
 
 // /. imports
 
@@ -23,9 +23,13 @@ const ChatPageFirst = props => {
 
   const { isFirstPageLoading } = useSelector(state => state.mainReducer);
 
+  const [isMobileErrorTemplate, setMobileErrorTemplate] = useState(false);
+
   // unlock route for only auth-d users
 
   const dispatch = useDispatch();
+
+  // /. hooks
 
   useEffect(() => {
     const cheker =
@@ -37,7 +41,6 @@ const ChatPageFirst = props => {
     return () => clearInterval(cheker);
   }, [isLoading]);
 
-  const [isMobileErrorTemplate, setMobileErrorTemplate] = useState(false);
 
   useLayoutEffect(() => {
     const defineErrorTemplate = () => {
@@ -55,6 +58,8 @@ const ChatPageFirst = props => {
       window.removeEventListener('load', defineErrorTemplate);
     };
   }, [isError]);
+
+  // /. effects
 
   return (
     <>

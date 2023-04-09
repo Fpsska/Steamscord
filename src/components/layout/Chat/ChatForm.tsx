@@ -23,6 +23,8 @@ const ChatForm: React.FC<propTypes> = ({
 
     const formRef = useRef<HTMLFormElement>(null!);
 
+    // /. hooks
+
     const errorNotification = () => {
         message.error('Function temporarily unavailable');
     };
@@ -31,6 +33,8 @@ const ChatForm: React.FC<propTypes> = ({
         e.preventDefault();
         formRef.current.reset();
     };
+
+    // /. functions
 
     return (
         <Row className="chat__section chat__section--bottom">

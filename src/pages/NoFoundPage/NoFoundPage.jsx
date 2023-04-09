@@ -2,8 +2,8 @@ import React from 'react';
 
 import { Empty } from 'antd';
 
-import ChatHeader from 'components/Chat/ChatHeader';
-import ChatForm from 'components/Chat/ChatForm';
+import ChatHeader from 'components/layout/Chat/ChatHeader';
+import ChatForm from 'components/layout/Chat/ChatForm';
 
 // /. imports
 

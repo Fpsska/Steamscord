@@ -8,7 +8,7 @@ import {
     FaInstagramSquare
 } from 'react-icons/fa';
 
-import { getRandomGameArrayItem } from 'helpers/getRandomGameArrayItem';
+import { getRandomGameArrayItem } from 'utils/helpers/getRandomGameArrayItem';
 
 import placeholderIMG from 'assets/images/profile-main.png';
 
@@ -26,6 +26,8 @@ const Profile = ({ isModalVisible, setIsModalVisible }) => {
     const [timeZone, setTimeZone] = useState('');
 
     const { TextArea } = Input;
+
+    // /. hooks
 
     const handleCancelModal = () => {
         setIsModalVisible(false);
@@ -46,11 +48,14 @@ const Profile = ({ isModalVisible, setIsModalVisible }) => {
         }, 3000);
         // inputMessageHandle();
     };
-    // /.MODAL
+
+    // /. functions
 
     useEffect(() => {
         setTimeZone(timeZones[getRandomGameArrayItem(timeZones)]);
     }, [currentUser]);
+
+    // /. effects
 
     return (
         <div className="profile">

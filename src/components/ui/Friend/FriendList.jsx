@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 
 import { Skeleton, Space, Row } from 'antd';
 
-import { getRandomGameArrayItem } from 'helpers/getRandomGameArrayItem';
+import { getRandomGameArrayItem } from 'utils/helpers/getRandomGameArrayItem';
 
 import FriendItem from './FriendItem';
 
@@ -15,6 +15,8 @@ import './Friend.scss';
 const FriendList = ({ users, isError }) => {
   const { gameActivity } = useSelector(state => state.profileReducer);
   const { isAuthorized } = useSelector(state => state.authReducer);
+
+  // /. hooks
 
   const friendList = useMemo(
     () =>

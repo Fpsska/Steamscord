@@ -11,6 +11,8 @@ import './Channel.scss';
 const ChannelList: React.FC = () => {
     const { channels } = useAppSelector(state => state.mainReducer);
 
+    // /. hooks
+
     return (
         <ul className="channels">
             {channels.map((item: any) => {

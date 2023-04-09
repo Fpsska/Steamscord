@@ -17,9 +17,9 @@ import { AiOutlineHome, AiOutlineMessage } from 'react-icons/ai';
 
 import { logOut } from 'app/slices/authSlice';
 
-import ChannelList from 'components/Channel/ChannelList';
-import FriendList from 'components/Friend/FriendList';
-import Profile from 'components/Profile/Profile';
+import ChannelList from 'components/ui/Channel/ChannelList';
+import FriendList from 'components/ui/Friend/FriendList';
+import Profile from 'components/layout/Profile/Profile';
 
 import 'antd/dist/antd.css';
 
@@ -36,7 +36,8 @@ const GeneralLayout = ({ users, isError }) => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  //
+
+  // /. hooks
 
   const AsideToggle = () => {
     window.innerWidth >= 768 && setCollapsedStatus(!collapsed);
@@ -70,7 +71,9 @@ const GeneralLayout = ({ users, isError }) => {
   const openProfileSettings = () => {
     navigate('/Steamscord/Settings');
   };
-  //
+
+  // /. functions
+
   return (
     <Layout
       style={{

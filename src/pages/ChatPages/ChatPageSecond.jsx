@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom';
 
 import { Button, Empty } from 'antd';
 
-import ChatHeader from 'components/Chat/ChatHeader';
-import ChatForm from 'components/Chat/ChatForm';
+import ChatHeader from 'components/layout/Chat/ChatHeader';
+import ChatForm from 'components/layout/Chat/ChatForm';
 
 import warningImg from 'assets/images/warning.png';
 
@@ -16,6 +16,8 @@ const ChatPageSecond = ({ isError }) => {
   const [isLoading, setLoadingStatus] = useState(false);
 
   const navigate = useNavigate();
+
+  // /. hooks
 
   const acceptAction = () => {
     setLoadingStatus(true);
@@ -28,6 +30,8 @@ const ChatPageSecond = ({ isError }) => {
   const goBack = () => {
     navigate('/Steamscord', { replace: true });
   };
+
+  // /. functions
 
   return (
     <>

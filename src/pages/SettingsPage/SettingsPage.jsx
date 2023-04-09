@@ -13,6 +13,8 @@ import './Settings.scss';
 const SettingsPage = () => {
   const { userName } = useSelector(state => state.authReducer);
 
+  // /. hooks
+
   const openNotificationWithIcon = type => {
     notification[type]({
       message: 'Dear user!',
@@ -20,6 +22,8 @@ const SettingsPage = () => {
         'This feature is not yet available, Please try again later :)'
     });
   };
+
+  // /. functions
 
   return (
     <Row

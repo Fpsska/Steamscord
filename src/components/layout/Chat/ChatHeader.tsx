@@ -37,11 +37,15 @@ const ChatHeader: React.FC<propTypes> = props => {
     const { isAuthorized } = useAppSelector(state => state.authReducer);
 
     const { Search } = Input;
-    //
+
+    // /. hooks
+
     const errorNotification = () => {
         message.error('Function temporarily unavailable');
     };
-    //
+
+    // /. functions
+
     return (
         <Row className="chat__section chat__section--top">
             <div className="chat__column chat__column--name">

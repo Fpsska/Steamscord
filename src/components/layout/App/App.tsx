@@ -2,18 +2,17 @@ import React, { useEffect } from 'react';
 
 import { Routes, Route } from 'react-router-dom';
 
+import AuthorisationPage from 'pages/AuthPage/AuthPage';
+import SettingsPage from 'pages/SettingsPage/SettingsPage';
+import ChatPageFirst from 'pages/ChatPages/ChatPageFirst';
+import ChatPageSecond from 'pages/ChatPages/ChatPageSecond';
+import NoFoundPage from 'pages/NoFoundPage/NoFoundPage';
+import HomePage from 'pages/HomePage/HomePage';
+
+import GeneralLayout from 'components/layout/Layout';
+import ProtectedRoute from 'components/hoc/ProtectedRoute';
+
 import { useAppSelector, useAppDispatch } from 'app/hooks';
-
-import ProtectedRoute from 'hoc/ProtectedRoute';
-
-import GeneralLayout from 'components/Common/Layout';
-
-import AuthorisationPage from 'components/Pages/AuthPage/AuthPage';
-import SettingsPage from 'components/Pages/SettingsPage/SettingsPage';
-import ChatPageFirst from 'components/Pages/ChatPages/ChatPageFirst';
-import ChatPageSecond from 'components/Pages/ChatPages/ChatPageSecond';
-import NoFoundPage from 'components/Pages/NoFoundPage/NoFoundPage';
-import HomePage from 'components/Pages/HomePage/HomePage';
 
 import {
     fetchUsers,
@@ -21,7 +20,7 @@ import {
     switchDataLoadingStatus
 } from 'app/slices/profileSlice';
 
-import { useFilter } from 'hook/useFilter';
+import { useFilter } from 'utils/hook/useFilter';
 
 import './App.css';
 import 'assets/scss/style.scss';
@@ -42,7 +41,12 @@ const App: React.FC = () => {
 
     const { isAuthorized } = useAppSelector(state => state.authReducer);
 
+    const { enteredSearchValue, setEnteredSearchValue, availableItems } =
+        useFilter(users, 'personaname');
+
     const dispatch = useAppDispatch();
+
+    // /. hooks
 
     useEffect(() => {
         // getting users, comments data
@@ -63,8 +67,7 @@ const App: React.FC = () => {
         return () => clearInterval(cheker);
     }, [usersFetchingStatus, commentsFetchingStatus, isAuthorized]);
 
-    const { enteredSearchValue, setEnteredSearchValue, availableItems } =
-        useFilter(users, 'personaname');
+    // /. effects
 
     return (
         <div className="App">

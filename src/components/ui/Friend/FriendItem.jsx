@@ -12,12 +12,16 @@ const FriendItem = ({ id, name, image, status, activity }) => {
 
   const dispatch = useDispatch();
 
+  // /. hooks
+
   useEffect(() => {
     // check equal items in currentUser[]
     currentUser?.some(item => item.steamid === id)
       ? setAddedStatus(true)
       : setAddedStatus(false);
   }, [currentUser, id]);
+
+  // /. effects
 
   return (
     <li className="friends__item">

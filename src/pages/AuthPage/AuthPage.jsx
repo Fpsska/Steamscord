@@ -13,14 +13,16 @@ import './Auth.scss';
 // /. imports
 
 const AuthorisationPage = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const location = useLocation();
-
   const [isButtonLoading, setLoadingStatus] = useState(false);
   const [routeLink] = useState(
     location.state?.from?.pathname || '/Steamscord'
   );
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // /. hooks
 
   const onSubmit = data => {
     setLoadingStatus(true);
@@ -30,6 +32,8 @@ const AuthorisationPage = () => {
       setLoadingStatus(false);
     }, 2000);
   };
+
+  // /. functions
 
   return (
     <div className="section">
