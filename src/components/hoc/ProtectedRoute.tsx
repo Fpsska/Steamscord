@@ -1,14 +1,17 @@
 import React from 'react';
 
-import { useSelector } from 'react-redux';
-
 import { Navigate, useLocation } from 'react-router';
+
+import { useAppSelector } from 'app/hooks';
 
 // /.imports
 
-const ProtectedRoute = ({ children }) => {
-    const { isAuthorized } = useSelector(state => state.authReducer);
+const ProtectedRoute: React.FC<{ children: JSX.Element }> = ({ children }) => {
+    const { isAuthorized } = useAppSelector(state => state.authReducer);
+
     const location = useLocation();
+
+    // /. hooks
 
     if (!isAuthorized) {
         return (
