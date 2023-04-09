@@ -14,12 +14,12 @@ import './Chat.scss';
 // /. imports
 
 interface propTypes {
-    enteredSearchValue: string;
-    setEnteredSearchValue: (arg: string) => void;
-    channelName: string;
-    channelMembersCount: number;
-    isPageInteractive: boolean;
-    isError: boolean;
+    enteredSearchValue?: string;
+    setEnteredSearchValue?: (arg: string) => void;
+    channelName?: string;
+    channelMembersCount?: number;
+    isPageInteractive?: boolean;
+    isError?: boolean;
 }
 
 // /. interfaces

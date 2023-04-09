@@ -7,14 +7,14 @@ import ChatForm from 'components/layout/Chat/ChatForm';
 
 // /. imports
 
-const NoFoundPage = () => {
-  return (
-    <>
-      <ChatHeader />
-      <Empty style={{ margin: 'auto' }} />
-      <ChatForm />
-    </>
-  );
+const NoFoundPage: React.FC = () => {
+    return (
+        <>
+            <ChatHeader />
+            <Empty style={{ margin: 'auto' }} />
+            <ChatForm />
+        </>
+    );
 };
 
 export default NoFoundPage;

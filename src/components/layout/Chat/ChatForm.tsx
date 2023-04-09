@@ -9,8 +9,8 @@ import { useAppSelector } from 'app/hooks';
 // /. imports
 
 interface propTypes {
-    isPageInteractive: boolean;
-    isError: boolean;
+    isPageInteractive?: boolean;
+    isError?: boolean;
 }
 
 // /. interfaces
@@ -42,6 +42,7 @@ const ChatForm: React.FC<propTypes> = ({
                 className="form form--message"
                 ref={formRef}
                 onSubmit={e => onFormSubmit(e)}
+                action="#"
             >
                 <input
                     className="form__input form__input--message"

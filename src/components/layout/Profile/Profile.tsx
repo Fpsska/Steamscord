@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+
 import { Button, Form, Input, Modal, message } from 'antd';
 import {
     FaFacebookSquare,
@@ -8,17 +8,31 @@ import {
     FaInstagramSquare
 } from 'react-icons/fa';
 
+import { useAppSelector } from 'app/hooks';
+
 import { getRandomGameArrayItem } from 'utils/helpers/getRandomGameArrayItem';
 
-import placeholderIMG from 'assets/images/profile-main.png';
+import placeholderIMG from '../../../assets/images/profile-main.png';
 
 import './profile.scss';
 
 // /.imports
 
-const Profile = ({ isModalVisible, setIsModalVisible }) => {
-    const { userName, isAuthorized } = useSelector(state => state.authReducer);
-    const { currentUser, timeZones } = useSelector(
+interface propTypes {
+    isModalVisible: boolean;
+    setIsModalVisible: (arg: boolean) => void;
+}
+
+// /. interfaces
+
+const Profile: React.FC<propTypes> = ({
+    isModalVisible,
+    setIsModalVisible
+}) => {
+    const { userName, isAuthorized } = useAppSelector(
+        state => state.authReducer
+    );
+    const { currentUser, timeZones } = useAppSelector(
         state => state.profileReducer
     );
 
@@ -65,11 +79,11 @@ const Profile = ({ isModalVisible, setIsModalVisible }) => {
                     !isAuthorized
                         ? placeholderIMG
                         : isAuthorized && currentUser.length === 0
-                            ? placeholderIMG
-                            : currentUser[0]?.avatarfull
+                        ? placeholderIMG
+                        : currentUser[0]?.avatarfull
                 }
                 alt="profile"
-                onError={e => {
+                onError={(e: any) => {
                     e.target.src = placeholderIMG;
                     e.onerror = null;
                 }}
@@ -80,7 +94,7 @@ const Profile = ({ isModalVisible, setIsModalVisible }) => {
                         <h2
                             className={
                                 +String(currentUser[0]?.timecreated).slice(-1) >
-                                    4
+                                4
                                     ? 'name__text active'
                                     : 'name__text'
                             }
@@ -88,15 +102,15 @@ const Profile = ({ isModalVisible, setIsModalVisible }) => {
                                 !isAuthorized
                                     ? userName
                                     : isAuthorized && currentUser.length === 0
-                                        ? userName
-                                        : currentUser[0]?.personaname
+                                    ? userName
+                                    : currentUser[0]?.personaname
                             }
                         >
                             {!isAuthorized
                                 ? userName
                                 : isAuthorized && currentUser.length === 0
-                                    ? userName
-                                    : currentUser[0]?.personaname}
+                                ? userName
+                                : currentUser[0]?.personaname}
                         </h2>
                         {!isAuthorized || currentUser.length === 0 ? (
                             <></>
@@ -167,8 +181,9 @@ const Profile = ({ isModalVisible, setIsModalVisible }) => {
                         </Button>
                         <Modal
                             visible={isModalVisible}
-                            title={`Write your message from ${currentUser[0]?.personaname || 'this user'
-                                } there!`}
+                            title={`Write your message from ${
+                                currentUser[0]?.personaname || 'this user'
+                            } there!`}
                             onOk={sendMessage}
                             onCancel={handleCancelModal}
                             footer={[
@@ -204,15 +219,15 @@ const Profile = ({ isModalVisible, setIsModalVisible }) => {
                                 !isAuthorized
                                     ? userName
                                     : isAuthorized && currentUser.length === 0
-                                        ? userName
-                                        : currentUser[0]?.personaname
+                                    ? userName
+                                    : currentUser[0]?.personaname
                             }
                         >
                             {!isAuthorized
                                 ? userName
                                 : userName && currentUser.length === 0
-                                    ? userName
-                                    : currentUser[0]?.personaname}
+                                ? userName
+                                : currentUser[0]?.personaname}
                         </a>
                     </li>
                     <li className="information__template">
