@@ -16,7 +16,7 @@ type NotificationType = 'success' | 'info' | 'warning' | 'error';
 // /. types
 
 const SettingsPage: React.FC = () => {
-    const { userName } = useAppSelector(state => state.authReducer);
+    const { login } = useAppSelector(state => state.authReducer);
 
     // /. hooks
 
@@ -69,7 +69,7 @@ const SettingsPage: React.FC = () => {
                                                 alt="avatar"
                                             />
                                             <span className="account-card__name">
-                                                {userName}#1531
+                                                {login}#1531
                                             </span>
                                         </div>
                                         <Button
@@ -90,7 +90,7 @@ const SettingsPage: React.FC = () => {
                                                         username
                                                     </h4>
                                                     <span className="account-card__username--text">
-                                                        {userName}#1531
+                                                        {login}#1531
                                                     </span>
                                                 </div>
                                                 <button

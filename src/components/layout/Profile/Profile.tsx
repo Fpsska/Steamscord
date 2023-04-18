@@ -29,9 +29,7 @@ const Profile: React.FC<propTypes> = ({
     isModalVisible,
     setIsModalVisible
 }) => {
-    const { userName, isAuthorized } = useAppSelector(
-        state => state.authReducer
-    );
+    const { login, isAuthorized } = useAppSelector(state => state.authReducer);
     const { currentUser, timeZones } = useAppSelector(
         state => state.profileReducer
     );
@@ -100,16 +98,16 @@ const Profile: React.FC<propTypes> = ({
                             }
                             title={
                                 !isAuthorized
-                                    ? userName
+                                    ? login
                                     : isAuthorized && currentUser.length === 0
-                                    ? userName
+                                    ? login
                                     : currentUser[0]?.personaname
                             }
                         >
                             {!isAuthorized
-                                ? userName
+                                ? login
                                 : isAuthorized && currentUser.length === 0
-                                ? userName
+                                ? login
                                 : currentUser[0]?.personaname}
                         </h2>
                         {!isAuthorized || currentUser.length === 0 ? (
@@ -211,22 +209,22 @@ const Profile: React.FC<propTypes> = ({
                 )}
                 <ul className="profile__information information">
                     <li className="information__template">
-                        <span className="information__title">Username</span>
+                        <span className="information__title">login</span>
                         <a
                             className="information__link"
                             href="#"
                             title={
                                 !isAuthorized
-                                    ? userName
+                                    ? login
                                     : isAuthorized && currentUser.length === 0
-                                    ? userName
+                                    ? login
                                     : currentUser[0]?.personaname
                             }
                         >
                             {!isAuthorized
-                                ? userName
-                                : userName && currentUser.length === 0
-                                ? userName
+                                ? login
+                                : login && currentUser.length === 0
+                                ? login
                                 : currentUser[0]?.personaname}
                         </a>
                     </li>

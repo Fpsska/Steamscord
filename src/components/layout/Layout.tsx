@@ -38,6 +38,9 @@ const GeneralLayout: React.FC<propTypes> = ({ users, isError }) => {
     const { confirm } = Modal;
 
     const { channels } = useAppSelector(state => state.mainReducer);
+    const { isAuthorized, isUserRemembered } = useAppSelector(
+        state => state.authReducer
+    );
 
     const [collapsed, setCollapsedStatus] = useState<boolean>(true);
     const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
@@ -59,8 +62,23 @@ const GeneralLayout: React.FC<propTypes> = ({ users, isError }) => {
             okText: 'Submit',
             onOk() {
                 setIsModalVisible(false);
-                dispatch(logOut());
+                dispatch(logOut({ isTotalReset: !isUserRemembered }));
                 navigate('/Steamscord');
+
+                localStorage.setItem(
+                    'storageIsUserAuth',
+                    JSON.stringify(false)
+                );
+
+                if (!isUserRemembered) {
+                    localStorage.setItem(
+                        'storageUserData',
+                        JSON.stringify({
+                            login: '',
+                            password: ''
+                        })
+                    );
+                }
             },
             onCancel() {
                 setIsModalVisible(false);
@@ -123,7 +141,7 @@ const GeneralLayout: React.FC<propTypes> = ({ users, isError }) => {
                     <Menu.Item
                         key="4"
                         icon={<LogoutOutlined />}
-                        onClick={handleExitModal}
+                        onClick={() => isAuthorized && handleExitModal()}
                         style={{ margin: '0' }}
                     >
                         Log Out

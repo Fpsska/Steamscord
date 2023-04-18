@@ -1,4 +1,6 @@
 export interface authSliceTypes {
     isAuthorized: boolean;
-    userName: string
+    isUserRemembered: boolean;
+    login: string;
+    password: string;
 }
