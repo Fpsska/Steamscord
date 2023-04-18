@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { useNavigate, useLocation } from 'react-router';
@@ -13,10 +13,10 @@ import './Auth.scss';
 // /. imports
 
 const AuthorisationPage: React.FC = () => {
-    const [isButtonLoading, setLoadingStatus] = useState(false);
-    // const [routeLink] = useState( // relocate user to previous page after auth
-    //     location.state?.from?.pathname || '/Steamscord'
-    // );
+    const [isLoading, setLoadingStatus] = useState<boolean>(false);
+
+    // relocate user to previous page after auth
+    const [startLocationLink, setStartLocationLink] = useState<string>('');
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -24,16 +24,26 @@ const AuthorisationPage: React.FC = () => {
 
     // /. hooks
 
-    const onSubmit = (data: any) => {
+    const onSubmit = (data: any): void => {
         setLoadingStatus(true);
+        // setTimeout(() => {
+        //     setLoadingStatus(false);
+        // }, 1900);
+
         setTimeout(() => {
             dispatch(login({ login: data.username }));
-            navigate('/Steamscord', { replace: true });
-            setLoadingStatus(false);
+            navigate(startLocationLink, { replace: true });
         }, 2000);
     };
 
     // /. functions
+
+    useEffect(() => {
+        const locationLink = location.state?.from?.pathname || '/Steamscord';
+        setStartLocationLink(locationLink);
+    }, [location.state]);
+
+    // /.effects
 
     return (
         <div className="section">
@@ -100,7 +110,7 @@ const AuthorisationPage: React.FC = () => {
                         htmlType="submit"
                         className="login-form-button"
                         style={{ width: '100%' }}
-                        loading={isButtonLoading}
+                        loading={isLoading}
                     >
                         Log in
                     </Button>

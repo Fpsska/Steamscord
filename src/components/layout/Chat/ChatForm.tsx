@@ -25,12 +25,13 @@ const ChatForm: React.FC<propTypes> = ({
 
     // /. hooks
 
-    const errorNotification = () => {
+    const errorNotification = (): void => {
         message.error('Function temporarily unavailable');
     };
 
-    const onFormSubmit = (e: any) => {
+    const onFormSubmit = (e: React.SyntheticEvent<HTMLFormElement>): void => {
         e.preventDefault();
+        //
         formRef.current.reset();
     };
 

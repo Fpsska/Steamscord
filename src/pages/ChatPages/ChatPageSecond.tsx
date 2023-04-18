@@ -12,14 +12,15 @@ import warningImg from 'assets/images/warning.png';
 // /. imports
 
 const ChatPageSecond: React.FC<{ isError: boolean }> = ({ isError }) => {
-    const [isContentVisible, setContentVisibleStatus] = useState(false);
-    const [isLoading, setLoadingStatus] = useState(false);
+    const [isContentVisible, setContentVisibleStatus] =
+        useState<boolean>(false);
+    const [isLoading, setLoadingStatus] = useState<boolean>(false);
 
     const navigate = useNavigate();
 
     // /. hooks
 
-    const acceptAction = () => {
+    const acceptAction = (): void => {
         setLoadingStatus(true);
         setTimeout(() => {
             setLoadingStatus(false);
@@ -27,7 +28,7 @@ const ChatPageSecond: React.FC<{ isError: boolean }> = ({ isError }) => {
         }, 3000);
     };
 
-    const goBack = () => {
+    const goBack = (): void => {
         navigate('/Steamscord', { replace: true });
     };
 
@@ -41,10 +42,7 @@ const ChatPageSecond: React.FC<{ isError: boolean }> = ({ isError }) => {
                 isError={isError}
             />
             {isContentVisible ? (
-                <Empty
-                    image="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
-                    style={{ margin: 'auto' }}
-                />
+                <Empty style={{ margin: 'auto' }} />
             ) : (
                 <div className="warning">
                     <img

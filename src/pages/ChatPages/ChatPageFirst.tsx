@@ -33,7 +33,8 @@ const ChatPageFirst: React.FC<propTypes> = props => {
 
     const { isFirstPageLoading } = useAppSelector(state => state.mainReducer);
 
-    const [isMobileErrorTemplate, setMobileErrorTemplate] = useState(false);
+    const [isMobileErrorTemplate, setMobileErrorTemplate] =
+        useState<boolean>(false);
 
     // unlock route for only auth-d users
 
@@ -41,15 +42,16 @@ const ChatPageFirst: React.FC<propTypes> = props => {
 
     // /. hooks
 
-    // useEffect(() => {
-    //     const cheker =
-    //         (!isLoading || isError) &&
-    //         setTimeout(() => {
-    //             dispatch(switchFirstPageLoadingStatus(false));
-    //         }, 1300);
+    useEffect(() => {
+        const validCondition = !isLoading && !isError;
+        const cheker = setTimeout(() => {
+            if (validCondition) {
+                dispatch(switchFirstPageLoadingStatus(false));
+            }
+        }, 1300);
 
-    //     return () => clearInterval(cheker);
-    // }, [isLoading]);
+        return () => clearTimeout(cheker);
+    }, [isLoading, isError]);
 
     useLayoutEffect(() => {
         const defineErrorTemplate = () => {
@@ -66,7 +68,7 @@ const ChatPageFirst: React.FC<propTypes> = props => {
             window.removeEventListener('resize', defineErrorTemplate);
             window.removeEventListener('load', defineErrorTemplate);
         };
-    }, [isError]);
+    }, []);
 
     // /. effects
 

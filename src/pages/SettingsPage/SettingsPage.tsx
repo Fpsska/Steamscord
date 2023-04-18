@@ -20,7 +20,7 @@ const SettingsPage: React.FC = () => {
 
     // /. hooks
 
-    const openNotificationWithIcon = (type: NotificationType) => {
+    const openNotificationWithIcon = (type: NotificationType): void => {
         notification[type]({
             message: 'Dear user!',
             description:

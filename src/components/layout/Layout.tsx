@@ -39,22 +39,22 @@ const GeneralLayout: React.FC<propTypes> = ({ users, isError }) => {
 
     const { channels } = useAppSelector(state => state.mainReducer);
 
-    const [collapsed, setCollapsedStatus] = useState(true);
-    const [isModalVisible, setIsModalVisible] = useState(false);
+    const [collapsed, setCollapsedStatus] = useState<boolean>(true);
+    const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
 
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
     // /. hooks
 
-    const AsideToggle = () => {
+    const AsideToggle = (): void => {
         window.innerWidth >= 768 && setCollapsedStatus(!collapsed);
     };
 
-    const handleExitModal = () => {
+    const handleExitModal = (): void => {
         confirm({
             title: 'Exit',
-            visible: isModalVisible,
+            open: isModalVisible,
             content: 'Are you sure?',
             okText: 'Submit',
             onOk() {
@@ -68,15 +68,15 @@ const GeneralLayout: React.FC<propTypes> = ({ users, isError }) => {
         });
     };
 
-    // const inputMessageHandle = (event) => {
+    // const inputMessageHandle = (event): void => {
     //   console.log(event.target.value);
     // };
 
-    const openHomePage = () => {
+    const openHomePage = (): void => {
         navigate('/Steamscord');
     };
 
-    const openProfileSettings = () => {
+    const openProfileSettings = (): void => {
         navigate('/Steamscord/Settings');
     };
 

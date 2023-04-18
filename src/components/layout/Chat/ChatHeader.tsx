@@ -40,7 +40,7 @@ const ChatHeader: React.FC<propTypes> = props => {
 
     // /. hooks
 
-    const errorNotification = () => {
+    const errorNotification = (): void => {
         message.error('Function temporarily unavailable');
     };
 
@@ -64,6 +64,7 @@ const ChatHeader: React.FC<propTypes> = props => {
                 <form
                     className="form"
                     onSubmit={e => e.preventDefault()}
+                    action="#"
                 >
                     <Search
                         placeholder="Search.."

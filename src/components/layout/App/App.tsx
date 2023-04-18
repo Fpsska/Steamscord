@@ -56,18 +56,18 @@ const App: React.FC = () => {
         dispatch(fetchComments());
     }, []);
 
-    // useEffect(() => {
-    //     // bad scalables of code
-    //     const cheker =
-    //         isAuthorized &&
-    //         usersFetchingStatus === 'success' &&
-    //         commentsFetchingStatus === 'success' &&
-    //         setTimeout(() => {
-    //             dispatch(switchDataLoadingStatus(false));
-    //         }, 1300);
+    useEffect(() => {
+        const validCondition =
+            isAuthorized &&
+            usersFetchingStatus === 'success' &&
+            commentsFetchingStatus === 'success';
 
-    //     return () => clearInterval(cheker);
-    // }, [usersFetchingStatus, commentsFetchingStatus, isAuthorized]);
+        const cheker = setTimeout(() => {
+            validCondition && dispatch(switchDataLoadingStatus(false));
+        }, 1300);
+
+        return () => clearInterval(cheker);
+    }, [isAuthorized, usersFetchingStatus, commentsFetchingStatus]);
 
     // /. effects
 
@@ -106,9 +106,7 @@ const App: React.FC = () => {
                         path="*"
                         element={<NoFoundPage />}
                     />
-
                     {/* ./ other pages  */}
-
                     <Route
                         path="NikitosXClub"
                         element={
@@ -141,7 +139,6 @@ const App: React.FC = () => {
                             </ProtectedRoute>
                         }
                     />
-
                     {/* ./ channels */}
                 </Route>
             </Routes>
