@@ -1,8 +1,11 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+
+import { authSliceTypes } from 'types/authSliceTypes';
 
 //  /. imports
 
-const initialState: any = {
+
+const initialState: authSliceTypes = {
     isAuthorized: false,
     userName: 'guest'
 };
@@ -13,9 +16,12 @@ const authSlice = createSlice({
     name: 'authorizationSlice',
     initialState,
     reducers: {
-        login(state, action) {
+        login(state, action: PayloadAction<{ login: string }>) {
+            const { login } = action.payload;
+            // /. payload
+
             state.isAuthorized = true;
-            state.userName = action.payload.name;
+            state.userName = login;
         },
         logOut(state) {
             state.isAuthorized = false;

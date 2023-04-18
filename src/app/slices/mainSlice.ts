@@ -1,8 +1,11 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+
+import { mainSliceTypes } from 'types/mainSliceTypes';
 
 //  /. imports
 
-const initialState: any = {
+
+const initialState: mainSliceTypes = {
     channels: [
         {
             id: 1,
@@ -74,8 +77,8 @@ const mainSlice = createSlice({
     name: 'mainSlice',
     initialState,
     reducers: {
-        switchFirstPageLoadingStatus(state, action: any) {
-            state.isFirstPageLoading = action.isFirstPageLoading;
+        switchFirstPageLoadingStatus(state, action: PayloadAction<boolean>) {
+            state.isFirstPageLoading = action.payload;
         }
     }
 });
