@@ -21,7 +21,7 @@ interface propTypes {
 
 const FriendList: React.FC<propTypes> = ({ users, isError }) => {
     const { gameActivity } = useAppSelector(state => state.profileReducer);
-    const { isAuthorized } = useAppSelector(state => state.authReducer);
+    const { isUserAuthorized } = useAppSelector(state => state.authReducer);
 
     // /. hooks
 
@@ -34,11 +34,7 @@ const FriendList: React.FC<propTypes> = ({ users, isError }) => {
                         id={item.steamid}
                         name={item.personaname}
                         image={item.avatarmedium}
-                        status={
-                            +String(item.timecreated).slice(-1) > 4
-                                ? true
-                                : false
-                        }
+                        status={+item.steamid.slice(-1) > 4 ? true : false}
                         activity={
                             gameActivity[getRandomGameArrayItem(gameActivity)]
                         }
@@ -50,7 +46,7 @@ const FriendList: React.FC<propTypes> = ({ users, isError }) => {
 
     return (
         <>
-            {!isAuthorized || isError ? (
+            {!isUserAuthorized || isError ? (
                 <Space
                     direction="vertical"
                     style={{ width: '100%' }}

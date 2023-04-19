@@ -34,7 +34,7 @@ const ChatHeader: React.FC<propTypes> = props => {
         isError
     } = props;
 
-    const { isAuthorized } = useAppSelector(state => state.authReducer);
+    const { isUserAuthorized } = useAppSelector(state => state.authReducer);
 
     const { Search } = Input;
 
@@ -70,7 +70,7 @@ const ChatHeader: React.FC<propTypes> = props => {
                         placeholder="Search.."
                         style={{ borderRadius: '5px' }}
                         disabled={
-                            !isAuthorized || !isPageInteractive || isError
+                            !isUserAuthorized || !isPageInteractive || isError
                         }
                         value={enteredSearchValue}
                         onChange={e => setEnteredSearchValue(e.target.value)}

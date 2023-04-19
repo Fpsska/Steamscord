@@ -29,7 +29,9 @@ const Profile: React.FC<propTypes> = ({
     isModalVisible,
     setIsModalVisible
 }) => {
-    const { login, isAuthorized } = useAppSelector(state => state.authReducer);
+    const { login, isUserAuthorized } = useAppSelector(
+        state => state.authReducer
+    );
     const { currentUser, timeZones } = useAppSelector(
         state => state.profileReducer
     );
@@ -41,15 +43,18 @@ const Profile: React.FC<propTypes> = ({
 
     // /. hooks
 
-    const handleCancelModal = () => {
-        setIsModalVisible(false);
-    };
+    const isUserDataExist = isUserAuthorized && currentUser.length !== 0;
+    const isUserActive = +currentUser[0]?.steamid.slice(-1) > 4 ? true : false;
 
-    const openMessageModal = () => {
+    function handleCancelModal(): void {
+        setIsModalVisible(false);
+    }
+
+    const openMessageModal = (): void => {
         setIsModalVisible(true);
     };
 
-    const sendMessage = () => {
+    const sendMessage = (): void => {
         setLoadingStatus(true);
         setTimeout(() => {
             setIsModalVisible(false);
@@ -68,207 +73,176 @@ const Profile: React.FC<propTypes> = ({
     }, [currentUser]);
 
     // /. effects
-
-    return (
-        <div className="profile">
-            <img
-                className="profile__image"
-                src={
-                    !isAuthorized
-                        ? placeholderIMG
-                        : isAuthorized && currentUser.length === 0
-                        ? placeholderIMG
-                        : currentUser[0]?.avatarfull
-                }
-                alt="profile"
-                onError={(e: any) => {
-                    e.target.src = placeholderIMG;
-                    e.onerror = null;
-                }}
-            />
-            <div className="profile__wrapper">
-                <div className="profile__bio">
-                    <div className="name">
-                        <h2
-                            className={
-                                +String(currentUser[0]?.timecreated).slice(-1) >
-                                4
-                                    ? 'name__text active'
-                                    : 'name__text'
-                            }
-                            title={
-                                !isAuthorized
-                                    ? login
-                                    : isAuthorized && currentUser.length === 0
-                                    ? login
-                                    : currentUser[0]?.personaname
-                            }
-                        >
-                            {!isAuthorized
-                                ? login
-                                : isAuthorized && currentUser.length === 0
-                                ? login
-                                : currentUser[0]?.personaname}
-                        </h2>
-                        {!isAuthorized || currentUser.length === 0 ? (
-                            <></>
-                        ) : (
-                            <span
-                                className={
-                                    +String(currentUser[0]?.timecreated).slice(
-                                        -1
-                                    ) > 4
-                                        ? 'name__prefix active'
-                                        : 'name__prefix'
+    if (isUserAuthorized) {
+        return (
+            <div className={`profile ${isUserActive ? 'active' : ''}`}>
+                <img
+                    className="profile__image"
+                    src={
+                        isUserDataExist
+                            ? currentUser[0].avatarfull
+                            : placeholderIMG
+                    }
+                    alt="profile image"
+                />
+                <div className="profile__wrapper">
+                    <div className="profile__bio">
+                        <div className="name">
+                            <h2
+                                className="name__text"
+                                title={
+                                    isUserDataExist
+                                        ? currentUser[0].personaname
+                                        : login
                                 }
-                            ></span>
-                        )}
+                            >
+                                {isUserDataExist
+                                    ? currentUser[0].personaname
+                                    : login}
+                            </h2>
+                            {isUserDataExist && (
+                                <span className="name__prefix"></span>
+                            )}
+                        </div>
+                        <span className="profile__status">
+                            {isUserAuthorized
+                                ? 'verified profile'
+                                : 'unregistered profile'}
+                        </span>
                     </div>
-                    <span className="profile__status">
-                        {isAuthorized
-                            ? 'verified profile'
-                            : 'unregistered profile'}
-                    </span>
-                </div>
 
-                <ul className="profile__social social">
-                    <li className="social__icon">
-                        <a
-                            className="social__link"
-                            href="#"
-                        >
-                            <FaFacebookSquare size={22} />
-                        </a>
-                    </li>
-                    <li className="social__icon">
-                        <a
-                            className="social__link"
-                            href="#"
-                        >
-                            <FaTwitterSquare size={22} />
-                        </a>
-                    </li>
-                    <li className="social__icon">
-                        <a
-                            className="social__link"
-                            href="#"
-                        >
-                            <FaInstagramSquare size={22} />
-                        </a>
-                    </li>
-                    <li className="social__icon">
-                        <a
-                            className="social__link"
-                            href="#"
-                        >
-                            <FaLinkedin size={22} />
-                        </a>
-                    </li>
-                </ul>
-                {!isAuthorized || (isAuthorized && currentUser.length === 0) ? (
-                    <></>
-                ) : (
-                    <>
-                        <Button
-                            type="primary"
-                            className="profile__button"
-                            onClick={openMessageModal}
-                            disabled={!isAuthorized}
-                        >
-                            Message
-                        </Button>
-                        <Modal
-                            visible={isModalVisible}
-                            title={`Write your message from ${
-                                currentUser[0]?.personaname || 'this user'
-                            } there!`}
-                            onOk={sendMessage}
-                            onCancel={handleCancelModal}
-                            footer={[
-                                <Button
-                                    key="back"
-                                    onClick={handleCancelModal}
-                                >
-                                    Cancel
-                                </Button>,
-                                <Button
-                                    key="submit"
-                                    type="primary"
-                                    loading={isButtonLoading}
-                                    onClick={sendMessage}
-                                >
-                                    Send
-                                </Button>
-                            ]}
-                        >
-                            <Form>
-                                <TextArea rows={4} />
-                            </Form>
-                        </Modal>
-                    </>
-                )}
-                <ul className="profile__information information">
-                    <li className="information__template">
-                        <span className="information__title">login</span>
-                        <a
-                            className="information__link"
-                            href="#"
-                            title={
-                                !isAuthorized
-                                    ? login
-                                    : isAuthorized && currentUser.length === 0
-                                    ? login
-                                    : currentUser[0]?.personaname
-                            }
-                        >
-                            {!isAuthorized
-                                ? login
-                                : login && currentUser.length === 0
-                                ? login
-                                : currentUser[0]?.personaname}
-                        </a>
-                    </li>
-                    <li className="information__template">
-                        <span className="information__title">Email</span>
-                        {isAuthorized ? (
+                    <ul className="profile__social social">
+                        <li className="social__icon">
+                            <a
+                                className="social__link"
+                                href="#"
+                            >
+                                <FaFacebookSquare size={22} />
+                            </a>
+                        </li>
+                        <li className="social__icon">
+                            <a
+                                className="social__link"
+                                href="#"
+                            >
+                                <FaTwitterSquare size={22} />
+                            </a>
+                        </li>
+                        <li className="social__icon">
+                            <a
+                                className="social__link"
+                                href="#"
+                            >
+                                <FaInstagramSquare size={22} />
+                            </a>
+                        </li>
+                        <li className="social__icon">
+                            <a
+                                className="social__link"
+                                href="#"
+                            >
+                                <FaLinkedin size={22} />
+                            </a>
+                        </li>
+                    </ul>
+
+                    {isUserDataExist && (
+                        <>
+                            <Button
+                                type="primary"
+                                className="profile__button"
+                                onClick={openMessageModal}
+                                disabled={!isUserAuthorized}
+                            >
+                                Message
+                            </Button>
+                            <Modal
+                                open={isModalVisible}
+                                title={`Write your message from ${
+                                    currentUser[0].personaname || 'this user'
+                                } there!`}
+                                onOk={sendMessage}
+                                onCancel={handleCancelModal}
+                                footer={[
+                                    <Button
+                                        key="back"
+                                        onClick={handleCancelModal}
+                                    >
+                                        Cancel
+                                    </Button>,
+                                    <Button
+                                        key="submit"
+                                        type="primary"
+                                        loading={isButtonLoading}
+                                        onClick={sendMessage}
+                                    >
+                                        Send
+                                    </Button>
+                                ]}
+                            >
+                                <Form>
+                                    <TextArea rows={4} />
+                                </Form>
+                            </Modal>
+                        </>
+                    )}
+
+                    <ul className="profile__information information">
+                        <li className="information__template">
+                            <span className="information__title">
+                                User name
+                            </span>
                             <a
                                 className="information__link"
-                                href="mailto:a-luna@gmail.com"
+                                href="#"
+                                title={
+                                    isUserDataExist
+                                        ? currentUser[0].personaname
+                                        : login
+                                }
                             >
-                                mail-placeholder.com
+                                {isUserDataExist
+                                    ? currentUser[0].personaname
+                                    : login}
                             </a>
-                        ) : (
+                        </li>
+                        <li className="information__template">
+                            <span className="information__title">Email</span>
                             <a
                                 className="information__link"
                                 href="#"
                             >
-                                -
+                                {isUserDataExist
+                                    ? 'mail-secret.com'
+                                    : 'mail@placeholder.com'}
                             </a>
-                        )}
-                    </li>
-                    <li className="information__template">
-                        <span className="information__title">Skype</span>
-                        <a
-                            className="information__link"
-                            href="#"
-                        >
-                            {isAuthorized ? 'skype_placeholder' : '-'}
-                        </a>
-                    </li>
-                    <li className="information__template">
-                        <span className="information__title">Timezone</span>
-                        <a
-                            className="information__link"
-                            href="#"
-                            title={timeZone}
-                        >
-                            {timeZone}
-                        </a>
-                    </li>
-                </ul>
+                        </li>
+                        <li className="information__template">
+                            <span className="information__title">Skype</span>
+                            <a
+                                className="information__link"
+                                href="#"
+                            >
+                                {isUserAuthorized ? 'skype-placeholder' : '-'}
+                            </a>
+                        </li>
+                        <li className="information__template">
+                            <span className="information__title">Timezone</span>
+                            <a
+                                className="information__link"
+                                href="#"
+                                title={timeZone}
+                            >
+                                {timeZone}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    );
+        );
+    }
+
+    return <></>;
 };
 
 export default Profile;

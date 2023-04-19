@@ -7,7 +7,7 @@ import { getCurrentUser } from 'app/slices/profileSlice';
 // /. imports
 
 interface propTypes {
-    id: number;
+    id: string;
     name: string;
     image: string;
     status: boolean;
@@ -32,8 +32,8 @@ const FriendItem: React.FC<propTypes> = ({
     // /. hooks
 
     useEffect(() => {
-        // check equal items in currentUser[]
-        currentUser?.some((item: any) => item.steamid === id)
+        // restricting db click by same item
+        currentUser[0]?.steamid === id
             ? setAddedStatus(true)
             : setAddedStatus(false);
     }, [currentUser, id]);
@@ -41,30 +41,19 @@ const FriendItem: React.FC<propTypes> = ({
     // /. effects
 
     return (
-        <li className="friends__item">
+        <li className={`friends__item ${status ? 'online' : ''}`}>
             <img
-                className={status ? 'friends__image online' : 'friends__image'}
+                className="friends__image"
                 src={image}
                 alt="profile-avatar"
-                // onClick={() => !isAlreadyAdded && dispatch(getCurrentUser(id))}
+                onClick={() =>
+                    !isAlreadyAdded &&
+                    dispatch(getCurrentUser({ payloadID: id }))
+                }
             />
             <div className="friends__information">
-                <span
-                    className={
-                        status ? 'friends__name online' : 'friends__name'
-                    }
-                >
-                    {name}
-                </span>
-                <span
-                    className={
-                        status
-                            ? 'friends__activity online'
-                            : 'friends__activity'
-                    }
-                >
-                    {activity}
-                </span>
+                <span className="friends__name">{name}</span>
+                <span className="friends__activity">{activity}</span>
             </div>
         </li>
     );

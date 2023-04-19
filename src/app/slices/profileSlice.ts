@@ -1,6 +1,9 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, PayloadAction, current } from '@reduxjs/toolkit';
+
+import { profileSliceTypes, Iuser } from 'types/profileSliceTypes';
 
 import { getRandomGameArrayItem } from '../../utils/helpers/getRandomGameArrayItem';
+
 
 //  /. imports
 
@@ -47,7 +50,7 @@ export const fetchComments = createAsyncThunk(
     }
 );
 
-const initialState: any = {
+const initialState: profileSliceTypes = {
     users: [],
     currentUser: [],
     comments: [],
@@ -83,12 +86,20 @@ const profileSlice = createSlice({
     name: 'profileSlice',
     initialState,
     reducers: {
-        getCurrentUser(state, action: any) {
-            state.currentUser = state.users.filter(
-                (item: any) => item.steamid === action.payload
+        getCurrentUser(state, action: PayloadAction<{ payloadID: string }>) {
+            const { payloadID } = action.payload;
+            console.log('action');
+            // /. payload
+
+            const user = state.users.find(
+                (item: Iuser) => item.steamid === payloadID
             );
+            if (user) {
+                state.currentUser = [];
+                state.currentUser.push(user);
+            }
         },
-        switchDataLoadingStatus(state, action) {
+        switchDataLoadingStatus(state, action: PayloadAction<boolean>) {
             state.isDataLoading = action.payload;
         }
     },

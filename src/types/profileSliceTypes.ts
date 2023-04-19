@@ -7,7 +7,7 @@ export interface Icomment {
 }
 
 export interface Iuser {
-    steamid: number;
+    steamid: string;
     personaname: string;
     avatarmedium: string;
     avatarfull: string;

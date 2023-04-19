@@ -41,7 +41,7 @@ const App: React.FC = () => {
         commentsFetchingStatus
     } = useAppSelector(state => state.profileReducer);
 
-    const { isAuthorized } = useAppSelector(state => state.authReducer);
+    const { isUserAuthorized } = useAppSelector(state => state.authReducer);
 
     const { enteredSearchValue, setEnteredSearchValue, availableItems } =
         useFilter(users, 'personaname');
@@ -58,7 +58,7 @@ const App: React.FC = () => {
 
     useEffect(() => {
         const validCondition =
-            isAuthorized &&
+            isUserAuthorized &&
             usersFetchingStatus === 'success' &&
             commentsFetchingStatus === 'success';
 
@@ -67,7 +67,7 @@ const App: React.FC = () => {
         }, 1300);
 
         return () => clearInterval(cheker);
-    }, [isAuthorized, usersFetchingStatus, commentsFetchingStatus]);
+    }, [isUserAuthorized, usersFetchingStatus, commentsFetchingStatus]);
 
     // /. effects
 
@@ -84,7 +84,7 @@ const App: React.FC = () => {
                         <GeneralLayout
                             users={users}
                             isError={
-                                usersFetchingError || commentsFetchingError
+                                !!usersFetchingError || !!commentsFetchingError
                             }
                         />
                     }
@@ -119,8 +119,8 @@ const App: React.FC = () => {
                                     }
                                     isLoading={isDataLoading}
                                     isError={
-                                        usersFetchingError ||
-                                        commentsFetchingError
+                                        !!usersFetchingError ||
+                                        !!commentsFetchingError
                                     } // error(true) if at least has ERR
                                 />
                             </ProtectedRoute>
@@ -132,8 +132,8 @@ const App: React.FC = () => {
                             <ProtectedRoute>
                                 <ChatPageSecond
                                     isError={
-                                        usersFetchingError ||
-                                        commentsFetchingError
+                                        !!usersFetchingError ||
+                                        !!commentsFetchingError
                                     }
                                 />
                             </ProtectedRoute>

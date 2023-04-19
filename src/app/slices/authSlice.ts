@@ -15,7 +15,7 @@ const storageUserData = JSON.parse(localStorage.getItem('storageUserData') || '{
 
 
 const initialState: authSliceTypes = {
-    isAuthorized: storageAuthStatus,
+    isUserAuthorized: storageAuthStatus,
     isUserRemembered: storageUserRememberedStatus,
     login: storageUserData.login,
     password: storageUserData.password
@@ -31,7 +31,7 @@ const authSlice = createSlice({
             const { login, password } = action.payload;
             // /. payload
 
-            state.isAuthorized = true;
+            state.isUserAuthorized = true;
             state.login = login;
             state.password = password;
         },
@@ -42,9 +42,9 @@ const authSlice = createSlice({
             if (isTotalReset) {
                 state.login = '';
                 state.password = '';
-                state.isAuthorized = false;
+                state.isUserAuthorized = false;
             } else {
-                state.isAuthorized = false;
+                state.isUserAuthorized = false;
             }
         },
         switchUserRememberedStatus(state, action: PayloadAction<boolean>) {

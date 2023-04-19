@@ -38,7 +38,7 @@ const GeneralLayout: React.FC<propTypes> = ({ users, isError }) => {
     const { confirm } = Modal;
 
     const { channels } = useAppSelector(state => state.mainReducer);
-    const { isAuthorized, isUserRemembered } = useAppSelector(
+    const { isUserAuthorized, isUserRemembered } = useAppSelector(
         state => state.authReducer
     );
 
@@ -141,7 +141,7 @@ const GeneralLayout: React.FC<propTypes> = ({ users, isError }) => {
                     <Menu.Item
                         key="4"
                         icon={<LogoutOutlined />}
-                        onClick={() => isAuthorized && handleExitModal()}
+                        onClick={() => isUserAuthorized && handleExitModal()}
                         style={{ margin: '0' }}
                     >
                         Log Out
@@ -251,7 +251,7 @@ const GeneralLayout: React.FC<propTypes> = ({ users, isError }) => {
                                 md={24}
                                 lg={18}
                                 xl={18}
-                                xxl={17}
+                                xxl={isUserAuthorized ? 17 : 20}
                                 className="content__section content__section--main"
                             >
                                 <div className="chat">
@@ -259,16 +259,22 @@ const GeneralLayout: React.FC<propTypes> = ({ users, isError }) => {
                                 </div>
                             </Col>
                             {/* /. COL MIDDLE */}
-                            <Col
-                                xs={0}
-                                xxl={3}
-                                className="content__section content__section--right"
-                            >
-                                <Profile
-                                    isModalVisible={isModalVisible}
-                                    setIsModalVisible={setIsModalVisible}
-                                />
-                            </Col>
+                            <>
+                                {isUserAuthorized && (
+                                    <Col
+                                        xs={0}
+                                        xxl={3}
+                                        className="content__section content__section--right"
+                                    >
+                                        <Profile
+                                            isModalVisible={isModalVisible}
+                                            setIsModalVisible={
+                                                setIsModalVisible
+                                            }
+                                        />
+                                    </Col>
+                                )}
+                            </>
                         </Row>
                     </div>
                 </Content>

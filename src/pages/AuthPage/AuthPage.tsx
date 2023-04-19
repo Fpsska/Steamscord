@@ -14,9 +14,8 @@ import './Auth.scss';
 // /. imports
 
 const AuthorisationPage: React.FC = () => {
-    const { isUserRemembered, isAuthorized, login, password } = useAppSelector(
-        state => state.authReducer
-    );
+    const { isUserRemembered, isUserAuthorized, login, password } =
+        useAppSelector(state => state.authReducer);
 
     const [isLoading, setLoadingStatus] = useState<boolean>(false);
 

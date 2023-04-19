@@ -7,13 +7,13 @@ import { useAppSelector } from 'app/hooks';
 // /.imports
 
 const ProtectedRoute: React.FC<{ children: JSX.Element }> = ({ children }) => {
-    const { isAuthorized } = useAppSelector(state => state.authReducer);
+    const { isUserAuthorized } = useAppSelector(state => state.authReducer);
 
     const location = useLocation();
 
     // /. hooks
 
-    if (!isAuthorized) {
+    if (!isUserAuthorized) {
         return (
             <Navigate
                 to="/Steamscord/Authorisation"

@@ -19,7 +19,7 @@ const ChatForm: React.FC<propTypes> = ({
     isPageInteractive = false,
     isError
 }) => {
-    const { isAuthorized } = useAppSelector(state => state.authReducer);
+    const { isUserAuthorized } = useAppSelector(state => state.authReducer);
 
     const formRef = useRef<HTMLFormElement>(null!);
 
@@ -49,7 +49,9 @@ const ChatForm: React.FC<propTypes> = ({
                     className="form__input form__input--message"
                     type="text"
                     placeholder="Message in #general"
-                    disabled={!isAuthorized || !isPageInteractive || isError}
+                    disabled={
+                        !isUserAuthorized || !isPageInteractive || isError
+                    }
                 />
                 <div className="form__interaction">
                     <button
