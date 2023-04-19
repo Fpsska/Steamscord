@@ -16,7 +16,7 @@ const ProtectedRoute: React.FC<{ children: JSX.Element }> = ({ children }) => {
     if (!isUserAuthorized) {
         return (
             <Navigate
-                to="/Steamscord/Authorisation"
+                to="/Authorisation"
                 state={{ from: location }}
                 replace
             />

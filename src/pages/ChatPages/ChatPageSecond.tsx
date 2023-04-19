@@ -29,7 +29,7 @@ const ChatPageSecond: React.FC<{ isError: boolean }> = ({ isError }) => {
     };
 
     const goBack = (): void => {
-        navigate('/Steamscord', { replace: true });
+        navigate('/', { replace: true });
     };
 
     // /. functions

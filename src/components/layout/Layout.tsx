@@ -63,7 +63,7 @@ const GeneralLayout: React.FC<propTypes> = ({ users, isError }) => {
             onOk() {
                 setIsModalVisible(false);
                 dispatch(logOut({ isTotalReset: !isUserRemembered }));
-                navigate('/Steamscord');
+                navigate('/');
 
                 localStorage.setItem(
                     'storageIsUserAuth',
@@ -91,11 +91,11 @@ const GeneralLayout: React.FC<propTypes> = ({ users, isError }) => {
     // };
 
     const openHomePage = (): void => {
-        navigate('/Steamscord');
+        navigate('/');
     };
 
     const openProfileSettings = (): void => {
-        navigate('/Steamscord/Settings');
+        navigate('/Settings');
     };
 
     // /. functions

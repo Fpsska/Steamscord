@@ -74,11 +74,11 @@ const App: React.FC = () => {
         <div className="App">
             <Routes>
                 <Route
-                    path="/Steamscord/Authorisation"
+                    path="/Authorisation"
                     element={<AuthorisationPage />}
                 />
                 <Route
-                    path="/Steamscord"
+                    path="/"
                     element={
                         <GeneralLayout
                             users={users}

@@ -3,7 +3,6 @@
   "author": "Fpsska",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://Fpsska.github.io/Steamscord",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.3",
     "@testing-library/jest-dom": "^4.2.4",

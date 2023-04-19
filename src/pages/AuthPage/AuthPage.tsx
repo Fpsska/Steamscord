@@ -71,7 +71,7 @@ const AuthorisationPage: React.FC = () => {
     }, [login, password, form]);
 
     useEffect(() => {
-        const locationLink = location.state?.from?.pathname || '/Steamscord';
+        const locationLink = location.state?.from?.pathname || '/';
         setStartLocationLink(locationLink);
     }, [location.state]);
 
