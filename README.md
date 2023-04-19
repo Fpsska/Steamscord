@@ -10,7 +10,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - [steam web API](https://steamcommunity.com/dev)
 - [ant design](https://ant.design/)
 
-### `Watch demo` _[steamscord](https://fpsska.github.io/Steamscord/)_
+### `Watch demo` _[steamscord](https://steamscord-app.vercel.app/)_
 
 
 ## Available Scripts
