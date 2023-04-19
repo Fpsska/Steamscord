@@ -2,6 +2,8 @@ import React from 'react';
 
 import { useAppSelector } from 'app/hooks';
 
+import { Ichannel } from 'types/mainSliceTypes';
+
 import ChannelItem from './ChannelItem';
 
 import './Channel.scss';
@@ -15,12 +17,11 @@ const ChannelList: React.FC = () => {
 
     return (
         <ul className="channels">
-            {channels.map((item: any) => {
+            {channels.map((channel: Ichannel) => {
                 return (
                     <ChannelItem
-                        key={item.id}
-                        name={item.name}
-                        link={item.link}
+                        key={channel.id}
+                        {...channel}
                     />
                 );
             })}

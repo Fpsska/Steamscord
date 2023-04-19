@@ -16,11 +16,10 @@ import ProtectedRoute from 'components/hoc/ProtectedRoute';
 
 import { useAppSelector, useAppDispatch } from 'app/hooks';
 
-import {
-    fetchUsers,
-    fetchComments,
-    switchDataLoadingStatus
-} from 'app/slices/profileSlice';
+import { switchDataLoadingStatus } from 'app/slices/profileSlice';
+
+import { fetchUsers } from 'app/api/fetchUsers';
+import { fetchComments } from 'app/api/fetchComments';
 
 import { useFilter } from 'utils/hook/useFilter';
 

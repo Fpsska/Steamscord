@@ -4,30 +4,37 @@
     overflow-x: hidden;
     list-style: none;
     padding: 0;
+
     &::-webkit-scrollbar {
         width: 6px;
         background-color: transparent;
     }
+
     &::-webkit-scrollbar-thumb {
         background-color: #b5b5b5;
         border-radius: 10px;
     }
+
     &__item {
         transition: all 0.2s linear;
         transform: translate(0, 0);
+
         &:hover {
             transform: translate(5px, 0);
         }
     }
+
     &__link {
         font-weight: 400;
         font-size: 14px;
         line-height: 16.8px;
         color: #b5b5b5;
     }
+
     &__link.active {
         color: #1890ff;
     }
+
     :not(:last-child) {
         margin: 0 0 12px 0;
     }

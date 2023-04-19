@@ -1,54 +1,13 @@
-import { createSlice, createAsyncThunk, PayloadAction, current } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction, current } from '@reduxjs/toolkit';
 
 import { profileSliceTypes, Iuser } from 'types/profileSliceTypes';
 
+import { fetchUsers } from 'app/api/fetchUsers';
+import { fetchComments } from 'app/api/fetchComments';
+
 import { getRandomGameArrayItem } from '../../utils/helpers/getRandomGameArrayItem';
 
-
 //  /. imports
-
-export const fetchUsers = createAsyncThunk(
-    'profileSlice/fetchUsers',
-    async (_, { rejectWithValue }) => {
-        const URL = 'https://steamscord-backend.vercel.app/api/data';
-
-        try {
-            const response = await fetch(URL);
-
-            if (!response.ok) {
-                throw new Error('Response: server error!');
-            }
-
-            const usersData = await response.json();
-
-            return usersData;
-        } catch (err: any) {
-            return rejectWithValue(err.message);
-        }
-    }
-);
-
-export const fetchComments = createAsyncThunk(
-    'profileSlice/fetchComments',
-    async (_, { rejectWithValue }) => {
-        const limit = 20;
-        const URL = `https://jsonplaceholder.typicode.com/comments?&_limit=${limit}`;
-
-        try {
-            const response = await fetch(URL);
-
-            if (!response.ok) {
-                throw new Error('Response: server error!');
-            }
-
-            const commentsData = await response.json();
-
-            return commentsData;
-        } catch (err: any) {
-            return rejectWithValue(err.message);
-        }
-    }
-);
 
 const initialState: profileSliceTypes = {
     users: [],
@@ -124,6 +83,7 @@ const profileSlice = createSlice({
             state.users.map((item: any) => {
                 item.comment =
                     state.comments[getRandomGameArrayItem(state.comments)];
+                item.gameActivity = state.gameActivity[getRandomGameArrayItem(state.gameActivity)];
             });
 
             state.usersFetchingStatus = 'success';

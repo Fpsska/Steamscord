@@ -1,10 +1,10 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 
 import { Skeleton, Space, Row } from 'antd';
 
 import { useAppSelector } from 'app/hooks';
 
-import { getRandomGameArrayItem } from 'utils/helpers/getRandomGameArrayItem';
+import { Iuser } from 'types/profileSliceTypes';
 
 import FriendItem from './FriendItem';
 
@@ -13,36 +13,16 @@ import './Friend.scss';
 // /. imports
 
 interface propTypes {
-    users: any[];
+    users: Iuser[];
     isError: boolean;
 }
 
 // /. interfaces
 
 const FriendList: React.FC<propTypes> = ({ users, isError }) => {
-    const { gameActivity } = useAppSelector(state => state.profileReducer);
     const { isUserAuthorized } = useAppSelector(state => state.authReducer);
 
     // /. hooks
-
-    const friendList = useMemo(
-        () =>
-            users.map(item => {
-                return (
-                    <FriendItem
-                        key={item.steamid}
-                        id={item.steamid}
-                        name={item.personaname}
-                        image={item.avatarmedium}
-                        status={+item.steamid.slice(-1) > 4 ? true : false}
-                        activity={
-                            gameActivity[getRandomGameArrayItem(gameActivity)]
-                        }
-                    />
-                );
-            }),
-        [users, gameActivity]
-    );
 
     return (
         <>
@@ -132,7 +112,18 @@ const FriendList: React.FC<propTypes> = ({ users, isError }) => {
                     </div>
                 </Space>
             ) : (
-                friendList
+                users.map((user: Iuser) => {
+                    return (
+                        <FriendItem
+                            key={user.steamid}
+                            status={+user.steamid.slice(-1) > 4 ? true : false}
+                            id={user.steamid}
+                            name={user.personaname}
+                            image={user.avatarmedium}
+                            {...user}
+                        />
+                    );
+                })
             )}
         </>
     );

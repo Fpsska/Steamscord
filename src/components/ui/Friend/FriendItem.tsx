@@ -11,7 +11,7 @@ interface propTypes {
     name: string;
     image: string;
     status: boolean;
-    activity: string;
+    gameActivity: string;
 }
 
 // /. interfaces
@@ -21,11 +21,11 @@ const FriendItem: React.FC<propTypes> = ({
     name,
     image,
     status,
-    activity
+    gameActivity
 }) => {
     const { currentUser } = useAppSelector(state => state.profileReducer);
 
-    const [isAlreadyAdded, setAddedStatus] = useState(false);
+    const [isAlreadyAdded, setAddedStatus] = useState<boolean>(false);
 
     const dispatch = useAppDispatch();
 
@@ -53,7 +53,7 @@ const FriendItem: React.FC<propTypes> = ({
             />
             <div className="friends__information">
                 <span className="friends__name">{name}</span>
-                <span className="friends__activity">{activity}</span>
+                <span className="friends__activity">{gameActivity}</span>
             </div>
         </li>
     );

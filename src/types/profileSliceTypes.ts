@@ -12,7 +12,8 @@ export interface Iuser {
     avatarmedium: string;
     avatarfull: string;
     timecreated: number;
-    comment: string
+    comment: string;
+    gameActivity: string;
 }
 
 export interface profileSliceTypes {
