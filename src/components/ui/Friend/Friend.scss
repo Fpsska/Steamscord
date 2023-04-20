@@ -1,7 +1,7 @@
 .friends {
     margin: 0;
     padding: 2px;
-    max-height: calc(100vh - 40rem);
+    max-height: 30vh;
     overflow-y: scroll;
 
     &::-webkit-scrollbar {

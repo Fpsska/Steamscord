@@ -37,42 +37,51 @@ body {
 
 .form {
     position: relative;
+
     &__input {
         padding: 6px 16px;
         margin: 0 !important;
         border-radius: 5px;
         border: 0.5px solid rgba(0, 0, 0, 0.24);
+
         &::placeholder {
             font-size: 14px;
             font-weight: 400;
             line-height: 16.8px;
             color: #8d8d8d;
         }
+
         &:focus {
             outline: none;
         }
+
         &:disabled {
             cursor: not-allowed;
         }
     }
+
     &__interaction {
         position: absolute;
         left: 0;
         top: 35%;
         padding: 0 24px;
+
         :not(:last-child) {
             margin: 0 20px 0 0;
         }
     }
+
     &__button {
         background-color: transparent;
         padding: 0;
     }
+
     &__name {
         font-size: 20px;
         font-weight: 700;
         color: #000;
     }
+
     &__input--message {
         width: 100%;
         height: 100%;
@@ -81,21 +90,26 @@ body {
         border-top: 1px solid rgba(0, 0, 0, 0.24);
         padding: 25px 90px 25px 90px;
     }
+
     &__button--message {
         position: absolute;
     }
+
     &__button--voice {
         position: static;
     }
+
     &__button--file {
         position: static;
     }
+
     &__button--emoji {
         right: 0;
         top: 35%;
         padding: 0 20px;
     }
 }
+
 .form--message {
     margin: 0;
     width: 100%;
@@ -124,6 +138,7 @@ body {
 }
 
 // /.ant
+
 @mixin text-left {
     font-weight: 400;
     font-size: 14px;
@@ -133,28 +148,48 @@ body {
 
 .content {
     height: 100%;
+
     &__wrapper {
         height: 100%;
         width: 100%;
         display: flex;
         justify-content: space-between;
     }
-    &__preview {
+
+    &__header {
         display: flex;
         align-items: center;
         justify-content: space-between;
         margin: 0 0 15px 0;
         padding: 0 20px 0 0;
     }
-    &__preview--treads {
-        justify-content: flex-start;
-        :not(:last-child) {
-            margin: 0 10px 0 0;
+
+    &__body {
+        max-height: calc(100vh - 40px - 20px - 26px - 64px);
+        overflow-y: scroll;
+
+        &::-webkit-scrollbar {
+            width: 0;
+            background-color: transparent;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: transparent;
         }
     }
+
+    .content__section-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 0 0 15px 0;
+        padding: 0 20px 0 0;
+    }
+
     &__section {
         height: 100%;
     }
+
     &__section--left {
         display: flex !important;
         flex-direction: column;
@@ -162,44 +197,59 @@ body {
         padding: 40px 10px 20px 40px;
         background-color: rgba($color: #25272a, $alpha: 0.75);
     }
+
     &__section--main {
         background-color: rgba(59, 48, 48, 0.3);
         width: 100%;
     }
+
     &__section--right {
         background-color: rgba(160, 122, 122, 0.3);
     }
+
     &__title {
         text-transform: uppercase;
         color: #b5b5b5;
         font-size: 12px;
-        line-height: 14.4px;
+        line-height: 22px;
         font-weight: 700;
         margin: 0;
     }
+
     &__title--main {
         font-size: 24px;
         text-transform: none;
     }
+
     &__title--small {
         text-transform: none;
         @include text-left;
     }
+
     &__counter {
         color: #b5b5b5;
         font-size: 12px;
     }
+
     &__button {
         background-color: transparent;
         border: 0;
         padding: 0;
     }
-    &__button--settings {
+
+    &__button--home {
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
         opacity: 0.7;
+
         &:hover {
             opacity: 1;
             transition: 0.2s all linear;
         }
+
         &:active {
             transform: scale(1.2);
         }
@@ -214,9 +264,11 @@ body {
     padding: 5px;
     max-height: calc(100vh - 180px);
     overflow-y: scroll;
+
     &::-webkit-scrollbar {
         width: 0;
     }
+
     &__text {
         display: flex;
         flex-direction: column;
@@ -226,33 +278,39 @@ body {
         max-width: 540px;
         width: 100%;
     }
+
     &__title {
         font-weight: 900;
         font-size: 32px;
         color: #5f6164;
         margin: 0;
     }
+
     &__description {
         font-weight: 400;
         font-size: 20px;
         color: #4f545c;
         margin: 0 0 20px 0;
     }
+
     &__image {
         object-fit: cover;
         width: 256px;
         height: 256px;
     }
+
     &__nav {
         display: flex;
         align-items: center;
         justify-content: center;
     }
+
     &__button {
         min-width: 150px;
         font-weight: 700 !important;
         padding: 0 !important;
     }
+
     &__button--cancel {
         margin: 0 20px 0 0;
         background-color: #4f545c !important;

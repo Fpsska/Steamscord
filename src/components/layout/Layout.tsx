@@ -178,14 +178,15 @@ const GeneralLayout: React.FC<propTypes> = ({ users, isError }) => {
                                 xxl={4}
                                 className="content__section content__section--left"
                             >
+                                {/*  */}
                                 <Row>
                                     <Col style={{ width: '100%' }}>
-                                        <div className="content__preview">
+                                        <div className="content__header">
                                             <h2 className="content__title content__title--main">
-                                                Nomad List
+                                                Personal content
                                             </h2>
                                             <button
-                                                className="content__button content__button--settings"
+                                                className="content__button content__button--home"
                                                 onClick={openHomePage}
                                             >
                                                 <AiOutlineHome
@@ -196,55 +197,42 @@ const GeneralLayout: React.FC<propTypes> = ({ users, isError }) => {
                                         </div>
                                     </Col>
                                 </Row>
-                                <Row>
-                                    <Col style={{ width: '100%' }}>
-                                        <div className="content__preview content__preview--treads">
-                                            <button className="content__button">
-                                                <AiOutlineMessage
-                                                    size={20}
-                                                    color={'#b5b5b5'}
+                                {/*  */}
+                                <div className="content__body">
+                                    <Row>
+                                        <Col style={{ width: '100%' }}>
+                                            <div className="content__section-header">
+                                                <h2 className="content__title">
+                                                    Channels
+                                                </h2>
+                                                <span className="content__counter">
+                                                    {channels.length}
+                                                </span>
+                                            </div>
+                                            <ChannelList />
+                                        </Col>
+                                    </Row>
+                                    {/*  */}
+                                    <Row>
+                                        <Col style={{ width: '100%' }}>
+                                            <div className="content__section-header">
+                                                <h2 className="content__title">
+                                                    Friends
+                                                </h2>
+                                                <span className="content__counter">
+                                                    {users.length}
+                                                </span>
+                                            </div>
+                                            <ul className="friends">
+                                                {' '}
+                                                <FriendList
+                                                    users={users}
+                                                    isError={isError}
                                                 />
-                                            </button>
-                                            <h2 className="content__title content__title--small">
-                                                All treads
-                                            </h2>
-                                        </div>
-                                    </Col>
-                                </Row>
-                                {/*  */}
-                                <Row>
-                                    <Col style={{ width: '100%' }}>
-                                        <div className="content__preview">
-                                            <h2 className="content__title">
-                                                Channels
-                                            </h2>
-                                            <span className="content__counter">
-                                                {channels.length}
-                                            </span>
-                                        </div>
-                                        <ChannelList />
-                                    </Col>
-                                </Row>
-                                {/*  */}
-                                <Row>
-                                    <Col style={{ width: '100%' }}>
-                                        <div className="content__preview">
-                                            <h2 className="content__title">
-                                                Friends
-                                            </h2>
-                                            <span className="content__counter">
-                                                {users.length}
-                                            </span>
-                                        </div>
-                                        <ul className="friends">
-                                            {' '}
-                                            <FriendList
-                                                users={users}
-                                                isError={isError}
-                                            />
-                                        </ul>
-                                    </Col>
-                                </Row>
+                                            </ul>
+                                        </Col>
+                                    </Row>
+                                </div>
                             </Col>
                             {/* /. COL LEFT */}
                             <Col

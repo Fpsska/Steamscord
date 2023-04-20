@@ -2,28 +2,34 @@
     padding: 20px 20px 20px 40px;
     background-color: rgba(55, 56, 56, 0.75);
     height: 100%;
+
     &__wrapper {
         max-height: calc(100vh - 135px);
         overflow-y: scroll;
         padding: 0 20px;
+
         &::-webkit-scrollbar {
             width: 6px;
             background-color: transparent;
         }
+
         &::-webkit-scrollbar-thumb {
             background-color: #b5b5b5;
             border-radius: 10px;
         }
     }
+
     &__section {
         margin: 0 0 20px 0;
         padding: 0;
     }
+
     &__date {
         color: #b9bbbe;
         font-size: 12px;
         line-height: 16px;
     }
+
     &__title {
         font-size: 16px;
         line-height: 20px;
@@ -32,12 +38,15 @@
         align-items: center;
         padding: 10px 0;
     }
+
     &__title--top {
         color: #fff;
         padding: 0;
     }
+
     &__title--features {
         color: #11f85a;
+
         &::after {
             content: "";
             height: 1px;
@@ -46,8 +55,10 @@
             background-color: #11f85a;
         }
     }
+
     &__title--safety {
         color: #faa81a;
+
         &::after {
             content: "";
             height: 1px;
@@ -56,8 +67,10 @@
             background-color: #faa81a;
         }
     }
+
     &__title--other {
         color: #ed4245;
+
         &::after {
             content: "";
             height: 1px;
@@ -73,6 +86,7 @@
         color: #b9bbbe;
         list-style-type: disc;
     }
+
     &__title {
         font-size: 16px;
         line-height: 20px;
