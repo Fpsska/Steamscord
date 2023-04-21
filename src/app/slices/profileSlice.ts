@@ -1,11 +1,12 @@
 import { createSlice, PayloadAction, current } from '@reduxjs/toolkit';
 
-import { profileSliceTypes, Iuser } from 'types/profileSliceTypes';
+import { profileSliceTypes, Iuser, Icomment } from 'types/profileSliceTypes';
 
 import { fetchUsers } from 'app/api/fetchUsers';
 import { fetchComments } from 'app/api/fetchComments';
 
 import { getRandomGameArrayItem } from '../../utils/helpers/getRandomGameArrayItem';
+
 
 //  /. imports
 
@@ -62,36 +63,52 @@ const profileSlice = createSlice({
             state.isDataLoading = action.payload;
         }
     },
-    extraReducers: {
-        [fetchComments.pending.type]: state => {
-            state.commentsFetchingStatus = 'loading';
-        },
-        [fetchComments.fulfilled.type]: (state, action) => {
-            state.comments = action.payload.map((item: any) => item.body);
-            state.commentsFetchingStatus = 'success';
-        },
-        [fetchComments.rejected.type]: (state, action) => {
-            state.commentsFetchingError = action.payload;
-            state.commentsFetchingStatus = 'failed';
-        },
-        // /. get comments data
-        [fetchUsers.pending.type]: state => {
-            state.usersFetchingStatus = 'loading';
-        },
-        [fetchUsers.fulfilled.type]: (state, action) => {
-            state.users = action.payload;
-            state.users.map((item: any) => {
-                item.comment =
-                    state.comments[getRandomGameArrayItem(state.comments)];
-                item.gameActivity = state.gameActivity[getRandomGameArrayItem(state.gameActivity)];
-            });
+    extraReducers: builder => {
+        builder
+            .addCase(fetchComments.pending, state => {
+                state.commentsFetchingStatus = 'loading';
+                state.commentsFetchingError = null;
+            })
+            .addCase(
+                fetchComments.fulfilled,
+                (state, action: PayloadAction<Icomment[]>) => {
+                    state.comments = action.payload.map((item: any) => item.body);
+                    state.commentsFetchingStatus = 'success';
+                }
+            )
+            .addCase(
+                fetchComments.rejected,
+                (state, action: PayloadAction<any>) => {
+                    state.commentsFetchingError = action.payload;
+                    state.commentsFetchingStatus = 'failed';
+                }
+            )
+            // /. get comments data
+            .addCase(fetchUsers.pending, state => {
+                state.usersFetchingStatus = 'loading';
+                state.usersFetchingError = null;
+            })
+            .addCase(
+                fetchUsers.fulfilled,
+                (state, action: PayloadAction<Iuser[]>) => {
+                    state.users = action.payload;
+                    state.users.map((item: any) => {
+                        item.comment =
+                            state.comments[getRandomGameArrayItem(state.comments)];
+                        item.gameActivity = state.gameActivity[getRandomGameArrayItem(state.gameActivity)];
+                    });
 
-            state.usersFetchingStatus = 'success';
-        },
-        [fetchUsers.rejected.type]: (state, action) => {
-            state.usersFetchingError = action.payload;
-            state.usersFetchingStatus = 'failed';
-        }
+                    state.usersFetchingStatus = 'success';
+                }
+            )
+            .addCase(
+                fetchUsers.rejected,
+                (state, action: PayloadAction<any>) => {
+                    console.log(action.payload);
+                    state.usersFetchingError = action.payload;
+                    state.usersFetchingStatus = 'failed';
+                }
+            );
     }
 });
 
