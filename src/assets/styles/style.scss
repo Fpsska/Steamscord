@@ -1,14 +1,6 @@
-ul,
-li {
-    list-style: none;
-}
+@import 'assets/styles/reset';
 
-button {
-    border: none;
-    cursor: pointer;
-}
-
-// /. nullstyles
+// /. imports
 
 .App {
     height: 100vh;

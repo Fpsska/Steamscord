@@ -1,15 +1,34 @@
 .profile {
     background-color: rgba($color: #fff, $alpha: 0.8);
+    max-height: 100vh;
     height: 100%;
+    overflow: scroll;
+
+    &::-webkit-scrollbar {
+        width: 0;
+        background-color: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: transparent;
+    }
 
     &__wrapper {
         padding: 16px 20px;
     }
 
     &__image {
-        object-fit: cover;
         width: 100%;
-        height: 201px;
+        height: 300px;
+        overflow: hidden;
+        position: relative;
+
+        img {
+            position: absolute;
+            left: 0;
+            top: 0;
+            object-fit: cover;
+        }
     }
 
     &__bio {

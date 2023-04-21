@@ -24,8 +24,8 @@ import { fetchComments } from 'app/api/fetchComments';
 import { useFilter } from 'utils/hook/useFilter';
 
 import './App.css';
-import 'assets/scss/style.scss';
-import 'assets/scss/media.scss';
+import 'assets/styles/_media.scss';
+import 'assets/styles/style.scss';
 import 'antd/dist/antd.css';
 
 // /. imports

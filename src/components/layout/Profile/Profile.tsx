@@ -76,15 +76,17 @@ const Profile: React.FC<propTypes> = ({
     if (isUserAuthorized) {
         return (
             <div className={`profile ${isUserActive ? 'active' : ''}`}>
-                <img
-                    className="profile__image"
-                    src={
-                        isUserDataExist
-                            ? currentUser[0].avatarfull
-                            : placeholderIMG
-                    }
-                    alt="profile image"
-                />
+                <div className="profile__image">
+                    <img
+                        src={
+                            isUserDataExist
+                                ? currentUser[0].avatarfull
+                                : placeholderIMG
+                        }
+                        alt="profile image"
+                    />
+                </div>
+
                 <div className="profile__wrapper">
                     <div className="profile__bio">
                         <div className="name">
