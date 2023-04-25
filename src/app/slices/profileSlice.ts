@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction, current } from '@reduxjs/toolkit';
 
-import { profileSliceTypes, Iuser, Icomment } from 'types/profileSliceTypes';
+import { profileSliceTypes, Ifriend, Icomment } from 'types/profileSliceTypes';
 
 import { fetchUsers } from 'app/api/fetchUsers';
 import { fetchComments } from 'app/api/fetchComments';
@@ -13,7 +13,7 @@ import { getRandomGameArrayItem } from '../../utils/helpers/getRandomGameArrayIt
 //  /. imports
 
 const initialState: profileSliceTypes = {
-    users: [],
+    friends: [],
     currentUser: [],
     comments: [],
     gameActivity: [
@@ -53,8 +53,8 @@ const profileSlice = createSlice({
             console.log('action');
             // /. payload
 
-            const user = state.users.find(
-                (item: Iuser) => item.steamid === payloadID
+            const user = state.friends.find(
+                (item: Ifriend) => item.id === payloadID
             );
             if (user) {
                 state.currentUser = [];
@@ -73,11 +73,18 @@ const profileSlice = createSlice({
             })
             .addCase(
                 fetchUsers.fulfilled,
-                (state, action: PayloadAction<Iuser[]>) => {
-                    state.users = action.payload;
-                    state.users.map((item: Iuser) => {
-                        item.gameActivity = state.gameActivity[getRandomGameArrayItem(state.gameActivity)];
+                (state, action: PayloadAction<Ifriend[]>) => {
+                    const newUsersArray = action.payload.map((item: any) => {
+                        return {
+                            id: item.steamid,
+                            name: item.personaname,
+                            avatar: item.avatarmedium,
+                            avatarFull: item.avatarfull,
+                            status: item.steamid.slice(-1) > 4 ? true : false,
+                            gameActivity: state.gameActivity[getRandomGameArrayItem(state.gameActivity)]
+                        };
                     });
+                    state.friends = newUsersArray;
 
                     state.usersFetchingStatus = 'success';
                 }
@@ -97,17 +104,16 @@ const profileSlice = createSlice({
             .addCase(
                 fetchComments.fulfilled,
                 (state, action: PayloadAction<Icomment[]>) => {
-                    const commentsArray = action.payload.map((item: any) => item.body);
-                    const newComments = state.users.map(((item: any) => {
+                    const newCommentsArray = action.payload.map((item: any) => item.body);
+                    const newComments = state.friends.map(((item: any) => {
                         return {
-                            id: item.steamid,
-                            name: item.personaname,
-                            avatar: item.avatarmedium,
-                            comment: commentsArray[getRandomGameArrayItem(commentsArray)],
+                            id: item.id,
+                            name: item.name,
+                            avatar: item.avatar,
+                            comment: newCommentsArray[getRandomGameArrayItem(newCommentsArray)],
                             dateOfCreate: generateRandomDate()
                         };
                     }));
-                    console.log(newComments);
                     state.comments = newComments;
 
                     state.commentsFetchingStatus = 'success';

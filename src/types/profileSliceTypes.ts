@@ -1,23 +1,23 @@
-export interface Icomment {
-    id: number;
+interface Iuser {
+    id: string;
     name: string;
     avatar: string;
+}
+
+export interface Icomment extends Iuser {
     comment: string;
     dateOfCreate: string;
 }
 
-export interface Iuser {
-    steamid: string;
-    personaname: string;
-    avatarmedium: string;
-    avatarfull: string;
-    timecreated: number;
+export interface Ifriend extends Iuser {
+    avatarFull: string;
+    status: boolean;
     gameActivity: string;
 }
 
 export interface profileSliceTypes {
-    users: Iuser[];
-    currentUser: Iuser[];
+    friends: Ifriend[];
+    currentUser: Ifriend[];
     comments: Icomment[];
     gameActivity: string[];
     timeZones: string[];

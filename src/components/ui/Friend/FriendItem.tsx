@@ -9,7 +9,7 @@ import { getCurrentUser } from 'app/slices/profileSlice';
 interface propTypes {
     id: string;
     name: string;
-    image: string;
+    avatar: string;
     status: boolean;
     gameActivity: string;
 }
@@ -19,7 +19,7 @@ interface propTypes {
 const FriendItem: React.FC<propTypes> = ({
     id,
     name,
-    image,
+    avatar,
     status,
     gameActivity
 }) => {
@@ -33,7 +33,7 @@ const FriendItem: React.FC<propTypes> = ({
 
     useEffect(() => {
         // restricting db click by same item
-        currentUser[0]?.steamid === id
+        currentUser[0]?.id === id
             ? setAddedStatus(true)
             : setAddedStatus(false);
     }, [currentUser, id]);
@@ -44,7 +44,7 @@ const FriendItem: React.FC<propTypes> = ({
         <li className={`friends__item ${status ? 'online' : ''}`}>
             <img
                 className="friends__image"
-                src={image}
+                src={avatar}
                 alt="profile-avatar"
                 onClick={() =>
                     !isAlreadyAdded &&

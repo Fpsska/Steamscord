@@ -4,7 +4,7 @@ import { Skeleton, Space, Row } from 'antd';
 
 import { useAppSelector } from 'app/hooks';
 
-import { Iuser } from 'types/profileSliceTypes';
+import { Ifriend } from 'types/profileSliceTypes';
 
 import FriendItem from './FriendItem';
 
@@ -13,7 +13,7 @@ import './Friend.scss';
 // /. imports
 
 interface propTypes {
-    users: Iuser[];
+    users: Ifriend[];
     isError: boolean;
 }
 
@@ -112,14 +112,10 @@ const FriendList: React.FC<propTypes> = ({ users, isError }) => {
                     </div>
                 </Space>
             ) : (
-                users.map((user: Iuser) => {
+                users.map((user: Ifriend) => {
                     return (
                         <FriendItem
-                            key={user.steamid}
-                            status={+user.steamid.slice(-1) > 4 ? true : false}
-                            id={user.steamid}
-                            name={user.personaname}
-                            image={user.avatarmedium}
+                            key={user.id}
                             {...user}
                         />
                     );

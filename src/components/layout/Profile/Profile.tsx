@@ -44,7 +44,7 @@ const Profile: React.FC<propTypes> = ({
     // /. hooks
 
     const isUserDataExist = isUserAuthorized && currentUser.length !== 0;
-    const isUserActive = +currentUser[0]?.steamid.slice(-1) > 4 ? true : false;
+    const isUserActive = +currentUser[0]?.id.slice(-1) > 4 ? true : false;
 
     function handleCancelModal(): void {
         setIsModalVisible(false);
@@ -80,7 +80,7 @@ const Profile: React.FC<propTypes> = ({
                     <img
                         src={
                             isUserDataExist
-                                ? currentUser[0].avatarfull
+                                ? currentUser[0].avatarFull
                                 : placeholderIMG
                         }
                         alt="profile image"
@@ -94,13 +94,11 @@ const Profile: React.FC<propTypes> = ({
                                 className="name__text"
                                 title={
                                     isUserDataExist
-                                        ? currentUser[0].personaname
+                                        ? currentUser[0].name
                                         : login
                                 }
                             >
-                                {isUserDataExist
-                                    ? currentUser[0].personaname
-                                    : login}
+                                {isUserDataExist ? currentUser[0].name : login}
                             </h2>
                             {isUserDataExist && (
                                 <span className="name__prefix"></span>
@@ -161,7 +159,7 @@ const Profile: React.FC<propTypes> = ({
                             <Modal
                                 open={isModalVisible}
                                 title={`Write your message from ${
-                                    currentUser[0].personaname || 'this user'
+                                    currentUser[0].name || 'this user'
                                 } there!`}
                                 onOk={sendMessage}
                                 onCancel={handleCancelModal}
@@ -199,13 +197,11 @@ const Profile: React.FC<propTypes> = ({
                                 href="#"
                                 title={
                                     isUserDataExist
-                                        ? currentUser[0].personaname
+                                        ? currentUser[0].name
                                         : login
                                 }
                             >
-                                {isUserDataExist
-                                    ? currentUser[0].personaname
-                                    : login}
+                                {isUserDataExist ? currentUser[0].name : login}
                             </a>
                         </li>
                         <li className="information__template">

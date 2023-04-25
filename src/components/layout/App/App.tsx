@@ -32,7 +32,7 @@ import 'antd/dist/antd.css';
 
 const App: React.FC = () => {
     const {
-        users,
+        friends,
         comments,
         usersFetchingError,
         commentsFetchingError,
@@ -89,7 +89,7 @@ const App: React.FC = () => {
                     path="/"
                     element={
                         <GeneralLayout
-                            users={users}
+                            users={friends}
                             isError={
                                 !!usersFetchingError || !!commentsFetchingError
                             }
