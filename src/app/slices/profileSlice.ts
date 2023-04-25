@@ -5,6 +5,8 @@ import { profileSliceTypes, Iuser, Icomment } from 'types/profileSliceTypes';
 import { fetchUsers } from 'app/api/fetchUsers';
 import { fetchComments } from 'app/api/fetchComments';
 
+import { generateRandomDate } from 'utils/helpers/generateRandomDate';
+
 import { getRandomGameArrayItem } from '../../utils/helpers/getRandomGameArrayItem';
 
 
@@ -65,25 +67,6 @@ const profileSlice = createSlice({
     },
     extraReducers: builder => {
         builder
-            .addCase(fetchComments.pending, state => {
-                state.commentsFetchingStatus = 'loading';
-                state.commentsFetchingError = null;
-            })
-            .addCase(
-                fetchComments.fulfilled,
-                (state, action: PayloadAction<Icomment[]>) => {
-                    state.comments = action.payload.map((item: any) => item.body);
-                    state.commentsFetchingStatus = 'success';
-                }
-            )
-            .addCase(
-                fetchComments.rejected,
-                (state, action: PayloadAction<any>) => {
-                    state.commentsFetchingError = action.payload;
-                    state.commentsFetchingStatus = 'failed';
-                }
-            )
-            // /. get comments data
             .addCase(fetchUsers.pending, state => {
                 state.usersFetchingStatus = 'loading';
                 state.usersFetchingError = null;
@@ -92,9 +75,7 @@ const profileSlice = createSlice({
                 fetchUsers.fulfilled,
                 (state, action: PayloadAction<Iuser[]>) => {
                     state.users = action.payload;
-                    state.users.map((item: any) => {
-                        item.comment =
-                            state.comments[getRandomGameArrayItem(state.comments)];
+                    state.users.map((item: Iuser) => {
                         item.gameActivity = state.gameActivity[getRandomGameArrayItem(state.gameActivity)];
                     });
 
@@ -104,9 +85,39 @@ const profileSlice = createSlice({
             .addCase(
                 fetchUsers.rejected,
                 (state, action: PayloadAction<any>) => {
-                    console.log(action.payload);
                     state.usersFetchingError = action.payload;
                     state.usersFetchingStatus = 'failed';
+                }
+            )
+            // /. get users data
+            .addCase(fetchComments.pending, state => {
+                state.commentsFetchingStatus = 'loading';
+                state.commentsFetchingError = null;
+            })
+            .addCase(
+                fetchComments.fulfilled,
+                (state, action: PayloadAction<Icomment[]>) => {
+                    const commentsArray = action.payload.map((item: any) => item.body);
+                    const newComments = state.users.map(((item: any) => {
+                        return {
+                            id: item.steamid,
+                            name: item.personaname,
+                            avatar: item.avatarmedium,
+                            comment: commentsArray[getRandomGameArrayItem(commentsArray)],
+                            dateOfCreate: generateRandomDate()
+                        };
+                    }));
+                    console.log(newComments);
+                    state.comments = newComments;
+
+                    state.commentsFetchingStatus = 'success';
+                }
+            )
+            .addCase(
+                fetchComments.rejected,
+                (state, action: PayloadAction<any>) => {
+                    state.commentsFetchingError = action.payload;
+                    state.commentsFetchingStatus = 'failed';
                 }
             );
     }

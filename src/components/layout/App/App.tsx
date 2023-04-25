@@ -33,6 +33,7 @@ import 'antd/dist/antd.css';
 const App: React.FC = () => {
     const {
         users,
+        comments,
         usersFetchingError,
         commentsFetchingError,
         isDataLoading,
@@ -43,7 +44,7 @@ const App: React.FC = () => {
     const { isUserAuthorized } = useAppSelector(state => state.authReducer);
 
     const { enteredSearchValue, setEnteredSearchValue, availableItems } =
-        useFilter(users, 'personaname');
+        useFilter(comments, 'personaname');
 
     const dispatch = useAppDispatch();
 
@@ -52,7 +53,14 @@ const App: React.FC = () => {
     useEffect(() => {
         // getting users, comments data
         dispatch(fetchUsers());
-        dispatch(fetchComments());
+
+        Promise.all([fetchUsers])
+            .then(() => console.log('users data was geted!'))
+            .then(() => {
+                setTimeout(() => {
+                    dispatch(fetchComments());
+                }, 1000);
+            });
     }, []);
 
     useEffect(() => {
@@ -65,7 +73,7 @@ const App: React.FC = () => {
             validCondition && dispatch(switchDataLoadingStatus(false));
         }, 1300);
 
-        return () => clearInterval(cheker);
+        return () => clearTimeout(cheker);
     }, [isUserAuthorized, usersFetchingStatus, commentsFetchingStatus]);
 
     // /. effects

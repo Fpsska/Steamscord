@@ -1,9 +1,9 @@
 export interface Icomment {
-    postId: number;
     id: number;
     name: string;
-    email: string;
-    body: string
+    avatar: string;
+    comment: string;
+    dateOfCreate: string;
 }
 
 export interface Iuser {
@@ -12,7 +12,6 @@ export interface Iuser {
     avatarmedium: string;
     avatarfull: string;
     timecreated: number;
-    comment: string;
     gameActivity: string;
 }
 

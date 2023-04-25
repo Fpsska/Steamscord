@@ -5,18 +5,18 @@ import React from 'react';
 interface propTypes {
     name: string;
     comment: string;
-    image: string;
+    avatar: string;
     time: string;
 }
 
 // /. interfaces
 
-const CommentItem: React.FC<propTypes> = ({ name, comment, image, time }) => {
+const CommentItem: React.FC<propTypes> = ({ name, comment, avatar, time }) => {
     return (
         <div className="message__template">
             <img
                 className="message__profile-image"
-                src={image}
+                src={avatar}
                 alt="profile-avatar"
             />
             <div className="message__content">

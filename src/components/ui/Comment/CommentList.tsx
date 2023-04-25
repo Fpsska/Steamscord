@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Iuser } from 'types/profileSliceTypes';
+import { Icomment } from 'types/profileSliceTypes';
 
 import CommentItem from './CommentItem';
 
@@ -8,18 +8,16 @@ import './Comment.scss';
 
 // /. imports
 
-const CommentsList: React.FC<{ availableItems: Iuser[] }> = ({
+const CommentsList: React.FC<{ availableItems: Icomment[] }> = ({
     availableItems
 }) => {
     return (
         <div className="message">
-            {availableItems.map((comment: Iuser) => {
+            {availableItems.map((comment: Icomment) => {
                 return (
                     <CommentItem
-                        key={comment.steamid}
-                        name={comment.personaname}
-                        image={comment.avatarmedium}
-                        time={new Date().toLocaleTimeString()}
+                        key={comment.id}
+                        time={comment.dateOfCreate}
                         {...comment}
                     />
                 );
