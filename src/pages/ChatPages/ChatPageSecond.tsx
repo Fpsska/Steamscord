@@ -11,7 +11,9 @@ import warningImg from 'assets/images/warning.png';
 
 // /. imports
 
-const ChatPageSecond: React.FC<{ isError: boolean }> = ({ isError }) => {
+const ChatPageSecond: React.FC<{ isError?: boolean }> = ({
+    isError = false
+}) => {
     const [isContentVisible, setContentVisibleStatus] =
         useState<boolean>(false);
     const [isLoading, setLoadingStatus] = useState<boolean>(false);

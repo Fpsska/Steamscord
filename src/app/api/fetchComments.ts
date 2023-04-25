@@ -6,7 +6,7 @@ export const fetchComments = createAsyncThunk(
     'profileSlice/fetchComments',
     async (_, { rejectWithValue }) => {
         const limit = 20;
-        const URL = `https://jsonplaceholder.typicode.com/comments?&_limit=${limit}`;
+        const URL = `${process.env.REACT_APP_COMMENTS_FETCH_URL}?&_limit=${limit}`;
 
         try {
             const response = await fetch(URL);

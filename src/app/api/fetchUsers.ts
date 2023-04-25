@@ -5,10 +5,8 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 export const fetchUsers = createAsyncThunk(
     'profileSlice/fetchUsers',
     async (_, { rejectWithValue }) => {
-        const URL = 'https://steamscord-backend.vercel.app/api/data';
-
         try {
-            const response = await fetch(URL);
+            const response = await fetch(`${process.env.REACT_APP_USERS_FETCH_URL}`);
 
             if (!response.ok) {
                 throw new Error('Response: server error!');

@@ -60,6 +60,9 @@ const App: React.FC = () => {
                 setTimeout(() => {
                     dispatch(fetchComments());
                 }, 1000);
+            })
+            .catch((err: any) => {
+                throw new Error(`some error: ${err.message}`);
             });
     }, []);
 
@@ -90,9 +93,7 @@ const App: React.FC = () => {
                     element={
                         <GeneralLayout
                             users={friends}
-                            isError={
-                                !!usersFetchingError || !!commentsFetchingError
-                            }
+                            isError={!!usersFetchingError}
                         />
                     }
                 >
@@ -128,7 +129,7 @@ const App: React.FC = () => {
                                     isError={
                                         !!usersFetchingError ||
                                         !!commentsFetchingError
-                                    } // error(true) if at least has ERR
+                                    }
                                 />
                             </ProtectedRoute>
                         }
@@ -137,12 +138,7 @@ const App: React.FC = () => {
                         path="LocalElysium"
                         element={
                             <ProtectedRoute>
-                                <ChatPageSecond
-                                    isError={
-                                        !!usersFetchingError ||
-                                        !!commentsFetchingError
-                                    }
-                                />
+                                <ChatPageSecond />
                             </ProtectedRoute>
                         }
                     />
