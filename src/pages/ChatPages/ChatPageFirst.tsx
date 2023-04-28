@@ -37,6 +37,15 @@ const ChatPageFirst: React.FC<propTypes> = props => {
 
     // /. hooks
 
+    const centeredStyles: { [key: string]: string } = {
+        position: 'absolute',
+        left: '50%',
+        top: '50%',
+        transform: 'translate(-50%,-50%)'
+    };
+
+    // /. variables
+
     useEffect(() => {
         const validCondition = !isLoading && !isError;
         const cheker = setTimeout(() => {
@@ -81,12 +90,7 @@ const ChatPageFirst: React.FC<propTypes> = props => {
                 {isFirstPageLoading ? (
                     <Spin
                         size="large"
-                        style={{
-                            height: '100%',
-                            display: 'flex',
-                            justifyContent: 'center',
-                            alignItems: 'center'
-                        }}
+                        style={centeredStyles}
                     />
                 ) : isError ? (
                     <Col
@@ -111,6 +115,12 @@ const ChatPageFirst: React.FC<propTypes> = props => {
                             />
                         )}
                     </Col>
+                ) : availableItems.length === 0 ? (
+                    <Empty
+                        image={Empty.PRESENTED_IMAGE_SIMPLE}
+                        description={<span>no matches</span>}
+                        style={centeredStyles}
+                    />
                 ) : (
                     <CommentsList availableItems={availableItems} />
                 )}

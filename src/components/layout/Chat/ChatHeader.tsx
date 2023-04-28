@@ -67,7 +67,7 @@ const ChatHeader: React.FC<propTypes> = props => {
                     action="#"
                 >
                     <Search
-                        placeholder="Search.."
+                        placeholder="Search by nickname.."
                         style={{ borderRadius: '5px' }}
                         disabled={
                             !isUserAuthorized || !isPageInteractive || isError

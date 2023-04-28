@@ -39,7 +39,8 @@ const initialState: profileSliceTypes = {
     commentsFetchingStatus: '',
     commentsFetchingError: null,
 
-    isDataLoading: true
+    isDataLoading: true,
+    isCommentCreated: null
 };
 
 // /. initialState
@@ -60,6 +61,15 @@ const profileSlice = createSlice({
                 state.currentUser = [];
                 state.currentUser.push(user);
             }
+        },
+        createNewComment(state, action: PayloadAction<{ comment: Icomment }>) {
+            const { comment } = action.payload;
+            // /. payload
+
+            state.comments.push(comment);
+        },
+        switchCommentCreatedStatus(state, action: PayloadAction<boolean>) {
+            state.isCommentCreated = action.payload;
         },
         switchDataLoadingStatus(state, action: PayloadAction<boolean>) {
             state.isDataLoading = action.payload;
@@ -129,6 +139,6 @@ const profileSlice = createSlice({
     }
 });
 
-export const { getCurrentUser, switchDataLoadingStatus } = profileSlice.actions;
+export const { getCurrentUser, createNewComment, switchCommentCreatedStatus, switchDataLoadingStatus } = profileSlice.actions;
 
 export default profileSlice.reducer;

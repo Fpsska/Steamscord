@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+
+import { useAppSelector } from 'app/hooks';
 
 import { Icomment } from 'types/profileSliceTypes';
 
@@ -11,8 +13,24 @@ import './Comment.scss';
 const CommentsList: React.FC<{ availableItems: Icomment[] }> = ({
     availableItems
 }) => {
+    const { isCommentCreated } = useAppSelector(state => state.profileReducer);
+
+    const commentsListRef = useRef<HTMLDivElement>(null!);
+
+    // /. hooks
+
+    useEffect(() => {
+        commentsListRef.current.scrollTo({
+            top: commentsListRef.current.scrollHeight,
+            behavior: 'smooth'
+        });
+    }, [isCommentCreated]);
+
     return (
-        <div className="message">
+        <div
+            className="message"
+            ref={commentsListRef}
+        >
             {availableItems.map((comment: Icomment) => {
                 return (
                     <CommentItem

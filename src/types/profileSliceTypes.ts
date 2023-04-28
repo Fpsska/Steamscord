@@ -26,4 +26,5 @@ export interface profileSliceTypes {
     commentsFetchingStatus: string;
     commentsFetchingError: null | string;
     isDataLoading: boolean;
+    isCommentCreated: null | boolean;
 }

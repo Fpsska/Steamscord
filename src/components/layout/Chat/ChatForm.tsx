@@ -1,10 +1,19 @@
-import React, { useRef } from 'react';
+import React, { useState } from 'react';
 
 import { Row, message } from 'antd';
 
 import { BsMic, BsEmojiSmile, BsPaperclip } from 'react-icons/bs';
 
-import { useAppSelector } from 'app/hooks';
+import { useAppSelector, useAppDispatch } from 'app/hooks';
+
+import {
+    createNewComment,
+    switchCommentCreatedStatus
+} from 'app/slices/profileSlice';
+
+import { generateUniqueID } from 'utils/helpers/generateUniqueID';
+
+import { Icomment } from 'types/profileSliceTypes';
 
 // /. imports
 
@@ -19,9 +28,14 @@ const ChatForm: React.FC<propTypes> = ({
     isPageInteractive = false,
     isError
 }) => {
-    const { isUserAuthorized } = useAppSelector(state => state.authReducer);
+    const { isUserAuthorized, login } = useAppSelector(
+        state => state.authReducer
+    );
+    const { isCommentCreated } = useAppSelector(state => state.profileReducer);
 
-    const formRef = useRef<HTMLFormElement>(null!);
+    const [inputMessageValue, setInputMessageValue] = useState<string>('');
+
+    const dispatch = useAppDispatch();
 
     // /. hooks
 
@@ -32,7 +46,17 @@ const ChatForm: React.FC<propTypes> = ({
     const onFormSubmit = (e: React.SyntheticEvent<HTMLFormElement>): void => {
         e.preventDefault();
         //
-        formRef.current.reset();
+        const newComment: Icomment = {
+            id: generateUniqueID(),
+            name: login,
+            comment: inputMessageValue.trim(),
+            avatar: '',
+            dateOfCreate: new Date().toLocaleDateString('en-GB')
+        };
+        dispatch(createNewComment({ comment: newComment }));
+
+        dispatch(switchCommentCreatedStatus(!isCommentCreated));
+        setInputMessageValue('');
     };
 
     // /. functions
@@ -41,8 +65,7 @@ const ChatForm: React.FC<propTypes> = ({
         <Row className="chat__section chat__section--bottom">
             <form
                 className="form form--message"
-                ref={formRef}
-                onSubmit={e => onFormSubmit(e)}
+                onSubmit={e => inputMessageValue && onFormSubmit(e)}
                 action="#"
             >
                 <input
@@ -52,6 +75,8 @@ const ChatForm: React.FC<propTypes> = ({
                     disabled={
                         !isUserAuthorized || !isPageInteractive || isError
                     }
+                    value={inputMessageValue}
+                    onChange={e => setInputMessageValue(e.target.value)}
                 />
                 <div className="form__interaction">
                     <button
