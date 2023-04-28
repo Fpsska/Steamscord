@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 // /.imports
 
 export function useDebounce(value: string, delay: number): string {
-    const [debValue, setValue] = useState(value);
+    const [debValue, setValue] = useState<string>(value);
 
     // /. hooks
 

@@ -21,8 +21,6 @@ import { switchDataLoadingStatus } from 'app/slices/profileSlice';
 import { fetchUsers } from 'app/api/fetchUsers';
 import { fetchComments } from 'app/api/fetchComments';
 
-import { useFilter } from 'utils/hook/useFilter';
-
 import './App.css';
 import 'assets/styles/_media.scss';
 import 'assets/styles/style.scss';
@@ -33,7 +31,6 @@ import 'antd/dist/antd.css';
 const App: React.FC = () => {
     const {
         friends,
-        comments,
         usersFetchingError,
         commentsFetchingError,
         isDataLoading,
@@ -42,9 +39,6 @@ const App: React.FC = () => {
     } = useAppSelector(state => state.profileReducer);
 
     const { isUserAuthorized } = useAppSelector(state => state.authReducer);
-
-    const { enteredSearchValue, setEnteredSearchValue, availableItems } =
-        useFilter(comments, 'personaname');
 
     const dispatch = useAppDispatch();
 
@@ -120,11 +114,6 @@ const App: React.FC = () => {
                         element={
                             <ProtectedRoute>
                                 <ChatPageFirst
-                                    availableItems={availableItems}
-                                    enteredSearchValue={enteredSearchValue}
-                                    setEnteredSearchValue={
-                                        setEnteredSearchValue
-                                    }
                                     isLoading={isDataLoading}
                                     isError={
                                         !!usersFetchingError ||

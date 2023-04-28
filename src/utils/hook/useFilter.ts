@@ -13,7 +13,7 @@ interface returnedTypes {
 // /. interfaces
 
 export function useFilter(items: any[], filterProp: string): returnedTypes {
-    const [enteredSearchValue, setEnteredSearchValue] = useState('');
+    const [enteredSearchValue, setEnteredSearchValue] = useState<string>('');
     const activeSearchValue = useDebounce(enteredSearchValue, 200);
 
     // /. hooks

@@ -39,8 +39,8 @@ const ChatPageSecond: React.FC<{ isError?: boolean }> = ({
     return (
         <>
             <ChatHeader
-                channelName={'LocalElysium'}
-                channelMembersCount={937}
+                channelName="LocalElysium"
+                channelMembersCount="937"
                 isError={isError}
             />
             {isContentVisible ? (

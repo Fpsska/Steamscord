@@ -17,7 +17,7 @@ interface propTypes {
     enteredSearchValue?: string;
     setEnteredSearchValue?: (arg: string) => void;
     channelName?: string;
-    channelMembersCount?: number;
+    channelMembersCount?: string;
     isPageInteractive?: boolean;
     isError?: boolean;
 }

@@ -6,6 +6,8 @@ import { useAppSelector, useAppDispatch } from 'app/hooks';
 
 import { switchFirstPageLoadingStatus } from 'app/slices/mainSlice';
 
+import { useFilter } from 'utils/hook/useFilter';
+
 import CommentsList from 'components/ui/Comment/CommentList';
 import ChatHeader from 'components/layout/Chat/ChatHeader';
 import ChatForm from 'components/layout/Chat/ChatForm';
@@ -13,9 +15,6 @@ import ChatForm from 'components/layout/Chat/ChatForm';
 // /. imports
 
 interface propTypes {
-    enteredSearchValue: string;
-    setEnteredSearchValue: (arg: string) => void;
-    availableItems: any[];
     isLoading: boolean;
     isError: boolean;
 }
@@ -23,20 +22,16 @@ interface propTypes {
 // /. interfaces
 
 const ChatPageFirst: React.FC<propTypes> = props => {
-    const {
-        enteredSearchValue,
-        setEnteredSearchValue,
-        availableItems,
-        isLoading,
-        isError
-    } = props;
+    const { isLoading, isError } = props;
 
     const { isFirstPageLoading } = useAppSelector(state => state.mainReducer);
+    const { comments } = useAppSelector(state => state.profileReducer);
 
     const [isMobileErrorTemplate, setMobileErrorTemplate] =
         useState<boolean>(false);
 
-    // unlock route for only auth-d users
+    const { enteredSearchValue, setEnteredSearchValue, availableItems } =
+        useFilter(comments, 'name');
 
     const dispatch = useAppDispatch();
 
@@ -75,8 +70,8 @@ const ChatPageFirst: React.FC<propTypes> = props => {
     return (
         <>
             <ChatHeader
-                channelName={'NikitosXClub'}
-                channelMembersCount={1337}
+                channelName="NikitosXClub"
+                channelMembersCount="1337"
                 isError={isError}
                 enteredSearchValue={enteredSearchValue}
                 setEnteredSearchValue={setEnteredSearchValue}
