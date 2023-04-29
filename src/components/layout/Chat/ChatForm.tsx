@@ -51,7 +51,13 @@ const ChatForm: React.FC<propTypes> = ({
             name: login,
             comment: inputMessageValue.trim(),
             avatar: '',
-            dateOfCreate: new Date().toLocaleDateString('en-GB')
+            dateOfCreate: new Date()
+                .toLocaleDateString('en-GB', {
+                    hour: 'numeric',
+                    minute: 'numeric',
+                    hour12: true
+                })
+                .toUpperCase()
         };
         dispatch(createNewComment({ comment: newComment }));
 

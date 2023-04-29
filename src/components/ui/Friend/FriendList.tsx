@@ -21,12 +21,18 @@ interface propTypes {
 
 const FriendList: React.FC<propTypes> = ({ users, isError }) => {
     const { isUserAuthorized } = useAppSelector(state => state.authReducer);
+    const { isDataLoading } = useAppSelector(state => state.profileReducer);
 
     // /. hooks
 
+    const isSkeletionMarkupVisible =
+        !isUserAuthorized || isError || isDataLoading;
+
+    // /. variables
+
     return (
         <>
-            {!isUserAuthorized || isError ? (
+            {isSkeletionMarkupVisible ? (
                 <Space
                     direction="vertical"
                     style={{ width: '100%' }}

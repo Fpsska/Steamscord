@@ -206,7 +206,7 @@ const GeneralLayout: React.FC<propTypes> = ({ users, isError }) => {
                                                     Channels
                                                 </h2>
                                                 <span className="content__counter">
-                                                    {channels.length}
+                                                    {channels?.length || 0}
                                                 </span>
                                             </div>
                                             <ChannelList />
@@ -220,7 +220,7 @@ const GeneralLayout: React.FC<propTypes> = ({ users, isError }) => {
                                                     Friends
                                                 </h2>
                                                 <span className="content__counter">
-                                                    {users.length}
+                                                    {users?.length || 0}
                                                 </span>
                                             </div>
                                             <ul className="friends">

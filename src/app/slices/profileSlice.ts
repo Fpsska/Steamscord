@@ -121,7 +121,7 @@ const profileSlice = createSlice({
                             name: item.name,
                             avatar: item.avatar,
                             comment: newCommentsArray[getRandomGameArrayItem(newCommentsArray)],
-                            dateOfCreate: generateRandomDate()
+                            dateOfCreate: generateRandomDate().toUpperCase()
                         };
                     }));
                     state.comments = newComments;
