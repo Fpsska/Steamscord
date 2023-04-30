@@ -1,0 +1,10 @@
+.greeting-section {
+    &__title {
+        font-weight: 700;
+    }
+
+    &__description {
+        font-weight: 500;
+        margin-bottom: 10px 0 20px 0;
+    }
+}

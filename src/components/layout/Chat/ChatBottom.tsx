@@ -24,7 +24,7 @@ interface propTypes {
 
 // /. interfaces
 
-const ChatForm: React.FC<propTypes> = ({
+const ChatBottom: React.FC<propTypes> = ({
     isPageInteractive = false,
     isError
 }) => {
@@ -38,6 +38,10 @@ const ChatForm: React.FC<propTypes> = ({
     const dispatch = useAppDispatch();
 
     // /. hooks
+
+    const isInputDisabled = !isUserAuthorized || !isPageInteractive || isError;
+
+    // /. variables
 
     const errorNotification = (): void => {
         message.error('Function temporarily unavailable');
@@ -68,7 +72,7 @@ const ChatForm: React.FC<propTypes> = ({
     // /. functions
 
     return (
-        <Row className="chat__section chat__section--bottom">
+        <Row className="chat__bottom">
             <form
                 className="form form--message"
                 onSubmit={e => inputMessageValue && onFormSubmit(e)}
@@ -78,9 +82,7 @@ const ChatForm: React.FC<propTypes> = ({
                     className="form__input form__input--message"
                     type="text"
                     placeholder="Message in #general"
-                    disabled={
-                        !isUserAuthorized || !isPageInteractive || isError
-                    }
+                    disabled={isInputDisabled}
                     value={inputMessageValue}
                     onChange={e => setInputMessageValue(e.target.value)}
                 />
@@ -121,4 +123,4 @@ const ChatForm: React.FC<propTypes> = ({
     );
 };
 
-export default ChatForm;
+export default ChatBottom;

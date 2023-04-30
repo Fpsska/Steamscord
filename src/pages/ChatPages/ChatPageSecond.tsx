@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from 'antd';
 
 import ChatHeader from 'components/layout/Chat/ChatHeader';
-import ChatForm from 'components/layout/Chat/ChatForm';
+import ChatBottom from 'components/layout/Chat/ChatBottom';
 import DataPlaceholderMarkup from 'components/ui/DataPlaceholderMarkup/DataPlaceholderMarkup';
 
 import warningImg from 'assets/images/warning.png';
@@ -84,7 +84,7 @@ const ChatPageSecond: React.FC<{ isError?: boolean }> = ({
                     </div>
                 </div>
             )}
-            <ChatForm isError={isError} />
+            <ChatBottom isError={isError} />
         </>
     );
 };

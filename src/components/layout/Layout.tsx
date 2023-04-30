@@ -239,7 +239,8 @@ const GeneralLayout: React.FC<propTypes> = ({ users, isError }) => {
                                 md={24}
                                 lg={18}
                                 xl={18}
-                                xxl={isUserAuthorized ? 17 : 20}
+                                xxl={20}
+                                // xxl={isUserAuthorized ? 17 : 20}
                                 className="content__section content__section--main"
                             >
                                 <div className="chat">
@@ -247,7 +248,7 @@ const GeneralLayout: React.FC<propTypes> = ({ users, isError }) => {
                                 </div>
                             </Col>
                             {/* /. COL MIDDLE */}
-                            <>
+                            {/* <>
                                 {isUserAuthorized && (
                                     <Col
                                         xs={0}
@@ -262,7 +263,7 @@ const GeneralLayout: React.FC<propTypes> = ({ users, isError }) => {
                                         />
                                     </Col>
                                 )}
-                            </>
+                            </> */}
                         </Row>
                     </div>
                 </Content>

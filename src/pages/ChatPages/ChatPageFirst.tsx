@@ -1,6 +1,6 @@
 import React, { useEffect, useLayoutEffect, useState } from 'react';
 
-import { Col, Spin, Result, Empty } from 'antd';
+import { Row, Col, Spin, Result, Empty } from 'antd';
 
 import { useAppSelector, useAppDispatch } from 'app/hooks';
 
@@ -10,8 +10,10 @@ import { useFilter } from 'utils/hook/useFilter';
 
 import CommentsList from 'components/ui/Comment/CommentList';
 import ChatHeader from 'components/layout/Chat/ChatHeader';
-import ChatForm from 'components/layout/Chat/ChatForm';
+import ChatBottom from 'components/layout/Chat/ChatBottom';
+
 import DataPlaceholderMarkup from 'components/ui/DataPlaceholderMarkup/DataPlaceholderMarkup';
+import ChatGreetingSection from 'components/layout/Chat/ChatGreetingSection/ChatGreetingSection';
 
 // /. imports
 
@@ -78,7 +80,7 @@ const ChatPageFirst: React.FC<propTypes> = props => {
                 setEnteredSearchValue={setEnteredSearchValue}
                 isPageInteractive={!isFirstPageLoading}
             />
-            <div className="chat__section chat__section--main">
+            <Row className="chat__middle">
                 {isFirstPageLoading ? (
                     <Spin
                         size="large"
@@ -112,15 +114,23 @@ const ChatPageFirst: React.FC<propTypes> = props => {
                             />
                         )}
                     </Col>
-                ) : comments.length === 0 ? (
-                    <DataPlaceholderMarkup title="no data" />
-                ) : availableItems.length === 0 ? (
-                    <DataPlaceholderMarkup title="no matches" />
                 ) : (
-                    <CommentsList availableItems={availableItems} />
+                    <div className="chat__body">
+                        <ChatGreetingSection channelName="NikitosXClub" />
+                        <>
+                            {comments.length === 0 ? (
+                                <DataPlaceholderMarkup title="no data" />
+                            ) : availableItems.length === 0 ? (
+                                <DataPlaceholderMarkup title="no matches" />
+                            ) : (
+                                <CommentsList availableItems={availableItems} />
+                            )}
+                        </>
+                    </div>
                 )}
-            </div>
-            <ChatForm
+            </Row>
+
+            <ChatBottom
                 isPageInteractive={!isFirstPageLoading}
                 isError={isError}
             />

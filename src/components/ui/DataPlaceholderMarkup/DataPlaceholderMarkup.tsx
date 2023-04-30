@@ -26,6 +26,7 @@ const DataPlaceholderMarkup: React.FC<propTypes> = ({
         alignItems: 'center',
         justifyContent: 'center',
         height: '100%',
+        width: '100%',
         margin: '0'
     };
 

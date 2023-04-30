@@ -40,6 +40,10 @@ const ChatHeader: React.FC<propTypes> = props => {
 
     // /. hooks
 
+    const isInputDisabled = !isUserAuthorized || !isPageInteractive || isError;
+
+    // /. variables
+
     const errorNotification = (): void => {
         message.error('Function temporarily unavailable');
     };
@@ -47,7 +51,7 @@ const ChatHeader: React.FC<propTypes> = props => {
     // /. functions
 
     return (
-        <Row className="chat__section chat__section--top">
+        <Row className="chat__header">
             <div className="chat__column chat__column--name">
                 <span className="chat__name">{channelName}</span>
                 <button className="chat__button">
@@ -69,9 +73,7 @@ const ChatHeader: React.FC<propTypes> = props => {
                     <Search
                         placeholder="Search by nickname.."
                         style={{ borderRadius: '5px' }}
-                        disabled={
-                            !isUserAuthorized || !isPageInteractive || isError
-                        }
+                        disabled={isInputDisabled}
                         value={enteredSearchValue}
                         onChange={e => setEnteredSearchValue(e.target.value)}
                     />
@@ -79,7 +81,10 @@ const ChatHeader: React.FC<propTypes> = props => {
             </div>
 
             <div className="chat__column chat__column--notification">
-                <button className="chat__button">
+                <button
+                    className="chat__button"
+                    aria-label="show notifications"
+                >
                     <Badge
                         count={9}
                         size="small"
@@ -92,6 +97,7 @@ const ChatHeader: React.FC<propTypes> = props => {
             <div className="chat__column chat__column--settings">
                 <button
                     className="chat__button"
+                    aria-label="open settings"
                     onClick={errorNotification}
                 >
                     <FiMoreVertical size={20} />

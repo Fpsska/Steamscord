@@ -3,7 +3,7 @@ import React from 'react';
 import { Empty } from 'antd';
 
 import ChatHeader from 'components/layout/Chat/ChatHeader';
-import ChatForm from 'components/layout/Chat/ChatForm';
+import ChatForm from 'components/layout/Chat/ChatBottom';
 
 import DataPlaceholderMarkup from 'components/ui/DataPlaceholderMarkup/DataPlaceholderMarkup';
 
