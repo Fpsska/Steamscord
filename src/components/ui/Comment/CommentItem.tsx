@@ -2,6 +2,8 @@ import React from 'react';
 
 import placeholderIMG from 'assets/images/profile-main.png';
 
+import CommentContextMenu from './CommentContextMenu/CommentContextMenu';
+
 // /. imports
 
 interface propTypes {
@@ -31,13 +33,13 @@ const CommentItem: React.FC<propTypes> = ({
             <div className="message__content">
                 <div className="message__information">
                     <span className="message__name">{name}</span>
-                    <span className="message__time">{time}</span>
+                    <span className="message__time">
+                        {time} <b>{id}</b>
+                    </span>
                 </div>
                 <p className="message__text">{comment}</p>
             </div>
-            <span style={{ fontWeight: '800', margin: '0 0 0 auto' }}>
-                {id}
-            </span>
+            <CommentContextMenu />
         </div>
     );
 };

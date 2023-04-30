@@ -1,0 +1,107 @@
+.message-context {
+
+    opacity: 0;
+    position: absolute;
+    top: -13px;
+    right: 0;
+    display: flex;
+    align-items: center;
+
+    margin-right: 10px;
+    background-color: #f7f7f7;
+    border-radius: 3px;
+    border: 1px solid #f1f1f1;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+        box-shadow: 0px 1px 1px 0px rgba(208, 208, 208, 1);
+        cursor: pointer;
+    }
+
+    &__template {
+        position: relative;
+        padding: 2.5px;
+        transition: background .2s ease-in-out;
+
+        &:first-child {
+            border-radius: 3px 0px 0px 3px;
+        }
+
+        &:last-child {
+            border-radius: 0px 3px 3px 0px;
+        }
+
+        &:not(:last-child) {
+            margin-right: 5px;
+        }
+
+        &:hover {
+            background-color: #f1f1f1;
+
+            &::before,
+            &::after {
+                --scale: 1
+            }
+        }
+
+        &::before,
+        &::after {
+            --scale: 0;
+            --arrow-size: 8px;
+            --tooltip-color: #bbbdbe;
+
+            z-index: 2;
+            position: absolute;
+            top: -0.55rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(var(--translateY,
+                        0)) scale(var(--scale));
+            transform-origin: bottom center;
+            transition: all 0.3s ease-in-out;
+        }
+
+        &::before {
+            // tooltip container
+            --translateY: calc(-100% - var(--arrow-size));
+
+            content: attr(data-action);
+            width: max-content;
+            color: #fff;
+            font-weight: 600;
+            text-align: start;
+            padding: 5px 10px;
+            background-color: var(--tooltip-color);
+            border-radius: 3px;
+        }
+
+        &::after {
+            --translateY: calc(-1 * var(--arrow-size));
+            // tooltip arrow
+
+            content: '';
+            border: var(--arrow-size) solid transparent;
+            border-top-color: var(--tooltip-color);
+            transform-origin: top center;
+        }
+    }
+
+    &__button {
+        background-color: transparent;
+        padding: 0;
+        width: 20px;
+        height: 20px;
+        overflow: hidden;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transform: scale(1);
+        transition: transform .1s ease-in-out;
+
+        position: relative;
+
+        &:active {
+            transform: scale(1.05);
+        }
+    }
+}

@@ -3,38 +3,57 @@
     max-height: calc(100vh - 200px);
     overflow-y: scroll;
     margin: 5px 0 0 0;
-    padding: 6px 6px 6px 22px;
+    padding: 6px 6px 6px 0;
+
     &::-webkit-scrollbar {
         width: 6px;
         background-color: transparent;
     }
+
     &::-webkit-scrollbar-thumb {
         background-color: #b5b5b5;
         border-radius: 10px;
     }
+
     &__template {
+        position: relative;
         display: flex;
         align-items: flex-start;
-        padding: 0 10px 0 0;
+        padding: 3px 10px 0 22px;
+        transition: all .15s ease-in-out;
+
+        &:hover {
+            background-color: #f7f7f7;
+
+            .message-context {
+                opacity: 1;
+            }
+        }
+
         &:not(:last-child) {
             margin: 30px 0;
         }
+
         &:first-child {
             margin: 0 0 30px 0;
         }
+
     }
+
     &__name {
         font-size: 12px;
         line-height: 14.4px;
         font-weight: 700;
         color: #000;
     }
+
     &__date {
         font-size: 12px;
         font-weight: 400;
         line-height: 14.4px;
         color: #8d8d8d;
     }
+
     &__text {
         font-size: 13px;
         line-height: 20px;
@@ -42,13 +61,16 @@
         color: #000;
         margin: 0;
     }
+
     &__information {
         display: flex;
         align-items: center;
+
         :not(:last-child) {
             margin: 0 10px 0 0;
         }
     }
+
     &__profile-image {
         border-radius: 5px;
         object-fit: cover;
@@ -57,6 +79,7 @@
         margin: 0 14px 0 0;
         flex-shrink: 0;
         transition: all 0.2s linear;
+
         &:hover {
             transform: scale(1.05);
         }
@@ -69,6 +92,7 @@
     flex-direction: column;
     justify-content: center;
 }
+
 .ant-result-image {
     margin: 0 auto;
 }
