@@ -19,12 +19,16 @@ const initialState: profileSliceTypes = {
     gameActivity: [
         'Counter-Strike: Global Offensive',
         'Worlds of Tanks',
-        'Batman: The Enemy Within - The Telltale Series',
+        'World of Warcraft',
         'PUBG: BATTLEGROUNDS',
         'New World',
         'Apex Legends',
         'Dota 2',
-        'Metro Exodus'
+        'Metro Exodus',
+        'Overwatch',
+        'Sea of Thieves',
+        'Grand Theft Auto V',
+        'War Thunder'
     ],
     timeZones: [
         '(UTC-06:00) Central America',

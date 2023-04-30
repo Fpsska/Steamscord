@@ -66,11 +66,11 @@ const App: React.FC = () => {
             usersFetchingStatus === 'success' &&
             commentsFetchingStatus === 'success';
 
-        const cheker = setTimeout(() => {
-            validCondition && dispatch(switchDataLoadingStatus(false));
-        }, 1300);
-
-        return () => clearTimeout(cheker);
+        if (validCondition) {
+            setTimeout(() => {
+                validCondition && dispatch(switchDataLoadingStatus(false));
+            }, 1300);
+        }
     }, [isUserAuthorized, usersFetchingStatus, commentsFetchingStatus]);
 
     // /. effects

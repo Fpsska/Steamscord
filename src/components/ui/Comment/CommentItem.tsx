@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 
 import placeholderIMG from 'assets/images/profile-main.png';
 

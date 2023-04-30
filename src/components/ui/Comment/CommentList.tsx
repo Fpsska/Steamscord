@@ -26,6 +26,8 @@ const CommentsList: React.FC<{ availableItems: Icomment[] }> = ({
         });
     }, [isCommentCreated]);
 
+    // /. effects
+
     return (
         <div
             className="message"

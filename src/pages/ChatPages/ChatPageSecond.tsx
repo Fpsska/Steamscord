@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import { Button, Empty } from 'antd';
+import { Button } from 'antd';
 
 import ChatHeader from 'components/layout/Chat/ChatHeader';
 import ChatForm from 'components/layout/Chat/ChatForm';
+import DataPlaceholderMarkup from 'components/ui/DataPlaceholderMarkup/DataPlaceholderMarkup';
 
 import warningImg from 'assets/images/warning.png';
 
@@ -44,7 +45,10 @@ const ChatPageSecond: React.FC<{ isError?: boolean }> = ({
                 isError={isError}
             />
             {isContentVisible ? (
-                <Empty style={{ margin: 'auto' }} />
+                <DataPlaceholderMarkup
+                    title="no data"
+                    image="big"
+                />
             ) : (
                 <div className="warning">
                     <img

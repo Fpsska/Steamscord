@@ -11,6 +11,7 @@ import { useFilter } from 'utils/hook/useFilter';
 import CommentsList from 'components/ui/Comment/CommentList';
 import ChatHeader from 'components/layout/Chat/ChatHeader';
 import ChatForm from 'components/layout/Chat/ChatForm';
+import DataPlaceholderMarkup from 'components/ui/DataPlaceholderMarkup/DataPlaceholderMarkup';
 
 // /. imports
 
@@ -37,28 +38,9 @@ const ChatPageFirst: React.FC<propTypes> = props => {
 
     // /. hooks
 
-    const centeredStyles: { [key: string]: string } = {
-        position: 'absolute',
-        left: '50%',
-        top: '50%',
-        transform: 'translate(-50%,-50%)'
-    };
-
-    // /. variables
-
-    useEffect(() => {
-        const validCondition = !isLoading && !isError;
-        const cheker = setTimeout(() => {
-            if (validCondition) {
-                dispatch(switchFirstPageLoadingStatus(false));
-            }
-        }, 1300);
-
-        return () => clearTimeout(cheker);
-    }, [isLoading, isError]);
-
     useLayoutEffect(() => {
-        const defineErrorTemplate = () => {
+        // define correct error markup
+        const defineErrorTemplate = (): void => {
             if (window.innerWidth < 768 || window.innerHeight < 475) {
                 setMobileErrorTemplate(true);
             } else if (window.innerWidth > 768 || window.innerHeight > 475) {
@@ -73,6 +55,16 @@ const ChatPageFirst: React.FC<propTypes> = props => {
             window.removeEventListener('load', defineErrorTemplate);
         };
     }, []);
+
+    useEffect(() => {
+        const validCondition = !isLoading && !isError;
+
+        if (validCondition) {
+            setTimeout(() => {
+                dispatch(switchFirstPageLoadingStatus(false));
+            }, 1300);
+        }
+    }, [isLoading, isError]);
 
     // /. effects
 
@@ -90,7 +82,12 @@ const ChatPageFirst: React.FC<propTypes> = props => {
                 {isFirstPageLoading ? (
                     <Spin
                         size="large"
-                        style={centeredStyles}
+                        style={{
+                            position: 'absolute',
+                            left: '50%',
+                            top: '50%',
+                            transform: 'translate(-50%,-50%)'
+                        }}
                     />
                 ) : isError ? (
                     <Col
@@ -115,12 +112,10 @@ const ChatPageFirst: React.FC<propTypes> = props => {
                             />
                         )}
                     </Col>
+                ) : comments.length === 0 ? (
+                    <DataPlaceholderMarkup title="no data" />
                 ) : availableItems.length === 0 ? (
-                    <Empty
-                        image={Empty.PRESENTED_IMAGE_SIMPLE}
-                        description={<span>no matches</span>}
-                        style={centeredStyles}
-                    />
+                    <DataPlaceholderMarkup title="no matches" />
                 ) : (
                     <CommentsList availableItems={availableItems} />
                 )}
