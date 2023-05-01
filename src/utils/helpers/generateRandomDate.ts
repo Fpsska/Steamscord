@@ -1,7 +1,12 @@
 export function generateRandomDate(): string {
-    const maxDate = Date.now();
-    const timestamp = Math.floor(Math.random() * maxDate);
-    const formattedDate = new Date(timestamp).toLocaleDateString('en-GB', {
+    const minDate = new Date('2019-03-31').getTime();
+    const maxDate = new Date().getTime();
+
+    const timeDiff = maxDate - minDate;
+    const randomTime = Math.random() * timeDiff;
+    const randomDate = new Date(minDate + randomTime);
+
+    const formattedDate = new Date(randomDate).toLocaleDateString('en-GB', {
         hour: 'numeric',
         minute: 'numeric',
         hour12: true

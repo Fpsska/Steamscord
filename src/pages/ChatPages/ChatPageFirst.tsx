@@ -1,6 +1,8 @@
-import React, { useEffect, useLayoutEffect, useState } from 'react';
+import React, { useLayoutEffect, useEffect, useState, useRef } from 'react';
 
 import { Row, Col, Spin, Result, Empty } from 'antd';
+
+import MessageList from 'components/ui/Message/MessageList';
 
 import { useAppSelector, useAppDispatch } from 'app/hooks';
 
@@ -8,12 +10,11 @@ import { switchFirstPageLoadingStatus } from 'app/slices/mainSlice';
 
 import { useFilter } from 'utils/hook/useFilter';
 
-import CommentsList from 'components/ui/Comment/CommentList';
 import ChatHeader from 'components/layout/Chat/ChatHeader';
 import ChatBottom from 'components/layout/Chat/ChatBottom';
 
 import DataPlaceholderMarkup from 'components/ui/DataPlaceholderMarkup/DataPlaceholderMarkup';
-import ChatGreetingSection from 'components/layout/Chat/ChatGreetingSection/ChatGreetingSection';
+import ChatGreetingSection from 'components/layout/Chat/ChatGreetingSection';
 
 // /. imports
 
@@ -28,7 +29,9 @@ const ChatPageFirst: React.FC<propTypes> = props => {
     const { isLoading, isError } = props;
 
     const { isFirstPageLoading } = useAppSelector(state => state.mainReducer);
-    const { comments } = useAppSelector(state => state.profileReducer);
+    const { comments, isCommentCreated } = useAppSelector(
+        state => state.profileReducer
+    );
 
     const [isMobileErrorTemplate, setMobileErrorTemplate] =
         useState<boolean>(false);
@@ -38,10 +41,17 @@ const ChatPageFirst: React.FC<propTypes> = props => {
 
     const dispatch = useAppDispatch();
 
+    const chatBodyRef = useRef<HTMLDivElement>(null!);
+
     // /. hooks
 
+    const isCommentsDataEmpty =
+        comments.length === 0 || availableItems.length === 0;
+
+    // /. variables
+
     useLayoutEffect(() => {
-        // define correct error markup
+        // logic of define correct error markup
         const defineErrorTemplate = (): void => {
             if (window.innerWidth < 768 || window.innerHeight < 475) {
                 setMobileErrorTemplate(true);
@@ -59,6 +69,7 @@ const ChatPageFirst: React.FC<propTypes> = props => {
     }, []);
 
     useEffect(() => {
+        // logic of disable isFirstPageLoading status
         const validCondition = !isLoading && !isError;
 
         if (validCondition) {
@@ -67,6 +78,21 @@ const ChatPageFirst: React.FC<propTypes> = props => {
             }, 1300);
         }
     }, [isLoading, isError]);
+
+    useEffect(() => {
+        // logic of scroll to last comment
+        const validCondition =
+            !isFirstPageLoading && !isCommentsDataEmpty && chatBodyRef?.current;
+
+        if (validCondition) {
+            setTimeout(() => {
+                chatBodyRef.current.scrollTo({
+                    top: chatBodyRef.current.scrollHeight,
+                    behavior: 'smooth'
+                });
+            }, 200);
+        }
+    }, [isCommentCreated, isFirstPageLoading, isCommentsDataEmpty]);
 
     // /. effects
 
@@ -115,7 +141,12 @@ const ChatPageFirst: React.FC<propTypes> = props => {
                         )}
                     </Col>
                 ) : (
-                    <div className="chat__body">
+                    <div
+                        ref={chatBodyRef}
+                        className={`chat__body ${
+                            isCommentsDataEmpty ? 'empty' : ''
+                        }`}
+                    >
                         <ChatGreetingSection channelName="NikitosXClub" />
                         <>
                             {comments.length === 0 ? (
@@ -123,13 +154,12 @@ const ChatPageFirst: React.FC<propTypes> = props => {
                             ) : availableItems.length === 0 ? (
                                 <DataPlaceholderMarkup title="no matches" />
                             ) : (
-                                <CommentsList availableItems={availableItems} />
+                                <MessageList availableItems={availableItems} />
                             )}
                         </>
                     </div>
                 )}
             </Row>
-
             <ChatBottom
                 isPageInteractive={!isFirstPageLoading}
                 isError={isError}

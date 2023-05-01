@@ -54,7 +54,10 @@ const ChatHeader: React.FC<propTypes> = props => {
         <Row className="chat__header">
             <div className="chat__column chat__column--name">
                 <span className="chat__name">{channelName}</span>
-                <button className="chat__button">
+                <button
+                    className="chat__button"
+                    aria-label="add server to favourite"
+                >
                     <BsStar size={20} />
                 </button>
             </div>

@@ -7,11 +7,11 @@ import {
     MdOutlineMoreHoriz
 } from 'react-icons/md';
 
-import './comment-context.scss';
+import './message-context.scss';
 
 // /. imports
 
-const CommentContextMenu: React.FC = () => {
+const MessageContextMenu: React.FC = () => {
     const iconProperties: { [key: string]: string } = {
         size: '22',
         color: '#928e8e'
@@ -85,4 +85,4 @@ const CommentContextMenu: React.FC = () => {
     );
 };
 
-export default CommentContextMenu;
+export default MessageContextMenu;
