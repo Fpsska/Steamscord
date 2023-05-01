@@ -7,6 +7,8 @@ interface Iuser {
 export interface Icomment extends Iuser {
     comment: string;
     dateOfCreate: string;
+    isEditable: boolean;
+    isEditing?: boolean;
 }
 
 export interface Ifriend extends Iuser {

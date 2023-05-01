@@ -61,7 +61,8 @@ const ChatBottom: React.FC<propTypes> = ({
                     minute: 'numeric',
                     hour12: true
                 })
-                .toUpperCase()
+                .toUpperCase(),
+            isEditable: true
         };
         dispatch(createNewComment({ comment: newComment }));
 

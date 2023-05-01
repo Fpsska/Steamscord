@@ -75,6 +75,24 @@ const profileSlice = createSlice({
         switchCommentCreatedStatus(state, action: PayloadAction<boolean>) {
             state.isCommentCreated = action.payload;
         },
+        switchEditingMessageStatus(state, action: PayloadAction<{ payloadID: string, status: boolean }>) {
+            const { payloadID, status } = action.payload;
+            // /. payload
+
+            const message = state.comments.find(comment => comment.id === payloadID);
+            if (message) {
+                message.isEditing = status;
+            }
+        },
+        setNewCommentValue(state, action: PayloadAction<{ payloadID: string, value: string }>) {
+            const { payloadID, value } = action.payload;
+            // /. payload
+
+            const message = state.comments.find(comment => comment.id === payloadID);
+            if (message) {
+                message.comment = value;
+            }
+        },
         switchDataLoadingStatus(state, action: PayloadAction<boolean>) {
             state.isDataLoading = action.payload;
         }
@@ -125,7 +143,8 @@ const profileSlice = createSlice({
                             name: item.name,
                             avatar: item.avatar,
                             comment: newCommentsArray[getRandomGameArrayItem(newCommentsArray)],
-                            dateOfCreate: generateRandomDate().toUpperCase()
+                            dateOfCreate: generateRandomDate().toUpperCase(),
+                            isEditable: false
                         };
                     }));
                     state.comments = newComments;
@@ -143,6 +162,6 @@ const profileSlice = createSlice({
     }
 });
 
-export const { getCurrentUser, createNewComment, switchCommentCreatedStatus, switchDataLoadingStatus } = profileSlice.actions;
+export const { getCurrentUser, createNewComment, switchCommentCreatedStatus, switchEditingMessageStatus, setNewCommentValue, switchDataLoadingStatus } = profileSlice.actions;
 
 export default profileSlice.reducer;

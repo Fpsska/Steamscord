@@ -7,11 +7,37 @@ import {
     MdOutlineMoreHoriz
 } from 'react-icons/md';
 
+import { useAppDispatch } from 'app/hooks';
+
+import { switchEditingMessageStatus } from 'app/slices/profileSlice';
+
 import './message-context.scss';
 
 // /. imports
 
-const MessageContextMenu: React.FC = () => {
+interface propTypes {
+    messageID: string;
+    isEditable?: boolean;
+}
+
+// /. interfaces
+
+const MessageContextMenu: React.FC<propTypes> = ({ messageID, isEditable }) => {
+    const dispatch = useAppDispatch();
+
+    // /. hooks
+
+    const onEditButtonClick = (): void => {
+        dispatch(
+            switchEditingMessageStatus({
+                payloadID: messageID,
+                status: true
+            })
+        );
+    };
+
+    // /. functions
+
     const iconProperties: { [key: string]: string } = {
         size: '22',
         color: '#928e8e'
@@ -51,21 +77,26 @@ const MessageContextMenu: React.FC = () => {
                     />
                 </button>
             </li>
-            <li
-                className="message-context__template"
-                data-action="edit"
-            >
-                <button
-                    className="message-context__button"
-                    aria-label="edit message body"
-                    type="button"
-                >
-                    <MdOutlineModeEditOutline
-                        size={iconProperties.size}
-                        color={iconProperties.color}
-                    />
-                </button>
-            </li>
+            <>
+                {isEditable && (
+                    <li
+                        className="message-context__template"
+                        data-action="edit"
+                    >
+                        <button
+                            className="message-context__button"
+                            aria-label="edit message body"
+                            type="button"
+                            onClick={onEditButtonClick}
+                        >
+                            <MdOutlineModeEditOutline
+                                size={iconProperties.size}
+                                color={iconProperties.color}
+                            />
+                        </button>
+                    </li>
+                )}
+            </>
             <li
                 className="message-context__template"
                 data-action="more"
