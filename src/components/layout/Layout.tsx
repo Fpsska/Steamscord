@@ -22,8 +22,6 @@ import ChannelList from 'components/ui/Channel/ChannelList';
 import FriendList from 'components/ui/Friend/FriendList';
 import Profile from 'components/layout/Profile/Profile';
 
-import 'antd/dist/antd.css';
-
 // /. imports
 
 interface propTypes {

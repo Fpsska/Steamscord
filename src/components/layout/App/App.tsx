@@ -24,7 +24,7 @@ import { fetchComments } from 'app/api/fetchComments';
 import './App.css';
 import 'assets/styles/_media.scss';
 import 'assets/styles/style.scss';
-import 'antd/dist/antd.css';
+import 'antd/dist/reset.css';
 
 // /. imports
 

@@ -85,6 +85,12 @@
         }
     }
 
+    &__template_delete svg {
+        &:hover {
+            stroke: #DA373C;
+        }
+    }
+
     &__button {
         background-color: transparent;
         padding: 0;

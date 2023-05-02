@@ -72,6 +72,15 @@ const profileSlice = createSlice({
 
             state.messages.push(message);
         },
+        deleteSpecificMessage(state, action: PayloadAction<{ payloadID: string }>) {
+            const { payloadID } = action.payload;
+            // /. payload
+
+            const messageIDX = state.messages.findIndex(message => message.id === payloadID);
+            if (messageIDX) {
+                state.messages.splice(messageIDX, 1);
+            }
+        },
         switchMessageCreatedStatus(state, action: PayloadAction<boolean>) {
             state.isMessageCreated = action.payload;
         },
@@ -79,7 +88,7 @@ const profileSlice = createSlice({
             const { payloadID, status } = action.payload;
             // /. payload
 
-            const message = state.messages.find(comment => comment.id === payloadID);
+            const message = state.messages.find(message => message.id === payloadID);
             if (message) {
                 message.isEditing = status;
             }
@@ -162,6 +171,6 @@ const profileSlice = createSlice({
     }
 });
 
-export const { getCurrentUser, createNewMessage, switchMessageCreatedStatus, switchEditingMessageStatus, setNewMessageValue, switchDataLoadingStatus } = profileSlice.actions;
+export const { getCurrentUser, createNewMessage, deleteSpecificMessage, switchMessageCreatedStatus, switchEditingMessageStatus, setNewMessageValue, switchDataLoadingStatus } = profileSlice.actions;
 
 export default profileSlice.reducer;
