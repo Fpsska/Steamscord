@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction, current } from '@reduxjs/toolkit';
 
-import { profileSliceTypes, Ifriend, Icomment } from 'types/profileSliceTypes';
+import { profileSliceTypes, Ifriend, Imessage } from 'types/profileSliceTypes';
 
 import { fetchUsers } from 'app/api/fetchUsers';
 import { fetchComments } from 'app/api/fetchComments';
@@ -15,7 +15,7 @@ import { getRandomGameArrayItem } from '../../utils/helpers/getRandomGameArrayIt
 const initialState: profileSliceTypes = {
     friends: [],
     currentUser: [],
-    comments: [],
+    messages: [],
     gameActivity: [
         'Counter-Strike: Global Offensive',
         'Worlds of Tanks',
@@ -44,7 +44,7 @@ const initialState: profileSliceTypes = {
     commentsFetchingError: null,
 
     isDataLoading: true,
-    isCommentCreated: null
+    isMessageCreated: null
 };
 
 // /. initialState
@@ -66,31 +66,31 @@ const profileSlice = createSlice({
                 state.currentUser.push(user);
             }
         },
-        createNewComment(state, action: PayloadAction<{ comment: Icomment }>) {
-            const { comment } = action.payload;
+        createNewMessage(state, action: PayloadAction<{ message: Imessage }>) {
+            const { message } = action.payload;
             // /. payload
 
-            state.comments.push(comment);
+            state.messages.push(message);
         },
-        switchCommentCreatedStatus(state, action: PayloadAction<boolean>) {
-            state.isCommentCreated = action.payload;
+        switchMessageCreatedStatus(state, action: PayloadAction<boolean>) {
+            state.isMessageCreated = action.payload;
         },
         switchEditingMessageStatus(state, action: PayloadAction<{ payloadID: string, status: boolean }>) {
             const { payloadID, status } = action.payload;
             // /. payload
 
-            const message = state.comments.find(comment => comment.id === payloadID);
+            const message = state.messages.find(comment => comment.id === payloadID);
             if (message) {
                 message.isEditing = status;
             }
         },
-        setNewCommentValue(state, action: PayloadAction<{ payloadID: string, value: string }>) {
+        setNewMessageValue(state, action: PayloadAction<{ payloadID: string, value: string }>) {
             const { payloadID, value } = action.payload;
             // /. payload
 
-            const message = state.comments.find(comment => comment.id === payloadID);
+            const message = state.messages.find(message => message.id === payloadID);
             if (message) {
-                message.comment = value;
+                message.message = value;
             }
         },
         switchDataLoadingStatus(state, action: PayloadAction<boolean>) {
@@ -135,19 +135,19 @@ const profileSlice = createSlice({
             })
             .addCase(
                 fetchComments.fulfilled,
-                (state, action: PayloadAction<Icomment[]>) => {
-                    const newCommentsArray = action.payload.map((item: any) => item.body);
-                    const newComments = state.friends.map(((item: any) => {
+                (state, action: PayloadAction<Imessage[]>) => {
+                    const commentsArray = action.payload.map((item: any) => item.body);
+                    const newMessagesArray = state.friends.map(((item: any) => {
                         return {
                             id: item.id,
                             name: item.name,
                             avatar: item.avatar,
-                            comment: newCommentsArray[getRandomGameArrayItem(newCommentsArray)],
+                            message: commentsArray[getRandomGameArrayItem(commentsArray)],
                             dateOfCreate: generateRandomDate().toUpperCase(),
                             isEditable: false
                         };
                     }));
-                    state.comments = newComments;
+                    state.messages = newMessagesArray;
 
                     state.commentsFetchingStatus = 'success';
                 }
@@ -162,6 +162,6 @@ const profileSlice = createSlice({
     }
 });
 
-export const { getCurrentUser, createNewComment, switchCommentCreatedStatus, switchEditingMessageStatus, setNewCommentValue, switchDataLoadingStatus } = profileSlice.actions;
+export const { getCurrentUser, createNewMessage, switchMessageCreatedStatus, switchEditingMessageStatus, setNewMessageValue, switchDataLoadingStatus } = profileSlice.actions;
 
 export default profileSlice.reducer;

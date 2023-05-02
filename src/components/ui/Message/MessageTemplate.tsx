@@ -6,7 +6,7 @@ import { useAppDispatch } from 'app/hooks';
 
 import {
     switchEditingMessageStatus,
-    setNewCommentValue
+    setNewMessageValue
 } from 'app/slices/profileSlice';
 
 import CommentContextMenu from './MessageContextMenu/MessageContextMenu';
@@ -16,7 +16,7 @@ import CommentContextMenu from './MessageContextMenu/MessageContextMenu';
 interface propTypes {
     id: string;
     name: string;
-    comment: string;
+    message: string;
     avatar: string;
     time: string;
     isEditable: boolean;
@@ -28,13 +28,13 @@ interface propTypes {
 const MessageTemplate: React.FC<propTypes> = ({
     id,
     name,
-    comment,
+    message,
     avatar,
     time,
     isEditable,
     isEditing
 }) => {
-    const [inputMessageValue, setInputMessageValue] = useState<string>(comment);
+    const [inputMessageValue, setInputMessageValue] = useState<string>(message);
 
     const dispatch = useAppDispatch();
     const inputMessageRef = useRef<HTMLInputElement>(null!);
@@ -49,10 +49,10 @@ const MessageTemplate: React.FC<propTypes> = ({
 
         if (!inputMessageValue) {
             // set default input value if submit form with empty input value
-            dispatch(setNewCommentValue({ payloadID: id, value: comment }));
+            dispatch(setNewMessageValue({ payloadID: id, value: message }));
         }
         dispatch(
-            setNewCommentValue({ payloadID: id, value: inputMessageValue })
+            setNewMessageValue({ payloadID: id, value: inputMessageValue })
         );
     };
 
@@ -75,7 +75,7 @@ const MessageTemplate: React.FC<propTypes> = ({
                         })
                     )
                 );
-                setInputMessageValue(comment);
+                setInputMessageValue(message);
             }
         };
 
@@ -83,7 +83,7 @@ const MessageTemplate: React.FC<propTypes> = ({
         return () => {
             document.removeEventListener('keydown', onDocumentKeyPress);
         };
-    }, [isEditing, id, comment]);
+    }, [isEditing, id, message]);
 
     // /. effects
 
@@ -117,7 +117,7 @@ const MessageTemplate: React.FC<propTypes> = ({
                             />
                         </form>
                     ) : (
-                        <p className="messages__text">{comment}</p>
+                        <p className="messages__text">{message}</p>
                     )}
                 </>
             </div>

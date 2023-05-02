@@ -29,7 +29,7 @@ const ChatPageFirst: React.FC<propTypes> = props => {
     const { isLoading, isError } = props;
 
     const { isFirstPageLoading } = useAppSelector(state => state.mainReducer);
-    const { comments, isCommentCreated } = useAppSelector(
+    const { messages, isMessageCreated } = useAppSelector(
         state => state.profileReducer
     );
 
@@ -37,7 +37,7 @@ const ChatPageFirst: React.FC<propTypes> = props => {
         useState<boolean>(false);
 
     const { enteredSearchValue, setEnteredSearchValue, availableItems } =
-        useFilter(comments, 'name');
+        useFilter(messages, 'name');
 
     const dispatch = useAppDispatch();
 
@@ -46,7 +46,7 @@ const ChatPageFirst: React.FC<propTypes> = props => {
     // /. hooks
 
     const isCommentsDataEmpty =
-        comments.length === 0 || availableItems.length === 0;
+        messages.length === 0 || availableItems.length === 0;
 
     // /. variables
 
@@ -92,7 +92,7 @@ const ChatPageFirst: React.FC<propTypes> = props => {
                 });
             }, 200);
         }
-    }, [isCommentCreated, isFirstPageLoading, isCommentsDataEmpty]);
+    }, [isMessageCreated, isFirstPageLoading, isCommentsDataEmpty]);
 
     // /. effects
 
@@ -149,7 +149,7 @@ const ChatPageFirst: React.FC<propTypes> = props => {
                     >
                         <ChatGreetingSection channelName="NikitosXClub" />
                         <>
-                            {comments.length === 0 ? (
+                            {messages.length === 0 ? (
                                 <DataPlaceholderMarkup title="no data" />
                             ) : availableItems.length === 0 ? (
                                 <DataPlaceholderMarkup title="no matches" />

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Icomment } from 'types/profileSliceTypes';
+import { Imessage } from 'types/profileSliceTypes';
 
 import MessageTemplate from './MessageTemplate';
 
@@ -8,12 +8,12 @@ import './message.scss';
 
 // /. imports
 
-const MessageList: React.FC<{ availableItems: Icomment[] }> = ({
+const MessageList: React.FC<{ availableItems: Imessage[] }> = ({
     availableItems
 }) => {
     return (
         <div className="messages">
-            {availableItems.map((message: Icomment) => {
+            {availableItems.map((message: Imessage) => {
                 return (
                     <MessageTemplate
                         key={message.id}

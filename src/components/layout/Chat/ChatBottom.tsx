@@ -7,13 +7,13 @@ import { BsMic, BsEmojiSmile, BsPaperclip } from 'react-icons/bs';
 import { useAppSelector, useAppDispatch } from 'app/hooks';
 
 import {
-    createNewComment,
-    switchCommentCreatedStatus
+    createNewMessage,
+    switchMessageCreatedStatus
 } from 'app/slices/profileSlice';
 
 import { generateUniqueID } from 'utils/helpers/generateUniqueID';
 
-import { Icomment } from 'types/profileSliceTypes';
+import { Imessage } from 'types/profileSliceTypes';
 
 // /. imports
 
@@ -31,7 +31,7 @@ const ChatBottom: React.FC<propTypes> = ({
     const { isUserAuthorized, login } = useAppSelector(
         state => state.authReducer
     );
-    const { isCommentCreated } = useAppSelector(state => state.profileReducer);
+    const { isMessageCreated } = useAppSelector(state => state.profileReducer);
 
     const [inputMessageValue, setInputMessageValue] = useState<string>('');
 
@@ -50,10 +50,10 @@ const ChatBottom: React.FC<propTypes> = ({
     const onFormSubmit = (e: React.SyntheticEvent<HTMLFormElement>): void => {
         e.preventDefault();
         //
-        const newComment: Icomment = {
+        const newMessage: Imessage = {
             id: generateUniqueID(),
             name: login,
-            comment: inputMessageValue.trim(),
+            message: inputMessageValue.trim(),
             avatar: '',
             dateOfCreate: new Date()
                 .toLocaleDateString('en-GB', {
@@ -64,9 +64,9 @@ const ChatBottom: React.FC<propTypes> = ({
                 .toUpperCase(),
             isEditable: true
         };
-        dispatch(createNewComment({ comment: newComment }));
+        dispatch(createNewMessage({ message: newMessage }));
 
-        dispatch(switchCommentCreatedStatus(!isCommentCreated));
+        dispatch(switchMessageCreatedStatus(!isMessageCreated));
         setInputMessageValue('');
     };
 

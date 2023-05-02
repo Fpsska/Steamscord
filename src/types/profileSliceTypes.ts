@@ -4,8 +4,8 @@ interface Iuser {
     avatar: string;
 }
 
-export interface Icomment extends Iuser {
-    comment: string;
+export interface Imessage extends Iuser {
+    message: string;
     dateOfCreate: string;
     isEditable: boolean;
     isEditing?: boolean;
@@ -20,7 +20,7 @@ export interface Ifriend extends Iuser {
 export interface profileSliceTypes {
     friends: Ifriend[];
     currentUser: Ifriend[];
-    comments: Icomment[];
+    messages: Imessage[];
     gameActivity: string[];
     timeZones: string[];
     usersFetchingStatus: string;
@@ -28,5 +28,5 @@ export interface profileSliceTypes {
     commentsFetchingStatus: string;
     commentsFetchingError: null | string;
     isDataLoading: boolean;
-    isCommentCreated: null | boolean;
+    isMessageCreated: null | boolean;
 }
