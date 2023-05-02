@@ -46,13 +46,14 @@ const MessageTemplate: React.FC<propTypes> = ({
         //
 
         dispatch(switchEditingMessageStatus({ payloadID: id, status: false }));
+
+        if (!inputMessageValue) {
+            // set default input value if submit form with empty input value
+            dispatch(setNewCommentValue({ payloadID: id, value: comment }));
+        }
         dispatch(
             setNewCommentValue({ payloadID: id, value: inputMessageValue })
         );
-
-        if (!inputMessageValue) {
-            dispatch(setNewCommentValue({ payloadID: id, value: comment }));
-        }
     };
 
     // /. functions
@@ -74,6 +75,7 @@ const MessageTemplate: React.FC<propTypes> = ({
                         })
                     )
                 );
+                setInputMessageValue(comment);
             }
         };
 
@@ -81,7 +83,7 @@ const MessageTemplate: React.FC<propTypes> = ({
         return () => {
             document.removeEventListener('keydown', onDocumentKeyPress);
         };
-    }, [isEditing, id]);
+    }, [isEditing, id, comment]);
 
     // /. effects
 
