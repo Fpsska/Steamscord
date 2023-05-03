@@ -66,7 +66,9 @@ const MessageTemplate: React.FC<propTypes> = ({
 
     useEffect(() => {
         const onDocumentKeyPress = (e: KeyboardEvent): void => {
-            if (isEditing && e.code === 'Escape') {
+            const validCondition = isEditing && e.code === 'Escape';
+
+            if (validCondition) {
                 dispatch(
                     dispatch(
                         switchEditingMessageStatus({
@@ -79,9 +81,28 @@ const MessageTemplate: React.FC<propTypes> = ({
             }
         };
 
+        const onInputOutsideClick = (e: MouseEvent): void => {
+            const validCondition =
+                isEditing &&
+                !inputMessageRef.current.contains(e.target as Node);
+
+            if (validCondition) {
+                dispatch(
+                    dispatch(
+                        switchEditingMessageStatus({
+                            payloadID: id,
+                            status: false
+                        })
+                    )
+                );
+            }
+        };
+
         document.addEventListener('keydown', onDocumentKeyPress);
+        document.addEventListener('click', onInputOutsideClick);
         return () => {
             document.removeEventListener('keydown', onDocumentKeyPress);
+            document.removeEventListener('click', onInputOutsideClick);
         };
     }, [isEditing, id, message]);
 

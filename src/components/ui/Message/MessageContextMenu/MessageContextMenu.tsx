@@ -13,12 +13,14 @@ import {
 
 import { IoTrashOutline } from 'react-icons/io5';
 
-import { useAppDispatch } from 'app/hooks';
+import { useAppSelector, useAppDispatch } from 'app/hooks';
 
 import {
     switchEditingMessageStatus,
     deleteSpecificMessage
 } from 'app/slices/profileSlice';
+
+import MessageTemplate from '../MessageTemplate';
 
 import './message-context.scss';
 
@@ -32,6 +34,8 @@ interface propTypes {
 // /. interfaces
 
 const MessageContextMenu: React.FC<propTypes> = ({ messageID, isEditable }) => {
+    const { messages } = useAppSelector(state => state.profileReducer);
+
     const [modal, contextHolder] = Modal.useModal();
 
     const dispatch = useAppDispatch();
@@ -66,10 +70,26 @@ const MessageContextMenu: React.FC<propTypes> = ({ messageID, isEditable }) => {
     };
 
     const onDeleteButtonClick = (): void => {
+        const messageToDelete = messages.find(
+            message => message.id === messageID
+        );
+
         modal.confirm({
             title: 'Delete the message',
             icon: <ExclamationCircleOutlined />,
-            content: 'Are you sure to delete your message',
+            content: (
+                <div className="modal-confirm">
+                    <p>Are you sure to delete your message</p>
+                    <div className="modal-confirm__body">
+                        {messageToDelete && (
+                            <MessageTemplate
+                                time={messageToDelete.dateOfCreate}
+                                {...messageToDelete}
+                            />
+                        )}
+                    </div>
+                </div>
+            ),
             okText: 'OK',
             cancelText: 'Cancel',
             onOk: onAcceptButtonAction
