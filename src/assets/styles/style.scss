@@ -338,10 +338,10 @@ body {
         &:hover {
             cursor: default;
             background-color: transparent;
+        }
 
-            .message-context {
-                opacity: 0;
-            }
+        .message-context {
+            display: none;
         }
     }
 }

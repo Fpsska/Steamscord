@@ -13,6 +13,11 @@
 
             .message-context {
                 opacity: 1;
+                z-index: 1;
+
+                .message-context__button {
+                    pointer-events: auto;
+                }
             }
         }
 

@@ -1,6 +1,6 @@
 .message-context {
-
     opacity: 0;
+    z-index: -1;
     position: absolute;
     top: -13px;
     right: 0;
@@ -92,6 +92,7 @@
     }
 
     &__button {
+        pointer-events: none;
         background-color: transparent;
         padding: 0;
         width: 20px;
