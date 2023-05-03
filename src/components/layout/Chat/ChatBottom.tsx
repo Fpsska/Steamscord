@@ -62,7 +62,8 @@ const ChatBottom: React.FC<propTypes> = ({
                     hour12: true
                 })
                 .toUpperCase(),
-            isEditable: true
+            isEditable: true,
+            isEditing: false
         };
         dispatch(createNewMessage({ message: newMessage }));
 

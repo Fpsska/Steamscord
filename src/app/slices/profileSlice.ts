@@ -88,10 +88,11 @@ const profileSlice = createSlice({
             const { payloadID, status } = action.payload;
             // /. payload
 
-            const message = state.messages.find(message => message.id === payloadID);
-            if (message) {
-                message.isEditing = status;
-            }
+            const otherMessages = state.messages.filter(message => !message.isEditable);
+            const sendedMesages = state.messages.filter(message => message.isEditable);
+            const updatedMessagesArray = sendedMesages.map(message => message.id === payloadID ? { ...message, isEditing: status } : { ...message, isEditing: false });
+
+            state.messages = [...otherMessages, ...updatedMessagesArray];
         },
         setNewMessageValue(state, action: PayloadAction<{ payloadID: string, value: string }>) {
             const { payloadID, value } = action.payload;

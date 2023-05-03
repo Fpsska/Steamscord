@@ -98,6 +98,7 @@ const MessageTemplate: React.FC<propTypes> = ({
                 <div className="messages__information">
                     <span className="messages__name">{name}</span>
                     <span className="messages__time">{time}</span>
+                    <b>{id}</b>
                 </div>
                 <>
                     {isEditing ? (
