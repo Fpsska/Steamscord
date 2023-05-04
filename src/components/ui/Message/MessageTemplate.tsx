@@ -37,7 +37,7 @@ const MessageTemplate: React.FC<propTypes> = ({
     const [inputMessageValue, setInputMessageValue] = useState<string>(message);
 
     const dispatch = useAppDispatch();
-    const inputMessageRef = useRef<HTMLInputElement>(null!);
+    const messageTemplateRef = useRef<HTMLDivElement>(null!);
 
     // /. hooks
 
@@ -59,43 +59,36 @@ const MessageTemplate: React.FC<propTypes> = ({
     // /. functions
 
     useEffect(() => {
-        if (isEditing && inputMessageRef?.current) {
-            inputMessageRef.current.focus();
+        if (isEditing && messageTemplateRef?.current) {
+            messageTemplateRef.current.focus();
         }
     }, [isEditing]);
 
     useEffect(() => {
+        const triggerInputEditAction = (): void => {
+            dispatch(
+                dispatch(
+                    switchEditingMessageStatus({
+                        payloadID: id,
+                        status: false
+                    })
+                )
+            );
+            setInputMessageValue(message);
+        };
+
         const onDocumentKeyPress = (e: KeyboardEvent): void => {
             const validCondition = isEditing && e.code === 'Escape';
 
-            if (validCondition) {
-                dispatch(
-                    dispatch(
-                        switchEditingMessageStatus({
-                            payloadID: id,
-                            status: false
-                        })
-                    )
-                );
-                setInputMessageValue(message);
-            }
+            validCondition && triggerInputEditAction();
         };
 
         const onInputOutsideClick = (e: MouseEvent): void => {
             const validCondition =
                 isEditing &&
-                !inputMessageRef.current.contains(e.target as Node);
+                !messageTemplateRef.current.contains(e.target as Node);
 
-            if (validCondition) {
-                dispatch(
-                    dispatch(
-                        switchEditingMessageStatus({
-                            payloadID: id,
-                            status: false
-                        })
-                    )
-                );
-            }
+            validCondition && triggerInputEditAction();
         };
 
         document.addEventListener('keydown', onDocumentKeyPress);
@@ -109,7 +102,10 @@ const MessageTemplate: React.FC<propTypes> = ({
     // /. effects
 
     return (
-        <div className={`messages__template ${isEditing ? 'editable' : ''}`}>
+        <div
+            ref={messageTemplateRef}
+            className={`messages__template ${isEditing ? 'editable' : ''}`}
+        >
             <img
                 className="messages__profile-image"
                 src={avatar || placeholderIMG}
@@ -129,7 +125,6 @@ const MessageTemplate: React.FC<propTypes> = ({
                             action="#"
                         >
                             <input
-                                ref={inputMessageRef}
                                 className="messages__input"
                                 type="text"
                                 value={inputMessageValue}
