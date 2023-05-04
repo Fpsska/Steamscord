@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import { Row, message } from 'antd';
 
 import { BsMic, BsEmojiSmile, BsPaperclip } from 'react-icons/bs';
+
+import EmojiPicker from 'emoji-picker-react';
 
 import { useAppSelector, useAppDispatch } from 'app/hooks';
 
@@ -34,8 +36,11 @@ const ChatBottom: React.FC<propTypes> = ({
     const { isMessageCreated } = useAppSelector(state => state.profileReducer);
 
     const [inputMessageValue, setInputMessageValue] = useState<string>('');
+    const [isEmojiPickerVisible, setEmojiPickerVisible] =
+        useState<boolean>(false);
 
     const dispatch = useAppDispatch();
+    const emojiWrapperRef = useRef<any>(null!);
 
     // /. hooks
 
@@ -71,7 +76,37 @@ const ChatBottom: React.FC<propTypes> = ({
         setInputMessageValue('');
     };
 
+    const onEmojiClick = (_: any, emojiObject: any): void => {
+        setInputMessageValue(prev => prev + emojiObject.emoji);
+        setEmojiPickerVisible(false);
+    };
+
     // /. functions
+
+    useEffect(() => {
+        const onDocumentKeyPress = (e: KeyboardEvent): void => {
+            const validCondition = isEmojiPickerVisible && e.code === 'Escape';
+
+            validCondition && setEmojiPickerVisible(false);
+        };
+
+        const onInputOutsideClick = (e: MouseEvent): void => {
+            const validCondition =
+                isEmojiPickerVisible &&
+                !emojiWrapperRef.current?.contains(e.target as Node);
+
+            validCondition && setEmojiPickerVisible(false);
+        };
+
+        document.addEventListener('keydown', onDocumentKeyPress);
+        document.addEventListener('click', onInputOutsideClick);
+        return () => {
+            document.removeEventListener('keydown', onDocumentKeyPress);
+            document.removeEventListener('click', onInputOutsideClick);
+        };
+    }, [isEmojiPickerVisible]);
+
+    // /. effects
 
     return (
         <Row className="chat__bottom">
@@ -113,13 +148,23 @@ const ChatBottom: React.FC<propTypes> = ({
                 <button
                     type="button"
                     className="form__button form__button--message form__button--emoji"
-                    onClick={errorNotification}
+                    onClick={() => setEmojiPickerVisible(!isEmojiPickerVisible)}
                 >
                     <BsEmojiSmile
                         size={20}
                         color={'#b5b5b5'}
                     />
                 </button>
+                <>
+                    {isEmojiPickerVisible && (
+                        <div
+                            ref={emojiWrapperRef}
+                            className="emoji-picker-wrapper"
+                        >
+                            <EmojiPicker onEmojiClick={onEmojiClick} />
+                        </div>
+                    )}
+                </>
             </form>
         </Row>
     );
