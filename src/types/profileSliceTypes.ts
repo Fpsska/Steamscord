@@ -23,10 +23,17 @@ export interface profileSliceTypes {
     messages: Imessage[];
     gameActivity: string[];
     timeZones: string[];
+
+    isChatEmojiPickerVisible: boolean;
+    isReactionEmojiPickerVisible: boolean;
+    reactionEmojiPickerPosition: number;
+
     usersFetchingStatus: string;
     usersFetchingError: null | string;
+
     commentsFetchingStatus: string;
     commentsFetchingError: null | string;
+
     isDataLoading: boolean;
     isMessageCreated: null | boolean;
 }

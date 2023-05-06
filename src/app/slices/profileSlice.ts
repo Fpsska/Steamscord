@@ -37,6 +37,11 @@ const initialState: profileSliceTypes = {
         '(UTC+03:00) Minsk',
         '(UTC+06:00) Astana'
     ],
+
+    isChatEmojiPickerVisible: false,
+    isReactionEmojiPickerVisible: false,
+    reactionEmojiPickerPosition: 0,
+
     usersFetchingStatus: '',
     usersFetchingError: null,
 
@@ -102,6 +107,15 @@ const profileSlice = createSlice({
             if (message) {
                 message.message = value;
             }
+        },
+        switchChatEmojiPickerVisibleStatus(state, action: PayloadAction<boolean>) {
+            state.isChatEmojiPickerVisible = action.payload;
+        },
+        switchReactionEmojiPickerVisibleStatus(state, action: PayloadAction<boolean>) {
+            state.isReactionEmojiPickerVisible = action.payload;
+        },
+        setNewReactionEmojiPickerPosition(state, action: PayloadAction<number>) {
+            state.reactionEmojiPickerPosition = action.payload;
         },
         switchDataLoadingStatus(state, action: PayloadAction<boolean>) {
             state.isDataLoading = action.payload;
@@ -172,6 +186,6 @@ const profileSlice = createSlice({
     }
 });
 
-export const { getCurrentUser, createNewMessage, deleteSpecificMessage, switchMessageCreatedStatus, switchEditingMessageStatus, setNewMessageValue, switchDataLoadingStatus } = profileSlice.actions;
+export const { getCurrentUser, createNewMessage, deleteSpecificMessage, switchMessageCreatedStatus, switchEditingMessageStatus, setNewMessageValue, switchChatEmojiPickerVisibleStatus, switchReactionEmojiPickerVisibleStatus, setNewReactionEmojiPickerPosition, switchDataLoadingStatus } = profileSlice.actions;
 
 export default profileSlice.reducer;

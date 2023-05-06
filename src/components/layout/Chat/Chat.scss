@@ -23,6 +23,7 @@
     }
 
     &__body {
+        position: relative;
         width: 100%;
         padding: 40px 6px 6px 0;
         max-height: calc(100vh - 200px);

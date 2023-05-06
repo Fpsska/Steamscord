@@ -15,6 +15,7 @@ import ChatBottom from 'components/layout/Chat/ChatBottom';
 
 import DataPlaceholderMarkup from 'components/ui/DataPlaceholderMarkup/DataPlaceholderMarkup';
 import ChatGreetingSection from 'components/layout/Chat/ChatGreetingSection';
+import EmojiPickerWrapper from 'components/ui/EmojiPicker/EmojiPicker';
 
 // /. imports
 
@@ -29,9 +30,8 @@ const ChatPageFirst: React.FC<propTypes> = props => {
     const { isLoading, isError } = props;
 
     const { isFirstPageLoading } = useAppSelector(state => state.mainReducer);
-    const { messages, isMessageCreated } = useAppSelector(
-        state => state.profileReducer
-    );
+    const { messages, isMessageCreated, isReactionEmojiPickerVisible } =
+        useAppSelector(state => state.profileReducer);
 
     const [isMobileErrorTemplate, setMobileErrorTemplate] =
         useState<boolean>(false);
@@ -155,6 +155,11 @@ const ChatPageFirst: React.FC<propTypes> = props => {
                                 <DataPlaceholderMarkup title="no matches" />
                             ) : (
                                 <MessageList availableItems={availableItems} />
+                            )}
+                        </>
+                        <>
+                            {isReactionEmojiPickerVisible && (
+                                <EmojiPickerWrapper additionalClass="emoji-picker-wrapper_reactions" />
                             )}
                         </>
                     </div>

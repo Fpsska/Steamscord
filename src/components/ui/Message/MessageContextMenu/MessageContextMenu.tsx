@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 
 import { message, Modal } from 'antd';
 
@@ -17,7 +17,9 @@ import { useAppSelector, useAppDispatch } from 'app/hooks';
 
 import {
     switchEditingMessageStatus,
-    deleteSpecificMessage
+    deleteSpecificMessage,
+    switchReactionEmojiPickerVisibleStatus,
+    setNewReactionEmojiPickerPosition
 } from 'app/slices/profileSlice';
 
 import MessageTemplate from '../MessageTemplate';
@@ -39,6 +41,7 @@ const MessageContextMenu: React.FC<propTypes> = ({ messageID, isEditable }) => {
     const [modal, contextHolder] = Modal.useModal();
 
     const dispatch = useAppDispatch();
+    const contextMenuRef = useRef<HTMLUListElement>(null!);
 
     // /. hooks
 
@@ -96,13 +99,50 @@ const MessageContextMenu: React.FC<propTypes> = ({ messageID, isEditable }) => {
         });
     };
 
+    const onReactionButtonClick = (): void => {
+        dispatch(switchReactionEmojiPickerVisibleStatus(true));
+        computeNewEmojiPickerPostition();
+    };
+
+    const computeNewEmojiPickerPostition = (): void => {
+        const messageTemplate = contextMenuRef.current.parentElement;
+        const messageTemplateOffsetTop = messageTemplate?.offsetTop;
+
+        const chatBody = messageTemplate?.parentElement?.parentElement;
+
+        if (messageTemplateOffsetTop && chatBody) {
+            const chatBodyScrollHeight = chatBody.scrollHeight;
+            const emojiPickerHeight = 320;
+
+            if (
+                messageTemplateOffsetTop + emojiPickerHeight >
+                chatBodyScrollHeight
+            )
+                dispatch(
+                    setNewReactionEmojiPickerPosition(
+                        messageTemplateOffsetTop - 305
+                    )
+                );
+            else {
+                dispatch(
+                    setNewReactionEmojiPickerPosition(
+                        messageTemplateOffsetTop - 15
+                    )
+                );
+            }
+        }
+    };
+
     // /. functions
 
     return (
         <>
             {contextHolder}
             {/*  /. confirm modal content */}
-            <ul className="message-context">
+            <ul
+                ref={contextMenuRef}
+                className="message-context"
+            >
                 <li
                     className="message-context__template"
                     data-action="add reaction"
@@ -111,6 +151,7 @@ const MessageContextMenu: React.FC<propTypes> = ({ messageID, isEditable }) => {
                         className="message-context__button"
                         aria-label="add reaction"
                         type="button"
+                        onClick={onReactionButtonClick}
                     >
                         <MdOutlineAddReaction
                             size={iconProperties.size}
