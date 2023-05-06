@@ -40,7 +40,10 @@ const initialState: profileSliceTypes = {
 
     isChatEmojiPickerVisible: false,
     isReactionEmojiPickerVisible: false,
-    reactionEmojiPickerPosition: 0,
+    reactionEmojiPickerPosition: {
+        top: 0,
+        right: 0
+    },
     currentMessageID: '',
 
     usersFetchingStatus: '',
@@ -115,7 +118,7 @@ const profileSlice = createSlice({
         switchReactionEmojiPickerVisibleStatus(state, action: PayloadAction<boolean>) {
             state.isReactionEmojiPickerVisible = action.payload;
         },
-        setNewReactionEmojiPickerPosition(state, action: PayloadAction<number>) {
+        setNewReactionEmojiPickerPosition(state, action: PayloadAction<{ top: number, right: number }>) {
             state.reactionEmojiPickerPosition = action.payload;
         },
         setMessageReactions(state, action: PayloadAction<{ payloadID: string, reation: Ireaction }>) {

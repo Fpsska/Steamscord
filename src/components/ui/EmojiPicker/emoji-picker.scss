@@ -6,7 +6,7 @@
 }
 
 .emoji-picker-wrapper_reactions {
-    right: 120px;
+    right: var(--rightPosition);
     top: var(--topPosition);
     bottom: 0;
 }

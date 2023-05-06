@@ -32,7 +32,7 @@ export interface profileSliceTypes {
 
     isChatEmojiPickerVisible: boolean;
     isReactionEmojiPickerVisible: boolean;
-    reactionEmojiPickerPosition: number;
+    reactionEmojiPickerPosition: { top: number, right: number };
     currentMessageID: string;
 
     usersFetchingStatus: string;

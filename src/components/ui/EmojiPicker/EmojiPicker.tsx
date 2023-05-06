@@ -38,10 +38,12 @@ const EmojiPickerWrapper: React.FC<propTypes> = ({
     // /. hooks
 
     const onEmojiClick = (_: any, emojiObject: any): void => {
-        if (additionalClass) {
-            addReactions(emojiObject);
-        } else {
-            addEmoji(emojiObject);
+        switch (additionalClass) {
+            case 'emoji-picker-wrapper_reactions':
+                addReactions(emojiObject);
+                break;
+            default:
+                addEmoji(emojiObject);
         }
     };
 
@@ -84,9 +86,18 @@ const EmojiPickerWrapper: React.FC<propTypes> = ({
             'emoji-picker-wrapper_reactions'
         );
         if (validCondition) {
+            // const properties = {
+            //     '--topPosition': `${reactionEmojiPickerPosition}px`,
+            //     '--rightPosition': `${messageContextMenuWidth}px`
+            // };
+
             emojiWrapperRef.current.style.setProperty(
                 '--topPosition',
-                `${reactionEmojiPickerPosition}px`
+                `${reactionEmojiPickerPosition.top}px`
+            );
+            emojiWrapperRef.current.style.setProperty(
+                '--rightPosition',
+                `${reactionEmojiPickerPosition.right}px`
             );
         }
     }, [reactionEmojiPickerPosition]);

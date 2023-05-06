@@ -113,23 +113,27 @@ const MessageContextMenu: React.FC<propTypes> = ({ messageID, isEditable }) => {
         const chatBody = messageTemplate?.parentElement?.parentElement;
 
         if (messageTemplateOffsetTop && chatBody) {
+            const { width } = contextMenuRef.current.getBoundingClientRect();
             const chatBodyScrollHeight = chatBody.scrollHeight;
             const emojiPickerHeight = 320;
+            const offsetRight = 25;
 
             if (
                 messageTemplateOffsetTop + emojiPickerHeight >
                 chatBodyScrollHeight
             )
                 dispatch(
-                    setNewReactionEmojiPickerPosition(
-                        messageTemplateOffsetTop - 305
-                    )
+                    setNewReactionEmojiPickerPosition({
+                        top: messageTemplateOffsetTop - 305,
+                        right: width + offsetRight
+                    })
                 );
             else {
                 dispatch(
-                    setNewReactionEmojiPickerPosition(
-                        messageTemplateOffsetTop - 15
-                    )
+                    setNewReactionEmojiPickerPosition({
+                        top: messageTemplateOffsetTop - 15,
+                        right: width + offsetRight
+                    })
                 );
             }
         }
