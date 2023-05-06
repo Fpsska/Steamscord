@@ -9,6 +9,10 @@ import {
     setNewMessageValue
 } from 'app/slices/profileSlice';
 
+import { Ireaction } from 'types/profileSliceTypes';
+
+import ReactionsList from '../Reactions/ReactionsList';
+
 import CommentContextMenu from './MessageContextMenu/MessageContextMenu';
 
 // /. imports
@@ -21,6 +25,7 @@ interface propTypes {
     time: string;
     isEditable: boolean;
     isEditing?: boolean;
+    reactions: Ireaction[];
 }
 
 // /. interfaces
@@ -32,7 +37,8 @@ const MessageTemplate: React.FC<propTypes> = ({
     avatar,
     time,
     isEditable,
-    isEditing
+    isEditing,
+    reactions
 }) => {
     const [inputMessageValue, setInputMessageValue] = useState<string>(message);
 
@@ -54,6 +60,10 @@ const MessageTemplate: React.FC<propTypes> = ({
         dispatch(
             setNewMessageValue({ payloadID: id, value: inputMessageValue })
         );
+    };
+
+    const onMessageClick = (): void => {
+        return;
     };
 
     // /. functions
@@ -105,6 +115,7 @@ const MessageTemplate: React.FC<propTypes> = ({
         <div
             ref={messageTemplateRef}
             className={`messages__template ${isEditing ? 'editable' : ''}`}
+            onClick={onMessageClick}
         >
             <img
                 className="messages__profile-image"
@@ -135,6 +146,11 @@ const MessageTemplate: React.FC<propTypes> = ({
                         </form>
                     ) : (
                         <p className="messages__text">{message}</p>
+                    )}
+                </>
+                <>
+                    {reactions?.length > 0 && (
+                        <ReactionsList reactions={reactions} />
                     )}
                 </>
             </div>

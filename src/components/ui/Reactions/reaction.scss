@@ -1,0 +1,13 @@
+.reactions {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 5px 0 0 0;
+
+    &__template {
+        margin-bottom: 5px;
+
+        &:not(:last-child) {
+            margin-right: 5px;
+        }
+    }
+}

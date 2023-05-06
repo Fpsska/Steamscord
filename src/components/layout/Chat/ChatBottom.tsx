@@ -68,7 +68,8 @@ const ChatBottom: React.FC<propTypes> = ({
                 })
                 .toUpperCase(),
             isEditable: true,
-            isEditing: false
+            isEditing: false,
+            reactions: []
         };
         dispatch(createNewMessage({ message: newMessage }));
 

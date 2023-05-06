@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction, current } from '@reduxjs/toolkit';
 
-import { profileSliceTypes, Ifriend, Imessage } from 'types/profileSliceTypes';
+import { profileSliceTypes, Ifriend, Imessage, Ireaction } from 'types/profileSliceTypes';
 
 import { fetchUsers } from 'app/api/fetchUsers';
 import { fetchComments } from 'app/api/fetchComments';
@@ -41,6 +41,7 @@ const initialState: profileSliceTypes = {
     isChatEmojiPickerVisible: false,
     isReactionEmojiPickerVisible: false,
     reactionEmojiPickerPosition: 0,
+    currentMessageID: '',
 
     usersFetchingStatus: '',
     usersFetchingError: null,
@@ -117,6 +118,18 @@ const profileSlice = createSlice({
         setNewReactionEmojiPickerPosition(state, action: PayloadAction<number>) {
             state.reactionEmojiPickerPosition = action.payload;
         },
+        setMessageReactions(state, action: PayloadAction<{ payloadID: string, reation: Ireaction }>) {
+            const { payloadID, reation } = action.payload;
+            // /. payload
+
+            const message = state.messages.find(message => message.id === payloadID);
+            if (message) {
+                message.reactions.push(reation);
+            }
+        },
+        setCurrentMessageID(state, action: PayloadAction<string>) {
+            state.currentMessageID = action.payload;
+        },
         switchDataLoadingStatus(state, action: PayloadAction<boolean>) {
             state.isDataLoading = action.payload;
         }
@@ -168,7 +181,8 @@ const profileSlice = createSlice({
                             avatar: item.avatar,
                             message: commentsArray[getRandomGameArrayItem(commentsArray)],
                             dateOfCreate: generateRandomDate().toUpperCase(),
-                            isEditable: false
+                            isEditable: false,
+                            reactions: []
                         };
                     }));
                     state.messages = newMessagesArray;
@@ -186,6 +200,6 @@ const profileSlice = createSlice({
     }
 });
 
-export const { getCurrentUser, createNewMessage, deleteSpecificMessage, switchMessageCreatedStatus, switchEditingMessageStatus, setNewMessageValue, switchChatEmojiPickerVisibleStatus, switchReactionEmojiPickerVisibleStatus, setNewReactionEmojiPickerPosition, switchDataLoadingStatus } = profileSlice.actions;
+export const { getCurrentUser, createNewMessage, deleteSpecificMessage, switchMessageCreatedStatus, switchEditingMessageStatus, setNewMessageValue, switchChatEmojiPickerVisibleStatus, switchReactionEmojiPickerVisibleStatus, setNewReactionEmojiPickerPosition, setCurrentMessageID, setMessageReactions, switchDataLoadingStatus } = profileSlice.actions;
 
 export default profileSlice.reducer;

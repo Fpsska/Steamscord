@@ -4,11 +4,17 @@ interface Iuser {
     avatar: string;
 }
 
+export interface Ireaction {
+    id: string,
+    emoji: string
+}
+
 export interface Imessage extends Iuser {
     message: string;
     dateOfCreate: string;
     isEditable: boolean;
     isEditing?: boolean;
+    reactions: Ireaction[]
 }
 
 export interface Ifriend extends Iuser {
@@ -27,6 +33,7 @@ export interface profileSliceTypes {
     isChatEmojiPickerVisible: boolean;
     isReactionEmojiPickerVisible: boolean;
     reactionEmojiPickerPosition: number;
+    currentMessageID: string;
 
     usersFetchingStatus: string;
     usersFetchingError: null | string;

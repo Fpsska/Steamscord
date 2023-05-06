@@ -4,7 +4,11 @@ import EmojiPicker from 'emoji-picker-react';
 
 import { useAppSelector, useAppDispatch } from 'app/hooks';
 
-import { switchChatEmojiPickerVisibleStatus } from 'app/slices/profileSlice';
+import {
+    switchChatEmojiPickerVisibleStatus,
+    switchReactionEmojiPickerVisibleStatus,
+    setMessageReactions
+} from 'app/slices/profileSlice';
 
 import './emoji-picker.scss';
 
@@ -21,8 +25,12 @@ const EmojiPickerWrapper: React.FC<propTypes> = ({
     additionalClass,
     setInputMessageValue
 }) => {
-    const { isChatEmojiPickerVisible, reactionEmojiPickerPosition } =
-        useAppSelector(state => state.profileReducer);
+    const {
+        isChatEmojiPickerVisible,
+        reactionEmojiPickerPosition,
+        currentMessageID,
+        messages
+    } = useAppSelector(state => state.profileReducer);
 
     const dispatch = useAppDispatch();
     const emojiWrapperRef = useRef<any>(null!);
@@ -30,11 +38,42 @@ const EmojiPickerWrapper: React.FC<propTypes> = ({
     // /. hooks
 
     const onEmojiClick = (_: any, emojiObject: any): void => {
+        if (additionalClass) {
+            addReactions(emojiObject);
+        } else {
+            addEmoji(emojiObject);
+        }
+    };
+
+    const addEmoji = (emojiObject: any): void => {
         dispatch(switchChatEmojiPickerVisibleStatus(false));
 
         if (setInputMessageValue) {
             setInputMessageValue((prev: string) => prev + emojiObject.emoji);
         }
+    };
+
+    const addReactions = (emojiObject: any): void => {
+        const { unified, emoji } = emojiObject;
+
+        const message = messages.find(({ id }) => id === currentMessageID);
+
+        const isEmojiAlreadyExist = message?.reactions.find(
+            ({ id }) => id === unified
+        );
+
+        !isEmojiAlreadyExist &&
+            dispatch(
+                setMessageReactions({
+                    payloadID: currentMessageID,
+                    reation: {
+                        id: unified,
+                        emoji: emoji
+                    }
+                })
+            );
+
+        dispatch(switchReactionEmojiPickerVisibleStatus(false));
     };
 
     // /. functions

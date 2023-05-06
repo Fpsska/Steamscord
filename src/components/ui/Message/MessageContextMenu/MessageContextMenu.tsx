@@ -19,7 +19,8 @@ import {
     switchEditingMessageStatus,
     deleteSpecificMessage,
     switchReactionEmojiPickerVisibleStatus,
-    setNewReactionEmojiPickerPosition
+    setNewReactionEmojiPickerPosition,
+    setCurrentMessageID
 } from 'app/slices/profileSlice';
 
 import MessageTemplate from '../MessageTemplate';
@@ -101,6 +102,7 @@ const MessageContextMenu: React.FC<propTypes> = ({ messageID, isEditable }) => {
 
     const onReactionButtonClick = (): void => {
         dispatch(switchReactionEmojiPickerVisibleStatus(true));
+        dispatch(setCurrentMessageID(messageID));
         computeNewEmojiPickerPostition();
     };
 
