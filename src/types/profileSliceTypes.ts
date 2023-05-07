@@ -30,9 +30,11 @@ export interface profileSliceTypes {
     gameActivity: string[];
     timeZones: string[];
 
-    isChatEmojiPickerVisible: boolean;
-    isReactionEmojiPickerVisible: boolean;
+    isEmojiPickerVisible: boolean;
+    emojiPickerRole: string;
     reactionEmojiPickerPosition: { top: number, right: number };
+
+    messageTextValue: string;
     currentMessageID: string;
 
     usersFetchingStatus: string;

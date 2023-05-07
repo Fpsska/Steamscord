@@ -8,11 +8,11 @@ import { useAppSelector, useAppDispatch } from 'app/hooks';
 
 import {
     createNewMessage,
+    setMessageTextValue,
     switchMessageCreatedStatus,
-    switchChatEmojiPickerVisibleStatus
+    switchEmojiPickerVisibleStatus,
+    setEmojiPickerRole
 } from 'app/slices/profileSlice';
-
-import EmojiPickerWrapper from 'components/ui/EmojiPicker/EmojiPicker';
 
 import { generateUniqueID } from 'utils/helpers/generateUniqueID';
 
@@ -34,11 +34,10 @@ const ChatBottom: React.FC<propTypes> = ({
     const { isUserAuthorized, login } = useAppSelector(
         state => state.authReducer
     );
-    const { isMessageCreated, isChatEmojiPickerVisible } = useAppSelector(
-        state => state.profileReducer
-    );
+    const { messageTextValue, isMessageCreated, isEmojiPickerVisible } =
+        useAppSelector(state => state.profileReducer);
 
-    const [inputMessageValue, setInputMessageValue] = useState<string>('');
+    // const [inputMessageValue, setInputMessageValue] = useState<string>('');
 
     const dispatch = useAppDispatch();
 
@@ -58,7 +57,7 @@ const ChatBottom: React.FC<propTypes> = ({
         const newMessage: Imessage = {
             id: generateUniqueID(),
             name: login,
-            message: inputMessageValue.trim(),
+            message: messageTextValue.trim(),
             avatar: '',
             dateOfCreate: new Date()
                 .toLocaleDateString('en-GB', {
@@ -74,7 +73,12 @@ const ChatBottom: React.FC<propTypes> = ({
         dispatch(createNewMessage({ message: newMessage }));
 
         dispatch(switchMessageCreatedStatus(!isMessageCreated));
-        setInputMessageValue('');
+        dispatch(setMessageTextValue(''));
+    };
+
+    const onEmojiButtonClick = (): void => {
+        dispatch(switchEmojiPickerVisibleStatus(!isEmojiPickerVisible));
+        dispatch(setEmojiPickerRole('emoji'));
     };
 
     // /. functions
@@ -83,7 +87,7 @@ const ChatBottom: React.FC<propTypes> = ({
         <Row className="chat__bottom">
             <form
                 className="form form--message"
-                onSubmit={e => inputMessageValue && onFormSubmit(e)}
+                onSubmit={e => messageTextValue && onFormSubmit(e)}
                 action="#"
             >
                 <input
@@ -91,8 +95,10 @@ const ChatBottom: React.FC<propTypes> = ({
                     type="text"
                     placeholder="Message in #general"
                     disabled={isInputDisabled}
-                    value={inputMessageValue}
-                    onChange={e => setInputMessageValue(e.target.value)}
+                    value={messageTextValue}
+                    onChange={e =>
+                        dispatch(setMessageTextValue(e.target.value))
+                    }
                 />
                 <div className="form__interaction">
                     <button
@@ -119,26 +125,13 @@ const ChatBottom: React.FC<propTypes> = ({
                 <button
                     type="button"
                     className="form__button form__button--message form__button--emoji"
-                    onClick={() =>
-                        dispatch(
-                            switchChatEmojiPickerVisibleStatus(
-                                !isChatEmojiPickerVisible
-                            )
-                        )
-                    }
+                    onClick={onEmojiButtonClick}
                 >
                     <BsEmojiSmile
                         size={20}
                         color={'#b5b5b5'}
                     />
                 </button>
-                <>
-                    {isChatEmojiPickerVisible && (
-                        <EmojiPickerWrapper
-                            setInputMessageValue={setInputMessageValue}
-                        />
-                    )}
-                </>
             </form>
         </Row>
     );

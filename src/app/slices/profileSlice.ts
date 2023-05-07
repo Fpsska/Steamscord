@@ -38,12 +38,13 @@ const initialState: profileSliceTypes = {
         '(UTC+06:00) Astana'
     ],
 
-    isChatEmojiPickerVisible: false,
-    isReactionEmojiPickerVisible: false,
+    isEmojiPickerVisible: false,
+    emojiPickerRole: 'emoji',
     reactionEmojiPickerPosition: {
         top: 0,
         right: 0
     },
+    messageTextValue: '',
     currentMessageID: '',
 
     usersFetchingStatus: '',
@@ -75,6 +76,7 @@ const profileSlice = createSlice({
                 state.currentUser.push(user);
             }
         },
+
         createNewMessage(state, action: PayloadAction<{ message: Imessage }>) {
             const { message } = action.payload;
             // /. payload
@@ -90,6 +92,18 @@ const profileSlice = createSlice({
                 state.messages.splice(messageIDX, 1);
             }
         },
+        setMessageTextValue(state, action: PayloadAction<string>) {
+            state.messageTextValue = action.payload;
+        },
+        updateMessageValue(state, action: PayloadAction<{ payloadID: string, value: string }>) {
+            const { payloadID, value } = action.payload;
+            // /. payload
+
+            const message = state.messages.find(message => message.id === payloadID);
+            if (message) {
+                message.message = value;
+            }
+        },
         switchMessageCreatedStatus(state, action: PayloadAction<boolean>) {
             state.isMessageCreated = action.payload;
         },
@@ -103,20 +117,15 @@ const profileSlice = createSlice({
 
             state.messages = [...otherMessages, ...updatedMessagesArray];
         },
-        setNewMessageValue(state, action: PayloadAction<{ payloadID: string, value: string }>) {
-            const { payloadID, value } = action.payload;
-            // /. payload
+        setCurrentMessageID(state, action: PayloadAction<string>) {
+            state.currentMessageID = action.payload;
+        },
 
-            const message = state.messages.find(message => message.id === payloadID);
-            if (message) {
-                message.message = value;
-            }
+        switchEmojiPickerVisibleStatus(state, action: PayloadAction<boolean>) {
+            state.isEmojiPickerVisible = action.payload;
         },
-        switchChatEmojiPickerVisibleStatus(state, action: PayloadAction<boolean>) {
-            state.isChatEmojiPickerVisible = action.payload;
-        },
-        switchReactionEmojiPickerVisibleStatus(state, action: PayloadAction<boolean>) {
-            state.isReactionEmojiPickerVisible = action.payload;
+        setEmojiPickerRole(state, action: PayloadAction<string>) {
+            state.emojiPickerRole = action.payload;
         },
         setNewReactionEmojiPickerPosition(state, action: PayloadAction<{ top: number, right: number }>) {
             state.reactionEmojiPickerPosition = action.payload;
@@ -129,9 +138,6 @@ const profileSlice = createSlice({
             if (message) {
                 message.reactions.push(reation);
             }
-        },
-        setCurrentMessageID(state, action: PayloadAction<string>) {
-            state.currentMessageID = action.payload;
         },
         switchDataLoadingStatus(state, action: PayloadAction<boolean>) {
             state.isDataLoading = action.payload;
@@ -203,6 +209,6 @@ const profileSlice = createSlice({
     }
 });
 
-export const { getCurrentUser, createNewMessage, deleteSpecificMessage, switchMessageCreatedStatus, switchEditingMessageStatus, setNewMessageValue, switchChatEmojiPickerVisibleStatus, switchReactionEmojiPickerVisibleStatus, setNewReactionEmojiPickerPosition, setCurrentMessageID, setMessageReactions, switchDataLoadingStatus } = profileSlice.actions;
+export const { getCurrentUser, createNewMessage, deleteSpecificMessage, setMessageTextValue, switchMessageCreatedStatus, switchEditingMessageStatus, updateMessageValue, switchEmojiPickerVisibleStatus, setEmojiPickerRole, setNewReactionEmojiPickerPosition, setCurrentMessageID, setMessageReactions, switchDataLoadingStatus } = profileSlice.actions;
 
 export default profileSlice.reducer;

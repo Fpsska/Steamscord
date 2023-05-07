@@ -5,8 +5,8 @@ import EmojiPicker from 'emoji-picker-react';
 import { useAppSelector, useAppDispatch } from 'app/hooks';
 
 import {
-    switchChatEmojiPickerVisibleStatus,
-    switchReactionEmojiPickerVisibleStatus,
+    switchEmojiPickerVisibleStatus,
+    setMessageTextValue,
     setMessageReactions
 } from 'app/slices/profileSlice';
 
@@ -14,22 +14,14 @@ import './emoji-picker.scss';
 
 // /. imports
 
-interface propTypes {
-    additionalClass?: string;
-    setInputMessageValue?: (arg: any) => void;
-}
-
-// /. interfaces
-
-const EmojiPickerWrapper: React.FC<propTypes> = ({
-    additionalClass,
-    setInputMessageValue
-}) => {
+const EmojiPickerWrapper: React.FC = () => {
     const {
-        isChatEmojiPickerVisible,
+        isEmojiPickerVisible,
         reactionEmojiPickerPosition,
         currentMessageID,
-        messages
+        messages,
+        messageTextValue,
+        emojiPickerRole
     } = useAppSelector(state => state.profileReducer);
 
     const dispatch = useAppDispatch();
@@ -38,8 +30,8 @@ const EmojiPickerWrapper: React.FC<propTypes> = ({
     // /. hooks
 
     const onEmojiClick = (_: any, emojiObject: any): void => {
-        switch (additionalClass) {
-            case 'emoji-picker-wrapper_reactions':
+        switch (emojiPickerRole) {
+            case 'reaction':
                 addReactions(emojiObject);
                 break;
             default:
@@ -48,11 +40,8 @@ const EmojiPickerWrapper: React.FC<propTypes> = ({
     };
 
     const addEmoji = (emojiObject: any): void => {
-        dispatch(switchChatEmojiPickerVisibleStatus(false));
-
-        if (setInputMessageValue) {
-            setInputMessageValue((prev: string) => prev + emojiObject.emoji);
-        }
+        dispatch(setMessageTextValue(messageTextValue + emojiObject.emoji));
+        dispatch(switchEmojiPickerVisibleStatus(false));
     };
 
     const addReactions = (emojiObject: any): void => {
@@ -75,7 +64,7 @@ const EmojiPickerWrapper: React.FC<propTypes> = ({
                 })
             );
 
-        dispatch(switchReactionEmojiPickerVisibleStatus(false));
+        dispatch(switchEmojiPickerVisibleStatus(false));
     };
 
     // /. functions
@@ -86,11 +75,6 @@ const EmojiPickerWrapper: React.FC<propTypes> = ({
             'emoji-picker-wrapper_reactions'
         );
         if (validCondition) {
-            // const properties = {
-            //     '--topPosition': `${reactionEmojiPickerPosition}px`,
-            //     '--rightPosition': `${messageContextMenuWidth}px`
-            // };
-
             emojiWrapperRef.current.style.setProperty(
                 '--topPosition',
                 `${reactionEmojiPickerPosition.top}px`
@@ -104,21 +88,20 @@ const EmojiPickerWrapper: React.FC<propTypes> = ({
 
     useEffect(() => {
         // logic of hide emoji-picker components
-        const onDocumentKeyPress = (e: KeyboardEvent): void => {
-            const validCondition =
-                isChatEmojiPickerVisible && e.code === 'Escape';
+        if (!isEmojiPickerVisible) return;
 
-            validCondition &&
-                dispatch(switchChatEmojiPickerVisibleStatus(false));
+        const onDocumentKeyPress = (e: KeyboardEvent): void => {
+            const validCondition = e.code === 'Escape';
+
+            validCondition && dispatch(switchEmojiPickerVisibleStatus(false));
         };
 
-        const onInputOutsideClick = (e: MouseEvent): void => {
-            const validCondition =
-                isChatEmojiPickerVisible &&
-                !emojiWrapperRef.current?.contains(e.target as Node);
+        const onInputOutsideClick = (e: any): void => {
+            const validCondition = !emojiWrapperRef.current?.contains(
+                e.target as Node
+            );
 
-            validCondition &&
-                dispatch(switchChatEmojiPickerVisibleStatus(false));
+            validCondition && dispatch(switchEmojiPickerVisibleStatus(false));
         };
 
         document.addEventListener('keydown', onDocumentKeyPress);
@@ -127,16 +110,18 @@ const EmojiPickerWrapper: React.FC<propTypes> = ({
             document.removeEventListener('keydown', onDocumentKeyPress);
             document.removeEventListener('click', onInputOutsideClick);
         };
-    }, [isChatEmojiPickerVisible]);
+    }, [isEmojiPickerVisible]);
 
     // /. effects
 
     return (
         <div
             ref={emojiWrapperRef}
-            className={`emoji-picker-wrapper ${
-                additionalClass ? additionalClass : ''
-            }`}
+            className={
+                emojiPickerRole === 'emoji'
+                    ? 'emoji-picker-wrapper'
+                    : 'emoji-picker-wrapper_reactions'
+            }
         >
             <EmojiPicker onEmojiClick={onEmojiClick} />
         </div>

@@ -30,8 +30,9 @@ const ChatPageFirst: React.FC<propTypes> = props => {
     const { isLoading, isError } = props;
 
     const { isFirstPageLoading } = useAppSelector(state => state.mainReducer);
-    const { messages, isMessageCreated, isReactionEmojiPickerVisible } =
-        useAppSelector(state => state.profileReducer);
+    const { messages, isMessageCreated, isEmojiPickerVisible } = useAppSelector(
+        state => state.profileReducer
+    );
 
     const [isMobileErrorTemplate, setMobileErrorTemplate] =
         useState<boolean>(false);
@@ -85,6 +86,7 @@ const ChatPageFirst: React.FC<propTypes> = props => {
             !isFirstPageLoading && !isCommentsDataEmpty && chatBodyRef?.current;
 
         if (validCondition) {
+            console.log('scroll');
             setTimeout(() => {
                 chatBodyRef.current.scrollTo({
                     top: chatBodyRef.current.scrollHeight,
@@ -157,11 +159,7 @@ const ChatPageFirst: React.FC<propTypes> = props => {
                                 <MessageList availableItems={availableItems} />
                             )}
                         </>
-                        <>
-                            {isReactionEmojiPickerVisible && (
-                                <EmojiPickerWrapper additionalClass="emoji-picker-wrapper_reactions" />
-                            )}
-                        </>
+                        <>{isEmojiPickerVisible && <EmojiPickerWrapper />}</>
                     </div>
                 )}
             </Row>

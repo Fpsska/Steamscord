@@ -6,7 +6,7 @@ import { useAppDispatch } from 'app/hooks';
 
 import {
     switchEditingMessageStatus,
-    setNewMessageValue
+    updateMessageValue
 } from 'app/slices/profileSlice';
 
 import { Ireaction } from 'types/profileSliceTypes';
@@ -55,10 +55,10 @@ const MessageTemplate: React.FC<propTypes> = ({
 
         if (!inputMessageValue) {
             // set default input value if submit form with empty input value
-            dispatch(setNewMessageValue({ payloadID: id, value: message }));
+            dispatch(updateMessageValue({ payloadID: id, value: message }));
         }
         dispatch(
-            setNewMessageValue({ payloadID: id, value: inputMessageValue })
+            updateMessageValue({ payloadID: id, value: inputMessageValue })
         );
     };
 

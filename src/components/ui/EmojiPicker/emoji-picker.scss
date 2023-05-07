@@ -1,11 +1,12 @@
 .emoji-picker-wrapper {
     z-index: 2;
-    position: absolute;
+    position: fixed;
     right: 12px;
     bottom: 75px;
 }
 
 .emoji-picker-wrapper_reactions {
+    position: absolute;
     right: var(--rightPosition);
     top: var(--topPosition);
     bottom: 0;

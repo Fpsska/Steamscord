@@ -18,9 +18,10 @@ import { useAppSelector, useAppDispatch } from 'app/hooks';
 import {
     switchEditingMessageStatus,
     deleteSpecificMessage,
-    switchReactionEmojiPickerVisibleStatus,
+    switchEmojiPickerVisibleStatus,
     setNewReactionEmojiPickerPosition,
-    setCurrentMessageID
+    setCurrentMessageID,
+    setEmojiPickerRole
 } from 'app/slices/profileSlice';
 
 import MessageTemplate from '../MessageTemplate';
@@ -101,8 +102,9 @@ const MessageContextMenu: React.FC<propTypes> = ({ messageID, isEditable }) => {
     };
 
     const onReactionButtonClick = (): void => {
-        dispatch(switchReactionEmojiPickerVisibleStatus(true));
+        dispatch(switchEmojiPickerVisibleStatus(true));
         dispatch(setCurrentMessageID(messageID));
+        dispatch(setEmojiPickerRole('reaction'));
         computeNewEmojiPickerPostition();
     };
 
