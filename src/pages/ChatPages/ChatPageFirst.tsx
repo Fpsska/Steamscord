@@ -7,6 +7,7 @@ import MessageList from 'components/ui/Message/MessageList';
 import { useAppSelector, useAppDispatch } from 'app/hooks';
 
 import { switchFirstPageLoadingStatus } from 'app/slices/mainSlice';
+import { switchEmojiPickerVisibleStatus } from 'app/slices/profileSlice';
 
 import { useFilter } from 'utils/hook/useFilter';
 
@@ -30,9 +31,13 @@ const ChatPageFirst: React.FC<propTypes> = props => {
     const { isLoading, isError } = props;
 
     const { isFirstPageLoading } = useAppSelector(state => state.mainReducer);
-    const { messages, isMessageCreated, isEmojiPickerVisible } = useAppSelector(
-        state => state.profileReducer
-    );
+    const {
+        messages,
+        isMessageCreated,
+        isEmojiPickerVisible,
+        emojiPickerRole,
+        reactionEmojiPickerPosition
+    } = useAppSelector(state => state.profileReducer);
 
     const [isMobileErrorTemplate, setMobileErrorTemplate] =
         useState<boolean>(false);
@@ -43,6 +48,7 @@ const ChatPageFirst: React.FC<propTypes> = props => {
     const dispatch = useAppDispatch();
 
     const chatBodyRef = useRef<HTMLDivElement>(null!);
+    const emojiWrapperRef = useRef<HTMLDivElement>(null!);
 
     // /. hooks
 
@@ -69,6 +75,25 @@ const ChatPageFirst: React.FC<propTypes> = props => {
         };
     }, []);
 
+    useLayoutEffect(() => {
+        // logic of set dynamic position of emoji-picker-wrapper_reactions
+        const validCondition =
+            isEmojiPickerVisible &&
+            emojiWrapperRef?.current &&
+            emojiPickerRole === 'reaction';
+
+        if (validCondition) {
+            emojiWrapperRef.current.style.setProperty(
+                '--topPosition',
+                `${reactionEmojiPickerPosition.top}px`
+            );
+            emojiWrapperRef.current.style.setProperty(
+                '--rightPosition',
+                `${reactionEmojiPickerPosition.right}px`
+            );
+        }
+    }, [isEmojiPickerVisible, emojiPickerRole, reactionEmojiPickerPosition]);
+
     useEffect(() => {
         // logic of disable isFirstPageLoading status
         const validCondition = !isLoading && !isError;
@@ -86,7 +111,6 @@ const ChatPageFirst: React.FC<propTypes> = props => {
             !isFirstPageLoading && !isCommentsDataEmpty && chatBodyRef?.current;
 
         if (validCondition) {
-            console.log('scroll');
             setTimeout(() => {
                 chatBodyRef.current.scrollTo({
                     top: chatBodyRef.current.scrollHeight,
@@ -95,6 +119,41 @@ const ChatPageFirst: React.FC<propTypes> = props => {
             }, 200);
         }
     }, [isMessageCreated, isFirstPageLoading, isCommentsDataEmpty]);
+
+    useEffect(() => {
+        // logic of hide emoji-picker components
+        if (!isEmojiPickerVisible) return;
+
+        const onDocumentKeyPress = (e: KeyboardEvent): void => {
+            const validCondition = e.code === 'Escape';
+
+            validCondition && dispatch(switchEmojiPickerVisibleStatus(false));
+        };
+
+        const onInputOutsideClick = (e: any): void => {
+            const validElements = [
+                '.message-context__template',
+                '.message-context__icon',
+                '.message-context__icon path',
+                '.form__button--message svg',
+                '.form__button--message svg path'
+            ];
+            const emojiPickerEl = emojiWrapperRef.current?.contains(
+                e.target as Node
+            );
+
+            if (!emojiPickerEl && !e.target.matches(validElements)) {
+                dispatch(switchEmojiPickerVisibleStatus(false));
+            }
+        };
+
+        document.addEventListener('keydown', onDocumentKeyPress);
+        document.addEventListener('click', onInputOutsideClick);
+        return () => {
+            document.removeEventListener('keydown', onDocumentKeyPress);
+            document.removeEventListener('click', onInputOutsideClick);
+        };
+    }, [isEmojiPickerVisible]);
 
     // /. effects
 
@@ -159,7 +218,11 @@ const ChatPageFirst: React.FC<propTypes> = props => {
                                 <MessageList availableItems={availableItems} />
                             )}
                         </>
-                        <>{isEmojiPickerVisible && <EmojiPickerWrapper />}</>
+                        <>
+                            {isEmojiPickerVisible && (
+                                <EmojiPickerWrapper ref={emojiWrapperRef} />
+                            )}
+                        </>
                     </div>
                 )}
             </Row>

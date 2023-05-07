@@ -38,7 +38,9 @@ interface propTypes {
 // /. interfaces
 
 const MessageContextMenu: React.FC<propTypes> = ({ messageID, isEditable }) => {
-    const { messages } = useAppSelector(state => state.profileReducer);
+    const { messages, isEmojiPickerVisible } = useAppSelector(
+        state => state.profileReducer
+    );
 
     const [modal, contextHolder] = Modal.useModal();
 
@@ -102,10 +104,11 @@ const MessageContextMenu: React.FC<propTypes> = ({ messageID, isEditable }) => {
     };
 
     const onReactionButtonClick = (): void => {
-        dispatch(switchEmojiPickerVisibleStatus(true));
-        dispatch(setCurrentMessageID(messageID));
-        dispatch(setEmojiPickerRole('reaction'));
+        !isEmojiPickerVisible && dispatch(switchEmojiPickerVisibleStatus(true));
         computeNewEmojiPickerPostition();
+
+        dispatch(setEmojiPickerRole('reaction'));
+        dispatch(setCurrentMessageID(messageID));
     };
 
     const computeNewEmojiPickerPostition = (): void => {
@@ -162,6 +165,7 @@ const MessageContextMenu: React.FC<propTypes> = ({ messageID, isEditable }) => {
                         onClick={onReactionButtonClick}
                     >
                         <MdOutlineAddReaction
+                            className="message-context__icon"
                             size={iconProperties.size}
                             color={iconProperties.color}
                         />

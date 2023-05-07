@@ -77,7 +77,7 @@ const ChatBottom: React.FC<propTypes> = ({
     };
 
     const onEmojiButtonClick = (): void => {
-        dispatch(switchEmojiPickerVisibleStatus(!isEmojiPickerVisible));
+        !isEmojiPickerVisible && dispatch(switchEmojiPickerVisibleStatus(true));
         dispatch(setEmojiPickerRole('emoji'));
     };
 
@@ -128,6 +128,7 @@ const ChatBottom: React.FC<propTypes> = ({
                     onClick={onEmojiButtonClick}
                 >
                     <BsEmojiSmile
+                        className="form__button-icon"
                         size={20}
                         color={'#b5b5b5'}
                     />
