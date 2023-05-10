@@ -1,10 +1,11 @@
 .reactions {
     display: flex;
     flex-wrap: wrap;
-    margin: 5px 0 0 0;
+    margin: 2.5px 0 0 0;
 
     &__template {
         margin-bottom: 5px;
+        font-size: 16px;
 
         &:not(:last-child) {
             margin-right: 5px;

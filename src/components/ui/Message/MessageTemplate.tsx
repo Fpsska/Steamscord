@@ -2,12 +2,14 @@ import React, { useState, useEffect, useRef } from 'react';
 
 import placeholderIMG from 'assets/images/profile-main.png';
 
-import { useAppDispatch } from 'app/hooks';
+import { useAppSelector, useAppDispatch } from 'app/hooks';
 
 import {
     switchEditingMessageStatus,
     updateMessageValue
 } from 'app/slices/profileSlice';
+
+import { replaceUnicodeEmojiByImage } from 'utils/helpers/replaceUnicodeEmojiByImage';
 
 import { Ireaction } from 'types/profileSliceTypes';
 
@@ -62,10 +64,6 @@ const MessageTemplate: React.FC<propTypes> = ({
         );
     };
 
-    const onMessageClick = (): void => {
-        return;
-    };
-
     // /. functions
 
     useEffect(() => {
@@ -115,7 +113,6 @@ const MessageTemplate: React.FC<propTypes> = ({
         <div
             ref={messageTemplateRef}
             className={`messages__template ${isEditing ? 'editable' : ''}`}
-            onClick={onMessageClick}
         >
             <img
                 className="messages__profile-image"
@@ -126,7 +123,7 @@ const MessageTemplate: React.FC<propTypes> = ({
                 <div className="messages__information">
                     <span className="messages__name">{name}</span>
                     <span className="messages__time">{time}</span>
-                    <b>{id}</b>
+                    {/* <b>{id}</b> */}
                 </div>
                 <>
                     {isEditing ? (
@@ -145,7 +142,17 @@ const MessageTemplate: React.FC<propTypes> = ({
                             />
                         </form>
                     ) : (
-                        <p className="messages__text">{message}</p>
+                        <p
+                            className="messages__text"
+                            dangerouslySetInnerHTML={{
+                                __html: replaceUnicodeEmojiByImage(
+                                    message,
+                                    'emoji'
+                                )
+                            }}
+                        >
+                            {/* {message} */}
+                        </p>
                     )}
                 </>
                 <>

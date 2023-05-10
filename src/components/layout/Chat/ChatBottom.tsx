@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { Row, message } from 'antd';
 
@@ -36,8 +36,6 @@ const ChatBottom: React.FC<propTypes> = ({
     );
     const { messageTextValue, isMessageCreated, isEmojiPickerVisible } =
         useAppSelector(state => state.profileReducer);
-
-    // const [inputMessageValue, setInputMessageValue] = useState<string>('');
 
     const dispatch = useAppDispatch();
 

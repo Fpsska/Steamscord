@@ -33,7 +33,9 @@ const EmojiPickerWrapper = forwardRef<HTMLDivElement>((_, ref) => {
     };
 
     const addEmoji = (emojiObject: any): void => {
-        dispatch(setMessageTextValue(messageTextValue + emojiObject.emoji));
+        const { emoji, originalUnified } = emojiObject;
+        // console.log(emojiObject);
+        dispatch(setMessageTextValue(messageTextValue + emoji));
         dispatch(switchEmojiPickerVisibleStatus(false));
     };
 
