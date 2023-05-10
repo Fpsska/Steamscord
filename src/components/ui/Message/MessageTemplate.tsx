@@ -1,15 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react';
 
+import twemoji from 'twemoji';
+
 import placeholderIMG from 'assets/images/profile-main.png';
 
-import { useAppSelector, useAppDispatch } from 'app/hooks';
+import { useAppDispatch } from 'app/hooks';
 
 import {
     switchEditingMessageStatus,
     updateMessageValue
 } from 'app/slices/profileSlice';
-
-import { replaceUnicodeEmojiByImage } from 'utils/helpers/replaceUnicodeEmojiByImage';
 
 import { Ireaction } from 'types/profileSliceTypes';
 
@@ -145,14 +145,12 @@ const MessageTemplate: React.FC<propTypes> = ({
                         <p
                             className="messages__text"
                             dangerouslySetInnerHTML={{
-                                __html: replaceUnicodeEmojiByImage(
-                                    message,
-                                    'emoji'
-                                )
+                                __html: twemoji.parse(message, {
+                                    folder: 'svg',
+                                    ext: '.svg'
+                                })
                             }}
-                        >
-                            {/* {message} */}
-                        </p>
+                        ></p>
                     )}
                 </>
                 <>

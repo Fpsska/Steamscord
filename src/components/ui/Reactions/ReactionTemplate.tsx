@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { replaceUnicodeEmojiByImage } from 'utils/helpers/replaceUnicodeEmojiByImage';
+import twemoji from 'twemoji';
 
 // /. imports
 
@@ -9,11 +9,12 @@ const ReactionTemplate: React.FC<{ emoji: string }> = ({ emoji }) => {
         <li
             className="reactions__template"
             dangerouslySetInnerHTML={{
-                __html: replaceUnicodeEmojiByImage(emoji, 'reaction')
+                __html: twemoji.parse(emoji, {
+                    folder: 'svg',
+                    ext: '.svg'
+                })
             }}
-        >
-            {/* {emoji} */}
-        </li>
+        ></li>
     );
 };
 

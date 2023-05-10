@@ -10,5 +10,11 @@
         &:not(:last-child) {
             margin-right: 5px;
         }
+
+        .emoji {
+            width: 17px;
+            height: 17px;
+        }
+
     }
 }
