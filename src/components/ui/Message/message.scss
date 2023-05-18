@@ -40,12 +40,42 @@
         }
     }
 
+    &__form {
+        position: relative;
+        margin-bottom: 5px;
+    }
+
     &__input {
         border-color: transparent;
         border-radius: 4px;
         outline: transparent;
-        padding: 0 5px;
+        padding: 6px 5px;
         width: 100%;
+    }
+
+    &__button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        right: 0;
+        left: auto;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: transparent;
+    }
+
+    &__clue {
+        font-size: 12px;
+        margin: 0;
+
+        span:first-child {
+            color: red;
+        }
+
+        span:last-child {
+            color: #1b227f;
+        }
     }
 
     &__name {
@@ -72,8 +102,8 @@
         align-items: center;
 
         .emoji {
-            width: 25px;
-            height: 25px;
+            width: 22px;
+            height: 22px;
         }
     }
 

@@ -1,3 +1,11 @@
+@mixin emoji-picker-absolute {
+    z-index: 2;
+    position: absolute;
+    right: var(--rightPosition);
+    top: var(--topPosition);
+    bottom: auto;
+}
+
 .emoji-picker-wrapper {
     z-index: 2;
     position: fixed;
@@ -6,9 +14,9 @@
 }
 
 .emoji-picker-wrapper_reactions {
-    z-index: 2;
-    position: absolute;
-    right: var(--rightPosition);
-    top: var(--topPosition);
-    bottom: auto;
+    @include emoji-picker-absolute;
+}
+
+.emoji-picker-wrapper_edit {
+    @include emoji-picker-absolute;
 }

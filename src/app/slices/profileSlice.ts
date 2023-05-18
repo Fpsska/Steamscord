@@ -98,6 +98,7 @@ const profileSlice = createSlice({
         updateMessageValue(state, action: PayloadAction<{ payloadID: string, value: string }>) {
             const { payloadID, value } = action.payload;
             // /. payload
+            console.log('updateMessageValue');
 
             const message = state.messages.find(message => message.id === payloadID);
             if (message) {

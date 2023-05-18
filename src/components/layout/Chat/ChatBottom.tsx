@@ -121,8 +121,9 @@ const ChatBottom: React.FC<propTypes> = ({
                     </button>
                 </div>
                 <button
-                    type="button"
                     className="form__button form__button--message form__button--emoji"
+                    type="button"
+                    aria-label="add emoji"
                     onClick={onEmojiButtonClick}
                 >
                     <BsEmojiSmile

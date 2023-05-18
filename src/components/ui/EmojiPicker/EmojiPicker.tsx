@@ -7,7 +7,8 @@ import { useAppSelector, useAppDispatch } from 'app/hooks';
 import {
     switchEmojiPickerVisibleStatus,
     setMessageTextValue,
-    setMessageReactions
+    setMessageReactions,
+    updateMessageValue
 } from 'app/slices/profileSlice';
 
 import './emoji-picker.scss';
@@ -22,14 +23,42 @@ const EmojiPickerWrapper = forwardRef<HTMLDivElement>((_, ref) => {
 
     // /. hooks
 
+    const emojiPickerClasses: { [key: string]: string } = {
+        emoji: 'emoji-picker-wrapper',
+        reaction: 'emoji-picker-wrapper_reactions',
+        'emoji-edit': 'emoji-picker-wrapper_edit'
+    };
+
+    // /. variables
+
     const onEmojiClick = (_: any, emojiObject: any): void => {
         switch (emojiPickerRole) {
             case 'reaction':
                 addReactions(emojiObject);
                 break;
+            case 'emoji-edit':
+                addEmojiOfEditMode(emojiObject);
+                break;
             default:
                 addEmoji(emojiObject);
         }
+    };
+
+    const addEmojiOfEditMode = (emojiObject: any): void => {
+        const { emoji } = emojiObject;
+
+        const message = messages.find(({ id }) => id === currentMessageID);
+
+        if (message) {
+            dispatch(
+                updateMessageValue({
+                    payloadID: message.id,
+                    value: message.message + emoji
+                })
+            );
+        }
+
+        dispatch(switchEmojiPickerVisibleStatus(false));
     };
 
     const addEmoji = (emojiObject: any): void => {
@@ -67,11 +96,7 @@ const EmojiPickerWrapper = forwardRef<HTMLDivElement>((_, ref) => {
     return (
         <div
             ref={ref}
-            className={
-                emojiPickerRole === 'emoji'
-                    ? 'emoji-picker-wrapper'
-                    : 'emoji-picker-wrapper_reactions'
-            }
+            className={emojiPickerClasses[emojiPickerRole]}
         >
             <EmojiPicker onEmojiClick={onEmojiClick} />
         </div>

@@ -77,21 +77,21 @@ const ChatPageFirst: React.FC<propTypes> = props => {
 
     useLayoutEffect(() => {
         // logic of set dynamic position of emoji-picker-wrapper_reactions
-        const validCondition =
-            isEmojiPickerVisible &&
-            emojiWrapperRef?.current &&
-            emojiPickerRole === 'reaction';
+        if (
+            emojiPickerRole === 'emoji' ||
+            !isEmojiPickerVisible ||
+            !emojiWrapperRef.current
+        )
+            return;
 
-        if (validCondition) {
-            emojiWrapperRef.current.style.setProperty(
-                '--topPosition',
-                `${reactionEmojiPickerPosition.top}px`
-            );
-            emojiWrapperRef.current.style.setProperty(
-                '--rightPosition',
-                `${reactionEmojiPickerPosition.right}px`
-            );
-        }
+        emojiWrapperRef.current.style.setProperty(
+            '--topPosition',
+            `${reactionEmojiPickerPosition.top}px`
+        );
+        emojiWrapperRef.current.style.setProperty(
+            '--rightPosition',
+            `${reactionEmojiPickerPosition.right}px`
+        );
     }, [isEmojiPickerVisible, emojiPickerRole, reactionEmojiPickerPosition]);
 
     useEffect(() => {
@@ -143,6 +143,7 @@ const ChatPageFirst: React.FC<propTypes> = props => {
             );
 
             if (!emojiPickerEl && !e.target.matches(validElements)) {
+                // console.log('outside click');
                 dispatch(switchEmojiPickerVisibleStatus(false));
             }
         };

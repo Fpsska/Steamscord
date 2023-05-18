@@ -2,12 +2,19 @@ import React, { useState, useEffect, useRef } from 'react';
 
 import twemoji from 'twemoji';
 
+import { BsEmojiSmile } from 'react-icons/bs';
+
+import { useNewEmojiPickerPosition } from 'utils/hook/useNewEmojiPickerPosition';
+
 import placeholderIMG from 'assets/images/profile-main.png';
 
-import { useAppDispatch } from 'app/hooks';
+import { useAppSelector, useAppDispatch } from 'app/hooks';
 
 import {
+    setCurrentMessageID,
+    setEmojiPickerRole,
     switchEditingMessageStatus,
+    switchEmojiPickerVisibleStatus,
     updateMessageValue
 } from 'app/slices/profileSlice';
 
@@ -32,26 +39,37 @@ interface propTypes {
 
 // /. interfaces
 
-const MessageTemplate: React.FC<propTypes> = ({
-    id,
-    name,
-    message,
-    avatar,
-    time,
-    isEditable,
-    isEditing,
-    reactions
-}) => {
+const MessageTemplate: React.FC<propTypes> = props => {
+    const {
+        id,
+        name,
+        message,
+        avatar,
+        time,
+        isEditable,
+        isEditing,
+        reactions
+    } = props;
+
+    const { isEmojiPickerVisible } = useAppSelector(
+        state => state.profileReducer
+    );
+
     const [inputMessageValue, setInputMessageValue] = useState<string>(message);
 
     const dispatch = useAppDispatch();
     const messageTemplateRef = useRef<HTMLDivElement>(null!);
+    const contextMenuRef = useRef<HTMLUListElement>(null!);
+    const buttonEmojiPickerRef = useRef<HTMLButtonElement>(null!);
+
+    const { computeNewEmojiPickerPosition } = useNewEmojiPickerPosition();
 
     // /. hooks
 
     const onFormMessageSubmit = (e: React.SyntheticEvent, id: string): void => {
         e.preventDefault();
         //
+        console.log('submit');
 
         dispatch(switchEditingMessageStatus({ payloadID: id, status: false }));
 
@@ -60,7 +78,24 @@ const MessageTemplate: React.FC<propTypes> = ({
             dispatch(updateMessageValue({ payloadID: id, value: message }));
         }
         dispatch(
-            updateMessageValue({ payloadID: id, value: inputMessageValue })
+            updateMessageValue({
+                payloadID: id,
+                value: inputMessageValue.trim()
+            })
+        );
+    };
+
+    const onEmojiButtonClick = (): void => {
+        !isEmojiPickerVisible && dispatch(switchEmojiPickerVisibleStatus(true));
+        dispatch(setEmojiPickerRole('emoji-edit'));
+        dispatch(setCurrentMessageID(id));
+
+        computeNewEmojiPickerPosition(
+            messageTemplateRef,
+            buttonEmojiPickerRef,
+            320,
+            320,
+            -26
         );
     };
 
@@ -73,28 +108,28 @@ const MessageTemplate: React.FC<propTypes> = ({
     }, [isEditing]);
 
     useEffect(() => {
+        if (!isEditing) return;
+
         const triggerInputEditAction = (): void => {
             dispatch(
-                dispatch(
-                    switchEditingMessageStatus({
-                        payloadID: id,
-                        status: false
-                    })
-                )
+                switchEditingMessageStatus({
+                    payloadID: id,
+                    status: false
+                })
             );
             setInputMessageValue(message);
         };
 
         const onDocumentKeyPress = (e: KeyboardEvent): void => {
-            const validCondition = isEditing && e.code === 'Escape';
+            const validCondition = e.code === 'Escape';
 
             validCondition && triggerInputEditAction();
         };
 
         const onInputOutsideClick = (e: MouseEvent): void => {
-            const validCondition =
-                isEditing &&
-                !messageTemplateRef.current.contains(e.target as Node);
+            const validCondition = !messageTemplateRef.current?.contains(
+                e.target as Node
+            );
 
             validCondition && triggerInputEditAction();
         };
@@ -127,20 +162,39 @@ const MessageTemplate: React.FC<propTypes> = ({
                 </div>
                 <>
                     {isEditing ? (
-                        <form
-                            className="messages__form"
-                            onSubmit={e => onFormMessageSubmit(e, id)}
-                            action="#"
-                        >
-                            <input
-                                className="messages__input"
-                                type="text"
-                                value={inputMessageValue}
-                                onChange={e =>
-                                    setInputMessageValue(e.target.value.trim())
-                                }
-                            />
-                        </form>
+                        <>
+                            <form
+                                className="messages__form"
+                                onSubmit={e => onFormMessageSubmit(e, id)}
+                                action="#"
+                            >
+                                <input
+                                    className="messages__input"
+                                    type="text"
+                                    value={inputMessageValue}
+                                    onChange={e =>
+                                        setInputMessageValue(e.target.value)
+                                    }
+                                />
+                                <button
+                                    ref={buttonEmojiPickerRef}
+                                    className="messages__button"
+                                    type="button"
+                                    aria-label="add emoji"
+                                    onClick={onEmojiButtonClick}
+                                >
+                                    <BsEmojiSmile
+                                        className="form__button-icon"
+                                        size={20}
+                                        color={'#b5b5b5'}
+                                    />
+                                </button>
+                            </form>
+                            <p className="messages__clue">
+                                <span>escape</span> to cancel /{' '}
+                                <span>enter</span> to save
+                            </p>
+                        </>
                     ) : (
                         <p
                             className="messages__text"
@@ -164,6 +218,11 @@ const MessageTemplate: React.FC<propTypes> = ({
                     <CommentContextMenu
                         messageID={id}
                         isEditable={isEditable}
+                        messageRef={messageTemplateRef}
+                        ref={contextMenuRef}
+                        computeEmojiPickerPosition={
+                            computeNewEmojiPickerPosition
+                        }
                     />
                 )}
             </>
