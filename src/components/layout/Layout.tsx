@@ -212,7 +212,11 @@ const GeneralLayout: React.FC<propTypes> = ({ users, isError }) => {
                                     </Row>
                                     {/*  */}
                                     <Row>
-                                        <Col style={{ width: '100%' }}>
+                                        <Col
+                                            style={{
+                                                width: '100%'
+                                            }}
+                                        >
                                             <div className="content__section-header">
                                                 <h2 className="content__title">
                                                     Friends

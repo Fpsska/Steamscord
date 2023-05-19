@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
-import { useNavigate } from 'react-router-dom';
+import { Row, Button } from 'antd';
 
-import { Button } from 'antd';
+import { useNavigate } from 'react-router-dom';
 
 import ChatHeader from 'components/layout/Chat/ChatHeader';
 import ChatBottom from 'components/layout/Chat/ChatBottom';
@@ -50,39 +50,41 @@ const ChatPageSecond: React.FC<{ isError?: boolean }> = ({
                     image="big"
                 />
             ) : (
-                <div className="warning">
-                    <img
-                        className="warning__image"
-                        src={warningImg}
-                        alt="warning"
-                    />
-                    <div className="warning__text">
-                        <h2 className="warning__title">NSFW Channel</h2>
-                        <p className="warning__description">
-                            You must be at least eighteen years old to view this
-                            channel. Are you over eighteen and willing to see
-                            adult content?
-                        </p>
+                <Row className="chat__middle">
+                    <div className="warning">
+                        <img
+                            className="warning__image"
+                            src={warningImg}
+                            alt="warning"
+                        />
+                        <div className="warning__text">
+                            <h2 className="warning__title">NSFW Channel</h2>
+                            <p className="warning__description">
+                                You must be at least eighteen years old to view
+                                this channel. Are you over eighteen and willing
+                                to see adult content?
+                            </p>
+                        </div>
+                        <div className="warning__nav">
+                            <Button
+                                className="warning__button warning__button--cancel"
+                                type="primary"
+                                onClick={goBack}
+                            >
+                                Go homepage
+                            </Button>
+                            <Button
+                                className="warning__button warning__button--accept"
+                                type="primary"
+                                danger
+                                loading={isLoading}
+                                onClick={acceptAction}
+                            >
+                                Continue
+                            </Button>
+                        </div>
                     </div>
-                    <div className="warning__nav">
-                        <Button
-                            className="warning__button warning__button--cancel"
-                            type="primary"
-                            onClick={goBack}
-                        >
-                            Go homepage
-                        </Button>
-                        <Button
-                            className="warning__button warning__button--accept"
-                            type="primary"
-                            danger
-                            loading={isLoading}
-                            onClick={acceptAction}
-                        >
-                            Continue
-                        </Button>
-                    </div>
-                </div>
+                </Row>
             )}
             <ChatBottom isError={isError} />
         </>
